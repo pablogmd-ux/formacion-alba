@@ -12,11 +12,12 @@
 <style>
   :root{--bg:#0b1120;--card:#141c2f;--line:#24304a;--txt:#e5e9f2;--mut:#8b96ad}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;padding:32px 20px}
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;padding:calc(32px + env(safe-area-inset-top)) 20px 32px}
   header{max-width:960px;margin:0 auto 28px}
   h1{font-size:28px;font-weight:700}
   .sub{color:var(--mut);margin-top:6px;font-size:15px}
   .estado{display:inline-block;margin-top:12px;font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+  h3{max-width:960px;margin:26px auto 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
   .grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
   a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .15s,border-color .15s}
   a.card:hover,a.card:active{transform:translateY(-2px);border-color:var(--c)}
@@ -33,16 +34,17 @@
   <div class="sub">Elige una asignatura para practicar</div>
   <span class="estado" id="estado">Comprobando conexión…</span>
 </header>
-<main class="grid" id="grid"></main>
+<div id="secciones"></div>
 <footer>Funciona sin internet una vez abierta. Se actualiza sola al conectarse.</footer>
 <script>
-// === LISTA DE APPS: para añadir una nueva, solo hay que añadir una línea aquí y su archivo en /apps ===
+// === LISTA DE APPS: para añadir una nueva, añade una línea aquí, su archivo en /apps y su ruta en sw.js ===
 const APPS = [
-  {titulo:"English",  desc:"Grammar GF 1–17, vocabulario y práctica diaria", url:"apps/english.html",        color:"#3b82f6", icono:"libro"},
-  {titulo:"Deutsch",  desc:"Deutschbuch 6 – Übungen",                        url:"apps/deutsch.html",        color:"#f59e0b", icono:"pluma"},
-  {titulo:"Mathe",    desc:"Brüche-Trainer – Brüche und Anteile",            url:"apps/bruch-trainer.html",  color:"#10b981", icono:"calc"},
-  {titulo:"Bio",      desc:"Ernährung – Biologie heute",                      url:"apps/bio.html",            color:"#22c55e", icono:"hoja"},
-  {titulo:"Sociales", desc:"Tema 1 – La Prehistoria",                         url:"apps/sociales.html",       color:"#a855f7", icono:"globo"}
+  {area:"English",  titulo:"English Practice",     desc:"Simple past, vocabulario, mini-exámenes",       url:"apps/english.html",       color:"#3b82f6", icono:"libro"},
+  {area:"Deutsch",  titulo:"Beschreiben",          desc:"Genitiv, Wegbeschreibung, Gegenstand",          url:"apps/deutsch.html",       color:"#f59e0b", icono:"pluma"},
+  {area:"Deutsch",  titulo:"Kasus-Training",       desc:"Nominativ, Akkusativ, Dativ, Genitiv",          url:"apps/kasus.html",         color:"#f97316", icono:"pluma"},
+  {area:"Mathe",    titulo:"Brüche-Trainer",       desc:"Brüche und Anteile, Kürzen und Erweitern",      url:"apps/bruch-trainer.html", color:"#10b981", icono:"calc"},
+  {area:"Mathe",    titulo:"Dezimalbrüche",        desc:"Stellenwerttafel, Skalen, Bruch ↔ Kommazahl",   url:"apps/dezimal.html",       color:"#14b8a6", icono:"calc"},
+  {area:"Bio",      titulo:"Ernährung",            desc:"Nährstoffe, Verdauung, Ernährungsplan",         url:"apps/bio.html",           color:"#22c55e", icono:"hoja"}
 ];
 const ICONOS = {
   libro:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>',
@@ -51,11 +53,14 @@ const ICONOS = {
   hoja:'<path d="M11 20A7 7 0 0 1 4 13c0-6 7-10 16-10 0 9-4 16-10 16z"/><path d="M4 21c4-6 8-9 12-11"/>',
   globo:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>'
 };
-document.getElementById('grid').innerHTML = APPS.map(a=>`
-  <a class="card" href="${a.url}" style="--c:${a.color}">
-    <div class="ico"><svg viewBox="0 0 24 24">${ICONOS[a.icono]||ICONOS.libro}</svg></div>
-    <h2>${a.titulo}</h2><p>${a.desc}</p>
-  </a>`).join('');
+const areas=[...new Set(APPS.map(a=>a.area))];
+document.getElementById('secciones').innerHTML = areas.map(ar=>`
+  <h3>${ar}</h3>
+  <main class="grid">${APPS.filter(a=>a.area===ar).map(a=>`
+    <a class="card" href="${a.url}" style="--c:${a.color}">
+      <div class="ico"><svg viewBox="0 0 24 24">${ICONOS[a.icono]||ICONOS.libro}</svg></div>
+      <h2>${a.titulo}</h2><p>${a.desc}</p>
+    </a>`).join('')}</main>`).join('');
 const est=document.getElementById('estado');
 function pinta(){est.textContent=navigator.onLine?'En línea – al día':'Sin conexión – modo offline';}
 addEventListener('online',pinta);addEventListener('offline',pinta);pinta();

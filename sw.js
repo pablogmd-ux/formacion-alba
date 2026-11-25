@@ -1,9 +1,9 @@
 // Cambia el número de versión cada vez que subas cambios, para forzar la actualización
-const VERSION = 'alba-v1';
+const VERSION = 'alba-v2';
 const ARCHIVOS = [
   './', './index.html', './manifest.json',
-  './apps/english.html', './apps/deutsch.html', './apps/bruch-trainer.html',
-  './apps/bio.html', './apps/sociales.html'
+  './apps/english.html', './apps/deutsch.html', './apps/kasus.html',
+  './apps/bruch-trainer.html', './apps/dezimal.html', './apps/bio.html'
 ];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c =>
@@ -23,6 +23,6 @@ self.addEventListener('fetch', e => {
       const copia = r.clone();
       caches.open(VERSION).then(c => c.put(e.request, copia));
       return r;
-    }).catch(() => caches.match(e.request))
+    }).catch(() => caches.match(e.request, {ignoreSearch: true}))
   );
 });
