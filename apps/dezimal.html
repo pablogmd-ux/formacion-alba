@@ -1,0 +1,302 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Dezimalbrüche Trainer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one column workbook — tabs on top, one task card at a time, number line as the hero of each task */
+:root{
+  --bg:#EEF2F8; --paper:#FFFFFF; --ink:#1C2A4A; --muted:#5A6888; --line:#C9D3E6;
+  --accent:#2E67D9; --accent-soft:#E2EBFC; --warm:#EE8A1F; --warm-soft:#FDEBD6;
+  --good:#1B8E5A; --good-soft:#DDF3E8; --bad:#C9413A; --bad-soft:#FBE3E1;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111827; --paper:#1A2335; --ink:#E7ECF7; --muted:#9AA7C2; --line:#33415E;
+  --accent:#6F9BF5; --accent-soft:#22314F; --warm:#F5A04A; --warm-soft:#3A2B18;
+  --good:#4CC98C; --good-soft:#17352A; --bad:#F07A72; --bad-soft:#3D1F1E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111827; --paper:#1A2335; --ink:#E7ECF7; --muted:#9AA7C2; --line:#33415E;
+  --accent:#6F9BF5; --accent-soft:#22314F; --warm:#F5A04A; --warm-soft:#3A2B18;
+  --good:#4CC98C; --good-soft:#17352A; --bad:#F07A72; --bad-soft:#3D1F1E; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1.1;margin:0;text-wrap:balance}
+h1 span{color:var(--warm)}
+.score{display:flex;gap:8px;align-items:center;font-weight:800;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-variant-numeric:tabular-nums}
+.score svg{width:18px;height:18px;color:var(--warm)}
+nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:5px}
+nav button{font:inherit;font-weight:700;font-size:.9rem;border:0;background:transparent;color:var(--muted);padding:9px 4px;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button svg{width:20px;height:20px}
+nav button[aria-selected="true"]{background:var(--accent);color:#fff}
+nav button:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.card h2{font-family:var(--display);font-size:1.35rem;margin:0;line-height:1.2}
+.task{font-size:1.1rem;font-weight:700;margin:0}
+.muted{color:var(--muted);margin:0}
+.levels{display:flex;gap:6px;flex-wrap:wrap}
+.levels button{font:inherit;font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer}
+.levels button[aria-pressed="true"]{border-color:var(--warm);background:var(--warm-soft)}
+.scale{overflow-x:auto;margin:0 -6px}
+.scale svg{display:block;width:100%;min-width:520px;height:auto}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{font:inherit;font-size:1.25rem;font-weight:800;width:150px;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-variant-numeric:tabular-nums}
+input.small{width:80px;text-align:center}
+.btn{font:inherit;font-weight:800;border:0;border-radius:12px;padding:10px 18px;cursor:pointer;background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent-soft)}
+.btn.warm{background:var(--warm)}
+.fb{border-radius:12px;padding:12px 14px;font-weight:600}
+.fb.ok{background:var(--good-soft);color:var(--good)}
+.fb.no{background:var(--bad-soft);color:var(--bad)}
+.fb.hint{background:var(--accent-soft);color:var(--ink)}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.1;font-weight:800;margin:0 3px}
+.frac b{border-bottom:2px solid currentColor;padding:0 4px}
+.big{font-family:var(--display);font-size:2.2rem;font-weight:800}
+.fracin{display:inline-flex;flex-direction:column;align-items:center;gap:4px}
+.fracin hr{width:90px;border:0;border-top:3px solid var(--ink);margin:0}
+table.pv{border-collapse:separate;border-spacing:4px;margin:0 auto;font-variant-numeric:tabular-nums}
+table.pv th{font-size:.8rem;color:var(--muted);font-weight:800;padding:2px 6px;text-align:center}
+table.pv td{width:56px;height:56px;text-align:center;font-family:var(--display);font-size:1.8rem;font-weight:800;border-radius:10px;background:var(--bg)}
+table.pv td.comma{width:16px;background:transparent;color:var(--warm)}
+table.pv td.dec{background:var(--accent-soft)}
+.pvwrap{overflow-x:auto}
+.explain{display:grid;gap:6px;font-weight:600}
+.explain div{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tip{display:flex;gap:10px;align-items:flex-start;background:var(--warm-soft);border-radius:12px;padding:12px 14px}
+.tip svg{flex:none;width:22px;height:22px;color:var(--warm);margin-top:2px}
+.tip p{margin:0}
+@media (max-width:480px){h1{font-size:1.55rem} nav button{font-size:.75rem} table.pv td{width:44px;height:48px;font-size:1.5rem}}
+@media (prefers-reduced-motion:no-preference){.pop{animation:pop .25s ease-out}@keyframes pop{from{transform:scale(.96);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Dezimal<span>brüche</span> üben</h1>
+    <div class="score" aria-live="polite"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg><span id="score">0</span> richtig</div>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" data-tab="lernen" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>Verstehen</button>
+    <button role="tab" data-tab="ablesen" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16h20M5 16v-3M9 16v-2M12 16v-4M15 16v-2M19 16v-3M12 4v5m-2-2 2 2 2-2"/></svg>Ablesen</button>
+    <button role="tab" data-tab="eintragen" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16h20M5 16v-3M12 16v-4M19 16v-3"/><circle cx="15" cy="8" r="3"/></svg>Eintragen</button>
+    <button role="tab" data-tab="bruch" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 4v5M5 13h6M8 16v4M14 18l6-12"/></svg>Bruch ↔ Komma</button>
+  </nav>
+
+  <!-- VERSTEHEN -->
+  <section class="card" id="tab-lernen">
+    <h2>Die Stellenwerttafel</h2>
+    <p class="muted">Tippe eine Kommazahl ein. Jede Stelle nach dem Komma ist zehnmal kleiner als die davor.</p>
+    <div class="row"><input type="text" id="pvIn" value="0,65" inputmode="decimal" aria-label="Kommazahl"></div>
+    <div class="pvwrap"><table class="pv" id="pvTable"></table></div>
+    <div class="explain" id="pvExplain"></div>
+    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+      <p><b>Merke:</b> Die Anzahl der Stellen nach dem Komma = Anzahl der Nullen im Nenner.<br>0,6 = <span class="frac"><b>6</b>10</span> &nbsp; 0,65 = <span class="frac"><b>65</b>100</span> &nbsp; 0,005 = <span class="frac"><b>5</b>1000</span></p></div>
+    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16h20M5 16v-3M8 16v-2M11 16v-2M14 16v-2M17 16v-2M20 16v-3"/></svg>
+      <p><b>Skalenteil finden:</b> Abstand zwischen zwei Zahlen ÷ Anzahl der Teile.<br>Von 1,1 bis 1,2 sind es 0,1. Bei 10 Teilen ist ein Skalenteil 0,01.</p></div>
+  </section>
+
+  <!-- ABLESEN -->
+  <section class="card" id="tab-ablesen" hidden>
+    <div class="row" style="justify-content:space-between"><h2>Welche Zahl zeigt der Pfeil?</h2><div class="levels" data-for="ablesen"></div></div>
+    <div class="scale" id="abScale"></div>
+    <div class="row">
+      <input type="text" id="abIn" inputmode="decimal" placeholder="z. B. 1,15" aria-label="Deine Antwort">
+      <button class="btn" id="abCheck">Prüfen</button>
+      <button class="btn ghost" id="abHint">Tipp</button>
+      <button class="btn warm" id="abNext">Neue Aufgabe</button>
+    </div>
+    <div id="abFb" aria-live="polite"></div>
+  </section>
+
+  <!-- EINTRAGEN -->
+  <section class="card" id="tab-eintragen" hidden>
+    <div class="row" style="justify-content:space-between"><h2>Trage die Zahl ein</h2><div class="levels" data-for="eintragen"></div></div>
+    <p class="task">Tippe auf den Strich für <span class="big" id="eiTarget" style="color:var(--warm)"></span></p>
+    <div class="scale" id="eiScale"></div>
+    <div class="row"><button class="btn ghost" id="eiHint">Tipp</button><button class="btn warm" id="eiNext">Neue Aufgabe</button></div>
+    <div id="eiFb" aria-live="polite"></div>
+  </section>
+
+  <!-- BRUCH -->
+  <section class="card" id="tab-bruch" hidden>
+    <h2 id="brTitle">Schreibe als Kommazahl</h2>
+    <div class="row" id="brTask" style="justify-content:center;gap:16px"></div>
+    <div class="row" style="justify-content:center">
+      <button class="btn" id="brCheck">Prüfen</button>
+      <button class="btn warm" id="brNext">Neue Aufgabe</button>
+    </div>
+    <div id="brFb" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+// All values are stored as integers in units of 1/10000 to avoid rounding errors
+const U = 10000;
+const $ = id => document.getElementById(id);
+const fmt = n => { const neg=n<0; n=Math.abs(n); let s=Math.floor(n/U)+''; let d=(n%U+'').padStart(4,'0').replace(/0+$/,''); return (neg?'-':'')+s+(d?','+d:''); };
+const parse = s => { s=(s||'').trim().replace(/\s/g,'').replace(',', '.'); if(!/^-?\d*\.?\d+$/.test(s)) return null; return Math.round(parseFloat(s)*U); };
+const rnd = (a,b) => a+Math.floor(Math.random()*(b-a+1));
+const pick = a => a[Math.floor(Math.random()*a.length)];
+
+let score = 0; try{ score = +localStorage.getItem('db_score')||0 }catch(e){}
+const addPoint = () => { score++; $('score').textContent=score; try{localStorage.setItem('db_score',score)}catch(e){} };
+$('score').textContent = score;
+
+// Tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('section.card').forEach(s=>s.hidden = s.id!=='tab-'+b.dataset.tab);
+});
+
+// Scale configurations: step = one Skalenteil, every = ticks between labelled marks
+const LEVELS = {
+  'Leicht':[{step:1000,every:10},{step:100,every:10}],
+  'Mittel':[{step:10,every:10},{step:500,every:2},{step:200,every:5},{step:100,every:5}],
+  'Schwer':[{step:50,every:2},{step:25,every:4},{step:5,every:2},{step:250,every:4}]
+};
+const level = {ablesen:'Leicht', eintragen:'Leicht'};
+document.querySelectorAll('.levels').forEach(box=>{
+  const mode = box.dataset.for;
+  Object.keys(LEVELS).forEach(l=>{
+    const b=document.createElement('button'); b.textContent=l; b.setAttribute('aria-pressed', l===level[mode]);
+    b.onclick=()=>{ level[mode]=l; box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); mode==='ablesen'?newAb():newEi(); };
+    box.appendChild(b);
+  });
+});
+
+function makeLine(levelName){
+  const c = pick(LEVELS[levelName]);
+  const major = c.step*c.every;
+  const N = c.every===10 ? 20 : c.every*rnd(4,5);
+  const start = major*rnd(c.step>=1000?0:10, c.step>=1000?2:(c.step>=100?40:220));
+  return {...c, major, N, start};
+}
+
+// Draws a number line. labels: 'two' (first two labelled marks) or 'all'
+function drawLine(L, opts){
+  const W=640, x0=30, x1=610, y=80, dx=(x1-x0)/L.N;
+  let s=`<svg viewBox="0 0 ${W} 140" role="img" aria-label="Zahlenstrahl">`;
+  s+=`<line x1="${x0-14}" y1="${y}" x2="${x1+20}" y2="${y}" stroke="var(--ink)" stroke-width="2.5"/>`;
+  s+=`<path d="M${x1+20} ${y-6} L${x1+30} ${y} L${x1+20} ${y+6}z" fill="var(--ink)"/>`;
+  let labelled=0;
+  for(let i=0;i<=L.N;i++){
+    const x=x0+i*dx, v=L.start+i*L.step, isMaj=(v%L.major)===0;
+    const h=isMaj?16:(L.every%2===0 && (i*2)%L.every===0 && L.every>2 ? 11 : 8);
+    s+=`<line x1="${x}" y1="${y-h}" x2="${x}" y2="${y+h}" stroke="var(--ink)" stroke-width="${isMaj?2.5:1.5}"/>`;
+    if(isMaj && (opts.labels==='all' || labelled<2)){ s+=`<text x="${x}" y="${y+40}" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="18" fill="var(--ink)">${fmt(v)}</text>`; labelled++; }
+    if(opts.click) s+=`<rect data-i="${i}" x="${x-dx/2}" y="${y-30}" width="${dx}" height="60" fill="transparent" style="cursor:pointer"/>`;
+  }
+  if(opts.arrow!=null){
+    const x=x0+opts.arrow*dx;
+    s+=`<rect x="${x-26}" y="8" width="52" height="28" rx="8" fill="var(--warm-soft)" stroke="var(--warm)" stroke-width="2"/>`;
+    s+=`<text x="${x}" y="28" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="17" fill="var(--warm)">${opts.arrowLabel||'?'}</text>`;
+    s+=`<path d="M${x} 38 V${y-14}" stroke="var(--warm)" stroke-width="2.5"/><path d="M${x-6} ${y-20} L${x} ${y-12} L${x+6} ${y-20}" fill="none" stroke="var(--warm)" stroke-width="2.5"/>`;
+  }
+  (opts.marks||[]).forEach(m=>{ const x=x0+m.i*dx; s+=`<circle cx="${x}" cy="${y}" r="9" fill="${m.c}" stroke="var(--paper)" stroke-width="2"/>`; });
+  return s+'</svg>';
+}
+
+const hintText = L => `Zwischen ${fmt(L.start - L.start%L.major + (L.start%L.major?L.major:0))} und der nächsten Zahl liegen ${fmt(L.major)}. Das sind ${L.every} Teile. Also ist ein Skalenteil ${fmt(L.major)} ÷ ${L.every} = <b>${fmt(L.step)}</b>.`;
+
+// ABLESEN
+let ab;
+function newAb(){
+  const L=makeLine(level.ablesen); let i; do{ i=rnd(1,L.N-1) }while((L.start+i*L.step)%L.major===0);
+  ab={L,i,val:L.start+i*L.step,tries:0};
+  $('abScale').innerHTML=drawLine(L,{labels:'two',arrow:i}); $('abIn').value=''; $('abFb').innerHTML='';
+}
+$('abCheck').onclick=()=>{
+  const v=parse($('abIn').value); const fb=$('abFb');
+  if(v==null){ fb.innerHTML='<div class="fb hint">Schreibe eine Zahl mit Komma, z. B. 2,015.</div>'; return; }
+  if(v===ab.val){ if(!ab.done){addPoint(); ab.done=true} fb.innerHTML=`<div class="fb ok pop">Richtig! Der Pfeil zeigt auf <b>${fmt(ab.val)}</b>.</div>`;
+    $('abScale').innerHTML=drawLine(ab.L,{labels:'two',arrow:ab.i,arrowLabel:fmt(ab.val)}); }
+  else { ab.tries++; fb.innerHTML=`<div class="fb no pop">Noch nicht. ${ab.tries>=2?hintText(ab.L)+` Zähle die Striche von der beschrifteten Zahl bis zum Pfeil.`:'Wie groß ist ein Skalenteil? Probier es nochmal.'}</div>`; }
+};
+$('abIn').addEventListener('keydown',e=>{if(e.key==='Enter')$('abCheck').click()});
+$('abHint').onclick=()=>$('abFb').innerHTML=`<div class="fb hint">${hintText(ab.L)}</div>`;
+$('abNext').onclick=newAb;
+
+// EINTRAGEN
+let ei;
+function newEi(){
+  const L=makeLine(level.eintragen); let i; do{ i=rnd(1,L.N-1) }while((L.start+i*L.step)%L.major===0);
+  ei={L,i,val:L.start+i*L.step};
+  $('eiTarget').textContent=fmt(ei.val); $('eiFb').innerHTML=''; renderEi([]);
+}
+function renderEi(marks){
+  $('eiScale').innerHTML=drawLine(ei.L,{labels:'all',click:true,marks});
+  $('eiScale').querySelectorAll('rect[data-i]').forEach(r=>r.onclick=()=>{
+    const k=+r.dataset.i, v=ei.L.start+k*ei.L.step;
+    if(k===ei.i){ if(!ei.done){addPoint();ei.done=true} renderEi([{i:k,c:'var(--good)'}]); $('eiFb').innerHTML=`<div class="fb ok pop">Super! ${fmt(ei.val)} sitzt genau richtig.</div>`; }
+    else { renderEi([{i:k,c:'var(--bad)'}]); $('eiFb').innerHTML=`<div class="fb no pop">Du hast ${fmt(v)} markiert. ${v<ei.val?'Deine Zahl ist zu klein, geh weiter nach rechts.':'Deine Zahl ist zu groß, geh weiter nach links.'}</div>`; }
+  });
+}
+$('eiHint').onclick=()=>$('eiFb').innerHTML=`<div class="fb hint">${hintText(ei.L)}</div>`;
+$('eiNext').onclick=newEi;
+
+// BRUCH ↔ KOMMA
+let br;
+const FR = [[1,2],[1,4],[3,4],[1,5],[2,5],[1,8],[3,8],[1,20],[1,25]];
+function newBr(){
+  const type=pick(['b2d','b2d','d2b','spec']); const fb=$('brFb'); fb.innerHTML='';
+  let n,d;
+  if(type==='spec'){ [n,d]=pick(FR); }
+  else { d=pick([10,100,1000]); n=rnd(1,d===10?9:(d===100?99:999)); if(Math.random()<.3) n+=d*rnd(1,3); }
+  br={type,n,d,val:Math.round(n*U/d)};
+  if(type==='d2b'){
+    $('brTitle').textContent='Schreibe als Bruch';
+    $('brTask').innerHTML=`<span class="big">${fmt(br.val)} =</span><span class="fracin"><input type="text" class="small" id="brN" inputmode="numeric" aria-label="Zähler"><hr><input type="text" class="small" id="brD" inputmode="numeric" aria-label="Nenner"></span>`;
+  } else {
+    $('brTitle').textContent='Schreibe als Kommazahl';
+    $('brTask').innerHTML=`<span class="frac big" style="font-size:2.2rem"><b>${n}</b>${d}</span><span class="big">=</span><input type="text" id="brA" inputmode="decimal" aria-label="Kommazahl">`;
+  }
+}
+function explainBr(){
+  if(br.type==='spec') return `${br.n}/${br.d} erweitern: Nenner auf 10, 100 oder 1000 bringen. ${br.n}/${br.d} = ${br.val/10}/1000 = <b>${fmt(br.val)}</b>.`;
+  const places=(br.d+'').length-1;
+  return `Der Nenner ${br.d} hat ${places} Null${places>1?'en':''}, also braucht die Zahl ${places} Stelle${places>1?'n':''} nach dem Komma: <b>${br.n}/${br.d} = ${fmt(br.val)}</b>.`;
+}
+$('brCheck').onclick=()=>{
+  const fb=$('brFb');
+  if(br.type==='d2b'){
+    const n=parseInt($('brN').value), d=parseInt($('brD').value);
+    if(!n||!d){ fb.innerHTML='<div class="fb hint">Fülle Zähler und Nenner aus.</div>'; return; }
+    if(Math.round(n*U/d)===br.val && n*U%d===0){ if(!br.done){addPoint();br.done=true} fb.innerHTML=`<div class="fb ok pop">Richtig! ${fmt(br.val)} = ${br.n}/${br.d}${n!==br.n?` (oder gekürzt ${n}/${d})`:''}.</div>`; }
+    else fb.innerHTML=`<div class="fb no pop">Noch nicht. ${fmt(br.val)} hat ${(br.d+'').length-1} Stelle(n) nach dem Komma. Darum steht ${br.d} im Nenner. Achtung: 0,65 ist <b>65/100</b>, nicht 65/10.</div>`;
+  } else {
+    const v=parse($('brA').value);
+    if(v==null){ fb.innerHTML='<div class="fb hint">Schreibe eine Zahl mit Komma.</div>'; return; }
+    if(v===br.val){ if(!br.done){addPoint();br.done=true} fb.innerHTML=`<div class="fb ok pop">Richtig! ${explainBr()}</div>`; }
+    else fb.innerHTML=`<div class="fb no pop">Noch nicht. ${br.type==='spec'?`Tipp: ${br.n}/${br.d} = ${br.n} ÷ ${br.d}. Erweitere so, dass unten 10, 100 oder 1000 steht.`:`Zähle die Nullen im Nenner ${br.d}: so viele Stellen braucht die Zahl nach dem Komma.`}</div>`;
+  }
+};
+$('brNext').onclick=newBr;
+document.addEventListener('keydown',e=>{ if(e.key==='Enter' && !$('tab-bruch').hidden) $('brCheck').click(); });
+
+// STELLENWERTTAFEL
+function renderPV(){
+  const raw=$('pvIn').value.trim().replace('.',',');
+  const m=raw.match(/^(\d{1,3})(?:,(\d{0,4}))?$/);
+  const ex=$('pvExplain'), t=$('pvTable');
+  if(!m){ t.innerHTML=''; ex.innerHTML='<div class="muted">Bitte eine Zahl wie 2,075 eingeben (bis 4 Stellen nach dem Komma).</div>'; return; }
+  const ip=m[1].padStart(1,'0'), dp=(m[2]||'');
+  const heads=['H','Z','E'].slice(3-Math.max(1,ip.length)), names=['z','h','t','zt'];
+  let h='<tr>'+heads.map(x=>`<th>${x}</th>`).join('')+'<th></th>'+[...dp].map((_,i)=>`<th>${names[i]}</th>`).join('')+'</tr>';
+  h+='<tr>'+[...ip].map(d=>`<td>${d}</td>`).join('')+'<td class="comma">,</td>'+[...dp].map(d=>`<td class="dec">${d}</td>`).join('')+'</tr>';
+  t.innerHTML=h;
+  const den=[10,100,1000,10000], full=['Zehntel','Hundertstel','Tausendstel','Zehntausendstel'];
+  let rows=[...dp].map((d,i)=>d==='0'?'':`<div><span class="frac"><b>${d}</b>${den[i]}</span> = ${d} ${full[i]}</div>`).join('');
+  if(dp.length){ const n=parseInt(dp,10); rows+=`<div style="margin-top:6px">Zusammen: ${fmt(parse(raw))} = ${ip!=='0'?ip+' + ':''}<span class="frac"><b>${n}</b>${den[dp.length-1]}</span></div>`; }
+  ex.innerHTML=rows;
+}
+$('pvIn').addEventListener('input',renderPV);
+
+renderPV(); newAb(); newEi(); newBr();
+</script>
+
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+</body></html>

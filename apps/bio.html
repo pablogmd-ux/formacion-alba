@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biologie — Ernährung | Klassenarbeit Klasse 6</title>
+<style>
+:root{
+  --bg:#0e1116; --bg2:#141822; --card:#171b24; --card2:#1d222d;
+  --bd:#272e3b; --bd2:#36404f;
+  --tx:#e8ecf3; --tx2:#9aa6b8; --tx3:#6b7788;
+  --ac:#4ade80; --ac2:#22c55e; --bl:#60a5fa; --am:#fbbf24; --rd:#f87171; --vi:#c084fc;
+  --r:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-bottom:60px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(180deg,#161b26 0%,#0e1116 100%);border-bottom:1px solid var(--bd);padding:22px 0 18px}
+h1{margin:0;font-size:24px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.sub{color:var(--tx2);font-size:14px;margin-top:6px}
+nav{position:sticky;top:0;z-index:30;background:rgba(14,17,22,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);margin-bottom:22px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;max-width:900px;margin:0 auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:var(--card);border:1px solid var(--bd);color:var(--tx2);padding:9px 14px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.tab:hover{border-color:var(--bd2);color:var(--tx)}
+.tab.on{background:var(--ac);border-color:var(--ac);color:#06220f}
+.tab.on svg{stroke:#06220f}
+.tab.lang{background:rgba(96,165,250,.1);border-color:var(--bl);color:var(--bl)}
+.tab.lang svg{stroke:var(--bl)}
+.tab svg{width:15px;height:15px;stroke:var(--tx2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+section.page{display:none}
+section.page.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:18px;margin-bottom:16px}
+h2{font-size:19px;margin:0 0 4px;display:flex;align-items:center;gap:9px;letter-spacing:-.2px}
+h2 svg{width:19px;height:19px;stroke:var(--ac);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h3{font-size:16px;margin:18px 0 8px;color:var(--tx)}
+.pg{display:inline-block;background:var(--bg2);border:1px solid var(--bd);color:var(--tx3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;letter-spacing:.3px}
+p{margin:8px 0}
+ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+b,strong{color:#fff}
+.lead{color:var(--tx2);font-size:14px;margin:2px 0 14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.n{background:var(--card2);border:1px solid var(--bd);border-left:3px solid var(--ac);border-radius:10px;padding:14px}
+.n.b{border-left-color:var(--bl)}.n.a{border-left-color:var(--am)}.n.v{border-left-color:var(--vi)}.n.r{border-left-color:var(--rd)}
+.n h4{margin:0 0 6px;font-size:15px}
+.n p,.n ul{font-size:14px;color:var(--tx2);margin:4px 0}
+.n ul{padding-left:18px}
+.tip{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.28);border-radius:10px;padding:12px 14px;font-size:14px;margin:14px 0;display:flex;gap:10px}
+.tip svg{width:18px;height:18px;flex:0 0 18px;stroke:var(--ac);fill:none;stroke-width:2;margin-top:2px}
+.tip.a{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)}.tip.a svg{stroke:var(--am)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th,td{border:1px solid var(--bd);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--bg2);color:var(--tx2);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.tw{overflow-x:auto}
+/* checklist */
+.ck{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:13px 14px;margin-bottom:9px}
+.ck-h{display:flex;gap:10px;align-items:flex-start}
+.ck-n{flex:0 0 26px;height:26px;border-radius:8px;background:var(--bg2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--tx2)}
+.ck-t{flex:1;font-size:15px;font-weight:600}
+.ck-s{font-size:12px;color:var(--tx3);font-weight:500;margin-top:3px}
+.rate{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.rb{flex:1;min-width:72px;background:var(--bg2);border:1px solid var(--bd);color:var(--tx2);border-radius:8px;padding:7px 4px;font-size:12px;font-weight:600;cursor:pointer}
+.rb:hover{border-color:var(--bd2)}
+.rb.on[data-v="1"]{background:var(--ac);border-color:var(--ac);color:#06220f}
+.rb.on[data-v="2"]{background:#a3e635;border-color:#a3e635;color:#1a2206}
+.rb.on[data-v="3"]{background:var(--am);border-color:var(--am);color:#2a1d00}
+.rb.on[data-v="4"]{background:var(--rd);border-color:var(--rd);color:#2a0606}
+.go{background:none;border:none;color:var(--bl);font-size:13px;font-weight:600;cursor:pointer;padding:6px 0 0;display:flex;align-items:center;gap:5px}
+.go svg{width:13px;height:13px;stroke:var(--bl);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+/* exercises */
+.ex{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.ex-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+.q{font-size:15px;font-weight:600;margin:14px 0 8px}
+.opts{display:grid;gap:8px}
+.opt{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:11px 13px;font-size:14.5px;cursor:pointer;text-align:left;color:var(--tx);display:flex;gap:9px;align-items:center}
+.opt:hover{border-color:var(--bd2)}
+.opt.ok{background:rgba(74,222,128,.14);border-color:var(--ac);color:#d9ffe6}
+.opt.no{background:rgba(248,113,113,.13);border-color:var(--rd);color:#ffdede}
+.opt.dim{opacity:.45}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;padding:8px 14px;font-size:14px;cursor:pointer;color:var(--tx)}
+.chip:hover{border-color:var(--bd2)}
+.chip.sel{background:var(--bl);border-color:var(--bl);color:#04203f}
+.chip.ok{background:rgba(74,222,128,.16);border-color:var(--ac);color:#d9ffe6;cursor:default}
+.chip.no{background:rgba(248,113,113,.14);border-color:var(--rd)}
+.chip.done{opacity:.35;cursor:default}
+.bins{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:4px}
+.bin{background:var(--card2);border:1.5px dashed var(--bd2);border-radius:12px;padding:12px;min-height:92px}
+.bin h5{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--tx2)}
+.bin.act{border-color:var(--bl);background:rgba(96,165,250,.07)}
+.bin .it{background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:5px 9px;font-size:13px;margin:4px 0;display:inline-block;margin-right:5px}
+.bin .it.ok{border-color:var(--ac);color:#d9ffe6}
+.bin .it.no{border-color:var(--rd);color:#ffdede}
+.slots{display:grid;gap:7px;margin:10px 0}
+.slot{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--bd);border-radius:9px;padding:9px 12px;font-size:14px;min-height:42px}
+.slot .idx{flex:0 0 22px;height:22px;border-radius:6px;background:var(--card);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--tx3)}
+.slot.ok{border-color:var(--ac)}.slot.no{border-color:var(--rd)}
+.btn{background:var(--ac);border:none;color:#06220f;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;cursor:pointer}
+.btn:hover{background:var(--ac2)}
+.btn.g{background:var(--card2);border:1px solid var(--bd);color:var(--tx2)}
+.btn.g:hover{border-color:var(--bd2);color:var(--tx)}
+.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.fb{font-size:14px;font-weight:600;margin-top:12px;padding:11px 13px;border-radius:10px;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(74,222,128,.12);color:#b6f3cd;border:1px solid rgba(74,222,128,.3)}
+.fb.no{background:rgba(248,113,113,.11);color:#ffc9c9;border:1px solid rgba(248,113,113,.3)}
+.score{font-size:13px;font-weight:700;color:var(--tx2);background:var(--bg2);border:1px solid var(--bd);padding:5px 11px;border-radius:20px}
+.bar{height:7px;background:var(--bg2);border-radius:20px;overflow:hidden;margin:12px 0 4px}
+.bar>i{display:block;height:100%;background:var(--ac);width:0;transition:width .4s}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:5px;margin:14px 0}
+.pyr>div{text-align:center;padding:9px 12px;border-radius:7px;font-size:13.5px;font-weight:600;color:#0d1a10}
+.hint{font-size:13px;color:var(--tx3);margin-top:6px}
+footer{text-align:center;color:var(--tx3);font-size:12px;padding:26px 16px}
+@media(max-width:560px){h1{font-size:20px}.card,.ex{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="wrap" id="hdr">
+<h1><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg> Ernährung &amp; Verdauung</h1>
+<div class="sub">Klassenarbeit Biologie · Klasse 6 · nach dem Diagnosebogen (Biologie heute, Westermann)</div>
+</div></header>
+<nav><div class="tabs">
+<button class="tab on" data-p="check"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Diagnose</button>
+<button class="tab" data-p="naehr"><svg viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-3 9v10"/></svg>Nährstoffe</button>
+<button class="tab" data-p="verd"><svg viewBox="0 0 24 24"><path d="M12 2v6"/><path d="M12 8c-3 0-5 2-5 5s2 4 5 4 5 1 5 3-2 2-5 2"/></svg>Verdauung</button>
+<button class="tab" data-p="plan"><svg viewBox="0 0 24 24"><path d="M3 20l9-16 9 16z"/><path d="M7 13h10"/><path d="M9.5 8.5h5"/></svg>Ernährungsplan</button>
+<button class="tab" data-p="ueben"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>Üben</button>
+<button class="tab" data-p="test"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Testen</button>
+<button class="tab lang" id="lang"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 010 18a15 15 0 010-18"/></svg>Español</button>
+</div></nav>
+<div class="wrap">
+
+<!-- ============ DIAGNOSE ============ -->
+<section class="page on" id="p-check">
+  <div class="card">
+    <h2><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Was kann ich schon?</h2>
+    <p class="lead">Die 12 Punkte aus dem Diagnosebogen. Klick an, wie sicher du dich fühlst — und spring direkt zum Thema.</p>
+    <div class="bar"><i id="ckbar"></i></div>
+    <div class="hint" id="cktxt">Noch nichts bewertet.</div>
+  </div>
+  <div id="cklist"></div>
+  <div class="card">
+    <h3 style="margin-top:0">Lernplan</h3>
+    <ul style="color:var(--tx2);font-size:14px">
+      <li><b>Rot und gelb zuerst.</b> Lies den Abschnitt, dann mach die Übungen dazu.</li>
+      <li><b>Erklären statt lesen.</b> Sag den Inhalt laut in eigenen Worten — ohne hinzuschauen.</li>
+      <li><b>Zum Schluss</b> den Test im letzten Reiter machen. Unter 80 %? Noch mal die falschen Themen.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ NÄHRSTOFFE ============ -->
+<section class="page" id="p-naehr">
+  <div class="card" id="t1">
+    <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Die Hauptnährstoffe <span class="pg">Punkt 1–3 · S. 67/69</span></h2>
+    <p class="lead">Es gibt <b>drei Hauptnährstoffe</b>. Sie liefern Energie und Baustoffe. Merksatz: <b>K</b>ohlenhydrate, <b>F</b>ette, <b>E</b>iweiße — <b>KFE</b>.</p>
+    <div class="grid">
+      <div class="n"><h4>Kohlenhydrate</h4>
+        <p><b>Aufgabe:</b> wichtigster <b>Betriebsstoff</b> — liefern schnell Energie für Muskeln und Gehirn.</p>
+        <p><b>Formen:</b> Zucker (schnell) und Stärke (langsam, hält länger satt).</p>
+        <p><b>Wo drin:</b> Brot, Nudeln, Reis, Kartoffeln, Müsli, Obst, Honig, Zucker.</p>
+        <p><b>Energie:</b> ca. 17 kJ pro Gramm.</p></div>
+      <div class="n a"><h4>Fette</h4>
+        <p><b>Aufgabe:</b> <b>Energiespeicher</b> (die meiste Energie!), Wärmeschutz, Schutz der Organe, Transport der Vitamine A, D, E, K.</p>
+        <p><b>Wo drin:</b> Butter, Öl, Margarine, Nüsse, Käse, Wurst, Sahne, Schokolade.</p>
+        <p><b>Energie:</b> ca. 39 kJ pro Gramm — mehr als doppelt so viel wie die anderen.</p></div>
+      <div class="n b"><h4>Eiweiße (Proteine)</h4>
+        <p><b>Aufgabe:</b> <b>Baustoffe</b> — für Wachstum, Muskeln, Haut, Haare und zum Reparieren von Zellen.</p>
+        <p><b>Wo drin:</b> Fleisch, Fisch, Eier, Milch, Quark, Käse, Bohnen, Linsen, Soja, Nüsse.</p>
+        <p><b>Energie:</b> ca. 17 kJ pro Gramm.</p></div>
+    </div>
+    <div class="tip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+      <div><b>Prüfungssatz, auswendig:</b> „Kohlenhydrate sind der schnelle Betriebsstoff, Fette sind der Energiespeicher, Eiweiße sind die Baustoffe des Körpers."</div></div>
+    <h3>Nachweise (falls gefragt)</h3>
+    <div class="tw"><table>
+      <tr><th>Nährstoff</th><th>Nachweismittel</th><th>Farbe bei positivem Nachweis</th></tr>
+      <tr><td>Stärke</td><td>Iod-Kaliumiodid-Lösung</td><td>blau-schwarz</td></tr>
+      <tr><td>Fett</td><td>Papier (Fettfleckprobe)</td><td>durchscheinender Fleck, der bleibt</td></tr>
+      <tr><td>Eiweiß</td><td>Biuret-Reagenz</td><td>violett</td></tr>
+      <tr><td>Traubenzucker</td><td>Fehling-Lösung (erhitzt)</td><td>ziegelrot</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card" id="t4">
+    <h2><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg> Ergänzungsstoffe <span class="pg">Punkt 4–6 · S. 67/69</span></h2>
+    <p class="lead">Vitamine, Mineralstoffe und Ballaststoffe liefern <b>keine Energie</b> — aber ohne sie funktioniert der Körper nicht. Dazu kommt <b>Wasser</b>.</p>
+    <div class="grid">
+      <div class="n v"><h4>Vitamine</h4>
+        <p><b>Aufgabe:</b> <b>Wirk- und Schutzstoffe</b>. Sie steuern viele Vorgänge im Körper und stärken die Abwehr.</p>
+        <ul><li>Vitamin A — Sehen · Karotten, Spinat</li><li>Vitamin B — Nerven · Vollkorn, Fleisch</li><li>Vitamin C — Abwehr · Zitrone, Paprika, Hagebutte</li><li>Vitamin D — Knochen · Fisch, Sonnenlicht</li></ul>
+        <p><b>Mangel:</b> Mangelkrankheiten (z. B. Skorbut bei Vitamin C).</p></div>
+      <div class="n b"><h4>Mineralstoffe</h4>
+        <p><b>Aufgabe:</b> <b>Baustoffe und Regler</b>.</p>
+        <ul><li>Calcium — Knochen, Zähne · Milch, Käse</li><li>Eisen — Blut, Sauerstofftransport · Fleisch, Spinat, Linsen</li><li>Jod — Schilddrüse · Seefisch, Jodsalz</li><li>Magnesium — Muskeln · Nüsse, Vollkorn</li></ul></div>
+      <div class="n"><h4>Ballaststoffe</h4>
+        <p><b>Aufgabe:</b> sie können <b>nicht verdaut</b> werden. Sie machen satt, nehmen Wasser auf und <b>regen die Darmtätigkeit an</b> — die Verdauung bleibt in Bewegung.</p>
+        <p><b>Wo drin:</b> Vollkornbrot, Gemüse, Obst, Hülsenfrüchte, Nüsse.</p></div>
+      <div class="n a"><h4>Wasser</h4>
+        <p><b>Aufgabe:</b> Lösungs- und Transportmittel, Baustein aller Zellen, regelt die Körpertemperatur.</p>
+        <p><b>Menge:</b> etwa <b>1,5 Liter</b> am Tag trinken.</p></div>
+    </div>
+    <div class="tip a"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+      <div><b>Typische Falle:</b> Ergänzungsstoffe liefern <b>keine Energie</b> und sind <b>keine</b> Hauptnährstoffe. Trotzdem sind sie lebensnotwendig.</div></div>
+  </div>
+</section>
+
+<!-- ============ VERDAUUNG ============ -->
+<section class="page" id="p-verd">
+  <div class="card" id="t7">
+    <h2><svg viewBox="0 0 24 24"><path d="M12 2v5"/><path d="M12 7c-3.5 0-6 2.2-6 5.2S8 17 12 17s5.5 1 5.5 2.6S15 22 12 22"/></svg> Die Verdauungsorgane <span class="pg">Punkt 7–8 · Tabelle im Hefter</span></h2>
+    <p class="lead">Der Weg der Nahrung — in dieser Reihenfolge auswendig:</p>
+    <div class="slots" id="wegview"></div>
+    <p class="hint">Dazu kommen drei <b>Verdauungsdrüsen</b>, durch die die Nahrung <b>nicht</b> hindurchfließt: Speicheldrüsen, Leber (mit Gallenblase) und Bauchspeicheldrüse.</p>
+    <h3>Organ für Organ</h3>
+    <div class="tw"><table>
+      <tr><th>Organ</th><th>Was passiert dort?</th></tr>
+      <tr><td><b>Mund</b> (Zähne, Zunge, Speicheldrüsen)</td><td>Die Nahrung wird mit den Zähnen <b>zerkleinert</b> und mit <b>Speichel</b> gleitfähig gemacht. Der Speichel beginnt schon die Verdauung der <b>Stärke</b>. Darum schmeckt lang gekautes Brot süß.</td></tr>
+      <tr><td><b>Speiseröhre</b> (ca. 25 cm)</td><td>Nur <b>Transport</b>: Muskeln drücken den Bissen in Wellen zum Magen (Peristaltik). Das geht sogar im Kopfstand.</td></tr>
+      <tr><td><b>Magen</b></td><td><b>Speichern und durchmischen</b> (2–4 Stunden). Der <b>Magensaft</b> enthält Salzsäure — sie tötet Krankheitserreger — und Enzyme, die <b>Eiweiße</b> zerlegen. Eine Schleimschicht schützt den Magen selbst.</td></tr>
+      <tr><td><b>Dünndarm</b> (ca. 4–5 m)</td><td>Das <b>Hauptorgan der Verdauung</b>. Hier wird die Nahrung mit Enzymen fertig zerlegt und die Nährstoffe werden über die <b>Darmzotten ins Blut aufgenommen</b> (Resorption). Die Zotten vergrößern die Oberfläche enorm.</td></tr>
+      <tr><td><b>Leber</b> + <b>Gallenblase</b></td><td>Die Leber bildet die <b>Gallenflüssigkeit</b>, die <b>Fett</b> in winzige Tröpfchen zerteilt. Die Gallenblase speichert sie. Die Leber entgiftet außerdem das Blut und speichert Nährstoffe.</td></tr>
+      <tr><td><b>Bauchspeicheldrüse</b></td><td>Gibt <b>Verdauungssäfte mit Enzymen</b> in den Dünndarm — für Kohlenhydrate, Fette und Eiweiße.</td></tr>
+      <tr><td><b>Dickdarm</b> (ca. 1,5 m)</td><td>Entzieht dem Rest <b>Wasser und Mineralstoffe</b>. Der Nahrungsbrei wird <b>eingedickt</b>.</td></tr>
+      <tr><td><b>Enddarm / After</b></td><td><b>Speichern</b> der unverdaulichen Reste und <b>Ausscheiden</b> als Kot.</td></tr>
+    </table></div>
+    <div class="tip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+      <div><b>Drei Wörter für drei Schritte:</b> <b>Zerkleinern</b> (Mund, Magen) → <b>Zerlegen</b> durch Enzyme (Magen, Dünndarm) → <b>Aufnehmen</b> ins Blut (Dünndarm). Der Dickdarm holt nur noch das Wasser zurück.</div></div>
+    <h3>Wer verdaut was?</h3>
+    <div class="tw"><table>
+      <tr><th>Nährstoff</th><th>Beginn der Verdauung</th><th>Fertig verdaut im</th></tr>
+      <tr><td>Kohlenhydrate (Stärke)</td><td>Mund (Speichel)</td><td>Dünndarm</td></tr>
+      <tr><td>Eiweiße</td><td>Magen (Magensaft)</td><td>Dünndarm</td></tr>
+      <tr><td>Fette</td><td>Dünndarm (Galle + Enzyme)</td><td>Dünndarm</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section class="page" id="p-plan">
+  <div class="card" id="t9">
+    <h2><svg viewBox="0 0 24 24"><path d="M3 20l9-16 9 16z"/><path d="M7 13h10"/><path d="M9.5 8.5h5"/></svg> Die Ernährungspyramide <span class="pg">Punkt 9 · S. 71</span></h2>
+    <p class="lead">Regel: <b>unten viel, oben wenig</b>. Je breiter die Stufe, desto mehr sollst du davon essen.</p>
+    <div class="pyr">
+      <div style="width:42%;background:#f87171">Fette, Öle, Süßigkeiten — <b>sehr sparsam</b></div>
+      <div style="width:55%;background:#fbbf24">Fleisch, Fisch, Eier — <b>wenig</b></div>
+      <div style="width:68%;background:#a3e635">Milch und Milchprodukte — <b>täglich</b></div>
+      <div style="width:80%;background:#4ade80">Getreide, Brot, Nudeln, Reis, Kartoffeln — <b>reichlich</b></div>
+      <div style="width:90%;background:#34d399">Gemüse, Salat und Obst — <b>5 Portionen am Tag</b></div>
+      <div style="width:100%;background:#60a5fa">Getränke: Wasser, ungesüßter Tee — <b>ca. 1,5 L</b></div>
+    </div>
+    <p class="hint">Eine Portion = ungefähr eine Handvoll (deine eigene Hand).</p>
+  </div>
+  <div class="card" id="t10">
+    <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.5 4"/></svg> Den Ernährungskreis lesen <span class="pg">Punkt 10 · S. 71</span></h2>
+    <p class="lead">Der Ernährungskreis zeigt dasselbe wie die Pyramide, nur als Kreis mit <b>7 Gruppen</b>. Die Regel heißt hier: <b>je größer das Kreisstück, desto größer der Anteil</b> an deinem Essen.</p>
+    <div class="tw"><table>
+      <tr><th>Gruppe</th><th>Anteil</th></tr>
+      <tr><td>1. Getreide, Brot, Nudeln, Reis, Kartoffeln</td><td>groß</td></tr>
+      <tr><td>2. Gemüse und Salat</td><td>groß</td></tr>
+      <tr><td>3. Obst</td><td>mittel</td></tr>
+      <tr><td>4. Milch und Milchprodukte</td><td>mittel</td></tr>
+      <tr><td>5. Fleisch, Wurst, Fisch, Eier</td><td>klein</td></tr>
+      <tr><td>6. Öle und Fette</td><td>sehr klein</td></tr>
+      <tr><td>7. Getränke</td><td>am meisten (oft in der Mitte abgebildet)</td></tr>
+    </table></div>
+    <div class="tip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+      <div><b>So antwortest du auf „Lies den Ernährungskreis":</b> 1. Gruppe benennen. 2. Größe des Segments beschreiben. 3. Daraus die Empfehlung ableiten — z. B. „Das Segment ‚Öle und Fette' ist das kleinste, also soll man davon nur sehr wenig essen."</div></div>
+  </div>
+  <div class="card" id="t11">
+    <h2><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Ausgewogen essen und Pläne bewerten <span class="pg">Punkt 11–12 · S. 71</span></h2>
+    <h3>Die Regeln einer ausgewogenen Ernährung</h3>
+    <ul>
+      <li><b>Vielseitig</b> essen — aus allen Gruppen etwas.</li>
+      <li><b>Reichlich trinken:</b> ca. 1,5 L Wasser oder ungesüßter Tee. Keine Limo.</li>
+      <li><b>5 am Tag:</b> fünf Portionen Gemüse und Obst.</li>
+      <li><b>Vollkorn</b> statt Weißmehl — mehr Ballaststoffe, hält länger satt.</li>
+      <li><b>Wenig Fett und Zucker</b>, Fleisch und Wurst nur in Maßen.</li>
+      <li><b>Regelmäßige Mahlzeiten</b>, besonders das Frühstück.</li>
+      <li><b>Schonend zubereiten</b> (kurz garen) — sonst gehen Vitamine verloren.</li>
+      <li><b>Bewegung</b> gehört dazu: Energieaufnahme und Energieverbrauch im Gleichgewicht.</li>
+    </ul>
+    <h3>So bewertest du einen Ernährungsplan — in 4 Schritten</h3>
+    <div class="grid">
+      <div class="n b"><h4>1. Zuordnen</h4><p>Schreib jedes Lebensmittel zu seiner Gruppe der Pyramide.</p></div>
+      <div class="n"><h4>2. Vergleichen</h4><p>Passt die Menge zur Breite der Stufe? Viel von unten, wenig von oben?</p></div>
+      <div class="n a"><h4>3. Lücken nennen</h4><p>Was fehlt ganz (Obst? Gemüse? Getränke?) und was ist zu viel (Süßes, Fett)?</p></div>
+      <div class="n v"><h4>4. Verbessern</h4><p>Mach einen konkreten Vorschlag: „statt … lieber …", und <b>begründe</b> ihn mit einem Nährstoff.</p></div>
+    </div>
+    <div class="tip a"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+      <div><b>Punkte gibt es für die Begründung.</b> Nicht „Chips sind ungesund", sondern: „Chips enthalten viel <b>Fett</b> und <b>Salz</b>, aber kaum <b>Vitamine</b> und <b>Ballaststoffe</b>. Besser wäre eine Möhre — sie liefert <b>Vitamin A</b> und <b>Ballaststoffe</b>."</div></div>
+    <h3>Beispiel einer Bewertung</h3>
+    <p style="font-size:14.5px;color:var(--tx2)"><b>Tagesplan von Tim:</b> Frühstück: nichts · Pause: Schokoriegel und Cola · Mittag: Pommes mit Currywurst · Abend: Toast mit Wurst, dazu Chips.</p>
+    <p style="font-size:14.5px"><b>Bewertung:</b> Der Plan ist <b>nicht ausgewogen</b>. Es fehlen <b>Obst und Gemüse</b> völlig, dadurch fehlen <b>Vitamine, Mineralstoffe und Ballaststoffe</b>. Es gibt <b>zu viel Fett und Zucker</b> (Pommes, Wurst, Chips, Schokolade, Cola) und <b>zu wenig Wasser</b>. Das <b>Frühstück fehlt</b>, deshalb fehlt Tim am Vormittag Energie zum Lernen. <b>Verbesserung:</b> morgens ein Müsli mit Obst, in der Pause Vollkornbrot statt Schokoriegel, Wasser statt Cola, mittags Kartoffeln mit Gemüse statt Pommes.</p>
+  </div>
+</section>
+
+<!-- ============ ÜBEN ============ -->
+<section class="page" id="p-ueben">
+  <div class="ex" id="e1"><div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg> 1. Welcher Hauptnährstoff? <span class="pg">Punkt 2</span></h2></div>
+    <p class="lead">Klick ein Lebensmittel an, dann die passende Gruppe. Gemeint ist der Nährstoff, der am meisten darin steckt.</p>
+    <div class="chips" id="b1-pool"></div><div class="bins" id="b1-bins"></div>
+    <div class="row"><button class="btn" data-check="b1">Prüfen</button><button class="btn g" data-reset="b1">Neu</button></div>
+    <div class="fb" id="b1-fb"></div></div>
+
+  <div class="ex" id="e2"><div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg> 2. Ergänzungsstoffe zuordnen <span class="pg">Punkt 5</span></h2></div>
+    <p class="lead">Wofür ist dieses Lebensmittel bekannt?</p>
+    <div class="chips" id="b2-pool"></div><div class="bins" id="b2-bins"></div>
+    <div class="row"><button class="btn" data-check="b2">Prüfen</button><button class="btn g" data-reset="b2">Neu</button></div>
+    <div class="fb" id="b2-fb"></div></div>
+
+  <div class="ex" id="e3"><div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg> 3. Der Weg der Nahrung <span class="pg">Punkt 7</span></h2></div>
+    <p class="lead">Klick die Organe in der richtigen Reihenfolge an.</p>
+    <div class="chips" id="o1-pool"></div><div class="slots" id="o1-slots"></div>
+    <div class="row"><button class="btn" data-check="o1">Prüfen</button><button class="btn g" data-reset="o1">Neu</button></div>
+    <div class="fb" id="o1-fb"></div></div>
+
+  <div class="ex" id="e4"><div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M3 20l9-16 9 16z"/><path d="M7 13h10"/></svg> 4. Die Pyramide aufbauen <span class="pg">Punkt 9</span></h2></div>
+    <p class="lead">Von unten nach oben: womit fängst du an (am meisten) — womit hörst du auf (am wenigsten)?</p>
+    <div class="chips" id="o2-pool"></div><div class="slots" id="o2-slots"></div>
+    <div class="row"><button class="btn" data-check="o2">Prüfen</button><button class="btn g" data-reset="o2">Neu</button></div>
+    <div class="fb" id="o2-fb"></div></div>
+
+  <div class="ex" id="e5"><div class="ex-h"><h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> 5. Verstehen und erklären <span class="pg">Punkt 3, 6, 8</span></h2></div>
+    <p class="lead">Wähle die richtige Antwort. Die Erklärung erscheint sofort.</p>
+    <div id="q1"></div><div class="row"><span class="score" id="q1-sc">0 / 0</span><button class="btn g" data-reset="q1">Noch mal</button></div></div>
+
+  <div class="ex" id="e6"><div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg> 6. Einen Ernährungsplan bewerten <span class="pg">Punkt 12</span></h2></div>
+    <p class="lead"><b>Lenas Tag:</b> Frühstück: Nutellabrötchen und Kakao · Pause: Gummibärchen · Mittag: Nudeln mit Tomatensoße, ein Apfel · Nachmittag: zwei Gläser Limo · Abend: Pizza.<br>Schreib deine Bewertung auf — dann vergleiche.</p>
+    <textarea id="free1" rows="7" style="width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:10px;color:var(--tx);padding:12px;font:15px/1.6 inherit"placeholder="Was ist gut? Was fehlt? Was ist zu viel? Welche Nährstoffe fehlen dadurch? Wie würdest du es verbessern?"></textarea>
+    <div class="row"><button class="btn" id="free1-b">Musterlösung zeigen</button></div>
+    <div id="free1-s" style="display:none;margin-top:14px">
+      <div class="n b"><h4>Was gut ist</h4><p>Die Nudeln mit Tomatensoße liefern Kohlenhydrate als Energie, der Apfel bringt Vitamine und Ballaststoffe. Lena frühstückt — das ist richtig.</p></div>
+      <div class="n r" style="margin-top:10px"><h4>Was fehlt</h4><p>Fast alles <b>Gemüse</b> und zu wenig <b>Obst</b> (nur ein Apfel statt 5 Portionen). Dadurch fehlen <b>Vitamine, Mineralstoffe und Ballaststoffe</b>. Es fehlen auch <b>Milchprodukte</b> (Calcium für Knochen und Zähne) und vor allem <b>Wasser</b>.</p></div>
+      <div class="n a" style="margin-top:10px"><h4>Was zu viel ist</h4><p><b>Zucker</b>: Nutella, Kakao, Gummibärchen und Limo an einem Tag. <b>Fett</b>: Nutella und Pizza. Beides steht in der Pyramide ganz oben und soll sparsam gegessen werden.</p></div>
+      <div class="n" style="margin-top:10px"><h4>Verbesserung</h4><p>Müsli mit Milch und Obst statt Nutellabrötchen · ein Vollkornbrot oder eine Möhre in der Pause statt Gummibärchen · <b>Wasser</b> statt Limo · abends Pizza mit viel Gemüse belegen und einen Salat dazu.</p></div>
+    </div></div>
+</section>
+
+<!-- ============ TEST ============ -->
+<section class="page" id="p-test">
+  <div class="card" id="e7"><h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Probe-Klassenarbeit</h2>
+    <p class="lead">18 Fragen quer durch alle 12 Punkte des Diagnosebogens. Erst alles beantworten, dann auswerten.</p>
+    <div class="bar"><i id="tbar"></i></div><div class="hint" id="tinfo">0 von 18 beantwortet</div></div>
+  <div id="qt"></div>
+  <div class="card" id="e8"><div class="row"><button class="btn" id="tgo">Auswerten</button><button class="btn g" data-reset="qt">Neu starten</button></div><div class="fb" id="tfb"></div></div>
+</section>
+
+</div>
+<footer>Material nach dem Diagnosebogen „Ernährung" · Biologie heute, Westermann (S. 67/69/71)</footer>
+<script>
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)},
+    $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function sv(el,blk){try{el.scrollIntoView({behavior:"smooth",block:blk||"start"})}catch(e){}}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+
+/* ---------- Tabs ---------- */
+$$(".tab").forEach(function(b){b.onclick=function(){
+  $$(".tab").forEach(function(x){x.classList.remove("on")});
+  $$(".page").forEach(function(x){x.classList.remove("on")});
+  b.classList.add("on");$("#p-"+b.dataset.p).classList.add("on");window.scrollTo(0,0);}});
+function goTo(page,anchor){
+  var b=$('.tab[data-p="'+page+'"]');if(b)b.click();
+  if(anchor){var el=$("#"+anchor);if(el)setTimeout(function(){sv(el)},60)}}
+
+/* ---------- Diagnosebogen ---------- */
+var CK=[
+ ["Die Hauptnährstoffe benennen","S. 67","naehr","t1"],
+ ["Entscheiden, welche Hauptnährstoffe in welchem Lebensmittel vorkommen","S. 67","naehr","t1"],
+ ["Die Bedeutung der Hauptnährstoffe erklären","S. 67/69","naehr","t1"],
+ ["Vitamine, Ballaststoffe und Mineralstoffe als Ergänzungsstoffe beschreiben","S. 67","naehr","t4"],
+ ["Entscheiden, welche Ergänzungsstoffe in welchem Lebensmittel vorkommen","S. 67","naehr","t4"],
+ ["Die Bedeutung der Ergänzungsstoffe erklären","S. 67/69","naehr","t4"],
+ ["Die Verdauungsorgane benennen","Tabelle Hefter","verd","t7"],
+ ["Die Funktion der Verdauungsorgane erklären","Tabelle Hefter","verd","t7"],
+ ["Eine Ernährungspyramide aufstellen","S. 71","plan","t9"],
+ ["Den Ernährungskreis lesen","S. 71","plan","t10"],
+ ["Einen Plan für eine ausgewogene Ernährung aufstellen","S. 71","plan","t11"],
+ ["Ernährungspläne bewerten","","plan","t11"]];
+var LBL=["Sehr gut","Gut","Nicht so gut","Nicht gut"];
+var CKS={};
+function buildCK(){
+  var h="";
+  CK.forEach(function(c,i){
+    h+='<div class="ck"><div class="ck-h"><div class="ck-n">'+(i+1)+'</div><div style="flex:1">'+
+       '<div class="ck-t">'+c[0]+'</div>'+(c[1]?'<div class="ck-s">'+T("look")+' '+c[1]+'</div>':'')+
+       '<button class="go" data-g="'+c[2]+'|'+c[3]+'">'+T("goto")+' <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>'+
+       '<div class="rate" data-i="'+i+'">'+LBL.map(function(l,j){return '<button class="rb" data-v="'+(j+1)+'">'+l+'</button>'}).join("")+'</div></div>';
+  });
+  $("#cklist").innerHTML=h;
+  $$("#cklist .go").forEach(function(b){b.onclick=function(){var p=b.dataset.g.split("|");goTo(p[0],p[1])}});
+  $$("#cklist .rate").forEach(function(r){
+    var i=r.dataset.i, saved=store("bio_ck_"+i);
+    if(saved){CKS[i]=saved;$$(".rb",r).forEach(function(b){if(b.dataset.v===saved)b.classList.add("on")});}
+    $$(".rb",r).forEach(function(b){b.onclick=function(){
+      $$(".rb",r).forEach(function(x){x.classList.remove("on")});
+      b.classList.add("on");CKS[i]=b.dataset.v;store("bio_ck_"+i,b.dataset.v);upd();}});
+  });
+  upd();
+  function upd(){
+    var n=0,good=0;
+    CK.forEach(function(c,i){var v=CKS[i];if(v){n++;if(v==="1"||v==="2")good++}});
+    $("#ckbar").style.width=(n/12*100)+"%";
+    $("#cktxt").textContent = n===0 ? T("ck_none") :
+      T("ck_prog",n,good,n-good);
+  }
+}
+
+/* ---------- Verdauungsweg (Anzeige) ---------- */
+var WEG=["Mund","Speiseröhre","Magen","Dünndarm","Dickdarm","Enddarm / After"];
+$("#wegview").innerHTML=WEG.map(function(w,i){
+  return '<div class="slot"><div class="idx">'+(i+1)+'</div><b>'+w+'</b></div>'}).join("");
+
+/* ---------- Zuordnungs-Übungen (bins) ---------- */
+var BINS={
+ b1:{cats:["Kohlenhydrate","Fette","Eiweiße"],
+   items:[["Nudeln",0],["Kartoffeln",0],["Brot",0],["Reis",0],["Honig",0],["Butter",1],["Olivenöl",1],["Nüsse",1],["Sahne",1],["Fleisch",2],["Eier",2],["Quark",2],["Linsen",2],["Fisch",2]]},
+ b2:{cats:["Vitamine","Mineralstoffe","Ballaststoffe"],
+   items:[["Paprika (Vitamin C)",0],["Karotte (Vitamin A)",0],["Zitrone",0],["Milch (Calcium)",1],["Spinat (Eisen)",1],["Seefisch (Jod)",1],["Vollkornbrot",2],["Haferflocken",2],["Hülsenfrüchte",2]]}
+};
+function buildBin(id){
+  var d=BINS[id];d.sel=null;d.place={};
+  $("#"+id+"-pool").innerHTML=shuffle(d.items.map(function(it,i){return i})).map(function(i){
+    return '<button class="chip" data-i="'+i+'">'+d.items[i][0]+'</button>'}).join("");
+  $("#"+id+"-bins").innerHTML=d.cats.map(function(c,i){
+    return '<div class="bin" data-c="'+i+'"><h5>'+c+'</h5><div class="in"></div></div>'}).join("");
+  $("#"+id+"-fb").className="fb";
+  $$("#"+id+"-pool .chip").forEach(function(ch){ch.onclick=function(){
+    if(ch.classList.contains("done"))return;
+    $$("#"+id+"-pool .chip").forEach(function(x){x.classList.remove("sel")});
+    ch.classList.add("sel");d.sel=ch;}});
+  $$("#"+id+"-bins .bin").forEach(function(bn){bn.onclick=function(){
+    if(!d.sel)return;
+    var i=d.sel.dataset.i;d.place[i]=+bn.dataset.c;
+    $(".in",bn).insertAdjacentHTML("beforeend",'<span class="it" data-i="'+i+'">'+d.items[i][0]+'</span>');
+    d.sel.classList.add("done");d.sel.classList.remove("sel");d.sel=null;}});
+}
+function checkBin(id){
+  var d=BINS[id],ok=0,tot=d.items.length;
+  $$("#"+id+"-bins .it").forEach(function(sp){
+    var i=sp.dataset.i,right=d.items[i][1]===d.place[i];
+    sp.classList.add(right?"ok":"no");if(right)ok++;
+    if(!right)sp.textContent=d.items[i][0]+" → "+d.cats[d.items[i][1]];
+  });
+  var f=$("#"+id+"-fb");f.className="fb show "+(ok===tot?"ok":"no");
+  f.textContent= (ok===tot ? T("bin_all",ok,tot) : T("bin_part",ok,tot))+
+    ($$("#"+id+"-pool .chip:not(.done)").length?" "+T("bin_rest"):"");
+}
+
+/* ---------- Reihenfolge-Übungen ---------- */
+var ORD={
+ o1:{sol:WEG},
+ o2:{sol:["Getränke (Wasser, Tee)","Gemüse, Salat und Obst","Getreide, Brot, Nudeln, Kartoffeln","Milch und Milchprodukte","Fleisch, Fisch, Eier","Fette, Öle, Süßigkeiten"]}
+};
+function buildOrd(id){
+  var d=ORD[id];d.cur=[];
+  $("#"+id+"-pool").innerHTML=shuffle(d.sol).map(function(s){return '<button class="chip">'+s+'</button>'}).join("");
+  render(id);$("#"+id+"-fb").className="fb";
+  $$("#"+id+"-pool .chip").forEach(function(ch){ch.onclick=function(){
+    if(ch.classList.contains("done")||d.cur.length>=d.sol.length)return;
+    ch.classList.add("done");d.cur.push({t:ch.textContent,el:ch});render(id);}});
+}
+function render(id){
+  var d=ORD[id];
+  $("#"+id+"-slots").innerHTML=d.sol.map(function(_,i){
+    var c=d.cur[i];
+    return '<div class="slot"><div class="idx">'+(i+1)+'</div><span>'+(c?c.t:'<span style="color:var(--tx3)">…</span>')+'</span>'+
+      (c&&i===d.cur.length-1?'<button class="btn g" style="margin-left:auto;padding:4px 10px;font-size:12px" data-undo="'+id+'">'+T("back")+'</button>':'')+'</div>';
+  }).join("");
+  var u=$('[data-undo="'+id+'"]');
+  if(u)u.onclick=function(){var c=d.cur.pop();if(c)c.el.classList.remove("done");render(id)};
+}
+function checkOrd(id){
+  var d=ORD[id],ok=0;
+  $$("#"+id+"-slots .slot").forEach(function(s,i){
+    if(d.cur[i]){var r=d.cur[i].t===d.sol[i];s.classList.add(r?"ok":"no");if(r)ok++;}
+  });
+  var f=$("#"+id+"-fb");f.className="fb show "+(ok===d.sol.length?"ok":"no");
+  f.innerHTML= ok===d.sol.length ? T("ord_ok") : T("ord_part",ok,d.sol.length,d.sol.join(" → "));
+}
+
+/* ---------- Multiple Choice ---------- */
+var Q1=[
+ {q:"Warum nennt man Kohlenhydrate den wichtigsten Betriebsstoff?",o:["Sie bauen die Muskeln auf","Sie liefern dem Körper schnell Energie","Sie schützen vor Kälte","Sie werden nicht verdaut"],a:1,e:"Kohlenhydrate sind der schnelle Energielieferant für Muskeln und Gehirn. Baustoffe sind die Eiweiße."},
+ {q:"Welcher Nährstoff liefert pro Gramm die meiste Energie?",o:["Kohlenhydrate","Eiweiße","Fette","Vitamine"],a:2,e:"Fett liefert ca. 39 kJ pro Gramm, Kohlenhydrate und Eiweiße jeweils nur ca. 17 kJ. Vitamine liefern gar keine Energie."},
+ {q:"Wofür braucht der Körper vor allem Eiweiße?",o:["Als Baustoffe für Wachstum und Zellen","Als Wärmeschutz","Zum schnellen Energieschub","Für die Darmtätigkeit"],a:0,e:"Eiweiße sind die Baustoffe: Muskeln, Haut, Haare, Zellen und Wachstum."},
+ {q:"Was gilt für alle Ergänzungsstoffe?",o:["Sie liefern sehr viel Energie","Sie liefern keine Energie, sind aber lebensnotwendig","Sie sind nur für Sportler nötig","Sie werden im Magen gebildet"],a:1,e:"Vitamine, Mineralstoffe und Ballaststoffe liefern keine Energie — ohne sie funktioniert der Körper trotzdem nicht."},
+ {q:"Welche Aufgabe haben Ballaststoffe?",o:["Sie liefern Eiweiß","Sie werden nicht verdaut und regen die Darmtätigkeit an","Sie speichern Fett","Sie bauen Knochen auf"],a:1,e:"Ballaststoffe sind unverdaulich, machen satt und halten die Verdauung in Bewegung."},
+ {q:"Calcium ist wichtig für …",o:["die Knochen und Zähne","das Sehen","die Darmtätigkeit","den Wärmeschutz"],a:0,e:"Calcium ist ein Mineralstoff und Baustoff für Knochen und Zähne. Es steckt vor allem in Milch und Käse."},
+ {q:"Wo beginnt die Verdauung der Stärke?",o:["Im Magen","Im Dünndarm","Im Mund durch den Speichel","Im Dickdarm"],a:2,e:"Schon der Speichel enthält ein Enzym, das Stärke zerlegt. Darum schmeckt lang gekautes Brot süß."},
+ {q:"Was passiert im Magen?",o:["Die Nährstoffe gehen ins Blut","Die Nahrung wird durchmischt, Salzsäure tötet Keime und Eiweiße werden zerlegt","Dem Brei wird Wasser entzogen","Nur Transport zum Darm"],a:1,e:"Der Magen speichert, durchmischt und beginnt mit dem Magensaft die Eiweißverdauung."},
+ {q:"In welchem Organ gehen die Nährstoffe ins Blut über?",o:["Magen","Dünndarm","Dickdarm","Speiseröhre"],a:1,e:"Im Dünndarm nehmen die Darmzotten die Nährstoffe auf (Resorption) — er ist das Hauptorgan der Verdauung."},
+ {q:"Welche Aufgabe hat der Dickdarm?",o:["Er zerlegt Eiweiße","Er entzieht dem Rest Wasser und Mineralstoffe","Er bildet die Galle","Er zerkleinert die Nahrung"],a:1,e:"Im Dickdarm wird der Nahrungsbrei eingedickt, indem Wasser zurückgewonnen wird."},
+ {q:"Welches Organ bildet die Gallenflüssigkeit für die Fettverdauung?",o:["Die Bauchspeicheldrüse","Der Magen","Die Leber","Die Niere"],a:2,e:"Die Leber bildet die Galle, die Gallenblase speichert sie. Die Galle zerteilt Fett in winzige Tröpfchen."},
+ {q:"Was steht in der Ernährungspyramide ganz unten?",o:["Süßigkeiten","Fleisch und Wurst","Getränke","Öle und Fette"],a:2,e:"Unten steht, wovon man am meisten braucht: Getränke, danach Gemüse und Obst. Ganz oben steht Fett und Süßes."}
+];
+var QT=[
+ {q:"Nenne die drei Hauptnährstoffe.",o:["Vitamine, Mineralstoffe, Ballaststoffe","Kohlenhydrate, Fette, Eiweiße","Wasser, Zucker, Salz","Stärke, Milch, Fleisch"],a:1,e:"Hauptnährstoffe: Kohlenhydrate, Fette, Eiweiße."},
+ {q:"In welchem Lebensmittel steckt am meisten Eiweiß?",o:["Olivenöl","Nudeln","Quark","Honig"],a:2,e:"Quark ist ein Milchprodukt und ein typischer Eiweißlieferant."},
+ {q:"In welchem Lebensmittel stecken vor allem Kohlenhydrate?",o:["Butter","Kartoffeln","Fisch","Nüsse"],a:1,e:"Kartoffeln enthalten viel Stärke — also Kohlenhydrate."},
+ {q:"Welche Aufgabe haben Fette im Körper?",o:["Sie sind Energiespeicher, schützen vor Kälte und die Organe","Sie regen nur den Darm an","Sie sind der schnellste Energielieferant","Sie bauen die Muskeln auf"],a:0,e:"Fette speichern Energie, schützen vor Kälte und Stößen und transportieren die Vitamine A, D, E, K."},
+ {q:"Welcher Satz über Vitamine stimmt?",o:["Vitamine liefern viel Energie","Vitamine sind Wirk- und Schutzstoffe; bei Mangel wird man krank","Vitamine entstehen im Magen","Vitamine sind Hauptnährstoffe"],a:1,e:"Vitamine liefern keine Energie, steuern aber viele Vorgänge. Ein Mangel führt zu Mangelkrankheiten."},
+ {q:"Welches Lebensmittel ist besonders reich an Vitamin C?",o:["Butter","Paprika","Weißbrot","Rindfleisch"],a:1,e:"Paprika, Zitrusfrüchte und Hagebutten sind reich an Vitamin C."},
+ {q:"Eisen braucht der Körper vor allem für …",o:["die Zähne","den Sauerstofftransport im Blut","die Fettverdauung","die Darmbewegung"],a:1,e:"Eisen ist ein Mineralstoff und wird für das Blut und den Sauerstofftransport gebraucht."},
+ {q:"Welches Lebensmittel liefert besonders viele Ballaststoffe?",o:["Vollkornbrot","Sahne","Gummibärchen","Toastbrot"],a:0,e:"Vollkornprodukte, Gemüse, Obst und Hülsenfrüchte sind ballaststoffreich."},
+ {q:"Bring in die richtige Reihenfolge: der Weg der Nahrung.",o:["Mund → Magen → Speiseröhre → Dünndarm → Dickdarm","Mund → Speiseröhre → Magen → Dünndarm → Dickdarm","Mund → Speiseröhre → Dünndarm → Magen → Dickdarm","Mund → Magen → Dickdarm → Dünndarm"],a:1,e:"Mund → Speiseröhre → Magen → Dünndarm → Dickdarm → Enddarm/After."},
+ {q:"Welche Aufgabe hat die Speiseröhre?",o:["Nährstoffe ins Blut aufnehmen","Eiweiße zerlegen","Die Nahrung durch Muskelbewegungen zum Magen transportieren","Wasser entziehen"],a:2,e:"Die Speiseröhre transportiert nur — in Wellen (Peristaltik), sogar gegen die Schwerkraft."},
+ {q:"Wodurch wird im Dünndarm die Oberfläche vergrößert?",o:["Durch die Magensäure","Durch die Darmzotten","Durch die Gallenblase","Durch den Speichel"],a:1,e:"Die Darmzotten vergrößern die Oberfläche enorm, damit viele Nährstoffe ins Blut gelangen."},
+ {q:"Welches Organ gibt Verdauungssäfte mit Enzymen in den Dünndarm ab?",o:["Die Bauchspeicheldrüse","Die Speiseröhre","Der Dickdarm","Der Enddarm"],a:0,e:"Die Bauchspeicheldrüse liefert Enzyme für Kohlenhydrate, Fette und Eiweiße."},
+ {q:"Wozu dient die Salzsäure im Magensaft?",o:["Zum Süßen der Nahrung","Sie tötet Krankheitserreger ab","Sie nimmt Nährstoffe auf","Sie bildet Vitamine"],a:1,e:"Die Salzsäure tötet Keime und hilft, Eiweiße aufzuspalten. Schleim schützt den Magen selbst."},
+ {q:"Welche Reihenfolge stimmt in der Ernährungspyramide von unten nach oben?",o:["Süßigkeiten → Obst → Getränke","Getränke → Obst und Gemüse → Getreide → Milch → Fleisch → Fett und Süßes","Fleisch → Getränke → Gemüse → Süßes","Getreide → Süßes → Getränke → Obst"],a:1,e:"Unten steht, wovon man viel braucht (Getränke), oben, wovon wenig (Fett, Süßes)."},
+ {q:"Was bedeutet ein großes Kreisstück im Ernährungskreis?",o:["Davon soll man einen großen Anteil essen","Davon soll man wenig essen","Das ist besonders teuer","Das enthält viel Fett"],a:0,e:"Je größer das Segment, desto größer der empfohlene Anteil an der täglichen Nahrung."},
+ {q:"Wie viel sollte man am Tag ungefähr trinken?",o:["Ca. 0,5 Liter","Ca. 1,5 Liter","Ca. 4 Liter","Nur zu den Mahlzeiten"],a:1,e:"Etwa 1,5 Liter Wasser oder ungesüßter Tee — Limo und Cola enthalten zu viel Zucker."},
+ {q:"Was bedeutet die Regel „5 am Tag\"?",o:["Fünf Mahlzeiten","Fünf Portionen Obst und Gemüse","Fünf Gläser Milch","Fünf Scheiben Brot"],a:1,e:"Fünf Portionen Gemüse und Obst am Tag — eine Portion ist etwa eine Handvoll."},
+ {q:"Ein Tagesplan besteht aus Pommes, Cola und Schokolade. Wie bewertest du ihn am besten?",o:["Gut, es ist viel Energie drin","Nicht ausgewogen: zu viel Fett und Zucker, es fehlen Obst, Gemüse und Wasser","Gut, weil Kartoffeln enthalten sind","Nicht bewertbar"],a:1,e:"Beim Bewerten immer sagen: was fehlt, was ist zu viel — und welche Nährstoffe dadurch fehlen."}
+];
+function buildMC(id,pool,n){
+  var qs=n?shuffle(pool).slice(0,n):pool, box=$("#"+id), st={ok:0,done:0,tot:qs.length};
+  box.dataset.tot=qs.length;box._st=st;
+  box.innerHTML=qs.map(function(x,i){
+    return '<div class="card" data-q="'+i+'"><div class="q">'+(i+1)+'. '+x.q+'</div><div class="opts">'+
+      x.o.map(function(o,j){return '<button class="opt" data-j="'+j+'">'+o+'</button>'}).join("")+
+      '</div><div class="fb" data-e></div></div>'}).join("");
+  $$("[data-q]",box).forEach(function(c,i){
+    $$(".opt",c).forEach(function(b){b.onclick=function(){
+      if(c.dataset.ans)return;
+      c.dataset.ans=b.dataset.j;
+      var right=+b.dataset.j===qs[i].a;
+      $$(".opt",c).forEach(function(x,j){
+        if(j===qs[i].a)x.classList.add("ok");else if(x===b)x.classList.add("no");else x.classList.add("dim")});
+      var f=$("[data-e]",c);f.className="fb show "+(right?"ok":"no");f.textContent=(right?T("mc_ok"):T("mc_no"))+qs[i].e;
+      st.done++;if(right)st.ok++;
+      if(id==="q1")$("#q1-sc").textContent=st.ok+" / "+st.done;
+      if(id==="qt"){$("#tbar").style.width=(st.done/st.tot*100)+"%";$("#tinfo").textContent=T("t_count",st.done,st.tot);}
+    }});
+  });
+  if(id==="q1")$("#q1-sc").textContent="0 / 0";
+  if(id==="qt"){$("#tbar").style.width="0%";$("#tinfo").textContent=T("t_count",0,st.tot);$("#tfb").className="fb";}
+}
+
+/* ---------- Wiring ---------- */
+function wire(){
+$$("[data-check]").forEach(function(b){b.onclick=function(){
+  var id=b.dataset.check;if(BINS[id])checkBin(id);else checkOrd(id)}});
+$$("[data-reset]").forEach(function(b){b.onclick=function(){
+  var id=b.dataset.reset;
+  if(BINS[id])buildBin(id);else if(ORD[id])buildOrd(id);
+  else if(id==="q1")buildMC("q1",LANG==="es"?Q1_ES:Q1);else if(id==="qt")buildMC("qt",QT);
+  try{window.scrollTo({top:b.closest("section").offsetTop,behavior:"smooth"})}catch(e){}}});
+$("#tgo").onclick=function(){
+  var st=$("#qt")._st,f=$("#tfb"),p=Math.round(st.ok/st.tot*100);
+  f.className="fb show "+(p>=80?"ok":"no");
+  f.innerHTML=T("t_res",st.ok,st.tot,p)+(st.done<st.tot?T("t_open",st.tot-st.done):"")+
+    (p>=90?T("t_90"):p>=80?T("t_80"):p>=60?T("t_60"):T("t_low"));
+  sv(f,"center");};
+if($("#free1-b"))$("#free1-b").onclick=function(){var s=$("#free1-s");var open=s.style.display!=="none";
+  s.style.display=open?"none":"block";this.textContent=open?T("sol_show"):T("sol_hide");};
+}
+function buildAll(){buildBin("b1");buildBin("b2");buildOrd("o1");buildOrd("o2");buildMC("q1",LANG==="es"?Q1_ES:Q1);buildMC("qt",QT);}
+var ES_HTML={};
+ES_HTML.hdr=`<h1><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg> Alimentación y digestión</h1>
+<div class="sub">Examen de Biología · Klasse 6 · según la hoja de diagnóstico (Biologie heute, Westermann)</div>`;
+
+ES_HTML.t1=`<h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Los nutrientes principales <span class="pg">Puntos 1–3 · p. 67/69</span></h2>
+<p class="lead">Hay <b>tres nutrientes principales</b> (<b>Hauptnährstoffe</b>). Dan energía y material de construcción. Regla: <b>K</b>ohlenhydrate, <b>F</b>ette, <b>E</b>iweiße — <b>KFE</b>.</p>
+<div class="grid">
+<div class="n"><h4>Hidratos de carbono · Kohlenhydrate</h4>
+<p><b>Función:</b> el <b>combustible</b> principal (Betriebsstoff): energía rápida para músculos y cerebro.</p>
+<p><b>Formas:</b> azúcar (rápido) y almidón / Stärke (lento, sacia más tiempo).</p>
+<p><b>Dónde están:</b> pan, pasta, arroz, patatas, cereales, fruta, miel, azúcar.</p>
+<p><b>Energía:</b> unos 17 kJ por gramo.</p></div>
+<div class="n a"><h4>Grasas · Fette</h4>
+<p><b>Función:</b> <b>reserva de energía</b> (la que más aporta), protección contra el frío, protección de los órganos y transporte de las vitaminas A, D, E y K.</p>
+<p><b>Dónde están:</b> mantequilla, aceite, margarina, frutos secos, queso, embutido, nata, chocolate.</p>
+<p><b>Energía:</b> unos 39 kJ por gramo — más del doble que los otros.</p></div>
+<div class="n b"><h4>Proteínas · Eiweiße</h4>
+<p><b>Función:</b> <b>material de construcción</b> (Baustoffe): crecer, músculos, piel, pelo y reparar células.</p>
+<p><b>Dónde están:</b> carne, pescado, huevos, leche, quark, queso, alubias, lentejas, soja, frutos secos.</p>
+<p><b>Energía:</b> unos 17 kJ por gramo.</p></div></div>
+<div class="tip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+<div><b>Frase para el examen, de memoria (en alemán):</b> „Kohlenhydrate sind der schnelle Betriebsstoff, Fette sind der Energiespeicher, Eiweiße sind die Baustoffe des Körpers."</div></div>
+<h3>Pruebas de detección (por si las preguntan)</h3>
+<div class="tw"><table>
+<tr><th>Nutriente</th><th>Reactivo</th><th>Color si da positivo</th></tr>
+<tr><td>Almidón (Stärke)</td><td>Lugol (Iod-Kaliumiodid)</td><td>azul oscuro / negro</td></tr>
+<tr><td>Grasa (Fett)</td><td>papel (Fettfleckprobe)</td><td>mancha translúcida que no desaparece</td></tr>
+<tr><td>Proteína (Eiweiß)</td><td>reactivo de Biuret</td><td>violeta</td></tr>
+<tr><td>Glucosa (Traubenzucker)</td><td>licor de Fehling (calentado)</td><td>rojo ladrillo</td></tr></table></div>`;
+
+ES_HTML.t4=`<h2><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg> Los complementos · Ergänzungsstoffe <span class="pg">Puntos 4–6 · p. 67/69</span></h2>
+<p class="lead">Vitaminas, minerales y fibra <b>no dan energía</b>, pero sin ellos el cuerpo no funciona. A esto se suma el <b>agua</b>.</p>
+<div class="grid">
+<div class="n v"><h4>Vitaminas · Vitamine</h4>
+<p><b>Función:</b> <b>sustancias activas y protectoras</b>. Regulan muchos procesos y refuerzan las defensas.</p>
+<ul><li>Vitamina A — vista · zanahoria, espinacas</li><li>Vitamina B — nervios · integrales, carne</li><li>Vitamina C — defensas · limón, pimiento</li><li>Vitamina D — huesos · pescado, luz del sol</li></ul>
+<p><b>Carencia:</b> enfermedades carenciales (p. ej. escorbuto por falta de vitamina C).</p></div>
+<div class="n b"><h4>Minerales · Mineralstoffe</h4>
+<p><b>Función:</b> <b>material de construcción y reguladores</b>.</p>
+<ul><li>Calcio — huesos y dientes · leche, queso</li><li>Hierro — sangre, transporte de oxígeno · carne, espinacas, lentejas</li><li>Yodo — tiroides · pescado de mar, sal yodada</li><li>Magnesio — músculos · frutos secos, integrales</li></ul></div>
+<div class="n"><h4>Fibra · Ballaststoffe</h4>
+<p><b>Función:</b> <b>no se puede digerir</b>. Sacia, retiene agua y <b>activa el movimiento del intestino</b>: la digestión sigue en marcha.</p>
+<p><b>Dónde está:</b> pan integral, verdura, fruta, legumbres, frutos secos.</p></div>
+<div class="n a"><h4>Agua · Wasser</h4>
+<p><b>Función:</b> disuelve y transporta, forma parte de todas las células y regula la temperatura del cuerpo.</p>
+<p><b>Cantidad:</b> beber alrededor de <b>1,5 litros</b> al día.</p></div></div>
+<div class="tip a"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+<div><b>Trampa típica:</b> los complementos <b>no dan energía</b> y <b>no son</b> nutrientes principales. Aun así, son imprescindibles para vivir.</div></div>`;
+
+ES_HTML.t7=`<h2><svg viewBox="0 0 24 24"><path d="M12 2v5"/><path d="M12 7c-3.5 0-6 2.2-6 5.2S8 17 12 17s5.5 1 5.5 2.6S15 22 12 22"/></svg> Los órganos digestivos <span class="pg">Puntos 7–8 · tabla del Hefter</span></h2>
+<p class="lead">El camino de los alimentos — hay que sabérselo en este orden:</p>
+<div class="slots" id="wegview"></div>
+<p class="hint">Además hay tres <b>glándulas digestivas</b> por las que la comida <b>no</b> pasa: glándulas salivales, hígado (con vesícula) y páncreas.</p>
+<h3>Órgano por órgano</h3>
+<div class="tw"><table>
+<tr><th>Órgano</th><th>¿Qué pasa allí?</th></tr>
+<tr><td><b>Boca · Mund</b> (dientes, lengua, glándulas salivales)</td><td>Los dientes <b>trituran</b> la comida y la <b>saliva</b> la hace resbaladiza. La saliva ya empieza a digerir el <b>almidón</b>. Por eso el pan muy masticado sabe dulce.</td></tr>
+<tr><td><b>Esófago · Speiseröhre</b> (unos 25 cm)</td><td>Solo <b>transporte</b>: los músculos empujan el bolo hacia el estómago en ondas (peristaltismo). Funciona incluso haciendo el pino.</td></tr>
+<tr><td><b>Estómago · Magen</b></td><td><b>Almacena y mezcla</b> (2–4 horas). El <b>jugo gástrico</b> lleva ácido clorhídrico, que mata los gérmenes, y enzimas que rompen las <b>proteínas</b>. Una capa de mucosa protege al propio estómago.</td></tr>
+<tr><td><b>Intestino delgado · Dünndarm</b> (4–5 m)</td><td><b>Órgano principal de la digestión.</b> Aquí las enzimas terminan de romper los alimentos y los nutrientes <b>pasan a la sangre</b> a través de las vellosidades (Darmzotten), que aumentan muchísimo la superficie.</td></tr>
+<tr><td><b>Hígado · Leber</b> + <b>vesícula</b></td><td>El hígado produce la <b>bilis</b>, que parte la <b>grasa</b> en gotitas diminutas; la vesícula la almacena. El hígado además desintoxica la sangre y almacena nutrientes.</td></tr>
+<tr><td><b>Páncreas · Bauchspeicheldrüse</b></td><td>Vierte al intestino delgado <b>jugos con enzimas</b> para hidratos, grasas y proteínas.</td></tr>
+<tr><td><b>Intestino grueso · Dickdarm</b> (1,5 m)</td><td>Le quita a los restos el <b>agua y los minerales</b>. La papilla se <b>espesa</b>.</td></tr>
+<tr><td><b>Recto y ano · Enddarm / After</b></td><td><b>Almacena</b> los restos no digeribles y los <b>expulsa</b> como heces.</td></tr></table></div>
+<div class="tip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+<div><b>Tres palabras para tres pasos:</b> <b>triturar</b> (boca, estómago) → <b>romper</b> con enzimas (estómago, intestino delgado) → <b>absorber</b> a la sangre (intestino delgado). El intestino grueso solo recupera el agua.</div></div>
+<h3>¿Quién digiere qué?</h3>
+<div class="tw"><table>
+<tr><th>Nutriente</th><th>Empieza a digerirse en</th><th>Termina en</th></tr>
+<tr><td>Hidratos de carbono (almidón)</td><td>la boca (saliva)</td><td>intestino delgado</td></tr>
+<tr><td>Proteínas</td><td>el estómago (jugo gástrico)</td><td>intestino delgado</td></tr>
+<tr><td>Grasas</td><td>el intestino delgado (bilis + enzimas)</td><td>intestino delgado</td></tr></table></div>`;
+
+ES_HTML.t9=`<h2><svg viewBox="0 0 24 24"><path d="M3 20l9-16 9 16z"/><path d="M7 13h10"/><path d="M9.5 8.5h5"/></svg> La pirámide alimentaria <span class="pg">Punto 9 · p. 71</span></h2>
+<p class="lead">Regla: <b>abajo mucho, arriba poco</b>. Cuanto más ancho el escalón, más hay que comer de eso.</p>
+<div class="pyr">
+<div style="width:42%;background:#f87171">Grasas, aceites y dulces — <b>muy poco</b></div>
+<div style="width:55%;background:#fbbf24">Carne, pescado y huevos — <b>poco</b></div>
+<div style="width:68%;background:#a3e635">Leche y lácteos — <b>a diario</b></div>
+<div style="width:80%;background:#4ade80">Cereales, pan, pasta, arroz, patatas — <b>abundante</b></div>
+<div style="width:90%;background:#34d399">Verdura, ensalada y fruta — <b>5 raciones al día</b></div>
+<div style="width:100%;background:#60a5fa">Bebidas: agua, infusiones sin azúcar — <b>unos 1,5 L</b></div></div>
+<p class="hint">Una ración equivale más o menos a un puñado — de tu propia mano.</p>`;
+
+ES_HTML.t10=`<h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.5 4"/></svg> Leer el círculo alimentario <span class="pg">Punto 10 · p. 71</span></h2>
+<p class="lead">El <b>Ernährungskreis</b> dice lo mismo que la pirámide, pero en círculo y con <b>7 grupos</b>. La regla aquí es: <b>cuanto mayor es el trozo, mayor es la proporción</b> que debe ocupar en tu comida.</p>
+<div class="tw"><table>
+<tr><th>Grupo</th><th>Proporción</th></tr>
+<tr><td>1. Cereales, pan, pasta, arroz, patatas</td><td>grande</td></tr>
+<tr><td>2. Verdura y ensalada</td><td>grande</td></tr>
+<tr><td>3. Fruta</td><td>media</td></tr>
+<tr><td>4. Leche y lácteos</td><td>media</td></tr>
+<tr><td>5. Carne, embutido, pescado, huevos</td><td>pequeña</td></tr>
+<tr><td>6. Aceites y grasas</td><td>muy pequeña</td></tr>
+<tr><td>7. Bebidas</td><td>la mayor (suele dibujarse en el centro)</td></tr></table></div>
+<div class="tip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+<div><b>Cómo se responde a „lee el Ernährungskreis":</b> 1. nombra el grupo. 2. describe el tamaño del sector. 3. saca la conclusión — p. ej. „el sector de aceites y grasas es el más pequeño, por lo tanto hay que comer muy poco de eso".</div></div>`;
+
+ES_HTML.t11=`<h2><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Comer equilibrado y evaluar planes <span class="pg">Puntos 11–12 · p. 71</span></h2>
+<h3>Las reglas de una alimentación equilibrada</h3>
+<ul>
+<li><b>Variado:</b> algo de todos los grupos.</li>
+<li><b>Beber bastante:</b> unos 1,5 L de agua o infusión sin azúcar. Nada de refrescos.</li>
+<li><b>5 al día:</b> cinco raciones de verdura y fruta.</li>
+<li><b>Integral</b> mejor que harina blanca — más fibra y sacia más tiempo.</li>
+<li><b>Poca grasa y poco azúcar</b>; carne y embutido con moderación.</li>
+<li><b>Comidas regulares</b>, sobre todo el desayuno.</li>
+<li><b>Cocinar con cuidado</b> (poco tiempo) — si no, se pierden vitaminas.</li>
+<li><b>Moverse</b> forma parte: energía que entra y energía que se gasta, en equilibrio.</li></ul>
+<h3>Cómo evaluar un plan de alimentación — en 4 pasos</h3>
+<div class="grid">
+<div class="n b"><h4>1. Clasificar</h4><p>Pon cada alimento en su grupo de la pirámide.</p></div>
+<div class="n"><h4>2. Comparar</h4><p>¿La cantidad encaja con el ancho del escalón? ¿Mucho de abajo y poco de arriba?</p></div>
+<div class="n a"><h4>3. Decir qué falta</h4><p>¿Qué falta del todo (¿fruta?, ¿verdura?, ¿bebida?) y qué hay de más (dulces, grasa)?</p></div>
+<div class="n v"><h4>4. Mejorar</h4><p>Haz una propuesta concreta: „en vez de… mejor…", y <b>justifícala</b> con un nutriente.</p></div></div>
+<div class="tip a"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+<div><b>Los puntos se dan por la justificación.</b> No „las patatas fritas son malas", sino: „las patatas fritas tienen mucha <b>grasa</b> y <b>sal</b>, pero casi nada de <b>vitaminas</b> ni <b>fibra</b>. Mejor una zanahoria: aporta <b>vitamina A</b> y <b>fibra</b>."</div></div>
+<h3>Ejemplo de evaluación</h3>
+<p style="font-size:14.5px;color:var(--tx2)"><b>El día de Tim:</b> desayuno: nada · recreo: barrita de chocolate y cola · comida: patatas fritas con salchicha · cena: tostada con embutido y patatas chips.</p>
+<p style="font-size:14.5px"><b>Evaluación:</b> el plan <b>no es equilibrado</b>. Faltan por completo la <b>fruta y la verdura</b>, y con ellas las <b>vitaminas, los minerales y la fibra</b>. Hay <b>demasiada grasa y azúcar</b> (fritos, embutido, chips, chocolate, cola) y <b>muy poca agua</b>. <b>Falta el desayuno</b>, así que por la mañana a Tim le falta energía para concentrarse. <b>Mejora:</b> por la mañana un muesli con fruta, en el recreo pan integral en vez de la barrita, agua en vez de cola y al mediodía patatas con verdura en lugar de fritos.</p>`;
+
+ES_HTML.e1=`<div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg> 1. ¿Qué nutriente principal? <span class="pg">Punto 2</span></h2></div>
+<p class="lead">Pulsa un alimento y después el grupo que le corresponde. Se trata del nutriente que más abunda en él.</p>
+<div class="chips" id="b1-pool"></div><div class="bins" id="b1-bins"></div>
+<div class="row"><button class="btn" data-check="b1">Comprobar</button><button class="btn g" data-reset="b1">Reiniciar</button></div>
+<div class="fb" id="b1-fb"></div>`;
+ES_HTML.e2=`<div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg> 2. Clasificar los complementos <span class="pg">Punto 5</span></h2></div>
+<p class="lead">¿Por qué es conocido este alimento?</p>
+<div class="chips" id="b2-pool"></div><div class="bins" id="b2-bins"></div>
+<div class="row"><button class="btn" data-check="b2">Comprobar</button><button class="btn g" data-reset="b2">Reiniciar</button></div>
+<div class="fb" id="b2-fb"></div>`;
+ES_HTML.e3=`<div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg> 3. El camino de los alimentos <span class="pg">Punto 7</span></h2></div>
+<p class="lead">Pulsa los órganos en el orden correcto.</p>
+<div class="chips" id="o1-pool"></div><div class="slots" id="o1-slots"></div>
+<div class="row"><button class="btn" data-check="o1">Comprobar</button><button class="btn g" data-reset="o1">Reiniciar</button></div>
+<div class="fb" id="o1-fb"></div>`;
+ES_HTML.e4=`<div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M3 20l9-16 9 16z"/><path d="M7 13h10"/></svg> 4. Construir la pirámide <span class="pg">Punto 9</span></h2></div>
+<p class="lead">De abajo arriba: ¿por dónde empiezas (lo que más) y con qué terminas (lo que menos)?</p>
+<div class="chips" id="o2-pool"></div><div class="slots" id="o2-slots"></div>
+<div class="row"><button class="btn" data-check="o2">Comprobar</button><button class="btn g" data-reset="o2">Reiniciar</button></div>
+<div class="fb" id="o2-fb"></div>`;
+ES_HTML.e5=`<div class="ex-h"><h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> 5. Entender y explicar <span class="pg">Puntos 3, 6, 8</span></h2></div>
+<p class="lead">Elige la respuesta correcta. La explicación aparece al momento.</p>
+<div id="q1"></div><div class="row"><span class="score" id="q1-sc">0 / 0</span><button class="btn g" data-reset="q1">Otra vez</button></div>`;
+ES_HTML.e6=`<div class="ex-h"><h2><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg> 6. Evaluar un plan de alimentación <span class="pg">Punto 12</span></h2></div>
+<p class="lead"><b>El día de Lena:</b> desayuno: bollo con crema de cacao y un cacao · recreo: gominolas · comida: pasta con tomate y una manzana · tarde: dos vasos de refresco · cena: pizza.<br>Escribe tu evaluación y después compárala.</p>
+<textarea id="free1" rows="7" style="width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:10px;color:var(--tx);padding:12px;font:15px/1.6 inherit" placeholder="¿Qué está bien? ¿Qué falta? ¿Qué hay de más? ¿Qué nutrientes faltan por eso? ¿Cómo lo mejorarías?"></textarea>
+<div class="row"><button class="btn" id="free1-b">Ver solución modelo</button></div>
+<div id="free1-s" style="display:none;margin-top:14px">
+<div class="n b"><h4>Lo que está bien</h4><p>La pasta con tomate aporta hidratos de carbono como energía y la manzana da vitaminas y fibra. Lena desayuna, y eso es correcto.</p></div>
+<div class="n r" style="margin-top:10px"><h4>Lo que falta</h4><p>Casi toda la <b>verdura</b> y muy poca <b>fruta</b> (solo una manzana en vez de 5 raciones). Por eso faltan <b>vitaminas, minerales y fibra</b>. También faltan los <b>lácteos</b> (calcio para huesos y dientes) y sobre todo el <b>agua</b>.</p></div>
+<div class="n a" style="margin-top:10px"><h4>Lo que sobra</h4><p><b>Azúcar</b>: crema de cacao, cacao, gominolas y refresco en un mismo día. <b>Grasa</b>: la crema de cacao y la pizza. Las dos cosas están arriba del todo en la pirámide y deben tomarse con mucha moderación.</p></div>
+<div class="n" style="margin-top:10px"><h4>Mejora</h4><p>Muesli con leche y fruta en vez del bollo · pan integral o una zanahoria en el recreo en vez de gominolas · <b>agua</b> en vez de refresco · por la noche, pizza con mucha verdura por encima y una ensalada.</p></div></div>`;
+ES_HTML.e7=`<h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Simulacro de examen</h2>
+<p class="lead">18 preguntas sobre los 12 puntos de la hoja de diagnóstico. <b>Este apartado se queda en alemán a propósito</b>, porque así será el examen. Responde todo y después evalúa.</p>
+<div class="bar"><i id="tbar"></i></div><div class="hint" id="tinfo">0 de 18 respondidas</div>`;
+ES_HTML.e8=`<div class="row"><button class="btn" id="tgo">Evaluar</button><button class="btn g" data-reset="qt">Empezar de nuevo</button></div><div class="fb" id="tfb"></div>`;
+
+/* ---------- Sprache / Idioma ---------- */
+var LANG="de";
+var S={de:{
+ goto:"Zum Thema", look:"Schlag nach:", back:"zurück",
+ ck_none:"Noch nichts bewertet.",
+ ck_prog:"{1} von 12 bewertet — {2} sitzen schon gut, {3} solltest du dir noch ansehen.",
+ bin_all:"Alles richtig — {1} von {2}.",
+ bin_part:"{1} von {2} richtig. Die falschen zeigen jetzt die richtige Gruppe.",
+ bin_rest:"(Es sind noch nicht alle einsortiert.)",
+ ord_ok:"Perfekt — die Reihenfolge stimmt.",
+ ord_part:"{1} von {2} an der richtigen Stelle.<br>Richtig wäre: {3}",
+ mc_ok:"Richtig. ", mc_no:"Nicht richtig. ",
+ t_count:"{1} von {2} beantwortet",
+ t_res:"<b>{1} von {2} richtig ({3} %).</b><br>",
+ t_open:"Achtung: {1} Fragen sind noch offen. ",
+ t_90:"Sehr gut — du bist bereit für die Arbeit.",
+ t_80:"Gut. Schau dir nur die falschen Fragen noch einmal an.",
+ t_60:"Geht schon. Lies die Themen zu den falschen Fragen noch einmal und übe dann wieder.",
+ t_low:"Noch zu wenig. Geh die Abschnitte Nährstoffe und Verdauung noch einmal in Ruhe durch.",
+ sol_show:"Musterlösung zeigen", sol_hide:"Musterlösung verbergen",
+ tabs:["Diagnose","Nährstoffe","Verdauung","Ernährungsplan","Üben","Testen"], btn:"Español"
+},es:{
+ goto:"Ir al tema", look:"Mira en:", back:"atrás",
+ ck_none:"Aún no has valorado nada.",
+ ck_prog:"{1} de 12 valorados — {2} los llevas bien, {3} conviene repasarlos.",
+ bin_all:"Todo correcto — {1} de {2}.",
+ bin_part:"{1} de {2} correctos. Los fallados ya muestran el grupo correcto.",
+ bin_rest:"(Todavía quedan alimentos sin clasificar.)",
+ ord_ok:"Perfecto — el orden es correcto.",
+ ord_part:"{1} de {2} en el sitio correcto.<br>Lo correcto sería: {3}",
+ mc_ok:"Correcto. ", mc_no:"No es correcto. ",
+ t_count:"{1} de {2} respondidas",
+ t_res:"<b>{1} de {2} correctas ({3} %).</b><br>",
+ t_open:"Atención: quedan {1} preguntas sin responder. ",
+ t_90:"Muy bien — lista para el examen.",
+ t_80:"Bien. Repasa solo las preguntas falladas.",
+ t_60:"Vas por buen camino. Vuelve a leer los temas de las preguntas falladas y practica otra vez.",
+ t_low:"Todavía es poco. Repasa con calma los apartados de Nutrientes y Digestión.",
+ sol_show:"Ver solución modelo", sol_hide:"Ocultar solución modelo",
+ tabs:["Diagnóstico","Nutrientes","Digestión","Plan de dieta","Practicar","Examen"], btn:"Deutsch"
+}};
+function T(k){var s=(S[LANG]&&S[LANG][k]!==undefined)?S[LANG][k]:S.de[k];
+  for(var i=1;i<arguments.length;i++)s=String(s).split("{"+i+"}").join(arguments[i]);return s}
+
+var LBL_DE=LBL, LBL_ES=["Muy bien","Bien","No tan bien","Nada bien"];
+var CK_DE=CK, CK_ES=[
+ ["Nombrar los nutrientes principales","p. 67","naehr","t1"],
+ ["Decidir qué nutriente principal hay en cada alimento","p. 67","naehr","t1"],
+ ["Explicar la importancia de los nutrientes principales","p. 67/69","naehr","t1"],
+ ["Describir vitaminas, fibra y minerales como complementos","p. 67","naehr","t4"],
+ ["Decidir qué complemento hay en cada alimento","p. 67","naehr","t4"],
+ ["Explicar la importancia de los complementos","p. 67/69","naehr","t4"],
+ ["Nombrar los órganos digestivos","tabla del Hefter","verd","t7"],
+ ["Explicar la función de los órganos digestivos","tabla del Hefter","verd","t7"],
+ ["Construir una pirámide alimentaria","p. 71","plan","t9"],
+ ["Leer el círculo alimentario (Ernährungskreis)","p. 71","plan","t10"],
+ ["Elaborar un plan de alimentación equilibrada","p. 71","plan","t11"],
+ ["Evaluar planes de alimentación","","plan","t11"]];
+
+var B_DE={b1:{cats:BINS.b1.cats,items:BINS.b1.items},b2:{cats:BINS.b2.cats,items:BINS.b2.items}};
+var B_ES={
+ b1:{cats:["Hidratos de carbono","Grasas","Proteínas"],
+  items:[["Pasta (Nudeln)",0],["Patatas (Kartoffeln)",0],["Pan (Brot)",0],["Arroz (Reis)",0],["Miel (Honig)",0],["Mantequilla (Butter)",1],["Aceite de oliva (Olivenöl)",1],["Nueces (Nüsse)",1],["Nata (Sahne)",1],["Carne (Fleisch)",2],["Huevos (Eier)",2],["Quark",2],["Lentejas (Linsen)",2],["Pescado (Fisch)",2]]},
+ b2:{cats:["Vitaminas","Minerales","Fibra"],
+  items:[["Pimiento (vitamina C)",0],["Zanahoria (vitamina A)",0],["Limón",0],["Leche (calcio)",1],["Espinacas (hierro)",1],["Pescado de mar (yodo)",1],["Pan integral (Vollkornbrot)",2],["Copos de avena",2],["Legumbres",2]]}};
+var O_DE={o1:ORD.o1.sol,o2:ORD.o2.sol};
+var O_ES={o1:["Boca (Mund)","Esófago (Speiseröhre)","Estómago (Magen)","Intestino delgado (Dünndarm)","Intestino grueso (Dickdarm)","Recto y ano (Enddarm / After)"],
+ o2:["Bebidas (agua, infusiones)","Verdura, ensalada y fruta","Cereales, pan, pasta, patatas","Leche y lácteos","Carne, pescado, huevos","Grasas, aceites y dulces"]};
+var Q1_ES=[
+ {q:"¿Por qué se dice que los hidratos de carbono son el principal combustible?",o:["Porque forman los músculos","Porque dan energía rápida al cuerpo","Porque protegen del frío","Porque no se digieren"],a:1,e:"Son el combustible rápido (Betriebsstoff) para músculos y cerebro. Los materiales de construcción son las proteínas."},
+ {q:"¿Qué nutriente aporta más energía por gramo?",o:["Hidratos de carbono","Proteínas","Grasas","Vitaminas"],a:2,e:"La grasa aporta unos 39 kJ por gramo; hidratos y proteínas, unos 17 kJ. Las vitaminas no aportan energía."},
+ {q:"¿Para qué necesita el cuerpo sobre todo las proteínas (Eiweiße)?",o:["Como material de construcción para crecer y para las células","Como protección contra el frío","Para un chute rápido de energía","Para mover el intestino"],a:0,e:"Las proteínas son los Baustoffe: músculos, piel, pelo, células y crecimiento."},
+ {q:"¿Qué es cierto para todos los complementos (Ergänzungsstoffe)?",o:["Aportan muchísima energía","No aportan energía, pero son imprescindibles","Solo los necesitan los deportistas","Se forman en el estómago"],a:1,e:"Vitaminas, minerales y fibra no dan energía, pero sin ellos el cuerpo no funciona."},
+ {q:"¿Qué función tiene la fibra (Ballaststoffe)?",o:["Aporta proteínas","No se digiere y activa el movimiento del intestino","Almacena grasa","Forma los huesos"],a:1,e:"La fibra no se digiere, sacia y mantiene la digestión en marcha."},
+ {q:"El calcio es importante para…",o:["los huesos y los dientes","la vista","el movimiento del intestino","la protección contra el frío"],a:0,e:"El calcio es un mineral y material de construcción de huesos y dientes. Está sobre todo en leche y queso."},
+ {q:"¿Dónde empieza la digestión del almidón (Stärke)?",o:["En el estómago","En el intestino delgado","En la boca, con la saliva","En el intestino grueso"],a:2,e:"La saliva ya contiene una enzima que descompone el almidón. Por eso el pan muy masticado sabe dulce."},
+ {q:"¿Qué ocurre en el estómago (Magen)?",o:["Los nutrientes pasan a la sangre","Se mezcla la comida, el ácido mata gérmenes y empieza la digestión de las proteínas","Se le quita el agua a los restos","Solo transporte hacia el intestino"],a:1,e:"El estómago almacena, mezcla y con el jugo gástrico empieza a digerir las proteínas."},
+ {q:"¿En qué órgano pasan los nutrientes a la sangre?",o:["Estómago","Intestino delgado","Intestino grueso","Esófago"],a:1,e:"En el intestino delgado (Dünndarm) las vellosidades absorben los nutrientes: es el órgano principal de la digestión."},
+ {q:"¿Qué función tiene el intestino grueso (Dickdarm)?",o:["Descompone las proteínas","Le quita a los restos el agua y los minerales","Produce la bilis","Tritura la comida"],a:1,e:"En el intestino grueso se espesa la papilla recuperando el agua."},
+ {q:"¿Qué órgano produce la bilis para digerir las grasas?",o:["El páncreas (Bauchspeicheldrüse)","El estómago","El hígado (Leber)","El riñón"],a:2,e:"El hígado produce la bilis y la vesícula la almacena. La bilis divide la grasa en gotitas diminutas."},
+ {q:"¿Qué hay en la base de la pirámide alimentaria?",o:["Los dulces","La carne y el embutido","Las bebidas","Los aceites y las grasas"],a:2,e:"Abajo va lo que más se necesita: bebidas, y después verdura y fruta. Arriba del todo, grasas y dulces."}];
+
+var IDS=["hdr","t1","t4","t7","t9","t10","t11","e1","e2","e3","e4","e5","e6","e7","e8"];
+var DE_HTML={};
+IDS.forEach(function(id){var el=$("#"+id);if(el)DE_HTML[id]=el.innerHTML});
+
+function applyLang(l){
+  LANG=l;
+  var M=(l==="es")?ES_HTML:DE_HTML;
+  IDS.forEach(function(id){var el=$("#"+id);if(el&&M[id]!==undefined)el.innerHTML=M[id]});
+  LBL=(l==="es")?LBL_ES:LBL_DE; CK=(l==="es")?CK_ES:CK_DE;
+  var B=(l==="es")?B_ES:B_DE, O=(l==="es")?O_ES:O_DE;
+  BINS.b1.cats=B.b1.cats;BINS.b1.items=B.b1.items;BINS.b2.cats=B.b2.cats;BINS.b2.items=B.b2.items;
+  ORD.o1.sol=O.o1;ORD.o2.sol=O.o2;
+  $$(".tab[data-p]").forEach(function(b,i){b.lastChild.nodeValue=S[l].tabs[i]});
+  $("#lang").lastChild.nodeValue=S[l].btn;
+  document.documentElement.lang=l;
+  $("#wegview").innerHTML=O.o1.map(function(w,i){
+    return '<div class="slot"><div class="idx">'+(i+1)+'</div><b>'+w+'</b></div>'}).join("");
+  wire();buildAll();buildCK();
+}
+$("#lang").onclick=function(){applyLang(LANG==="es"?"de":"es");window.scrollTo(0,0)};
+wire();buildAll();buildCK();
+
+</script>
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+</body>
+</html>

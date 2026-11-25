@@ -1,0 +1,600 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Brüche-Trainer · Klasse 6</title>
+<style>
+  :root{
+    --bg:#f6f4ee; --card:#ffffff; --ink:#1f2a37; --muted:#6b7280; --line:#e5e1d8;
+    --accent:#2563a8; --accent-2:#e0ecfa; --ok:#1f8a4c; --ok-bg:#e6f5ec; --bad:#c23b3b; --bad-bg:#fbe9e9;
+    --fill:#9ccf8a; --fill2:#f4c27a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.45}
+  header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  header h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px}
+  header h1 span{color:var(--muted);font-weight:500;font-size:14px;margin-left:6px}
+  nav{display:flex;gap:4px}
+  nav button{background:none;border:none;padding:8px 12px;border-radius:8px;font-size:15px;color:var(--muted);cursor:pointer;font-weight:600}
+  nav button.active{background:var(--accent-2);color:var(--accent)}
+  main{padding:18px 0 40px}
+  h2{font-size:20px;margin:6px 0 12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;display:flex;gap:14px;align-items:flex-start;transition:transform .08s}
+  .tile:active{transform:scale(.98)}
+  .tile svg{width:38px;height:38px;flex:none;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .tile b{display:block;font-size:16px;margin-bottom:2px}
+  .tile small{color:var(--muted);font-size:13.5px;display:block}
+  .tile .stat{font-size:12.5px;color:var(--accent);margin-top:6px;display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:14px;color:var(--muted)}
+  .topbar button{background:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer;color:var(--ink)}
+  .progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
+  .progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+  .q{font-size:19px;margin-bottom:14px}
+  .q .fig{margin:14px 0}
+  .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;line-height:1.05;font-size:.95em}
+  .frac span:first-child{border-bottom:1.5px solid currentColor;padding:0 4px}
+  .frac span:last-child{padding:0 4px}
+  .mixed{display:inline-flex;align-items:center;gap:2px}
+  .answer{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  input[type=text]{font-size:20px;padding:10px 12px;border:2px solid var(--line);border-radius:10px;width:180px;max-width:100%;background:#fff;color:var(--ink)}
+  input[type=text]:focus{outline:none;border-color:var(--accent)}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 18px;font-size:16px;font-weight:600;cursor:pointer}
+  .btn.secondary{background:var(--accent-2);color:var(--accent)}
+  .btn:disabled{opacity:.5}
+  .fb{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:16px}
+  .fb.ok{background:var(--ok-bg);color:var(--ok)}
+  .fb.bad{background:var(--bad-bg);color:var(--bad)}
+  .fb .sol{color:var(--ink);margin-top:6px;font-size:15px}
+  .hint{font-size:13.5px;color:var(--muted);margin-top:10px}
+  .choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .choices button{font-size:17px;padding:10px 16px;border:2px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;color:var(--ink)}
+  .choices button.sel{border-color:var(--accent);background:var(--accent-2)}
+  .summary{text-align:center}
+  .summary .big{font-size:44px;font-weight:700;color:var(--accent);margin:8px 0}
+  /* index */
+  .idx h3{font-size:17px;margin:18px 0 6px;display:flex;align-items:center;gap:8px}
+  .idx h3 .ref{font-size:12.5px;font-weight:600;color:var(--accent);background:var(--accent-2);padding:2px 8px;border-radius:6px;white-space:nowrap}
+  .idx ul{margin:4px 0 8px 20px;padding:0}
+  .idx li{margin:4px 0}
+  .merke{background:#fff8e6;border-left:4px solid #e8b84a;padding:10px 12px;border-radius:0 8px 8px 0;margin:8px 0}
+  .merke b{color:#8a6414}
+  .papa{background:#f1f3f6;border-radius:8px;padding:8px 12px;font-size:14px;color:#3e4a5b;margin:6px 0 4px}
+  .papa b{color:#1f2a37}
+  details summary{cursor:pointer;font-weight:600;color:var(--accent);font-size:15px;list-style:none;display:flex;align-items:center;gap:6px}
+  details summary::before{content:"";width:0;height:0;border-left:6px solid var(--accent);border-top:5px solid transparent;border-bottom:5px solid transparent;transition:transform .15s}
+  details[open] summary::before{transform:rotate(90deg)}
+  table.units{border-collapse:collapse;font-size:15px;margin:6px 0 10px}
+  table.units td{border:1px solid var(--line);padding:5px 10px}
+  table.units td:nth-child(odd){background:#fafaf7;font-weight:600}
+  .legend{font-size:13.5px;color:var(--muted);margin-top:10px}
+  .pill{display:inline-block;background:var(--accent-2);color:var(--accent);padding:2px 8px;border-radius:6px;font-size:12.5px;font-weight:600;margin-right:4px}
+  .hidden{display:none}
+  .small{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Brüche-Trainer <span>1. Klassenarbeit · 05.11.2026</span></h1>
+  <nav>
+    <button id="tab-ueben" class="active" onclick="showTab('ueben')">Üben</button>
+    <button id="tab-index" onclick="showTab('index')">Index</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <!-- ÜBEN -->
+  <section id="view-ueben">
+    <h2>Was möchtest du üben?</h2>
+    <div class="grid" id="tiles"></div>
+    <p class="legend">Jede Runde hat 10 Aufgaben. Brüche so eingeben: <b>3/4</b> · gemischte Zahlen: <b>2 1/4</b> · negativ: <b>-3/4</b> · Einheiten darfst du weglassen (750 oder 750 g). Bei „vergleichen“ tippst du <b>&lt;</b>, <b>&gt;</b> oder <b>=</b>.</p>
+    <p class="small"><a href="#" onclick="resetStats();return false;" style="color:var(--muted)">Statistik zurücksetzen</a></p>
+  </section>
+
+  <!-- RUNDE -->
+  <section id="view-runde" class="hidden">
+    <div class="topbar"><span id="runde-title"></span><button onclick="goHome()">Abbrechen</button></div>
+    <div class="progress"><i id="prog"></i></div>
+    <div class="card" id="qcard">
+      <div class="q" id="qtext"></div>
+      <div class="answer" id="ans"></div>
+      <div id="feedback"></div>
+    </div>
+  </section>
+
+  <!-- INDEX -->
+  <section id="view-index" class="hidden idx">
+    <h2>Index · 1. Klassenarbeit Mathematik</h2>
+    <p class="small"><b>Donnerstag, 05.11.2026</b> · Thema: Brüche · Buch: <b>Lambacher Schweizer 6</b>, Kapitel I, Lektionen 1–5 (S. 6–21). Das sind genau die fünf Punkte vom Zettel der Lehrerin – hake ab, was du schon kannst.</p>
+
+    <h3>1 · Brüche und Anteile <span class="ref">S. 6–9</span></h3>
+    <div class="merke"><b>Fachbegriffe:</b> Die Zahl oben heißt <b>Zähler</b>, die Zahl unten <b>Nenner</b>, der Strich dazwischen <b>Bruchstrich</b>.<br>
+    <span class="frac"><span>3</span><span>5</span></span> bedeutet: das Ganze in <b>5 gleiche Teile</b> teilen und <b>3 davon</b> nehmen. Man liest „drei Fünftel“.</div>
+    <ul>
+      <li><b>Anteile bestimmen:</b> <span class="frac"><span>gefärbte Teile</span><span>alle Teile</span></span> – alle Teile müssen gleich groß sein!</li>
+      <li><b>Anteil einer Anzahl:</b> erst durch den Nenner teilen, dann mal Zähler. <span class="frac"><span>7</span><span>10</span></span> von 20 Eiern: 20 : 10 = 2, 2 · 7 = <b>14</b>.</li>
+      <li><b>Brüche bei Größen:</b> erst umrechnen, dann teilen und multiplizieren. <span class="frac"><span>3</span><span>4</span></span> kg = 1000 g : 4 · 3 = <b>750 g</b>.</li>
+    </ul>
+    <p><span class="pill">App</span> Anteile ablesen · Brüche in Worten · Anteile berechnen · Textaufgaben &nbsp; <span class="pill">Buch</span> Teste dich S. 8 Nr. 9, 10 · S. 9 Nr. 17, 18</p>
+    <div class="papa"><b>Para papá:</b> errores típicos: olvidar que las partes deben ser iguales, y en "¾ de 16" dividir mal. En papel: S. 8 Nr. 5–8 (mecánicos) y S. 9 Nr. 13, 14, 19, 20 (problemas; los de "rückwärts" como el Pfahl son los más difíciles).</div>
+
+    <h3>2 · Kürzen und Erweitern <span class="ref">S. 10–12</span></h3>
+    <div class="merke"><b>Fachbegriffe:</b> <b>Erweitern mit</b> 3 = Zähler und Nenner <b>multiplizieren mit</b> 3. <b>Kürzen mit</b> 4 = Zähler und Nenner <b>dividieren durch</b> 4.<br>
+    <span class="frac"><span>1</span><span>3</span></span> erweitert mit 6 = <span class="frac"><span>6</span><span>18</span></span> · <span class="frac"><span>6</span><span>18</span></span> gekürzt mit 6 = <span class="frac"><span>1</span><span>3</span></span>. Der Wert bleibt gleich: <span class="frac"><span>2</span><span>6</span></span> = <span class="frac"><span>6</span><span>18</span></span> = <span class="frac"><span>1</span><span>3</span></span>.</div>
+    <ul>
+      <li>Kürzen geht nur mit einem <b>gemeinsamen Teiler</b> von Zähler und Nenner.</li>
+      <li><b>Vollständig kürzen</b> = so lange kürzen, bis es nicht mehr geht: <span class="frac"><span>48</span><span>72</span></span> → <span class="frac"><span>24</span><span>36</span></span> → <span class="frac"><span>12</span><span>18</span></span> → <span class="frac"><span>6</span><span>9</span></span> → <span class="frac"><span>2</span><span>3</span></span>.</li>
+      <li><b>Teilbarkeitsregeln:</b> durch 2 → letzte Ziffer gerade · durch 5 → endet auf 0/5 · durch 10 → endet auf 0 · durch 3 → Quersumme durch 3 teilbar · durch 9 → Quersumme durch 9 teilbar.</li>
+    </ul>
+    <p><span class="pill">App</span> Kürzen und Erweitern · Fachbegriffe &nbsp; <span class="pill">Buch</span> Teste dich S. 12 Nr. 7, 8, 13 · S. 11 Nr. 1, 2, 5, 6 · S. 12 Nr. 10</p>
+    <div class="papa"><b>Para papá:</b> la profesora pide explícitamente los términos (kürzen mit / erweitern mit / multiplizieren mit / dividieren durch): puede preguntar "Mit welcher Zahl wurde gekürzt?" o pedir que explique con palabras. Error típico: multiplicar solo el numerador. S. 12 Nr. 10 es el clave para "vollständig kürzen".</div>
+
+    <h3>3 · Brüche auf der Zahlengeraden <span class="ref">S. 13–15</span></h3>
+    <div class="merke"><b>Fachbegriff:</b> <b>gemischte Schreibweise</b> = Ganze + Bruch. <span class="frac"><span>9</span><span>4</span></span> liegt um <span class="frac"><span>1</span><span>4</span></span> rechts von 2 → <span class="frac"><span>9</span><span>4</span></span> = 2 <span class="frac"><span>1</span><span>4</span></span>.<br>
+    Umwandeln: Zähler : Nenner → Ganze, der <b>Rest</b> ist der neue Zähler (9 : 4 = 2 Rest 1). Zurück: Ganze · Nenner + Zähler (2 · 4 + 1 = 9).<br>
+    <b>Brüche, die durch Kürzen oder Erweitern auseinander hervorgehen, liegen an derselben Stelle</b> (Kasten S. 13): <span class="frac"><span>1</span><span>2</span></span> = <span class="frac"><span>2</span><span>4</span></span> = <span class="frac"><span>4</span><span>8</span></span>.</div>
+    <ul>
+      <li><b>Einzeichnen:</b> die Strecke von 0 bis 1 in so viele Teile teilen, wie der Nenner sagt. Mehrere Brüche → erst alle auf <b>denselben Nenner</b> bringen (Beispiel 1 S. 14: Nenner 6, Strecke 0–1 = 3 cm).</li>
+      <li><b>Ablesen:</b> Teile zwischen zwei ganzen Zahlen zählen = Nenner; Striche bis zum Pfeil = Zähler. Links von 0 → <b>negativ</b> (−<span class="frac"><span>3</span><span>4</span></span>, −1 <span class="frac"><span>1</span><span>2</span></span>).</li>
+      <li><b>Gemischt und vollständig gekürzt:</b> <span class="frac"><span>60</span><span>40</span></span> = <span class="frac"><span>3</span><span>2</span></span> = 1 <span class="frac"><span>1</span><span>2</span></span>. Immer beides angeben!</li>
+      <li><b>Betrag:</b> Abstand zur 0, immer positiv. Betrag von −<span class="frac"><span>2</span><span>8</span></span> ist <span class="frac"><span>2</span><span>8</span></span> = <span class="frac"><span>1</span><span>4</span></span> (Nr. 9).</li>
+    </ul>
+    <p><span class="pill">App</span> Zahlengerade · Gemischte Zahlen &nbsp; <span class="pill">Buch</span> Teste dich S. 15 Nr. 5, 10 · üben: S. 14 Nr. 1–4 · S. 15 Nr. 6, 7, 8, 9</p>
+    <div class="papa"><b>Para papá:</b> en el cuaderno Alba tenía puntos mal colocados. Que haga en papel con regla S. 14 Nr. 4 y S. 15 Nr. 6 (dibujar la recta con la longitud dada: p. ej. −2 a 3 en 10 cm → cada unidad 2 cm). Nr. 8 ("liegen an derselben Stelle?") es exactamente el punto "gemischt + vollständig gekürzt" de la hoja de la profesora.</div>
+
+    <h3>4 · Brüche als Quotienten <span class="ref">S. 16–18</span></h3>
+    <div class="merke"><b>Wenn man zwei ganze Zahlen dividiert, erhält man als Ergebnis einen Bruch:</b> 8 : 5 = <span class="frac"><span>8</span><span>5</span></span>. Die Division durch 0 hat kein Ergebnis.<br>
+    <b>Vorzeichen:</b> + : + = + · − : − = + · + : − = − · − : + = −. &nbsp; 15 : (−12) = −<span class="frac"><span>15</span><span>12</span></span> = −<span class="frac"><span>5</span><span>4</span></span> · (−144) : (−18) = <span class="frac"><span>144</span><span>18</span></span> = 8.<br>
+    <b>Fachbegriffe:</b> ℕ <b>natürliche Zahlen</b> 0, 1, 2, 3 … · ℤ <b>ganze Zahlen</b> … −2, −1, 0, 1, 2 … · ℚ <b>rationale Zahlen</b> = alle Zahlen, die man als Bruch schreiben kann (auch −<span class="frac"><span>1</span><span>2</span></span>, 3 <span class="frac"><span>2</span><span>3</span></span>). Jede Zahl aus ℕ gehört zu ℤ, jede aus ℤ gehört zu ℚ.</div>
+    <ul>
+      <li>Ergebnis immer <b>vollständig kürzen</b>, bei Bedarf gemischt: 12 : 5 = <span class="frac"><span>12</span><span>5</span></span> = 2 <span class="frac"><span>2</span><span>5</span></span> (Nr. 10).</li>
+      <li><b>Division von Größen</b> (Beispiel 2 S. 17): 6 km : 20 = <span class="frac"><span>6</span><span>20</span></span> km = <span class="frac"><span>3</span><span>10</span></span> km; <span class="frac"><span>1</span><span>10</span></span> km = 100 m → 3 · 100 m = <b>300 m</b>. Ebenso 3 m : 2 = 1 <span class="frac"><span>1</span><span>2</span></span> m = 15 dm, 7 kg : 10 = 700 g.</li>
+      <li>Tabelle ℕ / ℤ / ℚ (Nr. 13): −5 → ℕ nein, ℤ ja, ℚ ja · <span class="frac"><span>10</span><span>5</span></span> = 2 → überall ja · <span class="frac"><span>1</span><span>8</span></span> → nur ℚ.</li>
+    </ul>
+    <p><span class="pill">App</span> Brüche als Quotienten · Fachbegriffe &nbsp; <span class="pill">Buch</span> Teste dich S. 17 Nr. 7 · S. 18 Nr. 14 · üben: S. 17 Nr. 1, 4, 5, 6 · S. 18 Nr. 8, 10, 13</p>
+    <div class="papa"><b>Para papá:</b> lo que no tenía en la v1: las divisiones con negativos (S. 17 Nr. 4, 5, 7). Regla de signos primero, luego la fracción. "Division von Größen" (Nr. 8) es el que más pueden poner con unidades: que escriba siempre el paso intermedio como fracción (6/20 km → 3/10 km → 300 m). Nr. 13 (tabla ℕ ℤ ℚ) casi seguro cae como pregunta corta.</div>
+
+    <h3>5 · Größenvergleich von Brüchen <span class="ref">S. 19–21</span></h3>
+    <div class="merke"><b>Zwei positive Brüche:</b> bei <b>gleichem Nenner</b> ist der Bruch mit dem größeren Zähler größer. Bei <b>verschiedenen Nennern</b> erst auf einen <b>gemeinsamen Nenner</b> bringen, dann Zähler vergleichen: <span class="frac"><span>3</span><span>4</span></span> = <span class="frac"><span>9</span><span>12</span></span>, <span class="frac"><span>5</span><span>6</span></span> = <span class="frac"><span>10</span><span>12</span></span> → <span class="frac"><span>5</span><span>6</span></span> &gt; <span class="frac"><span>3</span><span>4</span></span>. Der kleinste gemeinsame Nenner heißt <b>Hauptnenner</b>.<br>
+    <b>Negativ:</b> positiv ist immer größer als negativ (<span class="frac"><span>1</span><span>4</span></span> &gt; −<span class="frac"><span>12</span><span>5</span></span>). Zwei negative: der mit dem <b>größeren Betrag</b> ist <b>kleiner</b>: −<span class="frac"><span>2</span><span>3</span></span> &lt; −<span class="frac"><span>1</span><span>3</span></span>.</div>
+    <ul>
+      <li><b>Gleicher Zähler:</b> der kleinere Nenner ist größer (<span class="frac"><span>11</span><span>15</span></span> &gt; <span class="frac"><span>11</span><span>18</span></span>).</li>
+      <li><b>Vergleich mit einer anderen Zahl:</b> <span class="frac"><span>11</span><span>6</span></span> &lt; 2 &lt; <span class="frac"><span>15</span><span>7</span></span>, also <span class="frac"><span>11</span><span>6</span></span> &lt; <span class="frac"><span>15</span><span>7</span></span>. Auch mit <span class="frac"><span>1</span><span>2</span></span> oder 1 vergleichen.</li>
+      <li><b>Gemischte Zahlen:</b> erst die Ganzen, dann die Bruchteile: 2 <span class="frac"><span>1</span><span>4</span></span> &lt; 2 <span class="frac"><span>1</span><span>2</span></span> &lt; <span class="frac"><span>7</span><span>2</span></span> (= 3 <span class="frac"><span>1</span><span>2</span></span>).</li>
+      <li><b>Anteile vergleichen</b> (Beispiel 2 S. 20): 4 Gewinne von 16 Losen = <span class="frac"><span>1</span><span>4</span></span>, 3 von 10 = <span class="frac"><span>3</span><span>10</span></span> → <span class="frac"><span>5</span><span>20</span></span> &lt; <span class="frac"><span>6</span><span>20</span></span> → rechts ist der Anteil höher.</li>
+      <li>Zwischen zwei Brüchen liegen immer weitere Brüche (größerer Nenner): zwischen <span class="frac"><span>3</span><span>10</span></span> und <span class="frac"><span>4</span><span>10</span></span> liegen <span class="frac"><span>31</span><span>100</span></span> … <span class="frac"><span>39</span><span>100</span></span>.</li>
+    </ul>
+    <p><span class="pill">App</span> Brüche vergleichen &nbsp; <span class="pill">Buch</span> Teste dich S. 21 Nr. 7, 13 · üben: S. 20 Nr. 1, 2, 3 · S. 21 Nr. 5, 6, 9, 12</p>
+    <div class="papa"><b>Para papá:</b> en S. 20 Nr. 2 Alba ya ha hecho algunos (d, h, i, j marcados). Error clásico: creer que denominador mayor = fracción mayor; dibujar ⅓ y ⅕ en dos tiras una vez. Segundo error: con negativos invertir el orden (−⅔ es MENOR que −⅓). Nr. 9 (ordenar tres números con gemischte Zahlen y negativos) es el ejercicio más completo del tema.</div>
+
+    <h3>Einheiten (zum Nachschlagen)</h3>
+    <table class="units">
+      <tr><td>1 km</td><td>1000 m</td><td>1 kg</td><td>1000 g</td><td>1 h</td><td>60 min</td></tr>
+      <tr><td>1 m</td><td>100 cm</td><td>1 t</td><td>1000 kg</td><td>1 min</td><td>60 s</td></tr>
+      <tr><td>1 cm</td><td>10 mm</td><td>1 €</td><td>100 ct</td><td>1 d (Tag)</td><td>24 h</td></tr>
+      <tr><td>1 l</td><td>1000 ml</td><td colspan="4"></td></tr>
+    </table>
+
+    <h3>Hier kann ich üben (Zettel der Lehrerin)</h3>
+    <p class="small">Achtung: Auf S. 31–33 kommen auch <b>Dezimalzahlen</b> vor (0,75; 2,907 …). Die sind <b>nicht</b> Thema der Arbeit – deshalb steht auf dem Zettel „nur als Bruch“. Nur die unten genannten Nummern machen.</p>
+    <ul>
+      <li><b>Teste dich:</b> im Buch am Ende jeder Lektion – S. 8/9 Nr. 9, 10, 17, 18 · S. 12 Nr. 7, 8, 13 · S. 15 Nr. 5, 10 · S. 17 Nr. 7, S. 18 Nr. 14 · S. 21 Nr. 7, 13.</li>
+      <li><b>Training S. 31:</b> Nr. 1, 2, 5 (nur als Bruch), 6a + c, 7e + f + g + h, 10, 12.</li>
+      <li><b>Rückblick S. 32:</b> die Kästen „Brüche und Anteile“, „Brüche kürzen und erweitern“, „Rationale Zahlen“, „Ordnen von Bruchzahlen“ lesen – der Kasten „Dezimalzahlen“ nicht.</li>
+      <li><b>Test S. 33:</b> Runde 1 / Nr. 1a + b, 2a + c, 3, 4b, 5c + d · Runde 2 / Nr. 1c, 2, 3 (nur als Bruch), 4c.</li>
+      <li><b>Bettermarks</b> (Online-Übungen der Schule).</li>
+      <li><b>Diese App:</b> jeden Tag 2–3 Runden, zuerst die Blöcke mit der schlechtesten Quote.</li>
+    </ul>
+    <details>
+      <summary>Lösungen zu Training und Test (für Papa – erst nach dem Rechnen aufklappen)</summary>
+      <div class="papa" style="margin-top:8px">
+        <b>Training S. 31</b><br>
+        <b>1</b> b) <span class="frac"><span>40</span><span>32</span></span> = <span class="frac"><span>5</span><span>4</span></span> = 1 <span class="frac"><span>1</span><span>4</span></span> · c) <span class="frac"><span>27</span><span>81</span></span> = <span class="frac"><span>1</span><span>3</span></span> · d) −<span class="frac"><span>54</span><span>90</span></span> = −<span class="frac"><span>3</span><span>5</span></span> · e) <span class="frac"><span>800</span><span>450</span></span> = <span class="frac"><span>16</span><span>9</span></span> = 1 <span class="frac"><span>7</span><span>9</span></span> · f) −<span class="frac"><span>1111</span><span>2222</span></span> = −<span class="frac"><span>1</span><span>2</span></span> (a) ist auf dem Foto nicht lesbar).<br>
+        <b>2</b> Kästchen der gefärbten Fläche zählen : Kästchen der ganzen Figur, dann kürzen. Bei b) ist das Dreieck die Hälfte des Quadrats – der blaue Streifen ist ein Teil davon.<br>
+        <b>5</b> (nur als Bruch) Zwischen −2 und 0 die Striche zählen → Nenner; A liegt links von −2 (negativ, Betrag &gt; 2), B und C zwischen −2 und 0, D rechts von 0. Immer vollständig kürzen und gemischt schreiben.<br>
+        <b>6</b> a) <span class="frac"><span>7</span><span>10</span></span> = <span class="frac"><span>42</span><span>60</span></span>, <span class="frac"><span>9</span><span>12</span></span> = <span class="frac"><span>45</span><span>60</span></span> → <b>&lt;</b> · c) <span class="frac"><span>13</span><span>130</span></span> = <span class="frac"><span>1</span><span>10</span></span> = <span class="frac"><span>3</span><span>30</span></span> → <span class="frac"><span>1</span><span>30</span></span> <b>&lt;</b> <span class="frac"><span>13</span><span>130</span></span>.<br>
+        <b>7</b> e) <span class="frac"><span>8</span><span>50</span></span> kg = 1000 : 50 · 8 = <b>160 g</b> · f) <span class="frac"><span>3</span><span>20</span></span> m = 100 : 20 · 3 = <b>15 cm</b> · g) <span class="frac"><span>5</span><span>4</span></span> a: 1 ha = 100 a → <span class="frac"><span>5</span><span>4</span></span> a = <span class="frac"><span>5</span><span>400</span></span> ha = <b><span class="frac"><span>1</span><span>80</span></span> ha</b> · h) <span class="frac"><span>1</span><span>2000</span></span> m³: 1 m³ = 1000 l → <b><span class="frac"><span>1</span><span>2</span></span> l</b>.<br>
+        <b>10</b> A 1 <span class="frac"><span>1</span><span>4</span></span> = B (−10) : (−8) = C 5 : 4 = D 1,25 = H <span class="frac"><span>5</span><span>4</span></span> · E −1,25 = G −(10 : 8) · F 1,08 passt zu nichts.<br>
+        <b>12</b> Kästchen des gezeichneten Teils : Zähler · Nenner. a) Teil = <span class="frac"><span>4</span><span>5</span></span> → Kästchen : 4 · 5 · b) Dreieck = <span class="frac"><span>3</span><span>4</span></span> → (halbes Rechteck zählen) : 3 · 4.<br><br>
+        <b>Test S. 33 · Runde 1</b><br>
+        <b>1</b> a) <span class="frac"><span>24</span><span>64</span></span> = <span class="frac"><span>3</span><span>8</span></span> · b) <span class="frac"><span>12</span><span>18</span></span> = <span class="frac"><span>2</span><span>3</span></span> = <span class="frac"><span>20</span><span>30</span></span>; −<span class="frac"><span>4</span><span>6</span></span> = −<span class="frac"><span>2</span><span>3</span></span> = −<span class="frac"><span>20</span><span>30</span></span>.<br>
+        <b>2</b> a) <span class="frac"><span>6</span><span>18</span></span> = <span class="frac"><span>1</span><span>3</span></span> → <b>ja</b> · c) −<span class="frac"><span>15</span><span>10</span></span> = −<span class="frac"><span>3</span><span>2</span></span>, −<span class="frac"><span>20</span><span>8</span></span> = −<span class="frac"><span>5</span><span>2</span></span> → <b>nein</b>.<br>
+        <b>3</b> links: Kästchen zählen und kürzen. Rechts: Quadrat 30 cm × 30 cm = 900 cm²; die grüne Fläche in Rechteck + Dreieck zerlegen (Dreieck = halbes Rechteck), dann Fläche : 900 und kürzen.<br>
+        <b>4</b> b) <span class="frac"><span>7</span><span>9</span></span> = <span class="frac"><span>28</span><span>36</span></span>, <span class="frac"><span>8</span><span>12</span></span> = <span class="frac"><span>24</span><span>36</span></span> → <b>&gt;</b>.<br>
+        <b>5</b> c) 20 kg = <span class="frac"><span>20</span><span>1000</span></span> t = <b><span class="frac"><span>1</span><span>50</span></span> t</b> · d) 34 l = <span class="frac"><span>34</span><span>1000</span></span> m³ = <b><span class="frac"><span>17</span><span>500</span></span> m³</b>.<br><br>
+        <b>Test S. 33 · Runde 2</b><br>
+        <b>1</b> c) <span class="frac"><span>42</span><span>102</span></span> = <span class="frac"><span>7</span><span>17</span></span> (mit 6 gekürzt).<br>
+        <b>2</b> Alba hat 15 und 20 Zeichen gezählt. ▽ in jeder Reihe zählen → <span class="frac"><span>▽ links</span><span>15</span></span> und <span class="frac"><span>▽ rechts</span><span>20</span></span>, Hauptnenner 60, Zähler vergleichen.<br>
+        <b>3</b> (nur als Bruch) Striche zwischen 0 und 1 zählen → Nenner. A links von −1 (negativ, gemischt), B zwischen −1 und 0, C zwischen 0 und 1, D rechts von 1 (gemischt). Vollständig kürzen!<br>
+        <b>4</b> c) 61 kg = <b><span class="frac"><span>61</span><span>1000</span></span> t</b>.
+      </div>
+    </details>
+    <div class="papa"><b>Para papá – plan hasta el jueves 5:</b> Sáb: app bloques 1–3 + Teste dich S. 8–15 en papel. Dom: Quotienten + Vergleichen (app) + Training S. 31 (solo los números de la hoja). Lun: Test S. 33 Runde 1 cronometrado (45 min). Mar: corregir lo fallado + Runde 2. Mié: repaso ligero de Fachbegriffe y este Index, nada nuevo.</div>
+  </section>
+</main>
+
+<script>
+/* ---------- helpers ---------- */
+const rnd = (a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick = a=>a[Math.floor(Math.random()*a.length)];
+const gcd = (a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a};
+const F = (n,d)=>`<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+const MX = (g,n,d)=>`<span class="mixed">${g}${F(n,d)}</span>`;
+const SF=(n,d)=>(n<0?'−':'')+F(Math.abs(n),d); // signed fraction
+const SMX=(n,d)=>{const sg=n<0?'−':'';n=Math.abs(n);const [rn,rd]=reduce(n,d);return rn>rd? sg+mixedHtml(rn,rd) : sg+F(rn,rd)};
+function reduce(n,d){const g=gcd(n,d);return [n/g,d/g]}
+function fracAliases(n,d){ // accepted strings for a fraction value n/d (n may be negative)
+  const out=new Set();
+  const sign=n<0?'-':''; n=Math.abs(n);
+  const [rn,rd]=reduce(n,d);
+  out.add(sign+n+'/'+d); out.add(sign+rn+'/'+rd);
+  if(rd===1) out.add(sign+rn);
+  if(rn>rd){const g=Math.floor(rn/rd), r=rn%rd; out.add(sign+g+' '+r+'/'+rd); out.add(sign+g+'_'+r+'/'+rd);}
+  return [...out];
+}
+function norm(s){
+  return s.toLowerCase().replace(/,/g,'.').replace(/\s*\/\s*/g,'/').replace(/\s+/g,' ').replace(/[€a-zäöüß%]+$/,'').trim().replace(/\s+$/,'');
+}
+function normWord(s){return s.toLowerCase().replace(/ß/g,'ss').replace(/\s+/g,' ').replace(/[.!?]+$/,'').trim()}
+function wordOk(acc,raw){const v=normWord(raw);return acc.some(a=>normWord(a)===v)}
+function fracHtmlFromValue(n,d){const [rn,rd]=reduce(n,d);return F(rn,rd)}
+function mixedHtml(n,d){const g=Math.floor(n/d), r=n%d; return r? (g? MX(g,r,d):F(r,d)) : String(g)}
+
+/* ---------- SVG figures ---------- */
+function svgCircle(parts,colored,color){
+  const r=52,cx=60,cy=60; let s=`<svg width="120" height="120" viewBox="0 0 120 120">`;
+  for(let i=0;i<parts;i++){
+    const a0=-Math.PI/2+i*2*Math.PI/parts, a1=-Math.PI/2+(i+1)*2*Math.PI/parts;
+    const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const large=(2*Math.PI/parts)>Math.PI?1:0;
+    s+=`<path d="M${cx},${cy} L${x0},${y0} A${r},${r} 0 ${large} 1 ${x1},${y1} Z" fill="${i<colored?color:'#fff'}" stroke="#333" stroke-width="1.4"/>`;
+  }
+  return s+`</svg>`;
+}
+function svgGrid(rows,cols,colored,color){
+  const w=32,h=32; let s=`<svg width="${cols*w+4}" height="${rows*h+4}" viewBox="0 0 ${cols*w+4} ${rows*h+4}">`;
+  // choose which cells are colored: scattered but deterministic-ish
+  const idx=[...Array(rows*cols).keys()]; for(let i=idx.length-1;i>0;i--){const j=rnd(0,i);[idx[i],idx[j]]=[idx[j],idx[i]]}
+  const set=new Set(idx.slice(0,colored));
+  let k=0;
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    s+=`<rect x="${c*w+2}" y="${r*h+2}" width="${w}" height="${h}" fill="${set.has(k)?color:'#fff'}" stroke="#333" stroke-width="1.4"/>`;k++;
+  }
+  return s+`</svg>`;
+}
+function svgStrip(parts,colored,color){
+  const w=Math.min(36,320/parts),h=34; let s=`<svg width="${parts*w+4}" height="${h+4}" viewBox="0 0 ${parts*w+4} ${h+4}">`;
+  for(let i=0;i<parts;i++) s+=`<rect x="${i*w+2}" y="2" width="${w}" height="${h}" fill="${i<colored?color:'#fff'}" stroke="#333" stroke-width="1.4"/>`;
+  return s+`</svg>`;
+}
+function svgNumberLine(lo,hi,den,pos){ // pos in units of 1/den, lo/hi integers
+  const W=340,pad=20,H=70,y=40; const units=hi-lo; const px=u=>pad+(u-lo)/units*(W-2*pad);
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="max-width:100%">`;
+  s+=`<line x1="${pad-8}" y1="${y}" x2="${W-pad+10}" y2="${y}" stroke="#333" stroke-width="1.5"/><polygon points="${W-pad+10},${y} ${W-pad+2},${y-4} ${W-pad+2},${y+4}" fill="#333"/>`;
+  for(let u=lo;u<=hi;u++){s+=`<line x1="${px(u)}" y1="${y-9}" x2="${px(u)}" y2="${y+9}" stroke="#333" stroke-width="1.5"/><text x="${px(u)}" y="${y+24}" font-size="13" text-anchor="middle" fill="#333">${u}</text>`;}
+  for(let k=lo*den;k<=hi*den;k++){ if(k%den===0)continue; const u=k/den; s+=`<line x1="${px(u)}" y1="${y-5}" x2="${px(u)}" y2="${y+5}" stroke="#333" stroke-width="1"/>`;}
+  const X=px(pos/den);
+  s+=`<polygon points="${X},${y-12} ${X-6},${y-24} ${X+6},${y-24}" fill="#c23b3b"/><line x1="${X}" y1="${y-24}" x2="${X}" y2="${y-30}" stroke="#c23b3b" stroke-width="2"/>`;
+  return s+`</svg>`;
+}
+
+/* ---------- generators ---------- */
+const NAMES=['Lena','Tim','Nina','Jonas','Mia','Paul','Emma','Luca','Alba','Finn'];
+const NENNER_W={2:'Halbe',3:'Drittel',4:'Viertel',5:'Fünftel',6:'Sechstel',7:'Siebtel',8:'Achtel',9:'Neuntel',10:'Zehntel',11:'Elftel',12:'Zwölftel',100:'Hundertstel'};
+const ZAEHLER_W=['','ein','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf'];
+
+const GEN={
+  ablesen(){
+    const t=pick(['circle','grid','strip','circle']);
+    let parts,col,fig;
+    const color=pick(['#9ccf8a','#f4c27a','#9bbbe8']);
+    if(t==='circle'){parts=pick([2,3,4,5,6,8,10,12]);col=rnd(1,parts-1);fig=svgCircle(parts,col,color);}
+    else if(t==='strip'){parts=pick([4,5,6,8,10,12]);col=rnd(1,parts-1);fig=svgStrip(parts,col,color);}
+    else{const rows=pick([2,3,4]),cols=pick([3,4,5,6]);parts=rows*cols;col=rnd(1,parts-1);fig=svgGrid(rows,cols,col,color);}
+    const unge=Math.random()<0.3;
+    const n=unge?parts-col:col;
+    return {q:`Welcher Anteil der Figur ist <b>${unge?'nicht gefärbt':'gefärbt'}</b>?<div class="fig">${fig}</div>`,
+      accept:fracAliases(n,parts), sol:`${F(n,parts)}${gcd(n,parts)>1?' = '+fracHtmlFromValue(n,parts):''} (${n} von ${parts} Teilen)`,
+      hint:'Alle Teile zählen = Nenner, gefärbte Teile = Zähler.'};
+  },
+  worte(){
+    const d=pick([2,3,4,5,6,7,8,9,10,12,100]); const n=d===100?rnd(1,11):rnd(1,Math.min(11,d-1));
+    if(Math.random()<0.5){
+      let w=ZAEHLER_W[n]+' '+NENNER_W[d]; if(d===2&&n===1)w='ein Halbes';
+      const acc=[w.toLowerCase(), (ZAEHLER_W[n]+' '+NENNER_W[d]).toLowerCase(), ('eins '+NENNER_W[d]).toLowerCase()];
+      return {q:`Schreibe den Bruch ${F(n,d)} <b>in Worten</b>.`,accept:acc,word:true,sol:w,hint:'Zähler als Zahlwort, Nenner mit „-tel“.'};
+    } else {
+      let w=ZAEHLER_W[n]+' '+NENNER_W[d]; if(d===2&&n===1)w='ein Halbes';
+      return {q:`Schreibe <b>„${w}“</b> als Bruch.`,accept:[n+'/'+d],sol:F(n,d),hint:'Erstes Wort = Zähler, zweites Wort = Nenner.'};
+    }
+  },
+  anteile(){
+    const t=pick(['anzahl','anzahl','groesse','groesse','euro']);
+    if(t==='anzahl'){
+      const d=pick([2,3,4,5,6,8,10]); const base=rnd(2,12); const N=d*base; const n=rnd(1,d-1);
+      const obj=pick(['Eiern','Äpfeln','Murmeln','Bonbons','Kindern','Seiten','Tagen','Minuten','Keksen']);
+      return {q:`${F(n,d)} von ${N} ${obj} = ?`,accept:[String(n*base)],sol:`${N} : ${d} = ${base}, ${base} · ${n} = <b>${n*base}</b>`,hint:'Erst durch den Nenner teilen, dann mal Zähler.'};
+    }
+    if(t==='groesse'){
+      const U=pick([['km','m',1000,[2,4,5,8,10,20,100]],['m','cm',100,[2,4,5,10,20,25,50]],['cm','mm',10,[2,5,10]],['kg','g',1000,[2,4,5,8,10,20,100,1000]],['t','kg',1000,[2,4,5,8,10,20,100]],['h','min',60,[2,3,4,5,6,10,12,15,20,30,60]],['min','s',60,[2,3,4,5,6,10,12,15,20,30]],['d','h',24,[2,3,4,6,8,12,24]],['l','ml',1000,[2,4,5,8,10,20,100]]]);
+      const d=pick(U[3]); const n=rnd(1,Math.max(1,d-1)); const val=U[2]/d*n;
+      return {q:`${F(n,d)} ${U[0]} = ? ${U[1]}`,accept:[String(val)],unit:U[1],sol:`1 ${U[0]} = ${U[2]} ${U[1]}; ${U[2]} : ${d} = ${U[2]/d}; ${U[2]/d} · ${n} = <b>${val} ${U[1]}</b>`,hint:`1 ${U[0]} = ${U[2]} ${U[1]}. Erst teilen, dann multiplizieren.`};
+    }
+    const d=pick([2,4,5,10,20,25,50,100]); const n=rnd(1,d-1); const val=100/d*n;
+    return {q:`${F(n,d)} € = ? ct`,accept:[String(val)],unit:'ct',sol:`1 € = 100 ct; 100 : ${d} = ${100/d}; ${100/d} · ${n} = <b>${val} ct</b>`,hint:'1 € = 100 ct.'};
+  },
+  kuerzen(){
+    const t=pick(['erw','kue','voll','voll','fehl','welche']);
+    if(t==='erw'){const d=rnd(2,12),n=rnd(1,d-1),k=rnd(2,12);return {q:`Erweitere ${F(n,d)} mit ${k}.`,accept:[(n*k)+'/'+(d*k)],exact:true,sol:`${F(n+'·'+k,d+'·'+k)} = ${F(n*k,d*k)}`,hint:'Zähler und Nenner mit der Zahl multiplizieren.'};}
+    if(t==='kue'){const d=rnd(2,12),n=rnd(1,d-1),k=rnd(2,10);return {q:`Kürze ${F(n*k,d*k)} mit ${k}.`,accept:[n+'/'+d],exact:true,sol:`${F((n*k)+':'+k,(d*k)+':'+k)} = ${F(n,d)}`,hint:'Zähler und Nenner durch die Zahl dividieren.'};}
+    if(t==='voll'){let d=rnd(2,12),n=rnd(1,d-1);[n,d]=reduce(n,d);const k=pick([2,3,4,5,6,8,9,10,12,15,20]);
+      return {q:`Kürze ${F(n*k,d*k)} <b>vollständig</b>.`,accept:[n+'/'+d],exact:true,sol:`gekürzt mit ${k}: ${F(n,d)}`,hint:'Gemeinsame Teiler suchen (Teilbarkeitsregeln!), notfalls schrittweise.'};}
+    if(t==='fehl'){const d=rnd(2,10),n=rnd(1,d-1),k=rnd(2,9);const which=pick(['zl','zr','nl','nr']);
+      let q,ans;
+      if(which==='zl'){q=`${F('▢',d*k)} = ${F(n,d)}`;ans=n*k;}
+      else if(which==='nl'){q=`${F(n*k,'▢')} = ${F(n,d)}`;ans=d*k;}
+      else if(which==='zr'){q=`${F(n*k,d*k)} = ${F('▢',d)}`;ans=n;}
+      else {q=`${F(n*k,d*k)} = ${F(n,'▢')}`;ans=d;}
+      return {q:`Ergänze die fehlende Zahl: ${q}`,accept:[String(ans)],sol:`erweitert/gekürzt mit ${k} → <b>${ans}</b>`,hint:'Wurde mit welcher Zahl erweitert oder gekürzt? Dieselbe Zahl gilt für Zähler und Nenner.'};}
+    const d=rnd(2,10),n=rnd(1,d-1),k=rnd(2,12); const erw=Math.random()<0.5;
+    return {q:`Mit welcher Zahl wurde ${erw?'erweitert':'gekürzt'}? ${erw?F(n,d)+' = '+F(n*k,d*k):F(n*k,d*k)+' = '+F(n,d)}`,accept:[String(k)],sol:`<b>${k}</b> (${d*k} : ${d} = ${k})`,hint:'Nenner vergleichen: wie oft passt der kleine in den großen?'};
+  },
+  zahlengerade(){
+    const t=pick(['read','read','read','same','betrag']);
+    if(t==='same'){
+      const d=pick([2,3,4,5,6,8,10]); const n=rnd(1,3*d); const k=rnd(2,6); const neg=Math.random()<0.4?-1:1;
+      const same=Math.random()<0.5; let n2=n*k, d2=d*k; if(!same){ n2+=pick([-1,1,k,-k]); if(n2<=0)n2=n*k+1; }
+      const ans=reduce(n,d).join('/')===reduce(n2,d2).join('/');
+      return {q:`Liegen ${SF(neg*n,d)} und ${SF(neg*n2,d2)} auf der Zahlengeraden an <b>derselben Stelle</b>? (ja / nein)`,accept:[ans?'ja':'nein'],word:true,
+        sol:`${SF(neg*n,d)} vollständig gekürzt = ${SF(neg*reduce(n,d)[0],reduce(n,d)[1])}, ${SF(neg*n2,d2)} vollständig gekürzt = ${SF(neg*reduce(n2,d2)[0],reduce(n2,d2)[1])} → <b>${ans?'ja':'nein'}</b>`,hint:'Beide Brüche vollständig kürzen. Gleicher Bruch = gleiche Stelle (Buch S. 13, Kasten).'};
+    }
+    if(t==='betrag'){
+      const d=pick([2,3,4,5,6,8]); const n=rnd(1,2*d); const neg=Math.random()<0.7?-1:1;
+      return {q:`Welchen <b>Betrag</b> hat ${SF(neg*n,d)}?`,accept:fracAliases(n,d),sol:`Betrag = Abstand zur 0 = ${SF(n,d)}${n>d?' = '+SMX(n,d):''}`,hint:'Der Betrag ist immer positiv: einfach das Minus weglassen.'};
+    }
+    const den=pick([2,3,4,5,6,8]); const lo=pick([-2,-1,0,0]), hi=lo+pick([2,3]);
+    let pos; do{pos=rnd(lo*den,hi*den)}while(pos%den===0);
+    const a=Math.abs(pos), sg=pos<0?'−':''; const [rn,rd]=reduce(a,den);
+    let sol=`${sg}${F(a,den)}`; if(rn!==a) sol+=` = ${sg}${F(rn,rd)}`; if(rn>rd) sol+=` = ${sg}${mixedHtml(rn,rd)}`;
+    return {q:`Welche Zahl zeigt der Pfeil? (als Bruch oder in gemischter Schreibweise)<div class="fig">${svgNumberLine(lo,hi,den,pos)}</div>`,accept:fracAliases(pos,den),
+      sol,hint:`Zwischen zwei ganzen Zahlen sind ${den} Teile → Nenner ${den}. Erst die Ganzen, dann die Teile zählen. Links von 0 ist der Bruch negativ.`};
+  },
+  gemischt(){
+    const t=pick(['toMixed','toImproper','both','both']);
+    const d=pick([2,3,4,5,6,8,10]); const g=rnd(1,4), r=rnd(1,d-1); const n=g*d+r;
+    if(t==='toMixed') return {q:`Schreibe ${F(n,d)} in gemischter Schreibweise.`,accept:[g+' '+r+'/'+d],sol:`${n} : ${d} = ${g} Rest ${r} → ${MX(g,r,d)}`,hint:'Zähler : Nenner = Ganze, der Rest ist der neue Zähler. Eingabe: z. B. 2 1/4'};
+    if(t==='toImproper') return {q:`Schreibe ${MX(g,r,d)} als unechten Bruch.`,accept:[n+'/'+d],exact:true,sol:`${g} · ${d} + ${r} = ${n} → ${F(n,d)}`,hint:'Ganze mal Nenner, plus Zähler.'};
+    // both: improper, not fully reduced → mixed + fully reduced
+    const k=pick([2,2,3,4,5]); const D=d*k, N=n*k; const [rn,rd]=reduce(r,d);
+    return {q:`Gib ${F(N,D)} in <b>gemischter Schreibweise</b> und <b>vollständig gekürzt</b> an.`,accept:[g+' '+rn+'/'+rd],exact:true,
+      sol:`${F(N,D)} gekürzt mit ${k*(r/rn)} → ${F(g*rd+rn,rd)}; ${g*rd+rn} : ${rd} = ${g} Rest ${rn} → ${MX(g,rn,rd)}`,hint:'Erst vollständig kürzen, dann Zähler : Nenner → Ganze und Rest. Eingabe: z. B. 2 1/2'};
+  },
+  fachbegriffe(){
+    const items=[
+      {q:`Wie heißt die Zahl <b>oben</b> im Bruch?`,a:['zähler'],sol:'Zähler'},
+      {q:`Wie heißt die Zahl <b>unten</b> im Bruch?`,a:['nenner'],sol:'Nenner'},
+      {q:`Wie heißt der Strich zwischen Zähler und Nenner?`,a:['bruchstrich'],sol:'Bruchstrich'},
+      {q:`Im Bruch ${F(5,8)}: Welche Zahl ist der Nenner?`,a:['8'],sol:'8 (die Zahl unten)'},
+      {q:`Im Bruch ${F(5,8)}: Welche Zahl ist der Zähler?`,a:['5'],sol:'5 (die Zahl oben)'},
+      {q:`Zähler und Nenner werden mit derselben Zahl <b>multipliziert</b>. Wie nennt man das? (ein Wort)`,a:['erweitern'],sol:'Erweitern'},
+      {q:`Zähler und Nenner werden durch dieselbe Zahl <b>dividiert</b>. Wie nennt man das? (ein Wort)`,a:['kürzen','kurzen'],sol:'Kürzen'},
+      {q:`${F(3,7)} = ${F(12,28)}. Mit welcher Zahl wurde <b>erweitert</b>?`,a:['4'],sol:'mit 4 (3 · 4 = 12, 7 · 4 = 28)'},
+      {q:`${F(15,20)} = ${F(3,4)}. Mit welcher Zahl wurde <b>gekürzt</b>?`,a:['5'],sol:'mit 5 (15 : 5 = 3, 20 : 5 = 4)'},
+      {q:`Beim Erweitern mit 3 wird der Nenner … (multipliziert mit / dividiert durch) 3?`,a:['multipliziert','multipliziert mit','multipliziert mit 3'],sol:'multipliziert mit 3'},
+      {q:`Beim Kürzen mit 6 wird der Zähler … (multipliziert mit / dividiert durch) 6?`,a:['dividiert','dividiert durch','dividiert durch 6'],sol:'dividiert durch 6'},
+      {q:`Wie heißt die Schreibweise 2 ${F(1,4)} (Ganze und Bruch)? (zwei Wörter)`,a:['gemischte schreibweise','gemischte zahl'],sol:'gemischte Schreibweise'},
+      {q:`Ist ${F(9,4)} ein <b>echter</b> oder ein <b>unechter</b> Bruch?`,a:['unechter','unecht','unechter bruch'],sol:'unechter Bruch (Zähler größer als Nenner)'},
+      {q:`Zu welcher Zahlenmenge gehören 0, 1, 2, 3, …? (natürliche / ganze / rationale Zahlen)`,a:['natürliche','natürliche zahlen','naturliche','naturliche zahlen','n'],sol:'natürliche Zahlen ℕ'},
+      {q:`Zu welcher Zahlenmenge gehört −7, aber nicht ${F(1,2)}? (natürliche / ganze / rationale Zahlen)`,a:['ganze','ganze zahlen','z'],sol:'ganze Zahlen ℤ'},
+      {q:`Wie heißt die Zahlenmenge, zu der alle Brüche gehören, z. B. ${F(3,4)} und −${F(1,2)}?`,a:['rationale','rationale zahlen','q'],sol:'rationale Zahlen ℚ'},
+      {q:`Ist ${F(5,8)} eine <b>natürliche</b> Zahl? (ja / nein)`,a:['nein'],sol:'nein – ein Bruch ist eine rationale Zahl, keine natürliche'},
+      {q:`Ist ${F(8,4)} eine <b>natürliche</b> Zahl? (ja / nein)`,a:['ja'],sol:'ja – 8 : 4 = 2'},
+      {q:`Wie schreibt man 5 : 8 als Bruch?`,a:['5/8'],sol:F(5,8)},
+      {q:`Was bedeutet ${F(2,3)} als Division? (z. B. 4 : 5)`,a:['2:3','2 : 3'],sol:'2 : 3'},
+      {q:`Wie heißt der kleinste gemeinsame Nenner von zwei Brüchen? (ein Wort)`,a:['hauptnenner'],sol:'Hauptnenner (z. B. 12 für ¾ und ⅚)'},
+      {q:`Wie heißt der Abstand einer Zahl zur 0 (z. B. bei −${F(3,4)} ist er ${F(3,4)})? (ein Wort)`,a:['betrag'],sol:'Betrag'},
+      {q:`(−15) : (−3): Ist das Ergebnis <b>positiv</b> oder <b>negativ</b>?`,a:['positiv'],sol:'positiv – gleiche Vorzeichen (−) : (−) = +'},
+      {q:`15 : (−3): Ist das Ergebnis <b>positiv</b> oder <b>negativ</b>?`,a:['negativ'],sol:'negativ – verschiedene Vorzeichen (+) : (−) = −'},
+      {q:`Zwei negative Brüche: Welcher ist größer – der mit dem größeren oder dem kleineren Betrag? (größer / kleiner)`,a:['kleiner','kleineren','der mit dem kleineren betrag','kleinerer betrag'],sol:'der mit dem kleineren Betrag (liegt weiter rechts): −⅓ > −⅔'},
+      {q:`Welche Zahl darf im Nenner <b>nie</b> stehen?`,a:['0','null'],sol:'0 – Division durch 0 hat kein Ergebnis'},
+    ];
+    const it=pick(items);
+    return {q:it.q,accept:it.a,word:true,sol:it.sol,hint:'Schau im Index nach – „Fachbegriffe“ in jedem Abschnitt.'};
+  },
+  quotienten(){
+    const t=pick(['div','div','neg','neg','groesse','groesse','pizza','mixed','rev','menge','menge']);
+    if(t==='div'){const a=rnd(1,30),b=rnd(2,15); if(a%b===0)return GEN.quotienten(); const [rn,rd]=reduce(a,b);
+      return {q:`Schreibe das Ergebnis als vollständig gekürzten Bruch: <b>${a} : ${b}</b>`,accept:[rn+'/'+rd],exact:true,sol:`${a} : ${b} = ${F(a,b)}${rn!==a?' = '+F(rn,rd):''}`,hint:'Dividend wird Zähler, Divisor wird Nenner. Dann kürzen (Buch S. 16/17).'};}
+    if(t==='neg'){const a=rnd(1,30),b=rnd(2,15); const sa=pick([1,-1]),sb=pick([1,-1]); if(sa===1&&sb===1)return GEN.quotienten();
+      const sign=sa*sb; const [rn,rd]=reduce(a,b); const isInt=a%b===0; const acc=isInt?[String(sign*a/b)]:[(sign<0?'-':'')+rn+'/'+rd];
+      const txt=`${sa<0?'(−'+a+')':a} : ${sb<0?'(−'+b+')':b}`;
+      return {q:`Schreibe das Ergebnis als vollständig gekürzten Bruch (oder ganze Zahl): <b>${txt}</b>`,accept:acc,exact:true,
+        sol:`${txt} = ${SF(sign*a,b)}${!isInt&&rn!==a?' = '+SF(sign*rn,rd):''}${isInt?' = <b>'+(sign*a/b)+'</b>':''} · Vorzeichen: ${sa===sb?'gleiche Zeichen → plus':'verschiedene Zeichen → minus'}`,
+        hint:'Erst Vorzeichen: + : + = + · − : − = + · + : − = − · − : + = −. Dann Beträge als Bruch (Buch S. 16).'};}
+    if(t==='groesse'){
+      const U=pick([['kg','g',1000],['l','ml',1000],['m','cm',100],['m','dm',10],['km','m',1000],['h','min',60],['t','kg',1000],['€','ct',100]]);
+      const b=pick([2,4,5,8,10,20,25,50,100].filter(x=>U[2]%x===0&&x<=U[2])); let a; do{a=rnd(1,9)}while(a%b===0);
+      const val=U[2]/b*a; const [rn,rd]=reduce(a,b);
+      return {q:`<b>${a} ${U[0]} : ${b}</b> = ? ${U[1]}`,accept:[String(val)],unit:U[1],sol:`${a} ${U[0]} : ${b} = ${F(a,b)} ${U[0]}${rn!==a?' = '+F(rn,rd)+' '+U[0]:''}; ${F(1,rd)} ${U[0]} = ${U[2]/rd} ${U[1]} → ${rn} · ${U[2]/rd} = <b>${val} ${U[1]}</b>`,hint:`Erst als Bruch schreiben (${F(a,b)} ${U[0]}), dann umrechnen: 1 ${U[0]} = ${U[2]} ${U[1]} (Buch S. 17, Beispiel 2).`};}
+    if(t==='pizza'){const a=rnd(1,5),b=rnd(a+1,8); const [rn,rd]=reduce(a,b); const obj=pick(['Pizzas','Tafeln Schokolade','Kuchen','Liter Saft','Tüten Kekse']);
+      return {q:`${a} ${obj} werden gerecht auf ${b} Kinder verteilt. Welchen Anteil bekommt jedes Kind? (als Bruch)`,accept:[rn+'/'+rd],sol:`${a} : ${b} = ${F(a,b)}${rn!==a?' = '+F(rn,rd):''}`,hint:'Anzahl : Kinder = Bruch (Buch S. 17 Nr. 6).'};}
+    if(t==='rev'){const d=pick([2,3,4,5,6,8]); let n; do{n=rnd(1,2*d)}while(n%d===0); const [rn,rd]=reduce(n,d); const k=rnd(2,5);
+      const opts=[`${rn*k} : ${rd*k}`,`${rd*k} : ${rn*k}`,`${rn} : ${rd+1}`,`${rn+1} : ${rd}`].sort(()=>Math.random()-0.5); const right=opts.indexOf(`${rn*k} : ${rd*k}`); const L='ABCD';
+      return {q:`Welche Division hat das Ergebnis ${F(rn,rd)}?<br>${opts.map((o,i)=>`<b>${L[i]}</b> ${o}`).join(' &nbsp;·&nbsp; ')} &nbsp; (A / B / C / D)`,accept:[L[right].toLowerCase()],word:true,sol:`<b>${L[right]}</b>: ${opts[right]} = ${F(rn*k,rd*k)} = ${F(rn,rd)}`,hint:'Jede Division als Bruch schreiben und kürzen (Buch S. 17 Nr. 3).'};}
+    if(t==='menge'){
+      const cases=[['−45','nein','ja','ja'],['0','ja','ja','ja'],['7','ja','ja','ja'],[SF(-1,2),'nein','nein','ja'],[F(8,4),'ja','ja','ja'],[F(3,4),'nein','nein','ja'],[SF(-10,5),'nein','ja','ja'],[F(15,4),'nein','nein','ja'],['−1','nein','ja','ja'],[MX(2,1,3),'nein','nein','ja'],[F(6,1),'ja','ja','ja'],[SF(-12,4),'nein','ja','ja']];
+      const c=pick(cases); const which=rnd(0,2); const M=['ℕ (natürliche Zahlen)','ℤ (ganze Zahlen)','ℚ (rationale Zahlen)'];
+      return {q:`Gehört die Zahl ${c[0]} zu <b>${M[which]}</b>? (ja / nein)`,accept:[c[which+1]],word:true,sol:`<b>${c[which+1]}</b> · ℕ: ${c[1]} · ℤ: ${c[2]} · ℚ: ${c[3]}`,hint:'ℕ = 0, 1, 2, 3 … · ℤ = auch negative ganze Zahlen · ℚ = alle Brüche. Ein Bruch, der eine ganze Zahl ergibt (8/4 = 2), gehört auch zu ℤ (Buch S. 16, Tabelle).'};}
+    const b=pick([2,3,4,5,6,8]); const a=rnd(b+1,4*b); if(a%b===0)return GEN.quotienten(); const g=Math.floor(a/b),r=a%b; const [rn,rd]=reduce(r,b);
+    return {q:`Schreibe <b>${a} : ${b}</b> in gemischter Schreibweise (vollständig gekürzt).`,accept:[g+' '+rn+'/'+rd],exact:true,sol:`${a} : ${b} = ${g} Rest ${r} → ${MX(g,r,b)}${rn!==r?' = '+MX(g,rn,rd):''}`,hint:'Wie oft passt der Divisor rein? Das sind die Ganzen; der Rest wird der Zähler (Buch S. 18 Nr. 10).'};
+  },
+  vergleichen(){
+    const t=pick(['sameN','sameZ','diff','diff','equal','neg','neg','mixed','order','anteil']);
+    const cmp=(x,y)=>Math.abs(x-y)<1e-12?'=':x<y?'<':'>';
+    const SIGN={'<':['<','kleiner','kleiner als'],'>':['>','größer','grösser','grosser','größer als'],'=':['=','gleich']};
+    let n1,d1,n2,d2,how;
+    if(t==='sameN'){d1=d2=pick([3,4,5,6,7,8,9,10,12]);n1=rnd(1,d1-1);do{n2=rnd(1,d1-1)}while(n2===n1);how='Gleicher Nenner → der größere Zähler ist die größere Zahl.';}
+    else if(t==='sameZ'){n1=n2=rnd(1,5);d1=rnd(n1+1,12);do{d2=rnd(n1+1,12)}while(d2===d1);how='Gleicher Zähler → der <b>kleinere</b> Nenner ist die größere Zahl (größere Stücke).';}
+    else if(t==='diff'){const pr=pick([[2,3],[2,5],[3,4],[3,6],[4,8],[2,8],[3,9],[4,6],[5,10],[6,12],[4,12],[3,12],[2,10],[6,9],[4,10],[8,12]]);[d1,d2]=Math.random()<0.5?pr:[pr[1],pr[0]];n1=rnd(1,d1-1);n2=rnd(1,d2-1);const l=d1*d2/gcd(d1,d2);how=`Gemeinsamer Nenner (Hauptnenner) ${l}: ${F(n1*l/d1,l)} und ${F(n2*l/d2,l)} → Zähler vergleichen.`;}
+    else if(t==='equal'){d1=pick([2,3,4,5,6]);n1=rnd(1,d1-1);const k=rnd(2,6);d2=d1*k;n2=n1*k;if(Math.random()<0.4){n2+=pick([-1,1]);}how=`${F(n1,d1)} erweitert mit ${k} = ${F(n1*k,d1*k)} → ${n2===n1*k?'gleich!':'nicht gleich: Zähler vergleichen.'}`;}
+    else if(t==='neg'){
+      const pr=pick([[3,3],[4,4],[5,5],[8,8],[2,3],[3,4],[4,6],[5,10]]); d1=pr[0];d2=pr[1];n1=-rnd(1,d1-1);n2=rnd(1,d2-1)*pick([-1,-1,1]);
+      if(n2>0)how='Eine positive Zahl ist immer größer als eine negative.';
+      else {const l=d1*d2/gcd(d1,d2);how=`Beide negativ: ${F(Math.abs(n1)*l/d1,l)} und ${F(Math.abs(n2)*l/d2,l)} als Beträge – die Zahl mit dem <b>größeren Betrag</b> ist die <b>kleinere</b> Zahl (weiter links).`;}
+    }
+    else if(t==='mixed'){
+      const g1=rnd(1,4), g2=Math.random()<0.5?g1:g1+pick([-1,1]); d1=pick([2,3,4,5,6]);d2=pick([2,3,4,5,6]); const r1=rnd(1,d1-1),r2=rnd(1,d2-1);
+      n1=g1*d1+r1; n2=g2*d2+r2; const ans=cmp(n1/d1,n2/d2);
+      how= g1!==g2?'Erst die Ganzen vergleichen – die größere ganze Zahl gewinnt.':`Gleiche Ganze → die Bruchteile ${F(r1,d1)} und ${F(r2,d2)} auf gemeinsamen Nenner bringen.`;
+      return {q:`Vergleiche: ${MX(g1,r1,d1)} <b>▢</b> ${MX(g2,r2,d2)} &nbsp; (tippe &lt;, &gt; oder =)`,accept:SIGN[ans],word:true,sol:`${MX(g1,r1,d1)} <b>${ans}</b> ${MX(g2,r2,d2)} – ${how}`,hint:how.replace(/<[^>]+>/g,'')};
+    }
+    else if(t==='order'){
+      const d=pick([2,3,4,5,6]); const vals=[]; while(vals.length<3){const v=rnd(-2*d,3*d); if(v%d!==0&&!vals.includes(v))vals.push(v);}
+      const html=vals.map(v=>SMX(v,d)); const sorted=[...vals].sort((a,b)=>a-b); const L='ABC';
+      const key=sorted.map(v=>L[vals.indexOf(v)]).join('');
+      return {q:`Ordne nach der Größe, beginne mit der <b>kleinsten</b> Zahl:<br>${vals.map((v,i)=>`<b>${L[i]}</b> ${html[i]}`).join(' &nbsp;·&nbsp; ')} &nbsp; (z. B. BAC)`,accept:[key.toLowerCase(),key.toLowerCase().split('').join(' '),key.toLowerCase().split('').join(',')],word:true,
+        sol:`${sorted.map(v=>SMX(v,d)).join(' &lt; ')} → <b>${key}</b>`,hint:'Negative Zahlen sind immer kleiner als positive. Bei gleichem Nenner die Zähler vergleichen (Buch S. 21 Nr. 9).'};
+    }
+    else {
+      const fam=pick([[8,12,24],[10,20,40],[6,12,24],[12,16,24,48],[10,15,30],[20,25,100],[16,10]]); const N1=pick(fam),N2=pick(fam); const k1=rnd(1,N1-1),k2=rnd(1,N2-1);
+      const [a1,b1]=reduce(k1,N1),[a2,b2]=reduce(k2,N2); const l=b1*b2/gcd(b1,b2);
+      const sit=pick([['Losen','Gewinne'],['Schüssen','Treffer'],['Fragen','richtige Antworten'],['Würfen','Sechser'],['Geburten','Jungen']]);
+      const ans=cmp(k1/N1,k2/N2); const who=ans==='<'?'B':ans==='>'?'A':'gleich';
+      return {q:`Gefäß A: ${k1} ${sit[1]} bei ${N1} ${sit[0]}. Gefäß B: ${k2} ${sit[1]} bei ${N2} ${sit[0]}. Wo ist der <b>Anteil höher</b>? (A / B / gleich)`,accept:[who.toLowerCase()],word:true,
+        sol:`A: ${F(k1,N1)}${a1!==k1?' = '+F(a1,b1):''}, B: ${F(k2,N2)}${a2!==k2?' = '+F(a2,b2):''} → Hauptnenner ${l}: ${F(a1*l/b1,l)} ${ans} ${F(a2*l/b2,l)} → <b>${who}</b>`,hint:'Anteile als Bruch schreiben, kürzen, auf gemeinsamen Nenner bringen (Buch S. 20, Beispiel 2).'};
+    }
+    const ans=cmp(n1/d1,n2/d2);
+    return {q:`Vergleiche: ${SF(n1,d1)} <b>▢</b> ${SF(n2,d2)} &nbsp; (tippe &lt;, &gt; oder =)`,accept:SIGN[ans],word:true,sol:`${SF(n1,d1)} <b>${ans}</b> ${SF(n2,d2)} – ${how}`,hint:how.replace(/<[^>]+>/g,'')};
+  },
+  text(){
+    const t=pick(['rest','schoko','rueck','pfahl','figur','anteil','rest']);
+    const name=pick(NAMES);
+    if(t==='rest'){
+      const pairs=[[4,5],[3,5],[2,3],[3,8],[4,10],[2,5],[6,8]]; const [d1,d2]=pick(pairs);
+      const n1=rnd(1,d1-1),n2=rnd(1,d2-1); const l=d1*d2/gcd(d1,d2); let N=l*rnd(1,Math.floor(60/l)||1);
+      const a=N/d1*n1,b=N/d2*n2; if(a+b>=N){return GEN.text();}
+      return {q:`${name} hat ${N} € gespart. Davon gibt ${pick(['er','sie'])} ${F(n1,d1)} fürs Kino und ${F(n2,d2)} für Spiele aus. Wie viel Euro bleiben übrig?`,accept:[String(N-a-b)],unit:'€',sol:`${F(n1,d1)} von ${N} = ${a}; ${F(n2,d2)} von ${N} = ${b}; ${N} − ${a} − ${b} = <b>${N-a-b} €</b>`,hint:'Beide Anteile ausrechnen und vom Ganzen abziehen.'};
+    }
+    if(t==='schoko'){
+      const N=pick([24,24,30,36,48]); const ds=[2,3,4,6,8,12].filter(x=>N%x===0); const d1=pick(ds),d2=pick(ds); const n1=rnd(1,d1-1),n2=rnd(1,d2-1);
+      const a=N/d1*n1,b=N/d2*n2; if(a+b>=N)return GEN.text();
+      return {q:`Eine Tafel Schokolade hat ${N} Stückchen. ${name} isst ${F(n1,d1)} und ${pick(NAMES)} isst ${F(n2,d2)}. Wie viele Stückchen bleiben übrig?`,accept:[String(N-a-b)],sol:`${a} + ${b} = ${a+b} gegessen; ${N} − ${a+b} = <b>${N-a-b}</b>`,hint:'Erst jeden Anteil in Stückchen umrechnen.'};
+    }
+    if(t==='rueck'){
+      const d=pick([3,4,5,6,8]); const n=rnd(1,d-1); const part=rnd(2,20)*5*n; const whole=part/n*d;
+      const two=Math.random()<0.5; let d2=pick([2,4,5,10]),n2=rnd(1,d2-1);
+      if(two&&whole%d2===0) return {q:`${F(n,d)} einer Zahl sind ${part}. Wie viel sind ${F(n2,d2)} dieser Zahl?`,accept:[String(whole/d2*n2)],sol:`${part} : ${n} = ${part/n} (das ist ${F(1,d)}); ${part/n} · ${d} = ${whole} (die ganze Zahl); ${whole} : ${d2} · ${n2} = <b>${whole/d2*n2}</b>`,hint:'Erst die ganze Zahl finden: durch den Zähler teilen, mal Nenner.'};
+      return {q:`${F(n,d)} einer Zahl sind ${part}. Wie groß ist die Zahl?`,accept:[String(whole)],sol:`${part} : ${n} = ${part/n}; ${part/n} · ${d} = <b>${whole}</b>`,hint:'Rückwärts rechnen: durch den Zähler teilen, mal Nenner.'};
+    }
+    if(t==='pfahl'){
+      const d=pick([5,6,7,8]); const nUnder=rnd(2,d-1); const nOver=d-nUnder; const unit=rnd(4,30); const over=unit*nOver;
+      return {q:`Ein Pfahl steckt im Wasser. ${F(nUnder,d)} des Pfahls sind unter Wasser, ${over} cm ragen heraus. Wie lang ist der Pfahl?`,accept:[String(unit*d)],unit:'cm',sol:`Über Wasser: ${F(nOver,d)} des Pfahls = ${over} cm → ${F(1,d)} = ${unit} cm → ganzer Pfahl ${unit} · ${d} = <b>${unit*d} cm</b>`,hint:'Welcher Anteil ragt heraus? Dann ein Teil ausrechnen und mal Nenner.'};
+    }
+    if(t==='figur'){
+      const d=pick([3,4,5,6,8]); const n=rnd(1,d-1); const unit=rnd(2,6);
+      return {q:`Von einer Figur sind nur ${F(n,d)} dargestellt. Dieser Teil hat ${n*unit} Kästchen. Wie viele Kästchen hat die ganze Figur?`,accept:[String(unit*d)],sol:`${n*unit} : ${n} = ${unit} Kästchen pro Teil; ${unit} · ${d} = <b>${unit*d}</b>`,hint:'Erst herausfinden, wie viele Kästchen ein Teil hat.'};
+    }
+    const sit=pick([['Von {N} Losen waren {k} Nieten.','Nieten'],['Von {N} kontrollierten Autos fuhren {k} zu schnell.','zu schnelle Autos'],['Von {N} Schülerinnen und Schülern haben {k} am Wettbewerb teilgenommen.','Teilnehmer'],['Von {N} Fahrgästen hatten {k} keinen Fahrausweis.','ohne Fahrausweis']]);
+    const N=pick([20,24,30,40,50,60,72,80,100,120]); const k=rnd(2,N-2); const [rn,rd]=reduce(k,N);
+    return {q:sit[0].replace('{N}',N).replace('{k}',k)+` Gib den Anteil als <b>vollständig gekürzten</b> Bruch an.`,accept:[rn+'/'+rd],exact:true,sol:`${F(k,N)} = ${F(rn,rd)} (gekürzt mit ${k/rn})`,hint:'Zuerst Bruch aufschreiben: Anzahl/Gesamt, dann vollständig kürzen.'};
+  }
+};
+
+const BLOCKS=[
+  {id:'ablesen',sec:1,title:'Anteile ablesen',sub:'Figur anschauen, Bruch aufschreiben',icon:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.4 6.4"/><path d="M12 12L3 12"/></svg>'},
+  {id:'worte',sec:1,title:'Brüche in Worten',sub:'drei Viertel ↔ 3/4',icon:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h14"/></svg>'},
+  {id:'anteile',sec:1,title:'Anteile berechnen',sub:'3/5 von 20 · 3/4 kg in g · 2/3 h in min',icon:'<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>'},
+  {id:'kuerzen',sec:2,title:'Kürzen und Erweitern',sub:'erweitern, kürzen, vollständig kürzen, fehlende Zahl',icon:'<svg viewBox="0 0 24 24"><path d="M5 9h14M5 15h14"/><path d="M9 4l-4 5 4 5M15 10l4 5-4 5"/></svg>'},
+  {id:'zahlengerade',sec:3,title:'Zahlengerade',sub:'ablesen, Betrag, „dieselbe Stelle?“ – auch negativ',icon:'<svg viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M6 9v6M12 9v6M18 9v6"/><path d="M15 4l-3 3-3-3"/></svg>'},
+  {id:'gemischt',sec:3,title:'Gemischte Zahlen',sub:'9/4 = 2 1/4 · gemischt und vollständig gekürzt',icon:'<svg viewBox="0 0 24 24"><circle cx="7" cy="12" r="4"/><circle cx="17" cy="12" r="4"/><path d="M17 8v8"/></svg>'},
+  {id:'quotienten',sec:4,title:'Brüche als Quotienten',sub:'5 : 8 = 5/8 · 15 : (−12) · 6 km : 20 = ? m · ℕ ℤ ℚ',icon:'<svg viewBox="0 0 24 24"><path d="M5 12h14"/><circle cx="12" cy="6.5" r="1.3"/><circle cx="12" cy="17.5" r="1.3"/></svg>'},
+  {id:'vergleichen',sec:5,title:'Brüche vergleichen',sub:'<, > oder = · negativ, gemischt, ordnen, Anteile',icon:'<svg viewBox="0 0 24 24"><path d="M15 6l-7 6 7 6"/><path d="M4 12h16" opacity="0"/></svg>'},
+  {id:'fachbegriffe',sec:0,title:'Fachbegriffe',sub:'Zähler, Nenner, erweitern mit, gemischte Schreibweise, ℕ ℤ ℚ …',icon:'<svg viewBox="0 0 24 24"><path d="M4 19V5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M8 10h8M8 14h6"/></svg>'},
+  {id:'text',sec:1,title:'Textaufgaben',sub:'Rest berechnen, rückwärts rechnen, Anteil angeben',icon:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h6M9 16h6"/></svg>'},
+];
+
+/* ---------- state ---------- */
+let stats={}; try{stats=JSON.parse(localStorage.getItem('bt-stats')||'{}')}catch(e){stats={}}
+function saveStats(){try{localStorage.setItem('bt-stats',JSON.stringify(stats))}catch(e){}}
+function resetStats(){stats={};saveStats();renderTiles()}
+
+function renderTiles(){
+  const el=document.getElementById('tiles'); el.innerHTML='';
+  BLOCKS.forEach(b=>{
+    const s=stats[b.id]; const st=s&&s.n?`${s.ok}/${s.n} richtig (${Math.round(100*s.ok/s.n)} %)`:'noch nicht geübt';
+    const d=document.createElement('div'); d.className='tile'; d.onclick=()=>startRound(b.id);
+    d.innerHTML=`${b.icon}<div><b>${b.title}${b.sec?` <span class="pill" style="font-size:11px;vertical-align:middle">Nr. ${b.sec}</span>`:''}</b><small>${b.sub}</small><span class="stat">${st}</span></div>`; el.appendChild(d);
+  });
+}
+function showTab(t){
+  ['ueben','index','runde'].forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==t));
+  document.getElementById('tab-ueben').classList.toggle('active',t==='ueben'||t==='runde');
+  document.getElementById('tab-index').classList.toggle('active',t==='index');
+  window.scrollTo(0,0);
+}
+function goHome(){renderTiles();showTab('ueben')}
+
+let round=null;
+function startRound(id){
+  const b=BLOCKS.find(x=>x.id===id);
+  round={id,title:b.title,i:0,ok:0,total:10,cur:null,answered:false};
+  document.getElementById('runde-title').textContent=b.title;
+  showTab('runde'); nextQ();
+}
+function nextQ(){
+  if(round.i>=round.total){return finish()}
+  round.cur=GEN[round.id](); round.answered=false;
+  document.getElementById('prog').style.width=(round.i/round.total*100)+'%';
+  document.getElementById('qtext').innerHTML=`<span class="small">Aufgabe ${round.i+1} von ${round.total}</span><br>`+round.cur.q;
+  document.getElementById('feedback').innerHTML='';
+  const unit=round.cur.unit?`<span class="small">${round.cur.unit}</span>`:'';
+  document.getElementById('ans').innerHTML=`<input type="text" id="inp" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${round.cur.word?'in Worten':'Antwort'}">${unit}<button class="btn" id="chk" onclick="check()">Prüfen</button>`;
+  const inp=document.getElementById('inp'); inp.focus(); inp.addEventListener('keydown',e=>{if(e.key==='Enter'){round.answered?nextStep():check()}});
+}
+function check(){
+  if(round.answered)return;
+  const raw=document.getElementById('inp').value; if(!raw.trim())return;
+  const c=round.cur; let ok;
+  if(c.word){ok=wordOk(c.accept,raw)}
+  else{
+    let v=norm(raw);
+    v=v.replace(/^\+/,'').replace(/^−/,'-');
+    ok=c.accept.map(a=>norm(a)).includes(v);
+    if(!ok&&!c.exact&&/^-?\d+\/\d+$/.test(v)){ // accept equivalent fraction when not exact
+      const [n,d]=v.split('/').map(Number); const [rn,rd]=reduce(n,d);
+      ok=c.accept.some(a=>{const m=norm(a).match(/^(-?\d+)\/(\d+)$/); if(!m)return false; const [an,ad]=reduce(+m[1],+m[2]); return an===rn&&ad===rd;});
+    }
+    if(!ok&&!c.exact&&/^-?\d+ \d+\/\d+$/.test(v)){ // mixed given
+      const m=v.match(/^(-?\d+) (\d+)\/(\d+)$/); const g=+m[1],n=+m[2],d=+m[3]; const tot=(Math.abs(g)*d+n)*(g<0?-1:1);
+      ok=c.accept.some(a=>{const mm=norm(a).match(/^(-?\d+)\/(\d+)$/); if(!mm)return false; return reduce(+mm[1],+mm[2]).join('/')===reduce(tot,d).join('/');});
+    }
+  }
+  round.answered=true; round.i++; if(ok)round.ok++;
+  const s=stats[round.id]||{n:0,ok:0}; s.n++; if(ok)s.ok++; stats[round.id]=s; saveStats();
+  const fb=document.getElementById('feedback');
+  fb.innerHTML=`<div class="fb ${ok?'ok':'bad'}"><b>${ok?'Richtig!':'Leider falsch.'}</b><div class="sol">Lösung: ${c.sol}</div>${!ok&&c.hint?`<div class="hint">Tipp: ${c.hint}</div>`:''}</div>
+    <div style="margin-top:12px"><button class="btn" onclick="nextStep()">${round.i>=round.total?'Ergebnis anzeigen':'Weiter'}</button></div>`;
+  document.getElementById('chk').disabled=true;
+  fb.querySelector('button').focus();
+}
+function nextStep(){nextQ()}
+function finish(){
+  document.getElementById('prog').style.width='100%';
+  const p=Math.round(100*round.ok/round.total);
+  const msg=p===100?'Perfekt! Alles richtig.':p>=80?'Sehr gut! Fast alles richtig.':p>=60?'Gut, aber übe diesen Block noch einmal.':'Dieser Block braucht noch Übung. Schau in den Index und versuch es noch einmal.';
+  document.getElementById('qcard').innerHTML=`<div class="summary"><div class="small">${round.title}</div><div class="big">${round.ok} / ${round.total}</div><p>${msg}</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px"><button class="btn" onclick="startRound('${round.id}')">Noch eine Runde</button><button class="btn secondary" onclick="goHome()">Zurück zur Übersicht</button></div></div>`;
+}
+renderTiles();
+</script>
+</body>
+</html>
+
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+</body></html>

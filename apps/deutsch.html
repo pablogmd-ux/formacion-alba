@@ -1,0 +1,397 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch Klassenarbeit 4 – Beschreiben</title>
+<style>
+  :root{--bg:#f4f6fb;--card:#fff;--ink:#1f2937;--muted:#6b7280;--accent:#2563eb;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:17px}
+  header{background:#1e3a8a;color:#fff;padding:14px 18px}
+  header h1{margin:0;font-size:1.15rem}
+  header p{margin:4px 0 0;font-size:.85rem;opacity:.85}
+  nav{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  nav button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:.9rem;cursor:pointer}
+  nav button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  nav button.test{border-color:#b45309;color:#b45309;font-weight:600}
+  nav button.test.active{background:#b45309;color:#fff}
+  main{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .card h2{margin:0 0 6px;font-size:1.05rem}
+  .hint{font-size:.9rem;color:var(--muted);margin:0 0 10px}
+  .rule{background:#eff6ff;border-left:4px solid var(--accent);padding:10px 12px;border-radius:8px;font-size:.93rem;margin-bottom:12px}
+  .rule b{color:#1e3a8a}
+  .q{padding:12px 0;border-top:1px solid var(--line)}
+  .q:first-of-type{border-top:none}
+  .q .num{color:var(--muted);font-size:.8rem}
+  .q .text{margin:4px 0 8px;line-height:1.5}
+  input[type=text]{width:100%;padding:10px;font-size:17px;border:1.5px solid #cbd5e1;border-radius:8px}
+  input.ok{border-color:var(--ok);background:var(--okbg)}
+  input.bad{border-color:var(--bad);background:var(--badbg)}
+  .opts{display:flex;flex-direction:column;gap:6px}
+  .opts button{text-align:left;padding:10px 12px;border:1.5px solid #cbd5e1;background:#fff;border-radius:8px;font-size:16px;cursor:pointer}
+  .opts button.ok{border-color:var(--ok);background:var(--okbg)}
+  .opts button.bad{border-color:var(--bad);background:var(--badbg)}
+  .fb{font-size:.88rem;margin-top:6px;min-height:1.1em}
+  .fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .btn{padding:10px 16px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-size:1rem;cursor:pointer}
+  .btn.sec{background:#e5e7eb;color:var(--ink)}
+  .btn.warn{background:#b45309}
+  .score{font-weight:700;margin-top:8px}
+  .bar{height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden;margin-top:6px}
+  .bar div{height:100%;background:var(--ok)}
+  .bar div.low{background:var(--bad)} .bar div.mid{background:#d97706}
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+  .tag{display:inline-block;font-size:.75rem;background:#e0e7ff;color:#3730a3;border-radius:6px;padding:2px 7px;margin-left:6px}
+  textarea{width:100%;min-height:150px;font-size:16px;padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;font-family:inherit}
+  .check li{margin:4px 0}
+  .check input{margin-right:8px;transform:scale(1.2)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Deutsch – Klassenarbeit 4: Beschreiben</h1>
+  <p>Genitiv · „Es geht um …“ · Gegenstandsbeschreibung · Suchanzeige · Wegbeschreibung</p>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+
+<script>
+/* ---------- Hilfsfunktionen ---------- */
+function normalize(s){
+  return (s||"").toLowerCase()
+    .replace(/[’‘`´]/g,"'").replace(/ß/g,"ss")
+    .replace(/[.!?,;:]+$/g,"")
+    .replace(/\s+/g," ").trim();
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* ---------- Aufgaben-Datenbank ----------
+   type: "in" = Eingabe (a = Liste akzeptierter Antworten), "mc" = Auswahl (o = Optionen, a = Index der richtigen)
+*/
+const DB = {
+  genitiv: {
+    title:"Genitiv – der 2. Fall",
+    rule:"<b>Frage: Wessen?</b> → Antwort im Genitiv. Maskulin/Neutrum: <b>des</b> + Nomen mit <b>-s/-es</b> (des Mannes, des Autos). Feminin/Plural: <b>der</b> (der Frau, der Kinder). Namen: <b>-s</b> ohne Apostroph (Toms Buch, Annas Eis). <b>Achtung:</b> In der Wessen-Frage fällt der Genitiv weg: „Der Hut des Mannes flog weg“ → „Wessen Hut flog weg?“",
+    items:[
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Der Hut des Mannes flog weg.</i>",a:["wessen hut flog weg"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Holgers Freund ist heute krank.</i>",a:["wessen freund ist heute krank","wessen freund ist krank"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Toms Mathebuch ist durchnässt.</i>",a:["wessen mathebuch ist durchnässt","wessen mathebuch ist durchnasst"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Neben dem Baum sitzt Laras Katze.</i>",a:["wessen katze sitzt neben dem baum"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Der Kamin des Hauses qualmt.</i>",a:["wessen kamin qualmt"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Das Pferd des alten Mannes wiehert laut.</i>",a:["wessen pferd wiehert laut"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Toni hat Mamas Schlüssel verloren.</i>",a:["wessen schlüssel hat toni verloren","wessen schlussel hat toni verloren"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Auf dem Tisch liegt Papas Handy.</i>",a:["wessen handy liegt auf dem tisch"]},
+      {type:"in",t:"Stelle die Wessen-Frage: <i>Die Reifen des Fahrrads sind platt.</i>",a:["wessen reifen sind platt"]},
+      {type:"in",t:"Genitiv einsetzen: Die Farben ___ (das Bild) sind schön.",a:["des bildes"]},
+      {type:"in",t:"Genitiv einsetzen: Der Lenker ___ (das Fahrrad) ist hoch.",a:["des fahrrads","des fahrrades"]},
+      {type:"in",t:"Genitiv einsetzen: Die Tasche ___ (die Lehrerin) ist blau.",a:["der lehrerin"]},
+      {type:"in",t:"Genitiv einsetzen: Der Rahmen ___ (das Rad) ist aus Aluminium.",a:["des rads","des rades"]},
+      {type:"in",t:"Genitiv einsetzen: Das Fell ___ (der Hund) ist weich.",a:["des hundes","des hunds"]},
+      {type:"in",t:"Genitiv einsetzen: Die Fenster ___ (die Häuser) sind groß.",a:["der häuser","der hauser"]},
+      {type:"in",t:"Genitiv einsetzen: Die Griffe ___ (der Scooter) sind schwarz.",a:["des scooters"]},
+      {type:"in",t:"Genitiv einsetzen: Die Stimme ___ (die Sängerin) ist laut.",a:["der sängerin","der sangerin"]},
+      {type:"in",t:"Genitiv einsetzen: Das Ende ___ (die Straße) ist nah.",a:["der straße","der strasse"]},
+      {type:"in",t:"Mit Namen: ___ (Anna) Eis schmeckt lecker.",a:["annas"]},
+      {type:"in",t:"Mit Namen: ___ (Felix) BMX-Rad ist weg.",a:["felix'","felix"]},
+      {type:"in",t:"Mit Namen: ___ (Paul und Katrin) Mama backt Kuchen.",a:["pauls und katrins"]},
+      {type:"mc",t:"Welches Wort steht im Genitiv? <i>Die Leine des Hundes ist rot.</i>",o:["Die Leine","des Hundes","ist rot"],a:1},
+      {type:"mc",t:"Welches Wort steht im Genitiv? <i>Julias Pizza ist lecker.</i>",o:["Julias","Pizza","lecker"],a:0},
+      {type:"mc",t:"Welche Frage findet den Genitiv?",o:["Wer oder was?","Wen oder was?","Wessen?","Wem?"],a:2},
+      {type:"mc",t:"Was zeigt der Genitiv an?",o:["Einen Ort","Ein Besitzverhältnis / eine Zugehörigkeit","Eine Zeit"],a:1},
+      {type:"mc",t:"Richtig oder falsch? <i>Wessen ist sein Freund heute krank?</i>",o:["Richtig","Falsch – richtig ist: Wessen Freund ist heute krank?"],a:1},
+      {type:"mc",t:"Welche Form ist richtig?",o:["der Mantel der Frau","der Mantel des Frau","der Mantel die Frau"],a:0},
+      {type:"mc",t:"Welche Form ist richtig?",o:["der Stall der Hase","der Stall des Hasen","der Stall des Hases"],a:1}
+    ]
+  },
+  esgeht: {
+    title:"„Es geht um …“ + Akkusativ + Genitiv",
+    rule:"<b>Es geht um</b> + <b>Akkusativ</b> (den/die/das) + <b>Genitiv</b> (des/der). Beispiel: Es geht um <b>den</b> Schutz <b>der</b> Natur. · Akkusativ: der→<b>den</b>, die→die, das→das. Genitiv: der/das→<b>des</b> (+ -s/-es), die→<b>der</b>.",
+    items:[
+      {type:"in",t:"Es geht um ___ Schutz (der Schutz) der Natur.",a:["den"]},
+      {type:"in",t:"Es geht um die Zerstörung ___ (die Bäume, Plural).",a:["der bäume","der baume"]},
+      {type:"in",t:"Es geht um die Zukunft ___ (der Lebensraum).",a:["des lebensraums","des lebensraumes"]},
+      {type:"in",t:"Es geht um ___ Wasser (das Wasser) der Küste.",a:["das"]},
+      {type:"in",t:"Es geht um das Wasser ___ (die Küste).",a:["der küste","der kuste"]},
+      {type:"in",t:"Es geht um ___ Wald (der Wald) der Tiere.",a:["den"]},
+      {type:"in",t:"Es geht um den Wald ___ (die Tiere, Plural).",a:["der tiere"]},
+      {type:"in",t:"Es geht um ___ Klima (das Klima) der Erde.",a:["das"]},
+      {type:"in",t:"Es geht um das Klima ___ (die Erde).",a:["der erde"]},
+      {type:"in",t:"Es geht um die Reinigung ___ (der Fluss).",a:["des flusses"]},
+      {type:"in",t:"Es geht um ___ Beschreibung (die Beschreibung) des Fahrrads.",a:["die"]},
+      {type:"in",t:"Es geht um die Rettung ___ (das Meer).",a:["des meeres","des meers"]},
+      {type:"in",t:"Es geht um ___ Zukunft (die Zukunft) der Kinder.",a:["die"]},
+      {type:"in",t:"Es geht um ___ Weg (der Weg) zur Kantine.",a:["den"]},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Es geht um der Schutz der Natur.","Es geht um den Schutz der Natur.","Es geht um dem Schutz der Natur."],a:1},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Es geht um das Wasser des Küste.","Es geht um der Wasser der Küste.","Es geht um das Wasser der Küste."],a:2},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Es geht um den Baum des Parks.","Es geht um der Baum des Park.","Es geht um den Baum der Park."],a:0},
+      {type:"mc",t:"Nach „es geht um“ steht …",o:["der Dativ","der Akkusativ","der Genitiv"],a:1}
+    ]
+  },
+  weg: {
+    title:"Wegbeschreibung",
+    rule:"<b>Aufbau:</b> Start + Ziel nennen → Wegmarken in der richtigen <b>Reihenfolge</b> (zuerst, dann, danach, nun, schließlich) → im <b>Präsens</b>, <b>sachlich</b>, ohne überflüssige Infos. <b>Richtungsangaben:</b> geradeaus, links/rechts abbiegen, über die Brücke, bis zur Ampel, am Kino vorbei, durch den Park, den Fluss entlang, die zweite Straße rechts.<br><b>Präpositionen + Fall:</b> <b>aus / nach / bis zu / an … vorbei → Dativ</b> (aus <b>der</b> Haustür, nach <b>der</b> Apotheke, bis <b>zur</b> Ampel, an <b>der</b> Bäckerei vorbei, an <b>dem</b>=<b>am</b> Kino vorbei) · <b>über / durch / entlang → Akkusativ</b> (über <b>den</b> Zebrastreifen, über <b>die</b> Straße, durch <b>den</b> Park, <b>den</b> Fluss entlang). <b>abbiegen</b> ist trennbar: du biegst links <b>ab</b>. Über die Straße gehen = <b>über die Straße gehen</b>, nicht „kreuzen“!",
+    items:[
+      {type:"in",t:"Ergänze: ___ die Brücke",a:["über"]},
+      {type:"in",t:"Ergänze: bis ___ Ampel",a:["zur"]},
+      {type:"in",t:"Ergänze: bis ___ Bahnhof",a:["zum"]},
+      {type:"in",t:"Ergänze: am Kino ___",a:["vorbei"]},
+      {type:"in",t:"Ergänze: durch ___ Park",a:["den"]},
+      {type:"in",t:"Ergänze: ___ Fluss entlang",a:["den"]},
+      {type:"in",t:"Ergänze: über ___ Platz",a:["den"]},
+      {type:"in",t:"Ergänze: über ___ Kreuzung",a:["die"]},
+      {type:"in",t:"Ergänze: die zweite Straße ___ (nach rechts)",a:["rechts"]},
+      {type:"in",t:"Ergänze: an der Kreuzung ___ (nach links)",a:["links"]},
+      {type:"in",t:"Ergänze: links ___ die Burgstraße",a:["in"]},
+      {type:"in",t:"Ergänze: ___ dem Kino links (nachdem du das Kino passiert hast)",a:["nach"]},
+      {type:"in",t:"Ergänze: die Straße ___ (immer weiter auf der Straße)",a:["entlang"]},
+      {type:"in",t:"Ergänze: Du gehst immer ___ (nicht abbiegen).",a:["geradeaus"]},
+      {type:"in",t:"Reihenfolge-Wort für den Anfang: ___ gehst du nach rechts.",a:["zuerst"]},
+      {type:"in",t:"Reihenfolge-Wort für das Ende: ___ bist du am Ziel.",a:["schließlich","schliesslich","zum schluss"]},
+      {type:"mc",t:"Welcher Satz passt NICHT in eine Wegbeschreibung?",o:["Dann biegst du links ab.","Dort findet jede Woche ein toller Markt statt.","Nun gehst du über die Brücke."],a:1},
+      {type:"mc",t:"In welcher Zeitform schreibt man eine Wegbeschreibung?",o:["Präteritum","Präsens","Perfekt"],a:1},
+      {type:"mc",t:"Was sind Wegmarken?",o:["Zeitangaben wie „dann“","Auffällige Punkte am Weg: Ampel, Brücke, Plakat, Baum","Richtungen wie „links“"],a:1},
+      {type:"mc",t:"Was machst du NACH dem Schreiben?",o:["Den Weg mit dem Finger auf dem Plan überprüfen und überflüssige Infos streichen","Noch mehr Details erfinden","Die Zeitform ins Präteritum ändern"],a:0},
+      {type:"mc",t:"Welcher Satz ist sachlich (ohne persönliche Wertung)?",o:["Du gehst an der hässlichen Schule vorbei.","Du gehst an der Schule vorbei.","Du gehst an der Schule vorbei, die ich super finde."],a:1},
+      {type:"mc",t:"Welche Reihenfolge ist richtig?",o:["schließlich – zuerst – dann","zuerst – dann – schließlich","dann – schließlich – zuerst"],a:1},
+      {type:"mc",t:"Richtig geschrieben?",o:["schlißlich","schließlich","schliesslich (in Deutschland)"],a:1},
+      {type:"mc",t:"Richtig geschrieben?",o:["die Eingangstür","die eingangs tür","die Eingangstühr"],a:0},
+      {type:"in",t:"Dativ! Zuerst gehst du aus ___ Haustür (die Haustür).",a:["der"]},
+      {type:"in",t:"Dativ! Du gehst an ___ Apotheke vorbei (die Apotheke).",a:["der"]},
+      {type:"in",t:"Dativ! Du gehst an ___ Bäckerei vorbei (die Bäckerei).",a:["der"]},
+      {type:"in",t:"Dativ! Nach ___ Apotheke biegst du links ab (die Apotheke).",a:["der"]},
+      {type:"in",t:"Dativ! Du gehst bis ___ Ampel (die Ampel) – ein Wort.",a:["zur"]},
+      {type:"in",t:"Dativ! Du gehst bis ___ Bahnhof (der Bahnhof) – ein Wort.",a:["zum"]},
+      {type:"in",t:"Dativ! Du gehst ___ Kino vorbei (das Kino) – ein Wort (an+dem).",a:["am"]},
+      {type:"in",t:"Akkusativ! Du gehst über ___ Zebrastreifen (der Zebrastreifen).",a:["den"]},
+      {type:"in",t:"Akkusativ! Du gehst über ___ Straße (die Straße).",a:["die"]},
+      {type:"in",t:"Akkusativ! Du gehst durch ___ Park (der Park).",a:["den"]},
+      {type:"in",t:"Trennbares Verb: Dann biegst du links ___.",a:["ab"]},
+      {type:"in",t:"Trennbares Verb: An der Kreuzung ___ du rechts ab. (abbiegen, du-Form)",a:["biegst"]},
+      {type:"in",t:"Präsens statt Futur: Zwischendurch ___ du eine Bäckerei. (sehen, du-Form)",a:["siehst"]},
+      {type:"in",t:"Nominativ! ___ Weg zur Schule ist leicht zu finden. (der/den?)",a:["der"]},
+      {type:"in",t:"Akkusativ! ___ Weg zur Schule findest du leicht. (der/den?)",a:["den"]},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Zuerst gehst du aus die Ausgangstür.","Zuerst gehst du aus der Haustür.","Zuerst gehst du aus dem Haustür."],a:1},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Du gehst an die Apotheke vorbei.","Du gehst an der Apotheke vorbei.","Du gehst an den Apotheke vorbei."],a:1},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Dann biegst du links.","Dann abbiegst du links.","Dann biegst du links ab."],a:2},
+      {type:"mc",t:"„Cruzar la calle“ heißt …",o:["die Straße kreuzen","über die Straße gehen","die Straße kreuzt du"],a:1},
+      {type:"mc",t:"Welcher Satz ist richtig?",o:["Zwischendurch werdest du eine Bäckerei sehen.","Zwischendurch siehst du eine Bäckerei.","Zwischendurch sehst du eine Bäckerei."],a:1},
+      {type:"mc",t:"Richtig geschrieben?",o:["Beckerei","Bäckerei","Bäkerei"],a:1},
+      {type:"mc",t:"Richtig geschrieben?",o:["Apotäke","Apoteke","Apotheke"],a:2},
+      {type:"mc",t:"Richtig geschrieben?",o:["Als negstes","Als nächstes","Als Nächstes"],a:2},
+      {type:"mc",t:"Richtig geschrieben?",o:["Dannach","Danach","Danah"],a:1},
+      {type:"mc",t:"Richtig geschrieben?",o:["Schuhle","Schule","Schulle"],a:1}
+    ]
+  },
+  gegenstand: {
+    title:"Gegenstandsbeschreibung & Suchanzeige",
+    rule:"<b>Aufbau Gegenstandsbeschreibung:</b> 1) Art des Gegenstands, Größe, Form, Hauptmaterial, Hauptfarbe, Gebrauch → 2) einzelne <b>Bestandteile</b> mit Form, Farbe, Material → 3) <b>Besonderheiten</b> des Gegenstands oder seines Gebrauchs. <b>Sprache:</b> sachlich, <b>Präsens</b>, anschauliche Adjektive (oval, hellgrün, geriffelt), abwechslungsreiche Verben (bestehen aus, besitzen, aufweisen, auffallen, ins Auge springen, vorhanden sein).<br><b>Suchanzeige:</b> Überschrift („BMX-Rad vermisst!“) → Einleitung (wann, wo verloren) → Hauptteil (Bestandteile + auffällige Besonderheiten) → Schluss (Kontakt + Dank).",
+    items:[
+      {type:"mc",t:"Was steht am ANFANG einer Gegenstandsbeschreibung?",o:["Die Besonderheiten","Art, Größe, Form, Hauptmaterial, Hauptfarbe","Die einzelnen Bestandteile"],a:1},
+      {type:"mc",t:"Was steht am ENDE einer Gegenstandsbeschreibung?",o:["Die Hauptfarbe","Die Bestandteile","Die Besonderheiten des Gegenstands oder seines Gebrauchs"],a:2},
+      {type:"mc",t:"Welcher Satz ist sachlich?",o:["Mein Rad ist das coolste der Welt!","Das Rad besitzt einen blauen Rahmen mit weißen Streifen.","Ich liebe mein Rad so sehr."],a:1},
+      {type:"mc",t:"Welche Zeitform?",o:["Präsens","Präteritum","Futur"],a:0},
+      {type:"mc",t:"Welches Verb ist abwechslungsreich (statt „hat“)?",o:["Das Rad hat …","Das Rad besitzt …","Das Rad ist mit …"],a:1},
+      {type:"in",t:"Ersetze „hat“: Der Scooter ___ eine rote Lenkstange. (Verb mit b…)",a:["besitzt"]},
+      {type:"in",t:"Ersetze „ist aus“: Der Rahmen ___ aus Aluminium. (Verb mit b…)",a:["besteht"]},
+      {type:"in",t:"Ergänze: Besonders ___ ist die Lenkstange. (Adjektiv: sie springt ins Auge)",a:["auffällig"]},
+      {type:"in",t:"Ergänze: Die Griffe sind ___ schwarz. (= auch)",a:["ebenfalls"]},
+      {type:"in",t:"Ergänze das Verb: Die tiefschwarzen Reifen ___ sofort ins Auge.",a:["springen"]},
+      {type:"mc",t:"Ordne zu – <b>oval</b> ist …",o:["eine Form","ein Material","eine Farbe"],a:0},
+      {type:"mc",t:"Ordne zu – <b>geriffelt</b> ist …",o:["eine Form","eine Material-Eigenschaft (Oberfläche)","eine Farbe"],a:1},
+      {type:"mc",t:"Ordne zu – <b>knallrot</b> ist …",o:["eine Form","ein Material","eine Farbe"],a:2},
+      {type:"mc",t:"Ordne zu – <b>Kunststoff</b> ist …",o:["eine Form","ein Material","eine Farbe"],a:1},
+      {type:"mc",t:"Ordne zu – <b>abgerundet</b> ist …",o:["eine Form","ein Material","eine Farbe"],a:0},
+      {type:"mc",t:"Ordne zu – <b>tiefschwarz</b> ist …",o:["eine Form","ein Material","eine Farbe"],a:2},
+      {type:"mc",t:"Ordne zu – <b>Gummi</b> ist …",o:["eine Form","ein Material","eine Farbe"],a:1},
+      {type:"mc",t:"Welches Adjektiv ist anschaulicher?",o:["grün","hellgrün"],a:1},
+      {type:"mc",t:"Welches Adjektiv ist anschaulicher?",o:["rot","leuchtend rot"],a:1},
+      {type:"mc",t:"Welches Adjektiv ist überflüssig bei einer Schnalle? <i>flach, nett, schmal</i>",o:["flach","nett","schmal"],a:1},
+      {type:"mc",t:"Welches Adjektiv ist überflüssig bei einem Fersenband? <i>flexibel, schön, verstellbar</i>",o:["flexibel","schön","verstellbar"],a:1},
+      {type:"mc",t:"Wie lautet die Überschrift einer Suchanzeige?",o:["Mein Fahrrad","BMX-Rad vermisst!","Hallo, ich bin Felix"],a:1},
+      {type:"mc",t:"Was gehört in die EINLEITUNG einer Suchanzeige?",o:["Wann und wo der Gegenstand verloren ging","Die E-Mail-Adresse","Die Farbe der Reifen"],a:0},
+      {type:"mc",t:"Was gehört in den SCHLUSS einer Suchanzeige?",o:["Die Beschreibung der Bestandteile","Kontakt und Dankworte","Das Datum"],a:1},
+      {type:"in",t:"Ergänze: Erreichbar bin ich unter der ___-Adresse felix@mail.de.",a:["e-mail","email","e mail"]},
+      {type:"in",t:"Ergänze: Ich bin ___ für jeden Hinweis!",a:["dankbar"]},
+      {type:"in",t:"Fahrradteil: Darauf sitzt man. (der S…)",a:["sattel","der sattel"]},
+      {type:"in",t:"Fahrradteil: Damit lenkt man. (der L…)",a:["lenker","der lenker"]},
+      {type:"in",t:"Fahrradteil: Das Metallgerüst, an dem alles hängt. (der R…)",a:["rahmen","der rahmen"]},
+      {type:"in",t:"Fahrradteil: Die Füße treten darauf. (die P…, Plural)",a:["pedale","die pedale"]},
+      {type:"in",t:"Fahrradteil: Sie überträgt die Kraft zum Hinterrad. (die K…)",a:["kette","die kette"]},
+      {type:"in",t:"Richtig schreiben: der Gepäk-Träger → ___",a:["gepäckträger","der gepäckträger","gepackträger"]},
+      {type:"in",t:"Richtig schreiben: der Kettenshutz → ___",a:["kettenschutz","der kettenschutz"]},
+      {type:"in",t:"Richtig schreiben: weise Streifen → ___ Streifen",a:["weiße","weisse"]}
+    ]
+  },
+  vokabular: {
+    title:"Vokabular Gegenstandsbeschreibung",
+    rule:"<b>Material:</b> Glas, Kunststoff, Beton, Porzellan, Gummi, Holz, Stoff, Ton, Plüsch, Styropor, Metall, Stein, Leder, Baumwolle, Eisen · <b>Größe:</b> groß, schmal, riesig, klein, dick, winzig, hoch, gigantisch – <i>vergleiche:</i> von der Größe einer Briefmarke · <b>Oberfläche:</b> glatt, eben, glänzend, gerippt, hart, sandig, rau, uneben, matt, genoppt, starr, weich, gewölbt, durchlöchert, flauschig, porös, ledrig · <b>Form und Muster:</b> spitz, viereckig, offen, gewölbt, flach, länglich, (halb)rund, rechteckig, kantig, abgerundet, zylindrisch, trichterförmig, eckig, quadratisch, kegelförmig, geschlossen, pyramidenförmig, eiförmig · <b>Farben:</b> silberfarben, feuerrot, nachtblau, honiggelb, mintgrün, gepunktet, signalrot, blutrot, eisblau, sonnengelb, olivgrün, kariert, ziegelrot, schneeweiß, goldgelb, grasgrün, gestreift, gemustert.<br><b>Achtung:</b> Farben nach <i>ist</i> klein: <i>Die Tasche ist nachtblau.</i> Vor dem Nomen mit Endung: <i>mit olivgrünen Streifen</i>.",
+    items:[
+      {type:"mc",t:"<b>Porzellan</b> ist …",o:["Material","Oberfläche","Form","Farbe"],a:0},
+      {type:"mc",t:"<b>Styropor</b> ist …",o:["Material","Größe","Form","Farbe"],a:0},
+      {type:"mc",t:"<b>Plüsch</b> ist …",o:["Material","Oberfläche","Form","Farbe"],a:0},
+      {type:"mc",t:"<b>Baumwolle</b> ist …",o:["Farbe","Material","Form","Größe"],a:1},
+      {type:"mc",t:"<b>winzig</b> beschreibt …",o:["Material","Größe","Oberfläche","Farbe"],a:1},
+      {type:"mc",t:"<b>gigantisch</b> beschreibt …",o:["Form","Oberfläche","Größe","Material"],a:2},
+      {type:"mc",t:"<b>genoppt</b> beschreibt …",o:["Farbe","Größe","Oberfläche","Material"],a:2},
+      {type:"mc",t:"<b>flauschig</b> beschreibt …",o:["Oberfläche","Form","Farbe","Größe"],a:0},
+      {type:"mc",t:"<b>durchlöchert</b> beschreibt …",o:["Farbe","Oberfläche","Größe","Material"],a:1},
+      {type:"mc",t:"<b>porös</b> beschreibt …",o:["Form","Farbe","Größe","Oberfläche"],a:3},
+      {type:"mc",t:"<b>matt</b> ist das Gegenteil von …",o:["rau","glänzend","weich","hart"],a:1},
+      {type:"mc",t:"<b>rau</b> ist das Gegenteil von …",o:["glatt","hart","matt","starr"],a:0},
+      {type:"mc",t:"<b>zylindrisch</b> beschreibt …",o:["Material","Oberfläche","Form","Farbe"],a:2},
+      {type:"mc",t:"<b>trichterförmig</b> beschreibt …",o:["Form","Farbe","Größe","Material"],a:0},
+      {type:"mc",t:"<b>kegelförmig</b> beschreibt …",o:["Oberfläche","Form","Farbe","Material"],a:1},
+      {type:"mc",t:"<b>eiförmig</b> beschreibt …",o:["Größe","Farbe","Form","Material"],a:2},
+      {type:"mc",t:"<b>kariert</b> beschreibt …",o:["Form","Material","Größe","Farbe/Muster"],a:3},
+      {type:"mc",t:"<b>gepunktet</b> beschreibt …",o:["Farbe/Muster","Form","Material","Größe"],a:0},
+      {type:"mc",t:"<b>honiggelb</b> ist …",o:["Material","Farbe","Oberfläche","Form"],a:1},
+      {type:"mc",t:"<b>signalrot</b> ist …",o:["Form","Oberfläche","Farbe","Größe"],a:2},
+      {type:"mc",t:"Welche Form hat eine Dose (Cola)?",o:["pyramidenförmig","zylindrisch","kegelförmig","eiförmig"],a:1},
+      {type:"mc",t:"Welche Form hat ein Ei?",o:["eckig","quadratisch","eiförmig","trichterförmig"],a:2},
+      {type:"mc",t:"Welche Form hat eine Eistüte (Waffel)?",o:["kegelförmig","zylindrisch","viereckig","flach"],a:0},
+      {type:"mc",t:"Welche Form hat ein Würfel?",o:["rund","eckig / quadratisch","länglich","gewölbt"],a:1},
+      {type:"mc",t:"Woraus besteht ein Teddybär?",o:["aus Porzellan","aus Plüsch","aus Beton","aus Eisen"],a:1},
+      {type:"mc",t:"Woraus besteht ein Fußball?",o:["aus Styropor","aus Ton","aus Leder / Kunststoff","aus Glas"],a:2},
+      {type:"mc",t:"Welche Oberfläche hat Sandpapier?",o:["glatt","rau","glänzend","weich"],a:1},
+      {type:"mc",t:"Welche Oberfläche hat ein Spiegel?",o:["rau","porös","glatt und glänzend","genoppt"],a:2},
+      {type:"mc",t:"Welches Wort ist anschaulicher?",o:["rot","signalrot"],a:1},
+      {type:"mc",t:"Welches Wort ist anschaulicher?",o:["blau","nachtblau"],a:1},
+      {type:"mc",t:"Welches Wort ist anschaulicher?",o:["grün","mintgrün"],a:1},
+      {type:"mc",t:"Welches Wort ist anschaulicher?",o:["groß","riesig"],a:1},
+      {type:"mc",t:"Welche Schreibweise ist richtig?",o:["Die Tasche ist Dunkelblau.","Die Tasche ist dunkelblau."],a:1},
+      {type:"mc",t:"Welche Schreibweise ist richtig?",o:["mit olivgrüne Streifen","mit olivgrünen Streifen","mit olivgrün Streifen"],a:1},
+      {type:"mc",t:"Welche Schreibweise ist richtig?",o:["ein grasgrünes A","ein Grassgrüne A","ein grasgrün A"],a:0},
+      {type:"in",t:"Farbe wie Feuer: ___rot",a:["feuerrot","feuer"]},
+      {type:"in",t:"Farbe wie Schnee: ___weiß",a:["schneeweiß","schnee","schneeweiss"]},
+      {type:"in",t:"Farbe wie Gras: ___grün",a:["grasgrün","gras"]},
+      {type:"in",t:"Farbe wie Honig: ___gelb",a:["honiggelb","honig"]},
+      {type:"in",t:"Farbe wie Eis: ___blau",a:["eisblau","eis"]},
+      {type:"in",t:"Farbe wie ein Ziegelstein: ___rot",a:["ziegelrot","ziegel"]},
+      {type:"in",t:"Form wie ein Zylinder: ___isch",a:["zylindrisch","zylindr"]},
+      {type:"in",t:"Form wie ein Kegel: ___förmig",a:["kegelförmig","kegel"]},
+      {type:"in",t:"Form wie eine Pyramide: ___förmig",a:["pyramidenförmig","pyramiden"]},
+      {type:"in",t:"Größenvergleich: Der Anhänger ist von der Größe einer ___ (sello de correos).",a:["briefmarke"]},
+      {type:"in",t:"Gegenteil von <i>hart</i>: ___",a:["weich"]},
+      {type:"in",t:"Gegenteil von <i>offen</i>: ___",a:["geschlossen"]},
+      {type:"in",t:"Gegenteil von <i>eben</i>: ___",a:["uneben"]},
+      {type:"in",t:"Gegenteil von <i>winzig</i>: ___ (sehr groß, r…)",a:["riesig"]},
+      {type:"in",t:"Gegenteil von <i>eckig</i>: ___ (a…)",a:["abgerundet"]}
+    ]
+  }
+};
+
+/* ---------- Rendering ---------- */
+const nav=document.getElementById('nav'), main=document.getElementById('main');
+const sections=[
+  {id:"genitiv",label:"Genitiv"},{id:"esgeht",label:"Es geht um"},
+  {id:"weg",label:"Wegbeschreibung"},{id:"gegenstand",label:"Gegenstand & Suchanzeige"},{id:"vokabular",label:"Vokabular Gegenstand"},
+  {id:"schreiben",label:"Schreiben üben"},{id:"test",label:"TEST",cls:"test"}
+];
+sections.forEach(s=>{const b=document.createElement('button');b.textContent=s.label;if(s.cls)b.className=s.cls;b.onclick=()=>show(s.id);b.dataset.id=s.id;nav.appendChild(b);});
+
+function renderItems(items,container,opts={}){
+  const state={total:items.length,done:0,right:0,byCat:{}};
+  items.forEach((it,i)=>{
+    const q=document.createElement('div');q.className='q';
+    const cat=it.cat?`<span class="tag">${DB[it.cat].title}</span>`:"";
+    q.innerHTML=`<div class="num">Aufgabe ${i+1}${opts.showCat?cat:""}</div><div class="text">${it.t}</div>`;
+    const fb=document.createElement('div');fb.className='fb';
+    const mark=(ok,correct)=>{
+      if(it._done)return; it._done=true; state.done++; if(ok)state.right++;
+      if(it.cat){const c=state.byCat[it.cat]||(state.byCat[it.cat]={r:0,n:0});c.n++;if(ok)c.r++;}
+      fb.textContent=ok?"Richtig!":"Falsch. Richtig: "+correct; fb.className='fb '+(ok?'ok':'bad');
+      if(opts.onAnswer)opts.onAnswer(state);
+    };
+    if(it.type==="in"){
+      const inp=document.createElement('input');inp.type='text';inp.placeholder='Antwort eintippen … (Enter)';
+      inp.autocapitalize='off';inp.autocomplete='off';inp.spellcheck=false;
+      inp.addEventListener('keydown',e=>{if(e.key==='Enter'){check();}});
+      const check=()=>{if(it._done)return;const v=normalize(inp.value);if(!v)return;const ok=it.a.some(x=>normalize(x)===v);inp.className=ok?'ok':'bad';inp.readOnly=true;mark(ok,it.a[0]);};
+      inp.addEventListener('blur',()=>{if(inp.value.trim())check();});
+      q.appendChild(inp);
+    }else{
+      const o=document.createElement('div');o.className='opts';
+      it.o.forEach((txt,k)=>{const b=document.createElement('button');b.innerHTML=txt;b.onclick=()=>{if(it._done)return;const ok=k===it.a;b.className=ok?'ok':'bad';if(!ok)o.children[it.a].className='ok';mark(ok,it.o[it.a].replace(/<[^>]+>/g,''));};o.appendChild(b);});
+      q.appendChild(o);
+    }
+    q.appendChild(fb);container.appendChild(q);
+  });
+  return state;
+}
+
+function show(id){
+  [...nav.children].forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  main.innerHTML='';window.scrollTo(0,0);
+  if(id==='test')return renderTest();
+  if(id==='schreiben')return renderWriting();
+  const sec=DB[id];
+  const card=document.createElement('div');card.className='card';
+  card.innerHTML=`<h2>${sec.title}</h2><div class="rule">${sec.rule}</div><p class="hint">Tippe die Antwort und drücke Enter – oder wähle eine Option. Groß-/Kleinschreibung ist egal.</p>`;
+  const list=document.createElement('div');card.appendChild(list);
+  const score=document.createElement('div');score.className='score';card.appendChild(score);
+  const items=shuffle(sec.items.map(x=>({...x,_done:false})));
+  const st=renderItems(items,list,{onAnswer:s=>{score.textContent=`${s.right} von ${s.done} richtig (${s.total} Aufgaben)`;}});
+  const act=document.createElement('div');act.className='actions';
+  const re=document.createElement('button');re.className='btn sec';re.textContent='Neu mischen';re.onclick=()=>show(id);act.appendChild(re);
+  card.appendChild(act);main.appendChild(card);
+}
+
+/* ---------- Test-Modus ---------- */
+function renderTest(){
+  const card=document.createElement('div');card.className='card';
+  card.innerHTML=`<h2>Kontrolltest</h2><p class="hint">25 gemischte Aufgaben aus allen Themen. Am Ende siehst du, wo du noch üben musst. Du kannst die Antworten nicht korrigieren – wie in der Klassenarbeit!</p>`;
+  const list=document.createElement('div');card.appendChild(list);
+  let pool=[];
+  for(const k in DB){pool=pool.concat(DB[k].items.map(x=>({...x,cat:k,_done:false})));}
+  // ausgewogen: ~6 pro Thema
+  let picked=[];
+  for(const k in DB){picked=picked.concat(shuffle(pool.filter(x=>x.cat===k)).slice(0,k==='esgeht'?4:k==='genitiv'?6:k==='weg'?6:k==='vokabular'?4:5));}
+  picked=shuffle(picked).slice(0,25);
+  const result=document.createElement('div');
+  const st=renderItems(picked,list,{showCat:true,onAnswer:s=>{if(s.done===s.total)showResult(s,result);}});
+  card.appendChild(result);
+  const act=document.createElement('div');act.className='actions';
+  const fin=document.createElement('button');fin.className='btn warn';fin.textContent='Test beenden & auswerten';
+  fin.onclick=()=>{picked.forEach(it=>{if(!it._done){it._done=true;st.done++;const c=st.byCat[it.cat]||(st.byCat[it.cat]={r:0,n:0});c.n++;}});showResult(st,result);};
+  act.appendChild(fin);
+  const re=document.createElement('button');re.className='btn sec';re.textContent='Neuer Test';re.onclick=()=>show('test');act.appendChild(re);
+  card.appendChild(act);main.appendChild(card);
+}
+function showResult(s,el){
+  const pct=Math.round(100*s.right/s.total);
+  let html=`<div class="rule" style="margin-top:14px"><b>Ergebnis: ${s.right} / ${s.total} (${pct} %)</b> – ${pct>=90?"Sehr gut!":pct>=75?"Gut, kleine Lücken.":pct>=60?"Geht so – üben!":"Noch viel üben!"}</div><table><tr><th>Thema</th><th>richtig</th><th></th></tr>`;
+  for(const k in s.byCat){const c=s.byCat[k];const p=Math.round(100*c.r/c.n);const cls=p<60?'low':p<80?'mid':'';
+    html+=`<tr><td>${DB[k].title}</td><td>${c.r}/${c.n}</td><td style="width:40%"><div class="bar"><div class="${cls}" style="width:${p}%"></div></div></td></tr>`;}
+  html+=`</table><p class="hint" style="margin-top:8px">Rot/orange = hier nochmal im Übungsbereich arbeiten.</p>`;
+  el.innerHTML=html;el.scrollIntoView({behavior:'smooth'});
+}
+
+/* ---------- Schreiben üben ---------- */
+const WRITING=[
+  {title:"Wegbeschreibung",task:"Beschreibe den Weg von deinem Klassenzimmer zur Turnhalle (oder zum Sekretariat). Nenne Start und Ziel, mindestens 4 Wegmarken, benutze zuerst / dann / danach / schließlich.",
+   check:["Start und Ziel sind genannt","Reihenfolge-Wörter: zuerst, dann, nun, schließlich","Richtungsangaben: geradeaus, links/rechts, vorbei an, bis zu, durch","Mindestens 4 Wegmarken (Treppe, Tür, Plakat, Baum …)","Alles im Präsens","Sachlich – keine Meinung, keine überflüssigen Infos","Rechtschreibung geprüft (schließlich, Eingangstür, Schließfächer)"]},
+  {title:"Suchanzeige",task:"Du hast deinen Rucksack (oder dein Skateboard) im Park verloren. Schreibe eine Suchanzeige: Überschrift, Einleitung (wann/wo), Hauptteil (Bestandteile + Besonderheiten), Schluss (Kontakt + Dank).",
+   check:["Überschrift mit „vermisst!“ oder „verloren!“","Einleitung: Datum und Ort","Hauptteil: mindestens 3 Bestandteile mit Form/Farbe/Material","Besonderheiten (Aufkleber, Kratzer, Anhänger …)","Abwechslungsreiche Verben: besitzen, bestehen aus, auffallen, ins Auge springen","Satzanfänge: Besonders …, Auffällig …, Außerdem …, Darüber hinaus …","Schluss: E-Mail-Adresse + „Ich bin dankbar für jeden Hinweis!“ + Unterschrift"]},
+  {title:"Gegenstandsbeschreibung",task:"Beschreibe dein Federmäppchen oder deine Trinkflasche in drei Abschnitten: 1) Art, Größe, Form, Hauptmaterial, Hauptfarbe, Gebrauch – 2) Bestandteile mit Form, Farbe, Material – 3) Besonderheiten.",
+   check:["Abschnitt 1: Art + Größe (ungefähr … cm) + Form + Hauptmaterial + Hauptfarbe + wofür","Abschnitt 2: jeden Bestandteil mit Form, Farbe UND Material","Abschnitt 3: Besonderheiten des Gegenstands oder Gebrauchs","Anschauliche Adjektive (hellblau, geriffelt, abgerundet, matt …)","Verben variieren: besitzen, bestehen aus, aufweisen, sich befinden, vorhanden sein","Sachlich, Präsens, keine „ich finde“-Sätze"]}
+];
+function renderWriting(){
+  WRITING.forEach((w,i)=>{
+    const card=document.createElement('div');card.className='card';
+    card.innerHTML=`<h2>${w.title}</h2><div class="rule">${w.task}</div><textarea placeholder="Hier schreiben …"></textarea><p class="hint" style="margin-top:10px">Danach selbst prüfen – hake ab, was erfüllt ist:</p><ul class="check" style="list-style:none;padding:0">${w.check.map(c=>`<li><label><input type="checkbox">${c}</label></li>`).join('')}</ul><p class="hint">Tipp: Text abfotografieren oder per E-Mail an Papa schicken zum Korrigieren.</p>`;
+    main.appendChild(card);
+  });
+}
+
+show('genitiv');
+</script>
+</body>
+</html>
+
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+</body></html>

@@ -1,0 +1,450 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kasus-Training Alba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+
+/* Layout: una columna de lectura (max 760px), barra de pestañas fija arriba, tarjetas sólo para bloques de ejercicio. Colores de caso según la convención escolar: Nom azul, Akk rojo, Dat verde, Gen amarillo. */
+:root{
+  --bg:#f3f5fa; --surface:#ffffff; --ink:#18203a; --muted:#5a6480; --line:#dce1ec;
+  --accent:#2c49c9; --accent-ink:#ffffff;
+  --nom:#2f6fde; --akk:#d2443a; --dat:#23935a; --gen:#b98a06;
+  --nom-bg:#e6efff; --akk-bg:#fde9e7; --dat-bg:#e2f5ea; --gen-bg:#fbf2d6;
+  --ok:#23935a; --bad:#d2443a;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10131c; --surface:#191e2c; --ink:#e8ecf6; --muted:#9aa4bf; --line:#2b3248;
+  --accent:#7d93ff; --accent-ink:#0e1220;
+  --nom:#7aa6ff; --akk:#ff7f72; --dat:#5fd393; --gen:#f0c246;
+  --nom-bg:#1b2a4a; --akk-bg:#3a1f22; --dat-bg:#163527; --gen-bg:#382f12;
+  --ok:#5fd393; --bad:#ff7f72; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10131c; --surface:#191e2c; --ink:#e8ecf6; --muted:#9aa4bf; --line:#2b3248;
+  --accent:#7d93ff; --accent-ink:#0e1220;
+  --nom:#7aa6ff; --akk:#ff7f72; --dat:#5fd393; --gen:#f0c246;
+  --nom-bg:#1b2a4a; --akk-bg:#3a1f22; --dat-bg:#163527; --gen-bg:#382f12;
+  --ok:#5fd393; --bad:#ff7f72; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header.top{padding-block:28px 18px}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,7vw,2.8rem);line-height:1.05;margin:.2em 0 .3em;text-wrap:balance}
+h1 .k{display:inline-flex;gap:.12em}
+h1 .k span{padding:0 .08em;border-radius:.12em}
+h2{font-family:var(--display);font-weight:800;font-size:1.5rem;margin:1.6em 0 .4em;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:0 0 .4em}
+p{margin:.4em 0}
+.lead{color:var(--muted);max-width:60ch}
+.progress{display:flex;align-items:center;gap:12px;margin-top:14px}
+.bar{flex:1;height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.score{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;padding:8px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font:inherit;font-size:.92rem;font-weight:700;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab .n{font-variant-numeric:tabular-nums;font-weight:400;opacity:.8;font-size:.82rem}
+button:focus-visible,.chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+section[role=tabpanel]{padding-top:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.case{border-radius:12px;padding:14px;border:1px solid var(--line);background:var(--surface)}
+.case b.tag{display:inline-block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:6px;margin-bottom:6px}
+.nom .tag{background:var(--nom-bg);color:var(--nom)} .akk .tag{background:var(--akk-bg);color:var(--akk)}
+.dat .tag{background:var(--dat-bg);color:var(--dat)} .gen .tag{background:var(--gen-bg);color:var(--gen)}
+.case .q{font-family:var(--display);font-weight:800;font-size:1.25rem}
+.ex{font-style:italic;color:var(--muted)}
+.cN{color:var(--nom);font-weight:700}.cA{color:var(--akk);font-weight:700}.cD{color:var(--dat);font-weight:700}.cG{color:var(--gen);font-weight:700}
+
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:3px;gap:3px;background:var(--bg)}
+.toggle button{font:inherit;font-size:.88rem;border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:99px;cursor:pointer;font-weight:700}
+.toggle button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tbl-wrap{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;width:100%;min-width:440px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+thead th{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+tbody th{font-weight:700}
+td.chg{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+tr.r-nom th{color:var(--nom)} tr.r-akk th{color:var(--akk)} tr.r-dat th{color:var(--dat)} tr.r-gen th{color:var(--gen)}
+tr.r-akk td.chg{color:var(--akk)} tr.r-dat td.chg{color:var(--dat)} tr.r-gen td.chg{color:var(--gen)}
+.tip{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:.95rem}
+.tip svg{flex:0 0 20px;margin-top:2px;color:var(--accent)}
+
+.preps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.prep{font-weight:700;padding:3px 10px;border-radius:99px;font-size:.95rem}
+.akk .prep{background:var(--akk-bg);color:var(--akk)} .dat .prep{background:var(--dat-bg);color:var(--dat)} .gen .prep{background:var(--gen-bg);color:var(--gen)}
+.wo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.wo figure{margin:0;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.wo svg{width:100%;max-width:150px;height:auto}
+.wo figcaption{font-size:.95rem;margin-top:6px}
+.contr{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px;margin-top:8px;font-variant-numeric:tabular-nums}
+.contr div{background:var(--bg);border-radius:8px;padding:6px 10px;font-size:.95rem}
+.order{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.order span.w{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-weight:700}
+.order svg{color:var(--muted)}
+
+/* ejercicios */
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ex-head p{color:var(--muted);margin:0}
+.reset{font:inherit;font-size:.88rem;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.item.ok{border-color:var(--ok)} .item.bad{border-color:var(--bad)}
+.qnum{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.sent{font-size:1.15rem}
+.sent .gap{display:inline-block;min-width:4.2em;border-bottom:2px dashed var(--muted);text-align:center;font-weight:700}
+.item.ok .gap{border-color:var(--ok);color:var(--ok);border-bottom-style:solid}
+.item.bad .gap{border-color:var(--bad);color:var(--bad);border-bottom-style:solid}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{font:inherit;font-weight:700;font-size:1rem;min-width:64px;padding:9px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--dat-bg);color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--akk-bg);color:var(--bad);text-decoration:line-through}
+.fb{display:flex;gap:8px;font-size:.95rem;align-items:flex-start}
+.fb svg{flex:0 0 18px;margin-top:3px}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.fb span{color:var(--ink)}
+.hint{font-size:.88rem;color:var(--muted)}
+
+.builder .slots{min-height:52px;border:1.5px dashed var(--line);border-radius:10px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.builder .pool{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-weight:700;font-size:.98rem;padding:6px 11px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.slots .chip{background:var(--surface)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.primary{font:inherit;font-weight:700;border:0;background:var(--accent);color:var(--accent-ink);border-radius:10px;padding:9px 16px;cursor:pointer}
+.primary:disabled{opacity:.45;cursor:default}
+.ghost{font:inherit;font-weight:700;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:10px;padding:9px 14px;cursor:pointer}
+
+.caps .words{display:flex;flex-wrap:wrap;gap:6px 4px;font-size:1.2rem}
+.wd{font:inherit;font-size:1.15rem;border:1.5px solid transparent;background:transparent;color:var(--ink);padding:2px 6px;border-radius:7px;cursor:pointer}
+.wd.fixed{cursor:default;padding-inline:2px}
+.wd.on{background:var(--nom-bg);border-color:var(--nom)}
+.wd.miss{border-color:var(--bad);border-style:dashed}
+.wd.okw{border-color:var(--ok);background:var(--dat-bg);color:var(--ok)}
+.wd.badw{border-color:var(--bad);background:var(--akk-bg);color:var(--bad)}
+.done-msg{border-radius:12px;padding:14px 16px;background:var(--dat-bg);color:var(--ok);font-weight:700;display:flex;gap:10px;align-items:center}
+@media (max-width:440px){.wo{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Deutsch · 6. Klasse · tras la Klassenarbeit Nr. 1</div>
+    <h1>Kasus-Training</h1>
+    <p class="lead">Explicación de Akkusativ y Dativ, y ejercicios con los mismos errores del examen. Responde y verás al momento si está bien y por qué.</p>
+    <div class="progress"><div class="bar" aria-hidden="true"><i id="gbar"></i></div><div class="score" id="gscore">0 / 0</div></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button class="tab" role="tab" id="t-teoria" aria-controls="p-teoria" aria-selected="true">Teoría</button>
+    <button class="tab" role="tab" id="t-art" aria-controls="p-art" aria-selected="false">Akk / Dat <span class="n" data-count="art"></span></button>
+    <button class="tab" role="tab" id="t-gen" aria-controls="p-gen" aria-selected="false">Genitiv <span class="n" data-count="gen"></span></button>
+    <button class="tab" role="tab" id="t-caps" aria-controls="p-caps" aria-selected="false">Mayúsculas <span class="n" data-count="caps"></span></button>
+    <button class="tab" role="tab" id="t-verb" aria-controls="p-verb" aria-selected="false">Verbos <span class="n" data-count="verb"></span></button>
+  </nav>
+
+  <!-- TEORÍA -->
+  <section role="tabpanel" id="p-teoria" aria-labelledby="t-teoria">
+    <h2>1. ¿Qué caso es? Haz la pregunta</h2>
+    <div class="case-grid">
+      <div class="case nom"><b class="tag">Nominativ</b><div class="q">Wer? / Was?</div><p>El <b>sujeto</b>: quien hace la acción o de quien se habla.</p><p class="ex"><span class="cN">Der Rucksack</span> ist lila.</p></div>
+      <div class="case akk"><b class="tag">Akkusativ</b><div class="q">Wen? / Was?</div><p>Lo que <b>recibe la acción</b> directamente (complemento directo).</p><p class="ex">Ich habe <span class="cA">meinen Rucksack</span> verloren.</p></div>
+      <div class="case dat"><b class="tag">Dativ</b><div class="q">Wem?</div><p>A quién / para quién (complemento indirecto). Y después de ciertas preposiciones.</p><p class="ex">Ich gebe <span class="cD">dem Lehrer</span> das Heft.</p></div>
+    </div>
+    <div class="tip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg><div><b>Error del examen:</b> escribió <i>„Den Schulrucksack ist…“</i>. Si la palabra es el sujeto (¿qué es lila? → el Rucksack), va <b>siempre en Nominativ</b>: <span class="cN">Der</span> Schulrucksack ist…</div></div>
+
+    <h2>2. Los artículos cambian según el caso</h2>
+    <div class="card">
+      <div class="toggle" role="group" aria-label="Tipo de artículo">
+        <button id="art-def" aria-pressed="true">der / die / das</button>
+        <button id="art-indef" aria-pressed="false">ein / eine / mein</button>
+      </div>
+      <div class="tbl-wrap"><table id="art-table"></table></div>
+      <div class="tip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div>Truco: en <span class="cA">Akkusativ</span> sólo cambia el <b>masculino</b> (der → den). En <span class="cD">Dativ</span> cambia todo: dem, der, dem, den.</div></div>
+    </div>
+
+    <h2>3. Las preposiciones mandan</h2>
+    <div class="stack">
+      <div class="case akk"><b class="tag">Siempre Akkusativ</b>
+        <div class="preps"><span class="prep">durch</span><span class="prep">für</span><span class="prep">gegen</span><span class="prep">ohne</span><span class="prep">um</span><span class="prep">… entlang</span></div>
+        <p class="hint">Para recordarlas: <b>DOGFU</b> (durch, ohne, gegen, für, um).</p>
+        <p class="ex">Wir laufen durch <span class="cA">den</span> Park. · Geh <span class="cA">die</span> Straße entlang.</p></div>
+      <div class="case dat"><b class="tag">Siempre Dativ</b>
+        <div class="preps"><span class="prep">aus</span><span class="prep">bei</span><span class="prep">mit</span><span class="prep">nach</span><span class="prep">seit</span><span class="prep">von</span><span class="prep">zu</span><span class="prep">gegenüber</span></div>
+        <p class="hint">Se aprenden cantadas: „aus, bei, mit, nach, seit, von, zu“.</p>
+        <p class="ex">Wenn du aus <span class="cD">der</span> Kirche kommst… · Ich fahre mit <span class="cD">meiner</span> Freundin.</p></div>
+      <div class="case"><b class="tag" style="background:var(--bg);color:var(--ink)">Dativ o Akkusativ</b>
+        <div class="preps"><span class="prep" style="background:var(--bg)">an</span><span class="prep" style="background:var(--bg)">auf</span><span class="prep" style="background:var(--bg)">hinter</span><span class="prep" style="background:var(--bg)">in</span><span class="prep" style="background:var(--bg)">neben</span><span class="prep" style="background:var(--bg)">über</span><span class="prep" style="background:var(--bg)">unter</span><span class="prep" style="background:var(--bg)">vor</span><span class="prep" style="background:var(--bg)">zwischen</span></div>
+        <p>Depende de la pregunta: ¿está quieto o se mueve hacia algún sitio?</p>
+        <div class="wo">
+          <figure>
+            <svg viewBox="0 0 150 110" aria-hidden="true"><rect x="35" y="30" width="80" height="70" rx="12" fill="none" stroke="var(--dat)" stroke-width="4"/><path d="M55 30 v-10 a20 20 0 0 1 40 0 v10" fill="none" stroke="var(--dat)" stroke-width="4"/><rect x="58" y="52" width="34" height="38" rx="4" fill="var(--dat)"/></svg>
+            <figcaption><b class="cD">Wo?</b> (¿dónde está?) → <b class="cD">Dativ</b><br><span class="ex">Das Buch ist in <span class="cD">der</span> Tasche.</span></figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 150 110" aria-hidden="true"><rect x="55" y="30" width="80" height="70" rx="12" fill="none" stroke="var(--akk)" stroke-width="4"/><path d="M75 30 v-10 a20 20 0 0 1 40 0 v10" fill="none" stroke="var(--akk)" stroke-width="4"/><rect x="6" y="48" width="28" height="34" rx="4" fill="var(--akk)"/><path d="M38 65 h40 m-10 -9 l10 9 l-10 9" fill="none" stroke="var(--akk)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <figcaption><b class="cA">Wohin?</b> (¿a dónde va?) → <b class="cA">Akkusativ</b><br><span class="ex">Ich lege das Buch in <span class="cA">die</span> Tasche.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="card"><h3>Contracciones que se usan mucho</h3>
+        <div class="contr"><div>an + dem = <b>am</b></div><div>in + dem = <b>im</b></div><div>in + das = <b>ins</b></div><div>zu + dem = <b>zum</b></div><div>zu + der = <b>zur</b></div><div>von + dem = <b>vom</b></div><div>bei + dem = <b>beim</b></div></div>
+        <p class="hint" style="margin-top:8px">En el examen: <i>„den Rathaus entlang“</i> → mejor <b>am</b> Rathaus vorbei.</p>
+      </div>
+    </div>
+
+    <h2>4. Genitiv con während, wegen, statt</h2>
+    <div class="case gen"><b class="tag">Genitiv</b>
+      <div class="preps"><span class="prep">während</span><span class="prep">wegen</span><span class="prep">statt</span></div>
+      <p>Masculino y neutro: <b>des / eines</b> y el nombre lleva <b>-s</b> o <b>-es</b>. Femenino y plural: <b>der / einer</b>.</p>
+      <p class="ex">Die Polizei arbeitete <span class="cG">während der Nacht</span> zum 04.01. <span class="cG">wegen eines Autounfalls</span>.</p>
+      <p class="hint">Copia siempre la estructura del ejemplo: sujeto + verbo + während … + wegen …</p>
+    </div>
+
+    <h2>5. Para indicar un camino</h2>
+    <div class="card">
+      <p>Conectores en orden:</p>
+      <div class="order"><span class="w">Zuerst</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-5-5l5 5-5 5"/></svg><span class="w">Dann</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-5-5l5 5-5 5"/></svg><span class="w">Danach</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-5-5l5 5-5 5"/></svg><span class="w">Anschließend</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-5-5l5 5-5 5"/></svg><span class="w">Schließlich</span></div>
+      <p style="margin-top:12px">Verbos para no repetir <i>gehen</i>: <b>abbiegen</b> (girar), <b>überqueren</b> (cruzar), <b>folgen</b> (seguir), <b>laufen</b>, <b>sehen</b>. Imperativo con <i>du</i>: quita <i>-st</i> → <b>Bieg</b> ab! <b>Geh</b>! <b>Lauf</b>! <b>Folge</b>!</p>
+    </div>
+  </section>
+
+  <!-- EJERCICIOS -->
+  <section role="tabpanel" id="p-art" aria-labelledby="t-art" hidden>
+    <h2>Akkusativ, Dativ o Nominativ</h2>
+    <div class="ex-head"><p>Elige la forma correcta. Pregúntate: ¿sujeto? ¿qué preposición hay? ¿Wo o Wohin?</p><button class="reset" data-reset="art"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>Repetir</button></div>
+    <div class="stack" id="list-art" style="margin-top:12px"></div>
+  </section>
+
+  <section role="tabpanel" id="p-gen" aria-labelledby="t-gen" hidden>
+    <h2>Genitiv con während y wegen</h2>
+    <div class="ex-head"><p>Primero los artículos, después monta frases como las del examen.</p><button class="reset" data-reset="gen"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>Repetir</button></div>
+    <div class="stack" id="list-gen" style="margin-top:12px"></div>
+    <h2>Ordena la frase</h2>
+    <p class="hint">Toca las piezas en orden. Toca una pieza de arriba para devolverla.</p>
+    <div class="stack" id="list-build" style="margin-top:8px"></div>
+  </section>
+
+  <section role="tabpanel" id="p-caps" aria-labelledby="t-caps" hidden>
+    <h2>¿Mayúscula o minúscula?</h2>
+    <div class="ex-head"><p>Toca los <b>sustantivos</b> para ponerlos en mayúscula. Los adjetivos se quedan en minúscula.</p><button class="reset" data-reset="caps"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>Repetir</button></div>
+    <div class="stack" id="list-caps" style="margin-top:12px"></div>
+  </section>
+
+  <section role="tabpanel" id="p-verb" aria-labelledby="t-verb" hidden>
+    <h2>Verbos variados</h2>
+    <div class="ex-head"><p>Sustituye <i>gehen, sein, haben</i> por un verbo más preciso.</p><button class="reset" data-reset="verb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>Repetir</button></div>
+    <div class="stack" id="list-verb" style="margin-top:12px"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+const ICON_OK='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+const ICON_BAD='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+
+/* ---------- tabla de artículos ---------- */
+const DEF=[["Nominativ","nom","der","die","das","die"],["Akkusativ","akk","den","die","das","die"],["Dativ","dat","dem","der","dem","den (+n)"],["Genitiv","gen","des (+s)","der","des (+s)","der"]];
+const IND=[["Nominativ","nom","ein / mein","eine / meine","ein / mein","– / meine"],["Akkusativ","akk","einen / meinen","eine / meine","ein / mein","– / meine"],["Dativ","dat","einem / meinem","einer / meiner","einem / meinem","– / meinen"],["Genitiv","gen","eines / meines","einer / meiner","eines / meines","– / meiner"]];
+function drawTable(rows){
+  const t=document.getElementById('art-table');
+  let h='<thead><tr><th>Caso</th><th>masculino</th><th>femenino</th><th>neutro</th><th>plural</th></tr></thead><tbody>';
+  rows.forEach((r,i)=>{h+=`<tr class="r-${r[1]}"><th>${r[0]}</th>`;for(let c=2;c<6;c++){const chg=i>0&&r[c]!==rows[0][c];h+=`<td class="${chg?'chg':''}">${r[c]}</td>`}h+='</tr>'});
+  t.innerHTML=h+'</tbody>';
+}
+const bDef=document.getElementById('art-def'),bInd=document.getElementById('art-indef');
+bDef.onclick=()=>{bDef.setAttribute('aria-pressed','true');bInd.setAttribute('aria-pressed','false');drawTable(DEF)};
+bInd.onclick=()=>{bInd.setAttribute('aria-pressed','true');bDef.setAttribute('aria-pressed','false');drawTable(IND)};
+drawTable(DEF);
+
+/* ---------- datos ---------- */
+const MC={
+ art:[
+  ["Ich habe ___ Schulrucksack verloren.",["meinen","meinem","mein"],0,"¿Qué he perdido? (Wen/Was?) → Akkusativ. der Rucksack → meinen."],
+  ["___ Schulrucksack ist lila.",["Der","Den","Dem"],0,"Es el sujeto (¿qué es lila?) → Nominativ. Este fue el error del examen."],
+  ["Wenn du aus ___ Universitätskirche kommst, …",["der","die","den"],0,"aus va siempre con Dativ. die Kirche → der Kirche."],
+  ["Auf ___ kleineren Tasche steht die Marke.",["der","die","den"],0,"¿Dónde está la marca? (Wo?) → Dativ. die Tasche → der Tasche."],
+  ["Ich stecke die Flasche in ___ Seitentasche.",["die","der","dem"],0,"La flasche se mueve hacia dentro (Wohin?) → Akkusativ. Femenino no cambia: die."],
+  ["Die Flasche steckt in ___ Seitentasche.",["der","die","den"],0,"Ya está dentro (Wo?) → Dativ: der."],
+  ["Geh ___ Rathaus vorbei.",["am","an den","an die"],0,"Pasas junto al ayuntamiento (posición) → Dativ. an + dem = am."],
+  ["Wir laufen durch ___ Park.",["den","dem","der"],0,"durch va siempre con Akkusativ. der Park → den Park."],
+  ["Ich fahre mit ___ Freundin Vera.",["meiner","meine","meinen"],0,"mit va siempre con Dativ. die Freundin → meiner."],
+  ["Bieg an ___ Ampel links ab.",["der","die","das"],0,"¿Dónde giras? En el semáforo (Wo?) → Dativ. die Ampel → der."],
+  ["Das Geschenk ist für ___ Lehrerin.",["die","der","den"],0,"für va siempre con Akkusativ. Femenino se queda igual: die."],
+  ["Nach ___ Schule spiele ich Tennis.",["der","die","dem"],0,"nach va siempre con Dativ. die Schule → der."],
+  ["Ich gehe ___ Sporthalle.",["zur","zum","zu die"],0,"zu va con Dativ: zu + der = zur (Sporthalle es femenino)."],
+  ["Wenn Sie ___ finden, rufen Sie mich bitte an. (den Rucksack)",["ihn","es","ihm"],0,"der Rucksack es masculino → er. En Akkusativ: ihn. En el examen puso „es“."]
+ ],
+ gen:[
+  ["während ___ Nacht",["der","des","die"],0,"die Nacht es femenino → Genitiv: der."],
+  ["wegen ___ Autounfalls",["eines","einem","einen"],0,"der Unfall es masculino → eines, y el nombre lleva -s."],
+  ["wegen ___ Überschwemmung",["einer","eine","eines"],0,"die Überschwemmung es femenino → einer."],
+  ["während ___ Abendstunden",["der","den","die"],0,"die Stunden es plural → Genitiv: der."],
+  ["während ___ Morgens",["des","dem","den"],0,"der Morgen es masculino → des Morgens (con -s)."],
+  ["wegen ___",["eines Diebes","einem Dieb","ein Dieb"],0,"der Dieb es masculino → eines Diebes (-es)."],
+  ["statt ___ Hundes",["eines","einen","einem"],0,"statt también pide Genitiv: eines Hundes."],
+  ["wegen ___ Regens",["des","dem","der"],0,"der Regen es masculino → des Regens."]
+ ],
+ verb:[
+  ["An der Ampel ___ du links ___.",["biegst … ab","bist … –","hast … –"],0,"abbiegen = girar. Es separable: Du biegst links ab."],
+  ["___ die Straße! (cruzar)",["Überquere","Habe","Sei"],0,"überqueren = cruzar. Imperativo con du: Überquere!"],
+  ["___ der Straße bis zum Rathaus! (seguir)",["Folge","Hab","Bist"],0,"folgen = seguir (y pide Dativ: der Straße)."],
+  ["In der Seitentasche ___ meine Wasserflasche.",["steckt","hat","haben"],0,"stecken = estar metido. Más preciso que „hat“ o „ist“."],
+  ["Dann ___ du rechts den Kartoffelmarkt.",["siehst","hast","bist"],0,"sehen → du siehst (cambia e → ie)."],
+  ["___ geradeaus! (laufen, imperativo)",["Lauf","Läufst","Laufen"],0,"Imperativo con du: quita -st y la diéresis → Lauf!"],
+  ["Der Rucksack ___ circa einen halben Meter groß.",["misst","hat","geht"],0,"messen = medir → er misst. Variante elegante de „ist … groß“."]
+ ]
+};
+const BUILD=[
+ ["Die Polizei","arbeitete","während","der Abendstunden","am 20.02.","wegen","einer Überschwemmung."],
+ ["Die Polizei","arbeitete","während","des Morgens","am 21.02.","wegen","eines Diebes."]
+];
+const CAPS=[
+ [["Der",0,1],["schulrucksack",1],["ist",0],["circa",0],["einen",0],["halben",0],["meter",1],["groß.",0]],
+ [["Er",0,1],["hat",0],["drei",0],["taschen",1],["mit",0],["blauen",0],["reißverschlüssen.",1]],
+ [["In",0,1],["einer",0],["seitentasche",1],["steckt",0],["meine",0],["wasserflasche.",1]],
+ [["Vielen",0,1],["dank",1],["für",0],["die",0],["hilfe!",1]],
+ [["Wir",0,1],["gehen",0],["am",0],["rathaus",1],["vorbei",0],["bis",0],["zum",0],["kartoffelmarkt.",1]],
+ [["Der",0,1],["kleine",0],["hund",1],["hat",0],["einen",0],["roten",0],["ball.",1]]
+];
+
+/* ---------- estado ---------- */
+let S={};
+const KEY='kasus-alba-v1';
+try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const shuffleSeed=(arr,seed)=>{const a=arr.map((v,i)=>[v,i]);let s=seed*9301+49297;for(let i=a.length-1;i>0;i--){s=(s*9301+49297)%233280;const j=Math.floor(s/233280*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const cap=w=>w.charAt(0).toUpperCase()+w.slice(1);
+
+/* ---------- multiple choice ---------- */
+function renderMC(set){
+  const box=document.getElementById('list-'+set);box.innerHTML='';
+  MC[set].forEach((it,idx)=>{
+    const key=set+idx,st=S[key];
+    const el=document.createElement('div');el.className='item'+(st?(st.ok?' ok':' bad'):'');
+    const shown=st?it[1][it[2]]:'&nbsp;';
+    el.innerHTML=`<div class="qnum">${String(idx+1).padStart(2,'0')}</div><div class="sent">${it[0].replace('___',`<span class="gap">${st?shown:'&nbsp;'}</span>`).replace('___','<span class="gap" style="min-width:2em">&nbsp;</span>')}</div><div class="opts"></div><div class="fbx"></div>`;
+    const opts=el.querySelector('.opts');
+    shuffleSeed(it[1],idx+set.length).forEach(([txt,i])=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=txt;b.id=`o-${key}-${i}`;
+      if(st){b.disabled=true;if(i===it[2])b.classList.add('right');if(i===st.pick&&!st.ok)b.classList.add('wrong')}
+      b.onclick=()=>{S[key]={ok:i===it[2],pick:i};save();renderMC(set);update()};
+      opts.appendChild(b);
+    });
+    if(st)el.querySelector('.fbx').innerHTML=`<div class="fb ${st.ok?'ok':'bad'}">${st.ok?ICON_OK:ICON_BAD}<span><b>${st.ok?'Richtig.':'Fast. Correcto: '+it[1][it[2]]+'.'}</b> ${it[3]}</span></div>`;
+    box.appendChild(el);
+  });
+}
+
+/* ---------- ordenar frase ---------- */
+function renderBuild(){
+  const box=document.getElementById('list-build');box.innerHTML='';
+  BUILD.forEach((parts,idx)=>{
+    const key='b'+idx;const st=S[key]||{seq:[],done:null};S[key]=st;
+    const el=document.createElement('div');el.className='item builder'+(st.done===true?' ok':st.done===false?' bad':'');
+    el.innerHTML=`<div class="qnum">Frase ${idx+1}</div><div class="slots" aria-label="Tu frase"></div><div class="pool"></div><div class="row"><button class="primary">Comprobar</button><button class="ghost">Borrar</button></div><div class="fbx"></div>`;
+    const slots=el.querySelector('.slots'),pool=el.querySelector('.pool');
+    st.seq.forEach((pi,pos)=>{const c=document.createElement('button');c.className='chip';c.textContent=parts[pi];c.disabled=st.done===true;c.onclick=()=>{st.seq.splice(pos,1);st.done=null;save();renderBuild();update()};slots.appendChild(c)});
+    if(!st.seq.length)slots.innerHTML='<span class="hint">Aquí aparece tu frase…</span>';
+    shuffleSeed(parts,idx+3).forEach(([txt,pi])=>{if(st.seq.includes(pi))return;const c=document.createElement('button');c.className='chip';c.textContent=txt;c.onclick=()=>{st.seq.push(pi);st.done=null;save();renderBuild();update()};pool.appendChild(c)});
+    const [chk,clr]=el.querySelectorAll('.row button');
+    chk.disabled=st.seq.length!==parts.length||st.done===true;
+    chk.onclick=()=>{st.done=st.seq.every((v,i)=>v===i);save();renderBuild();update()};
+    clr.onclick=()=>{st.seq=[];st.done=null;save();renderBuild();update()};
+    if(st.done===true)el.querySelector('.fbx').innerHTML=`<div class="fb ok">${ICON_OK}<span><b>Perfekt.</b> Sujeto + verbo + während (Genitiv) + fecha + wegen (Genitiv).</span></div>`;
+    if(st.done===false)el.querySelector('.fbx').innerHTML=`<div class="fb bad">${ICON_BAD}<span><b>Aún no.</b> Empieza por el sujeto y el verbo, y sigue el modelo: <i>${parts.join(' ')}</i> — prueba otra vez sin mirar.</span></div>`;
+    box.appendChild(el);
+  });
+}
+
+/* ---------- mayúsculas ---------- */
+function renderCaps(){
+  const box=document.getElementById('list-caps');box.innerHTML='';
+  CAPS.forEach((words,idx)=>{
+    const key='c'+idx;const st=S[key]||{on:[],done:null};S[key]=st;
+    const el=document.createElement('div');el.className='item caps'+(st.done===true?' ok':st.done===false?' bad':'');
+    el.innerHTML=`<div class="qnum">${String(idx+1).padStart(2,'0')}</div><div class="words"></div><div class="row"><button class="primary">Comprobar</button></div><div class="fbx"></div>`;
+    const wbox=el.querySelector('.words');
+    words.forEach(([w,noun,fixed],wi)=>{
+      const b=document.createElement('button');b.className='wd'+(fixed?' fixed':'');
+      const on=st.on.includes(wi);
+      b.textContent=fixed?w:(on?cap(w):w);
+      if(fixed){b.disabled=true}
+      else{
+        if(on)b.classList.add('on');
+        if(st.done!==null){ if(on&&noun)b.className='wd okw'; else if(on&&!noun)b.className='wd badw'; else if(!on&&noun){b.className='wd miss';} }
+        b.onclick=()=>{if(st.done===true)return;const p=st.on.indexOf(wi);p>=0?st.on.splice(p,1):st.on.push(wi);st.done=null;save();renderCaps();update()};
+      }
+      wbox.appendChild(b);
+    });
+    const chk=el.querySelector('.primary');chk.disabled=st.done===true;
+    chk.onclick=()=>{st.done=words.every(([w,noun,fixed],wi)=>fixed||(noun?st.on.includes(wi):!st.on.includes(wi)));save();renderCaps();update()};
+    if(st.done===true)el.querySelector('.fbx').innerHTML=`<div class="fb ok">${ICON_OK}<span><b>Richtig.</b> Sustantivos en mayúscula, adjetivos en minúscula.</span></div>`;
+    if(st.done===false){const nouns=words.filter(x=>x[1]).map(x=>cap(x[0]).replace(/[.!]/g,'')).join(', ');el.querySelector('.fbx').innerHTML=`<div class="fb bad">${ICON_BAD}<span><b>Revisa.</b> Los sustantivos son: ${nouns}. Truco: si puedes poner „der/die/das“ delante, es sustantivo.</span></div>`}
+    box.appendChild(el);
+  });
+}
+
+/* ---------- progreso ---------- */
+function counts(){
+  const r={};
+  ['art','verb'].forEach(s=>{r[s]=[MC[s].filter((_,i)=>S[s+i]&&S[s+i].ok).length,MC[s].length]});
+  r.gen=[MC.gen.filter((_,i)=>S['gen'+i]&&S['gen'+i].ok).length+BUILD.filter((_,i)=>S['b'+i]&&S['b'+i].done===true).length,MC.gen.length+BUILD.length];
+  r.caps=[CAPS.filter((_,i)=>S['c'+i]&&S['c'+i].done===true).length,CAPS.length];
+  return r;
+}
+function update(){
+  const c=counts();let a=0,t=0;
+  Object.keys(c).forEach(k=>{a+=c[k][0];t+=c[k][1];const n=document.querySelector(`[data-count="${k}"]`);if(n)n.textContent=`${c[k][0]}/${c[k][1]}`});
+  document.getElementById('gscore').textContent=`${a} / ${t}`;
+  document.getElementById('gbar').style.width=(t?a/t*100:0)+'%';
+}
+
+/* ---------- pestañas y reset ---------- */
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(tb=>tb.onclick=()=>{
+  tabs.forEach(x=>{x.setAttribute('aria-selected',x===tb);document.getElementById(x.getAttribute('aria-controls')).hidden=x!==tb});
+  try{localStorage.setItem(KEY+'-tab',tb.id)}catch(e){}
+  window.scrollTo({top:document.querySelector('nav.tabs').offsetTop-4,behavior:'smooth'});
+});
+try{const t=localStorage.getItem(KEY+'-tab');if(t&&document.getElementById(t)){const tb=document.getElementById(t);tabs.forEach(x=>{x.setAttribute('aria-selected',x===tb);document.getElementById(x.getAttribute('aria-controls')).hidden=x!==tb})}}catch(e){}
+
+document.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>{
+  const s=b.dataset.reset;
+  Object.keys(S).forEach(k=>{
+    if(s==='art'&&/^art\d/.test(k))delete S[k];
+    if(s==='verb'&&/^verb\d/.test(k))delete S[k];
+    if(s==='gen'&&(/^gen\d/.test(k)||/^b\d/.test(k)))delete S[k];
+    if(s==='caps'&&/^c\d/.test(k))delete S[k];
+  });
+  save();renderAll();
+});
+function renderAll(){renderMC('art');renderMC('gen');renderMC('verb');renderBuild();renderCaps();update()}
+renderAll();
+})();
+</script>
+
+</body>
+</html>
+
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+</body></html>

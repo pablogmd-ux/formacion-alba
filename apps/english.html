@@ -1,0 +1,2988 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ingles Alba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF5FA; --surface:#FFFFFF; --ink:#16324F; --muted:#5B6F84; --line:#D3E0EB;
+  --was:#E9A800; --was-soft:#FFF4D1; --were:#1C74C9; --were-soft:#DDEEFF;
+  --ok:#1E9E62; --ok-soft:#DDF5E8; --bad:#D6453D; --bad-soft:#FDE3E1; --chip:#E3EDF5;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1D2B; --surface:#172A3D; --ink:#E7F0F8; --muted:#9DB2C6; --line:#2A4158;
+    --was:#FFC83D; --was-soft:#3A3113; --were:#6BB3FF; --were-soft:#15314F;
+    --ok:#4FD08F; --ok-soft:#153828; --bad:#FF7B72; --bad-soft:#3E1B1A; --chip:#20364C;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1D2B; --surface:#172A3D; --ink:#E7F0F8; --muted:#9DB2C6; --line:#2A4158;
+  --was:#FFC83D; --was-soft:#3A3113; --were:#6BB3FF; --were-soft:#15314F;
+  --ok:#4FD08F; --ok-soft:#153828; --bad:#FF7B72; --bad-soft:#3E1B1A; --chip:#20364C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,"Segoe UI",Arial,sans-serif;font-size:18px;line-height:1.5}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+header{padding:12px 0 4px}
+.big{font-family:Fredoka,"Arial Rounded MT Bold",Arial,sans-serif;font-weight:700;font-size:clamp(40px,9vw,70px);line-height:1;margin:0;letter-spacing:-1px}
+.big .a{color:var(--was)} .big .b{color:var(--were)} .big .s{color:var(--muted);font-weight:500}
+.sub{color:var(--muted);margin:10px 0 0;font-weight:600}
+h2{font-family:Fredoka,Arial,sans-serif;font-weight:600;font-size:26px;margin:0 0 6px}
+.was{color:var(--was);font-weight:800} .were{color:var(--were);font-weight:800}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;margin:18px 0}
+details.rules summary{cursor:pointer;font-family:Fredoka,Arial,sans-serif;font-size:22px;font-weight:600;list-style:none}
+details.rules summary::-webkit-details-marker{display:none}
+details.rules summary::after{content:" (tap to hide)";font-family:Nunito,Arial,sans-serif;font-size:15px;color:var(--muted);font-weight:600}
+details.rules:not([open]) summary::after{content:" (tap to show)"}
+.rule{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+.rule:first-of-type{border-top:0}
+.rn{width:30px;height:30px;border-radius:50%;background:var(--chip);display:grid;place-items:center;font-weight:800;font-size:15px}
+.rule p{margin:2px 0}
+.ex{color:var(--muted)}
+.modebar{display:flex;gap:8px;margin:0 0 14px}
+.modebar button{border:2px solid var(--line);background:var(--surface);color:var(--muted);
+  border-radius:999px;padding:7px 16px;font:800 14px Nunito,Arial,sans-serif;cursor:pointer}
+.modebar button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+details.subsec{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin:14px 0}
+details.subsec>summary{padding:16px 20px;font:800 17px Fredoka,Nunito,Arial,sans-serif;color:var(--ink);
+  cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;border-radius:18px}
+details.subsec>summary::-webkit-details-marker{display:none}
+details.subsec>summary::after{content:"";margin-left:auto;width:11px;height:11px;flex:0 0 auto;
+  border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
+details.subsec[open]>summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+details.subsec>summary .tick{color:var(--ok);font-weight:800}
+.card.inner{background:transparent;border:0;border-radius:0;margin:0;padding:0 20px 20px}
+.card.inner>h2{display:none}
+.card.inner>.hint:first-of-type{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chips button{border:2px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:999px;padding:7px 13px;font:700 15px Nunito,Arial,sans-serif;cursor:pointer}
+.chips button:disabled{opacity:.3}
+.built{min-height:44px;border:2px dashed var(--line);border-radius:12px;padding:9px 12px;
+  margin:4px 0 2px;font-weight:700;color:var(--ink)}
+.built.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.built.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.built .ph{color:var(--muted);font-weight:500;font-style:italic}
+.svopt{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.svopt span{background:var(--chip);border-radius:9px;padding:5px 10px;font-weight:800;font-size:14px}
+.svopt span i{display:block;font-weight:600;font-size:12px;color:var(--muted);font-style:normal}
+.mapwrap{overflow-x:auto;margin:0 0 18px;-webkit-overflow-scrolling:touch}
+.mapwrap svg{display:block;min-width:600px;width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.mapwrap .road{fill:var(--chip)}
+.mapwrap .rname{fill:var(--muted);font:600 13px Nunito,Arial,sans-serif}
+.mapwrap .plot{fill:var(--were-soft);stroke:var(--line)}
+.mapwrap .pname{fill:var(--ink);font:700 14px Nunito,Arial,sans-serif;text-anchor:middle}
+.mapwrap .start{fill:var(--was-soft);stroke:var(--was);stroke-width:2}
+.mapwrap .sname{fill:var(--was);font:800 14px Nunito,Arial,sans-serif;text-anchor:middle}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.box{border-radius:14px;padding:14px}
+.box.w1{background:var(--was-soft)} .box.w2{background:var(--were-soft)}
+.box b{font-family:Fredoka,Arial,sans-serif;font-size:28px;display:block;line-height:1.1}
+.box.w1 b{color:var(--was)} .box.w2 b{color:var(--were)}
+.groups{display:flex;gap:8px;overflow-x:auto;padding:4px 0 2px;margin:10px -16px 0;padding-left:16px;padding-right:16px}
+.groups button{flex:0 0 auto;border:0;background:var(--chip);color:var(--ink);border-radius:12px;padding:10px 16px;font:800 16px Fredoka,Nunito,Arial,sans-serif;cursor:pointer}
+.groups button.on{background:var(--ink);color:var(--bg)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin:0 -16px;padding-left:16px;padding-right:16px;display:flex;gap:8px;overflow-x:auto}
+nav button{flex:0 0 auto;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:700 15px Nunito,Arial,sans-serif;cursor:pointer}
+nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav button .done{color:var(--ok)}
+nav button.on .done{color:inherit}
+.hint{color:var(--muted);margin:0 0 14px;font-style:italic}
+.item{padding:12px 0;border-top:1px dashed var(--line)}
+.item:first-child{border-top:0}
+.q{margin:0 0 8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:8px 16px;font:700 17px Nunito,Arial,sans-serif;cursor:pointer;min-width:70px}
+.opt:hover{border-color:var(--muted)}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.opt.sel{border-color:var(--ink);background:var(--chip)}
+.locked{background:var(--chip);border-radius:14px;padding:18px;text-align:center}
+.qnum{display:inline-block;width:26px;font-weight:800;color:var(--muted)}
+.tagline{color:var(--muted);font-size:14.5px;font-weight:700;margin:0 0 6px}
+.item .q{margin-left:26px}
+.res{display:grid;grid-template-columns:1fr auto auto;gap:8px;padding:8px 0;border-top:1px solid var(--line);align-items:center;font-size:15px}
+.pill{border-radius:999px;padding:2px 10px;font-weight:800;font-size:14px}
+.pill.a{background:var(--ok-soft);color:var(--ok)} .pill.b{background:var(--was-soft);color:var(--was)} .pill.c{background:var(--bad-soft);color:var(--bad)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.bank{display:flex;flex-wrap:wrap;gap:6px;background:var(--chip);border-radius:12px;padding:10px;margin-bottom:14px}
+.bank span{background:var(--surface);border-radius:8px;padding:4px 10px;font-weight:700;font-size:15px}
+input[type=text]{width:100%;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 12px;font:600 17px Nunito,Arial,sans-serif}
+textarea{width:100%;min-height:200px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:12px;font:400 17px Nunito,Arial,sans-serif;line-height:1.7;resize:vertical}
+input.gap{width:130px;display:inline-block;padding:4px 8px;margin:2px}
+input.short{width:160px;display:inline-block}
+input.right{border-color:var(--ok);background:var(--ok-soft)}
+input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+input:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--were);outline-offset:2px}
+.fb{font-size:15px;font-weight:700;margin-top:4px;min-height:1px}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--bad)}
+.row2{display:grid;grid-template-columns:1fr;gap:8px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.btn{border:0;border-radius:12px;padding:12px 20px;font:800 17px Nunito,Arial,sans-serif;cursor:pointer;background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.score{font-weight:800;font-size:18px}
+table.forms{width:100%;border-collapse:collapse}
+.tscroll{overflow-x:auto}
+table.forms th,table.forms td{padding:6px;text-align:left;border-bottom:1px solid var(--line)}
+table.forms th{font-size:14px;color:var(--muted)}
+table.forms td:first-child{font-weight:800;white-space:nowrap}
+table.forms input{min-width:110px}
+.postcard{background:var(--was-soft);border-radius:16px;padding:18px;line-height:2.2}
+.result{text-align:center;padding:20px 0}
+.result .n{font-family:Fredoka,Arial,sans-serif;font-size:64px;font-weight:700;line-height:1}
+.chip{display:inline-block;background:var(--chip);border-radius:8px;padding:2px 10px;font-weight:700;font-size:15px;margin:2px 4px 2px 0}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}
+.check input{width:22px;height:22px;flex:0 0 auto;margin-top:3px;accent-color:var(--ok)}
+.model{background:var(--were-soft);border-radius:14px;padding:16px;margin-top:10px}
+.model p{margin:0 0 10px}
+@media (max-width:560px){.split{grid-template-columns:1fr} body{font-size:17px}}
+@media (prefers-reduced-motion:no-preference){.opt,.btn{transition:transform .1s}.opt:active,.btn:active{transform:scale(.96)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 class="big"><span class="a">Simple</span> <span class="b">Past</span></h1>
+  <p class="sub">English practice – Welcome back &amp; Unit 1: vocabulary, <i>was/were</i>, regular and irregular verbs, writing</p>
+</header>
+
+<div class="groups" id="groups"></div>
+<div id="rulesbox"></div>
+<nav id="nav"></nav>
+<main id="main"></main>
+</div>
+
+<script>
+// ---------- helpers ----------
+function normalize(s){
+  return (s||"").normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .replace(/[‘’‛`´′]/g,"'")
+    .toLowerCase()
+    .replace(/n't\b/g," not")
+    .replace(/[.,!?;:"“”]/g," ")
+    .replace(/\s+/g," ").trim();
+}
+const same=(a,b)=>normalize(a)===normalize(b);
+const raw=s=>(s||"").replace(/[‘’‛`´]/g,"'").trim().toLowerCase();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const el=(tag,attrs={},html="")=>{const e=document.createElement(tag);for(const k in attrs){k==="class"?e.className=attrs[k]:e.setAttribute(k,attrs[k])}if(html)e.innerHTML=html;return e};
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const strip=h=>String(h).replace(/<[^>]*>/g,"").replace(/\s*→\s*$/,"").replace(/\s+/g," ").trim();
+
+// ---------- data: vocabulary ----------
+const VOCAB_WELCOME=[
+ ["up","hinauf"],["lovely","schön"],["over","über"],["custard","die Vanillasoße"],["dessert","der Nachtisch"],
+ ["sweet","süß"],["queue","die Schlange"],["was","Vergangenheitsform von „be“"],["were","Vergangenheitsform von „be“"],
+ ["cool","kühl"],["degree","der Grad"],["million","die Million"],["seaside","die Meeresküste"],
+ ["be busy","beschäftigt sein"],["too","zu"],["all summer","den ganzen Sommer"],["surprised","überrascht"],
+ ["classical","klassisch"],["ticket","die Eintrittskarte"],["free","kostenlos"],["pride","der Stolz"],["parade","die Parade"],
+ ["jealous (of)","neidisch (auf), eifersüchtig (auf)"],["swap","tauschen"],["thick","dick"],["nothing","(gar) nichts"],
+ ["past","die Vergangenheit"],["view","die Aussicht"],["what else","was sonst"],["middle","die Mitte"],
+ ["expensive","teuer"],["instead","stattdessen"],["cry","weinen"],["sell","verkaufen"],["wet","nass"],["dry","trocken"]
+];
+const VOCAB_UNIT1=[
+ // Unit 1: Holiday stories
+ ["hike","wandern"],["experience","das Erlebnis"],["summary","die Zusammenfassung"],["tourist","der Tourist, die Touristin"],
+ // Part A
+ ["the last lesson","die letzte Stunde"],["enjoy","genießen"],["stay (at/with)","übernachten (in/bei), vorübergehend wohnen"],
+ ["ride a bike","Rad fahren"],["pretty","hübsch"],["ghost","der Geist, das Gespenst"],["train","der Zug"],
+ ["get in(to) a car","in ein Auto einsteigen"],["get on(to) a bus","in einen Bus einsteigen"],["get off a bus","aus einem Bus aussteigen"],
+ ["get out of a car","aus einem Auto aussteigen"],
+ ["wave","winken"],["drive","mit dem Auto fahren"],["drive off","wegfahren"],["when","als"],
+ ["onto sth.","auf etwas (hinauf)"],["off sth.","von etwas herunter"],["cartoon","der Comicstrip"],
+ ["moped","das Moped"],["plane","das Flugzeug"],["scooter","der Roller, der Motorroller"],["tram","die Tram, die Straßenbahn"],
+ ["go by bus / car","mit dem Bus / Auto fahren"],
+ ["campsite","der Zeltplatz"],["caravan","der Wohnwagen"],["castle","die Burg, das Schloss"],
+ ["cathedral","die Kathedrale, der Dom"],["forest","der Wald"],["holiday home","die Ferienwohnung"],
+ ["island","die Insel"],["lake","der See"],["mountain","der Berg"],["museum","das Museum"],
+ ["restaurant","das Restaurant"],["theme park","der Freizeitpark"],["village","das Dorf"],["zoo","der Zoo"],
+ ["phonetic symbol","das Lautschriftsymbol"],["symbol","das Symbol"],["trip","der Ausflug, die Reise"],
+ ["idiom","die Redensart"],["expression","der Ausdruck"],["at first","anfangs"],
+ ["Dear …,","Liebe/r …,  Sehr geehrte(r) …,"],["Love, …","Liebe Grüße, …"],["Best wishes","Viele / Herzliche Grüße"],
+ ["make notes (on sth.)","sich Notizen machen (über etwas)"],["informal","informell"],["formal","formell, förmlich"],
+ ["start","der Anfang"],
+ // Part B
+ ["go on a tour","einen Rundgang / eine Rundfahrt machen"],["I didn't see them.","Ich sah sie nicht."],
+ ["be afraid (of sth.)","Angst haben (vor etwas)"],["building","das Gebäude"],["mostly","hauptsächlich, meistens"],
+ // Creepy places (3b)
+ ["broken","kaputt"],["creepy","gruselig, unheimlich"],["dark","dunkel"],["dirty","schmutzig"],
+ ["horrible","schrecklich"],["scary","gruselig"],["silent","still"],["stormy","stürmisch"],
+ ["strange","seltsam"],["weird","komisch, seltsam"]
+];
+const VOCAB_NOV=[
+ ["ruin","die Ruine"],["nobody","niemand"],["no one","niemand"],["reach","erreichen"],
+ ["lead","führen, leiten"],["tunnel","der Tunnel"],["anybody?","(irgend)jemand?"],
+ ["roof","das Dach"],["low","niedrig"],["bend down","sich hinunterbeugen, sich bücken"],
+ ["as","als, während"],["drop","der Tropfen"],["fall","fallen, stürzen, hinfallen"],
+ ["head","der Kopf"],["reply (to)","antworten (auf), erwidern"],["owl","die Eule"],
+ ["wind","der Wind"],["flicker","flackern"],["work","funktionieren"]
+];
+const VOCAB_SETS=[["nov","Test noviembre",VOCAB_NOV],["unit1","Unit 1",VOCAB_UNIT1],["welcome","Welcome Back",VOCAB_WELCOME],
+ ["all","Todo",VOCAB_NOV.concat(VOCAB_UNIT1,VOCAB_WELCOME)]];
+let VOCAB=VOCAB_NOV;
+
+// ---------- data: was / were ----------
+const WW=[
+ ["Noah ___ at the skate park on Saturday.","was"],["Alice and Lily ___ on the pier yesterday.","were"],
+ ["I ___ really happy on my birthday.","was"],["The ice creams ___ very big.","were"],
+ ["My brother ___ in the garden two hours ago.","was"],["You ___ very funny in the school play, Zane!","were"],
+ ["The cats ___ hungry this morning.","were"],["It ___ windy at the beach last week.","was"],
+ ["We ___ in the library after lunch.","were"],["Mr Lee ___ our teacher last year.","was"],
+ ["Jake and his dad ___ in London last summer.","were"],["The film ___ really exciting.","was"],
+ ["She ___ at the dentist on Monday.","was"],["You and Noah ___ late again!","were"],
+ ["My grandparents ___ in Brighton in July.","were"],["The museum ___ closed yesterday.","was"],
+ ["Where ___ you yesterday?","were"],["How ___ your weekend?","was"],
+ ["Why ___ they late for school?","were"],["Who ___ at the door?","was"]
+];
+const NEG=[
+ ["Zane was at the party.","Zane wasn't at the party."],["The children were tired.","The children weren't tired."],
+ ["I was hungry at lunchtime.","I wasn't hungry at lunchtime."],["We were at the beach on Sunday.","We weren't at the beach on Sunday."],
+ ["The pizza was hot.","The pizza wasn't hot."],["You were in class 5 last year.","You weren't in class 5 last year."],
+ ["Lily and Alice were angry.","Lily and Alice weren't angry."],["It was sunny yesterday.","It wasn't sunny yesterday."],
+ ["My phone was in my bag.","My phone wasn't in my bag."],["The windows were open.","The windows weren't open."]
+];
+const QS=[
+ ["Noah / at home / last night?",true,"Was Noah at home last night?","Yes, he was."],
+ ["Alice and Lily / at the cinema / on Friday?",false,"Were Alice and Lily at the cinema on Friday?","No, they weren't."],
+ ["you / at school / yesterday?",true,"Were you at school yesterday?","Yes, I was."],
+ ["the test / difficult?",false,"Was the test difficult?","No, it wasn't."],
+ ["Mr Lee / in Brighton / last week?",true,"Was Mr Lee in Brighton last week?","Yes, he was."],
+ ["the shops / open / on Sunday?",false,"Were the shops open on Sunday?","No, they weren't."],
+ ["Mrs Bond / happy / with the class?",true,"Was Mrs Bond happy with the class?","Yes, she was."],
+ ["your friends / at the beach?",true,"Were your friends at the beach?","Yes, they were."],
+ ["it / hot / in Spain?",true,"Was it hot in Spain?","Yes, it was."],
+ ["Jake / tired / after the match?",false,"Was Jake tired after the match?","No, he wasn't."]
+];
+const THERE_OPTS=["There was","There were","There wasn't","There weren't","Was there","Were there"];
+const TH=[
+ ["___ a big boat on the sea. (+)","There was"],["___ lots of people on the pier. (+)","There were"],
+ ["___ any bread in the kitchen. (–)","There wasn't"],["___ any buses on Sunday. (–)","There weren't"],
+ ["___ a swimming pool at the hotel? (?)","Was there"],["___ any good films on TV? (?)","Were there"],
+ ["___ two new girls in our class. (+)","There were"],["___ lots of snow last winter. (+)","There was"],
+ ["___ a teacher in the classroom. (–)","There wasn't"],["___ many children in the park. (–)","There weren't"],
+ ["___ a lot of homework yesterday? (?)","Was there"],["___ three cakes on the table. (+)","There were"]
+];
+const MIS=[
+ ["Lily were at the beach.","Lily was at the beach."],["We was in the park yesterday.","We were in the park yesterday."],
+ ["He weren't at home.","He wasn't at home."],["Was they at school?","Were they at school?"],
+ ["There were a dog in the garden.","There was a dog in the garden."],["Were Noah happy?","Was Noah happy?"],
+ ["You was very funny!","You were very funny!"],["There was many people at the party.","There were many people at the party."],
+ ["\"Were they at home?\" – \"Yes, they was.\"","Yes, they were."],["I weren't tired.","I wasn't tired."]
+];
+const CARD=["Dear Noah,","London {was} great! Dad and I {were} at the Science Museum on Monday. It {was} really interesting, but the café {wasn't} open, so we {were} very hungry!",
+ "On Tuesday we {were} at a football match. There {were} thousands of fans. The weather {wasn't} very nice – it {was} cold and there {was} lots of rain.",
+ "Where {were} you last week? {Was} your holiday fun?","See you on Monday,<br>Zane"];
+const FORMS=[["I","was","was not","wasn't"],["you","were","were not","weren't"],["he / she / it","was","was not","wasn't"],
+ ["we","were","were not","weren't"],["you","were","were not","weren't"],["they","were","were not","weren't"]];
+
+// ---------- data: regular verbs ----------
+// [base, past, rule]  rule: 1 = +ed, 2 = +d (ends in e), 3 = y -> ied, 4 = double consonant
+const REG=[
+ ["play","played",1],["visit","visited",1],["watch","watched",1],["listen","listened",1],["help","helped",1],
+ ["clean","cleaned",1],["call","called",1],["start","started",1],["rain","rained",1],["walk","walked",1],
+ ["want","wanted",1],["wash","washed",1],["work","worked",1],["open","opened",1],["ask","asked",1],
+ ["answer","answered",1],["finish","finished",1],["look","looked",1],["talk","talked",1],["learn","learned",1],
+ ["arrive","arrived",2],["dance","danced",2],["smile","smiled",2],["live","lived",2],["like","liked",2],
+ ["close","closed",2],["hope","hoped",2],["use","used",2],["phone","phoned",2],["invite","invited",2],
+ ["study","studied",3],["cry","cried",3],["try","tried",3],["carry","carried",3],["tidy","tidied",3],["hurry","hurried",3],
+ ["stop","stopped",4],["plan","planned",4],["shop","shopped",4],["chat","chatted",4],["drop","dropped",4],["hug","hugged",4]
+];
+const RULE_NAME={1:"just add -ed",2:"ends in -e → add -d",3:"consonant + y → -ied",4:"short word → double the consonant + -ed"};
+
+// ---------- data: irregular verbs ----------
+const IRR=[
+ ["go","went","gehen"],["get","got","bekommen"],["eat","ate","essen"],["drink","drank","trinken"],
+ ["make","made","machen"],["buy","bought","kaufen"],["see","saw","sehen"],["have","had","haben"],
+ ["meet","met","treffen"],["take","took","nehmen"],["come","came","kommen"],["do","did","tun"],
+ ["say","said","sagen"],["tell","told","erzählen"],["think","thought","denken"],["find","found","finden"],
+ ["give","gave","geben"],["put","put","stellen"],["run","ran","rennen"],["swim","swam","schwimmen"],
+ ["sing","sang","singen"],["sit","sat","sitzen"],["stand","stood","stehen"],["sleep","slept","schlafen"],
+ ["write","wrote","schreiben"],["read","read","lesen"],["speak","spoke","sprechen"],["win","won","gewinnen"],
+ ["lose","lost","verlieren"],["leave","left","verlassen"],["feel","felt","fühlen"],["bring","brought","bringen"],
+ ["catch","caught","fangen"],["teach","taught","unterrichten"],["send","sent","schicken"],["spend","spent","ausgeben"],
+ ["pay","paid","bezahlen"],["wear","wore","tragen"],["fly","flew","fliegen"],["know","knew","wissen"],
+ ["ride","rode","reiten"],["drive","drove","fahren"],["break","broke","zerbrechen"],["build","built","bauen"],
+ ["hear","heard","hören"],["can","could","können"],
+ ["forget","forgot","vergessen"],["hold","held","halten"],["hang out","hung out","hängen"],
+ ["hide","hid","(sich) verstecken"],["lead","led","führen, leiten"],["mean","meant","meinen"],
+ ["ring","rang","klingeln, läuten"],["bend down","bent down","sich bücken"],["fall","fell","fallen"],["pull","pulled","ziehen (regular)"],["choose","chose","aussuchen, wählen"],["draw","drew","zeichnen"],["keep","kept","behalten"],["sell","sold","verkaufen"],["begin","began","beginnen"]
+];
+const CORE=["choose","come","do","go","make","meet","say","see","sit","take","think",
+ "begin","break","draw","drink","eat","feel","get","give","know","read","drive"];  // los 22 del libro (pp. 286 y 288)
+// los 26 verbos irregulares de la página 289 — los del test de noviembre
+const CORE_NOV=["find","forget","have","hear","hold","leave","ride","sing","speak","stand","swim","tell","write",
+ "bring","build","buy","fly","hang out","hide","lead","lose","mean","ring","run","wear","win"];
+
+// ---------- data: simple past sentences ----------
+const POS=[
+ ["Yesterday, Ben ___ his grandparents after lunch.","called","call"],
+ ["Sofia ___ her dad in the kitchen.","helped","help"],
+ ["We ___ to music on the bus.","listened","listen"],
+ ["Leo ___ his bedroom before breakfast.","cleaned","clean"],
+ ["It ___ all afternoon on Sunday.","rained","rain"],
+ ["My friends and I ___ a funny film last night.","watched","watch"],
+ ["The football match ___ at three o'clock.","started","start"],
+ ["Ella ___ her cousin in Madrid.","visited","visit"],
+ ["Tom ___ home from school with his sister.","walked","walk"],
+ ["I ___ a computer game after dinner.","played","play"],
+ ["I ___ up at eight o'clock on Saturday.","got","get"],
+ ["We ___ pancakes for breakfast.","ate","eat"],
+ ["My sister ___ some orange juice.","drank","drink"],
+ ["Dad ___ lots of photos at the beach.","took","take"],
+ ["I ___ a postcard for my best friend.","bought","buy"],
+ ["We ___ a sandcastle near the sea.","made","make"],
+ ["In the afternoon, we ___ some new friends.","met","meet"],
+ ["They ___ a small boat near the harbour.","saw","see"],
+ ["We ___ fish and chips for dinner.","ate","eat"],
+ ["Everyone ___ a great time.","had","have"],
+ ["Last summer we ___ to Scotland for a week.","went","go"],
+ ["Grandma ___ us a story about her childhood.","told","tell"],
+ ["Zane ___ his new bike to school.","rode","ride"],
+ ["The team ___ the match 3–0.","won","win"],
+ ["I ___ my keys at the swimming pool.","lost","lose"]
+];
+const NEG_PAST=[
+ ["Ben called his grandparents.","Ben didn't call his grandparents."],
+ ["We watched a film last night.","We didn't watch a film last night."],
+ ["I went to the beach on Sunday.","I didn't go to the beach on Sunday."],
+ ["She ate pancakes for breakfast.","She didn't eat pancakes for breakfast."],
+ ["They bought a postcard.","They didn't buy a postcard."],
+ ["Leo cleaned his bedroom.","Leo didn't clean his bedroom."],
+ ["Dad took lots of photos.","Dad didn't take lots of photos."],
+ ["My sister drank the orange juice.","My sister didn't drink the orange juice."],
+ ["We made a sandcastle.","We didn't make a sandcastle."],
+ ["The match started at three.","The match didn't start at three."],
+ ["I saw my cousins in Madrid.","I didn't see my cousins in Madrid."],
+ ["Everyone had a great time.","Everyone didn't have a great time."]
+];
+const QS_PAST=[
+ ["Ben / call / his grandparents?",true,"Did Ben call his grandparents?","Yes, he did."],
+ ["you / go / to the beach?",false,"Did you go to the beach?","No, I didn't."],
+ ["Sofia / help / her dad?",true,"Did Sofia help her dad?","Yes, she did."],
+ ["they / buy / a postcard?",false,"Did they buy a postcard?","No, they didn't."],
+ ["Dad / take / lots of photos?",true,"Did Dad take lots of photos?","Yes, he did."],
+ ["the match / start / at three?",false,"Did the match start at three?","No, it didn't."],
+ ["your friends / meet / you at the station?",true,"Did your friends meet you at the station?","Yes, they did."],
+ ["Leo / clean / his bedroom?",false,"Did Leo clean his bedroom?","No, he didn't."],
+ ["we / win / the game?",true,"Did we win the game?","Yes, we did."],
+ ["Ella / see / the parade?",true,"Did Ella see the parade?","Yes, she did."]
+];
+const WH=[
+ ["Where ___ you ___ last summer?  (go)","did","go"],
+ ["What ___ Ben ___ for breakfast?  (eat)","did","eat"],
+ ["When ___ the film ___ ?  (start)","did","start"],
+ ["Who ___ you ___ at the beach?  (meet)","did","meet"],
+ ["How many photos ___ Dad ___ ?  (take)","did","take"],
+ ["Why ___ Sofia ___ ?  (cry)","did","cry"]
+];
+const MIS_PAST=[
+ ["I geted up at eight o'clock.","I got up at eight o'clock."],
+ ["We eated pancakes for breakfast.","We ate pancakes for breakfast."],
+ ["My sister drinked some orange juice.","My sister drank some orange juice."],
+ ["Dad maked lots of photos.","Dad took lots of photos."],
+ ["I buyed a postcard.","I bought a postcard."],
+ ["We seed a small boat.","We saw a small boat."],
+ ["We eat fish and chips for dinner yesterday.","We ate fish and chips for dinner yesterday."],
+ ["Yesterday I goed to the cinema.","Yesterday I went to the cinema."],
+ ["She didn't went to school.","She didn't go to school."],
+ ["Did you played football?","Did you play football?"],
+ ["We visitit Blackpool last year.","We visited Blackpool last year."],
+ ["They wantet a break.","They wanted a break."],
+ ["We walk home yesterday.","We walked home yesterday."],
+ ["He don't like the film last night.","He didn't like the film last night."],
+ ["Did she bought a ticket?","Did she buy a ticket?"],
+ ["I didn't saw the parade.","I didn't see the parade."]
+];
+// original chant (regular verbs)
+const CHANT=[
+ ["We {packed} our bags","We {started} the car","We {shouted} \"Goodbye!\"","And we {travelled} very far."],
+ ["We {arrived} at the seaside","The sun {smiled} all day","We {played} on the sand","And we {jumped} in the bay."],
+ ["We {queued} for ice cream","We {climbed} up the hill","We {watched} all the boats","And the world {stayed} very still."],
+ ["Then we {carried} our bags","And we {waved} at the sea","We {hugged} all our friends","Now we're home for tea!"]
+];
+const CHANT_BANK=["arrived","carried","climbed","hugged","jumped","packed","played","queued","shouted","smiled","started","stayed","travelled","watched","waved"];
+// holiday story – mixed regular + irregular
+const STORY=[
+ "Last August my family and I {went|go} to Cornwall for two weeks.",
+ "We {travelled|travel} by train and the journey {took|take} six hours.",
+ "Our hotel {was|be-sg} small, but the rooms {were|be-pl} very nice and there {was|be-sg} a lovely view of the sea.",
+ "On the first day we {walked|walk} to the beach and {swam|swim} in the cold water.",
+ "Dad {bought|buy} ice creams for everybody and my brother {dropped|drop} his in the sand!",
+ "One evening we {ate|eat} fish and chips on the harbour wall and {watched|watch} the boats.",
+ "We {didn't see|not see} any dolphins, but we {saw|see} lots of seagulls.",
+ "On the last day it {rained|rain} all afternoon, so we {stayed|stay} in the hotel and {played|play} cards.",
+ "I {didn't want|not want} to go home. It {was|be-sg} the best holiday ever!"
+];
+
+
+// ---------- data: sorting (Language Action Sheet 1.1) ----------
+// [verb, past, group]  1 = -e + -d · 2 = double the consonant · 3 = y -> -ied · 4 = irregular
+const SORT_GROUPS={1:"-e → + -d",2:"double the consonant",3:"y → -ied",4:"irregular"};
+const SORT=[
+ ["arrive","arrived",1],["move","moved",1],["smile","smiled",1],["invite","invited",1],["dance","danced",1],
+ ["chat","chatted",2],["stop","stopped",2],["wag","wagged",2],["plan","planned",2],["shop","shopped",2],
+ ["cry","cried",3],["hurry","hurried",3],["try","tried",3],["study","studied",3],["carry","carried",3],
+ ["buy","bought",4],["hide","hid",4],["leave","left",4],["get","got",4],["take","took",4]
+];
+// ---------- data: pronunciation of -ed ----------
+// true = extra syllable [ɪd]
+const SOUND=[
+ ["wanted",true],["needed",true],["started",true],["visited",true],["waited",true],["decided",true],
+ ["painted",true],["invited",true],["ended",true],["hated",true],["shouted",true],["landed",true],
+ ["played",false],["walked",false],["helped",false],["cleaned",false],["watched",false],["listened",false],
+ ["arrived",false],["stopped",false],["laughed",false],["opened",false],["worked",false],["agreed",false],
+ ["smiled",false],["asked",false],["travelled",false],["carried",false]
+];
+// ---------- data: present -> past (do/does -> did) ----------
+const DO_OPTS=["do","does","did","don't","doesn't","didn't"];
+const DODID=[
+ ["Where ___ her grandma live?","does","ahora"],
+ ["Where ___ Alice stay in Scotland?","did","el verano pasado"],
+ ["___ the Shaws visit her often?","Do","ahora"],
+ ["___ the Shaws visit St Andrews?","Did","la semana pasada"],
+ ["Alice ___ like horror films.","doesn't","ahora · negativa"],
+ ["Alice ___ like the ghost tour.","didn't","ayer · negativa"],
+ ["We ___ go to Blackpool every year.","don't","ahora · negativa"],
+ ["We ___ go to Blackpool last year.","didn't","el año pasado · negativa"],
+ ["___ you hear that noise?","Did","hace un minuto"],
+ ["___ you hear well?","Do","ahora"],
+ ["Lily ___ choose a ghost tour.","didn't","ayer · negativa"],
+ ["My brother ___ play tennis on Mondays.","does","ahora"]
+];
+const PRES2PAST=[
+ ["Where does Alice stay?","Where did Alice stay?"],
+ ["Do the Shaws visit St Andrews?","Did the Shaws visit St Andrews?"],
+ ["She doesn't like ghost tours.","She didn't like ghost tours."],
+ ["We don't go to Scotland.","We didn't go to Scotland."],
+ ["Does Lily play the guitar?","Did Lily play the guitar?"],
+ ["What do you do at the weekend?","What did you do at the weekend?"],
+ ["Mr Shaw doesn't answer the question.","Mr Shaw didn't answer the question."],
+ ["Why do you choose a ghost tour?","Why did you choose a ghost tour?"]
+];
+// ---------- data: the rules quiz ----------
+const RULEQ=[
+ {q:"You make questions in the simple past with …",a:"did + subject + infinitive",
+  opts:["did + subject + infinitive","did + subject + ed-form of the verb","do + subject + ed-form of the verb"]},
+ {q:"You make negative sentences in the simple past with …",a:"didn't + infinitive",
+  opts:["didn't + infinitive","didn't + ed-form","wasn't + ed-form"]},
+ {q:"In the simple past you use ___ for do / does.",a:"did",opts:["did","does","was"]},
+ {q:"In the simple past you use ___ for don't / doesn't.",a:"didn't",opts:["didn't","wasn't","doesn't"]},
+ {q:"You pronounce the ending -ed like [ɪd] after …",a:"d and t",opts:["d and t","r and d","d and k"]},
+ {q:"In the simple past, the verb form after he / she / it is …",a:"the same as after I and we",
+  opts:["the same as after I and we","the ed-form + s","the infinitive"]},
+ {q:"Short answers in the simple past are …",a:"Yes, I did. / No, I didn't.",
+  opts:["Yes, I did. / No, I didn't.","Yes, I was. / No, I wasn't.","Yes, I played. / No, I didn't played."]}
+];
+// ---------- data: dialogue (style of 1.2) ----------
+const DIALOGUE=[
+ ["<b>A:</b> Lily went to Blackpool in the summer holidays."],
+ ["<b>B:</b> And Alice? {Did} she {go} there too?"],
+ ["<b>A:</b> No, she {didn't}. She went to Scotland."],
+ ["<b>B:</b> Where {did} she {stay}?"],
+ ["<b>A:</b> She stayed in St Andrews with her grandma."],
+ ["<b>B:</b> What {did} she {do} there?"],
+ ["<b>A:</b> She visited the castle and she played golf."],
+ ["<b>B:</b> {Did} the Shaws {visit} her too?"],
+ ["<b>A:</b> Yes, they {did}. They arrived on Saturday."],
+ ["<b>B:</b> Why {didn't} you {go} with them?"],
+ ["<b>A:</b> Because I {didn't} {have} time. I worked all summer!"]
+];
+
+
+// ---------- data: notes -> sentences ----------
+const NOTES2SENT=[
+ ["terrible weather – lots of rain",["The weather was terrible and there was a lot of rain.","The weather was terrible. There was a lot of rain."]],
+ ["no school – stay at home",["There was no school, so I stayed at home.","There was no school and I stayed at home."]],
+ ["have breakfast",["I had breakfast."]],
+ ["stay in pyjamas – no need to get dressed",["I stayed in my pyjamas because I didn't need to get dressed.","I stayed in my pyjamas because I didn't have to get dressed."]],
+ ["get tablet – open Microsoft Teams",["I got my tablet and opened Microsoft Teams.","I got my tablet and I opened Microsoft Teams."]],
+ ["find homework for every subject",["I found homework for every subject."]],
+ ["choose favourite tasks – do them first",["I chose my favourite tasks and did them first.","I chose my favourite tasks and I did them first."]],
+ ["brothers and sisters – at home, too",["My brothers and sisters were at home, too.","My brothers and sisters were at home too."]],
+ ["older sister – cook lunch",["My older sister cooked lunch."]],
+ ["pasta with pesto – delicious!",["It was pasta with pesto and it was delicious!","We ate pasta with pesto. It was delicious!"]],
+ ["rain stop",["The rain stopped."]],
+ ["watch a film with older sister",["I watched a film with my older sister."]],
+ ["enjoy the afternoon",["I enjoyed the afternoon."]],
+ ["go to bed early",["I went to bed early."]],
+ ["not do any sport",["I didn't do any sport."]]
+];
+// ---------- data: writing tasks with notes ----------
+const TASKS=[
+ {id:"rainy",title:"Alex's rainy day",
+  intro:"Last Friday, there was no school in Valencia because of heavy rain. Alex stayed at home. Write a short text about his day (80–100 words). Use complete sentences in the simple past and linking words.",
+  boxes:[["Morning",["terrible weather – lots of rain","no school – stay at home","have breakfast","stay in pyjamas – no need to get dressed","get tablet – open Microsoft Teams","find homework for every subject","choose favourite tasks – do them first"]],
+         ["Lunchtime",["brothers and sisters – at home, too","older sister – cook lunch","pasta with pesto – delicious!"]],
+         ["Afternoon",["rain stop","watch a film with older sister","enjoy the afternoon"]]],
+  start:"Last Friday, I didn't have to go to school because the weather was terrible. It rained a lot in Valencia. So I stayed at home.",
+  verbs:["have → had","stay → stayed","get → got","find → found","choose → chose","do → did","cook → cooked","stop → stopped","watch → watched","enjoy → enjoyed"],
+  model:["First, I had a long breakfast and I stayed in my pyjamas, because I didn't need to get dressed.",
+   "Then I got my tablet and opened Microsoft Teams. I found homework for every subject. After that, I chose my favourite tasks and did them first.",
+   "At lunchtime my brothers and sisters were at home, too. My older sister cooked lunch. It was pasta with pesto and it was delicious!",
+   "In the afternoon the rain stopped. Then I watched a film with my older sister. Finally, I really enjoyed the afternoon."]},
+ {id:"snow",title:"A snowy day in Berlin",
+  intro:"Last winter Mia visited her cousins in Berlin. One morning there was a lot of snow. Write a short text about her day (80–100 words).",
+  boxes:[["Morning",["wake up – lots of snow in the garden","no buses – stay at home","put on warm clothes","build a snowman with cousins","have a snowball fight – very cold hands"]],
+         ["Lunchtime",["go inside – drink hot chocolate","grandma – make soup","be very hungry – eat two bowls"]],
+         ["Afternoon",["go to the park – take the sledge","meet a friend from school","lose a glove – not find it","come home at six – watch TV"]]],
+  start:"Last January I visited my cousins in Berlin. One morning I woke up and there was a lot of snow in the garden.",
+  verbs:["wake → woke","put → put","build → built","have → had","go → went","drink → drank","make → made","be → was / were","eat → ate","take → took","meet → met","lose → lost","find → found","come → came"],
+  model:["First, there were no buses, so we stayed at home. I put on my warm clothes and we built a big snowman in the garden.",
+   "Then we had a snowball fight. My hands were very cold, so we went inside and drank hot chocolate.",
+   "At lunchtime my grandma made soup. I was very hungry and I ate two bowls!",
+   "In the afternoon we took the sledge to the park and we met a friend from school. I lost a glove and I didn't find it. We came home at six and watched TV. It was a great day."]},
+ {id:"trip",title:"A school trip",
+  intro:"Last term your class went on a school trip. Write a short text about the day (80–100 words).",
+  boxes:[["Morning",["meet at school at 7 o'clock","travel by bus – two hours","arrive at the museum","see a dinosaur – enormous!"]],
+         ["Lunchtime",["eat sandwiches in the park","not buy anything – very expensive","play football with friends"]],
+         ["Afternoon",["walk through the old town","buy a postcard for grandma","the bus be late – wait 30 minutes","get home at eight – be very tired"]]],
+  start:"Last term my class went on a school trip. We met at school at seven o'clock in the morning.",
+  verbs:["meet → met","travel → travelled","arrive → arrived","see → saw","eat → ate","buy → bought","play → played","walk → walked","be → was / were","wait → waited","get → got"],
+  model:["First, we travelled by bus for two hours. Then we arrived at the museum and we saw a dinosaur. It was enormous!",
+   "At lunchtime we ate our sandwiches in the park. I didn't buy anything, because everything was very expensive. After that, we played football with our friends.",
+   "In the afternoon we walked through the old town and I bought a postcard for my grandma. The bus was late, so we waited for thirty minutes.",
+   "Finally, we got home at eight o'clock. I was very tired, but it was a great day."]}
+];
+const LINKERS=["first","then","after that","at lunchtime","in the morning","in the afternoon","later","finally","so","because","but","and"];
+
+
+// ---------- del pasado al infinitivo (Using your dictionary) ----------
+const PAST2INF=IRR.filter(v=>CORE.includes(v[0])&&v[0]!==v[1])
+  .map(([inf,pa,de])=>[pa,inf,de]);   // solo los 22 del examen
+// ---------- can → could / can't → couldn't ----------
+const COULD=[
+ ["He ___ swim, so he fell into the water.   (cannot)","couldn't"],
+ ["She ___ walk, because she broke her leg.   (cannot)","couldn't"],
+ ["We ___ see anything in the dark tunnel.   (cannot)","couldn't"],
+ ["I ___ ride a bike when I was five.   (can)","could"],
+ ["Big Man ___ help him, so he rode to the village.   (can)","could"],
+ ["They ___ get out of the hole.   (cannot)","couldn't"],
+ ["The children ___ sleep because of the storm.   (cannot)","couldn't"],
+ ["Alice ___ speak a little German last year.   (can)","could"],
+ ["Jake ___ find his torch.   (cannot)","couldn't"],
+ ["My grandma ___ swim very well when she was young.   (can)","could"]
+];
+// ---------- historia con huecos, estilo 'picture story' ----------
+const STORY2=[
+ "Grey Wolf {went|go} to the lake to fish.",
+ "He {fell|fall} into the cold water and he {couldn't|cannot} swim.",
+ "Little Bird {saw|see} his pony next to the river.",
+ "She {took|take} the pony and {rode|ride} to the lake.",
+ "She {found|find} Grey Wolf and {pulled|pull} him out of the water.",
+ "He {was|be} very cold, so she {gave|give} him a warm blanket.",
+ "Then they {rode|ride} home together."
+];
+// ---------- A Health Quiz ----------
+const HEALTH=[
+ ["you / walk to school yesterday",true,"Did you walk to school yesterday?","Yes, I did."],
+ ["you / go to school by bike",false,"Did you go to school by bike?","No, I didn't."],
+ ["you / eat any fruit",true,"Did you eat any fruit?","Yes, I did."],
+ ["you / eat any chocolates or sweets",true,"Did you eat any chocolates or sweets?","Yes, I did."],
+ ["you / have more than one cup of tea",false,"Did you have more than one cup of tea?","No, I didn't."],
+ ["you / drink any fruit juice",true,"Did you drink any fruit juice?","Yes, I did."],
+ ["you / do any sports",true,"Did you do any sports?","Yes, I did."],
+ ["you / watch TV for more than two hours",false,"Did you watch TV for more than two hours?","No, I didn't."],
+ ["you / go to bed after ten",true,"Did you go to bed after ten?","Yes, I did."]
+];
+// ---------- Stop, thief! ----------
+const THIEF=[
+ ["you / out for long",false,"Were you out for long?","No, I wasn't."],
+ ["the windows / open",false,"Were the windows open?","No, they weren't."],
+ ["the chair / under the window",true,"Was the chair under the window?","Yes, it was."],
+ ["these clothes / on the floor",true,"Were these clothes on the floor?","Yes, they were."],
+ ["this knife / on the table",false,"Was this knife on the table?","No, it wasn't."],
+ ["the wardrobe doors / open",false,"Were the wardrobe doors open?","No, they weren't."],
+ ["the television / in the living room",true,"Was the television in the living room?","Yes, it was."],
+ ["your neighbours / at home",false,"Were your neighbours at home?","No, they weren't."]
+];
+
+
+// ---------- 10 mini exams ----------
+function rng(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296}}
+function sPick(arr,n,r){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a.slice(0,n)}
+function sShuf(arr,r){return sPick(arr,arr.length,r)}
+
+const LISTENINGS=[
+ {title:"A rainy weekend in Scotland",
+  text:"Hi, I'm Hannah. Last weekend my family and I went to Scotland. My parents love walking in the mountains, so every autumn we go there. We left home on Friday afternoon and we travelled for four hours by car. We stayed in a small cottage near a lake. The cottage belongs to Mrs Carter, my mum's old teacher. When we arrived it was raining, so we didn't go out. We stayed inside and played cards. On Saturday morning there was a storm. The wind broke a window and my dad fixed it with a piece of wood. I wanted to call my sister, but I couldn't, because there was no internet in the cottage. I waited two hours. I was bored, cold and a bit nervous, but I wasn't afraid. On Sunday the sun came out at last. We visited a castle and after that we ate fish and chips in a small restaurant. We came home at nine o'clock in the evening. It was a difficult weekend, but it was fun.",
+  a:[{q:"Hannah's parents like to go",a:"walking in the mountains",
+      opts:["walking in the mountains","shopping.","swimming.","skiing."]},
+     {q:"Mrs Carter",a:"owns the cottage.",
+      opts:["is Hannah's teacher.","owns the cottage.","is Hannah's aunt.","is a bus driver."]},
+     {q:"Hannah's dad",a:"fixed a window.",
+      opts:["fixed a window.","cooked dinner.","went to the beach.","bought new shoes."]},
+     {q:"Hannah couldn't call her sister because",a:"there was no internet.",
+      opts:["her phone was at home.","there was no internet.","she was asleep.","she was at school."]}],
+  b:{q:"How did Hannah feel when she waited in the cottage?",
+     opts:["bored","excited","cold","hungry","nervous","happy"],a:["bored","cold","nervous"]},
+  c:[{q:"The family travelled for _______________ hours.",a:["four","4"]},
+     {q:"They stayed in a cottage near a _______________.",a:["lake","a lake"]},
+     {q:"The wind broke a _______________.",a:["window","a window"]},
+     {q:"On Sunday they visited a _______________.",a:["castle","a castle"]},
+     {q:"They came home at _______________ o'clock.",a:["nine","9"]}],
+  d:{q:"What is the story mainly about?",a:"Hannah talks about a difficult but fun weekend in Scotland.",
+     opts:["Hannah talks about a difficult but fun weekend in Scotland.","Hannah goes to school in Scotland.",
+           "Hannah loses her dog at the lake.","Hannah has a birthday party in a cottage.","Hannah stays at home all weekend."]}},
+
+ {title:"A school trip to York",
+  text:"Hi, I'm Tom. Last March my class went on a school trip to York. We met at school at seven o'clock and we travelled by train for two hours. My friends and I played cards, so the journey wasn't boring. First we visited the castle. Our guide was Mr Palmer. He told us a story about a terrible night in the year eleven ninety, and everybody was very quiet. After that we went to a museum about trains. I didn't like the museum very much, but my friend Noah loved it. He took forty photos! At lunchtime we ate our sandwiches in a park near the cathedral. Then it started to rain, so we didn't walk through the old streets. We waited in a café for an hour. I was tired, wet and hungry, but I wasn't sad. We got home at seven in the evening. It was a long day, but I learnt a lot.",
+  a:[{q:"Tom's class travelled",a:"by train.",opts:["by train.","by bus.","by car.","by plane."]},
+     {q:"Mr Palmer",a:"was the guide.",opts:["was the bus driver.","was the guide.","was Tom's teacher.","owns the museum."]},
+     {q:"Noah",a:"loved the train museum.",opts:["loved the train museum.","lost his camera.","didn't come.","was ill."]},
+     {q:"They didn't walk through the old streets because",a:"it started to rain.",
+      opts:["they were late.","it started to rain.","the streets were closed.","they were tired."]}],
+  b:{q:"How did Tom feel when he waited in the café?",
+     opts:["tired","excited","wet","hungry","angry","happy"],a:["tired","wet","hungry"]},
+  c:[{q:"They met at school at _______________ o'clock.",a:["seven","7"]},
+     {q:"The train journey was _______________ hours.",a:["two","2"]},
+     {q:"The guide told a story about the year _______________.",a:["1190","eleven ninety"]},
+     {q:"Noah took _______________ photos.",a:["forty","40"]},
+     {q:"They got home at _______________ in the evening.",a:["seven","7","seven o'clock"]}],
+  d:{q:"What is the story mainly about?",a:"Tom talks about a long but interesting school trip.",
+     opts:["Tom talks about a long but interesting school trip.","Tom moves to York.",
+           "Tom loses his train ticket.","Tom has a party at the museum.","Tom stays at school all day."]}},
+
+ {title:"A camping holiday in Wales",
+  text:"Hi, I'm Mia. Two years ago my family and I went camping in Wales. We travelled by car and the journey took five hours. We stayed at a campsite near a big lake. The campsite belongs to Mr Hughes. He gave us a map of the forest on the first day. On the first morning I got up at six o'clock and I swam in the lake. The water was really cold! My brother didn't swim, because he was afraid of the fish. In the afternoon we walked up a mountain. At the top we couldn't see anything, because there was a lot of fog. We waited half an hour. I was cold, tired and hungry, but I wasn't angry. On the last day there was a storm and the rain broke our tent, so we drove home early. I didn't want to leave, but my mum was happy.",
+  a:[{q:"The family travelled",a:"by car.",opts:["by car.","by train.","by plane.","by bus."]},
+     {q:"Mr Hughes",a:"owns the campsite.",opts:["owns the campsite.","is Mia's uncle.","is a teacher.","drives the bus."]},
+     {q:"Mia's brother",a:"didn't swim.",opts:["didn't swim.","lost his shoes.","climbed the mountain alone.","cooked dinner."]},
+     {q:"They drove home early because",a:"the rain broke their tent.",
+      opts:["Mia was ill.","the rain broke their tent.","the campsite closed.","they lost the map."]}],
+  b:{q:"How did Mia feel on the mountain?",
+     opts:["cold","excited","tired","hungry","angry","happy"],a:["cold","tired","hungry"]},
+  c:[{q:"The journey took _______________ hours.",a:["five","5"]},
+     {q:"They stayed at a campsite near a _______________.",a:["lake","big lake","a lake"]},
+     {q:"Mia got up at _______________ o'clock.",a:["six","6"]},
+     {q:"Her brother was afraid of the _______________.",a:["fish","the fish"]},
+     {q:"They waited _______________ an hour on the mountain.",a:["half"]}],
+  d:{q:"What is the story mainly about?",a:"Mia talks about a camping holiday with good and bad moments.",
+     opts:["Mia talks about a camping holiday with good and bad moments.","Mia learns to swim in a swimming pool.",
+           "Mia moves to Wales.","Mia loses her brother in the forest.","Mia stays in a hotel."]}},
+
+ {title:"A day at the theme park",
+  text:"Hi, I'm Leo. Last August my cousins and I went to a theme park near Manchester. My aunt loves roller coasters, so she drove us there. The journey took two hours. The tickets weren't free. They cost thirty pounds, but my uncle paid for everybody. At the entrance there was a very long queue. We waited forty minutes! I was bored, hot and thirsty, but I wasn't angry. After that we went on the big roller coaster. My cousin Daisy didn't go on it, because she was afraid of heights. She bought an ice cream and waited for us. At lunchtime we ate burgers in a restaurant near the lake. Then it started to rain, so we couldn't go on the water ride. We left the park at six o'clock. On the way home I fell asleep in the car. It was an expensive day, but it was great fun.",
+  a:[{q:"Leo's aunt",a:"loves roller coasters.",
+      opts:["loves roller coasters.","hates roller coasters.","works at the park.","is a bus driver."]},
+     {q:"Leo's uncle",a:"paid for the tickets.",
+      opts:["stayed at home.","paid for the tickets.","lost his ticket.","drove the car."]},
+     {q:"Daisy",a:"didn't go on the roller coaster.",
+      opts:["didn't go on the roller coaster.","lost her money.","went home early.","was ill."]},
+     {q:"They couldn't go on the water ride because",a:"it started to rain.",
+      opts:["it was closed.","it started to rain.","they had no money.","they were late."]}],
+  b:{q:"How did Leo feel in the queue?",
+     opts:["bored","excited","hot","hungry","thirsty","happy"],a:["bored","hot","thirsty"]},
+  c:[{q:"The journey took _______________ hours.",a:["two","2"]},
+     {q:"The tickets cost _______________ pounds.",a:["thirty","30"]},
+     {q:"They waited _______________ minutes at the entrance.",a:["forty","40"]},
+     {q:"Daisy was afraid of _______________.",a:["heights","the heights"]},
+     {q:"They left the park at _______________ o'clock.",a:["six","6"]}],
+  d:{q:"What is the story mainly about?",a:"Leo talks about an expensive but fun day at a theme park.",
+     opts:["Leo talks about an expensive but fun day at a theme park.","Leo works at a theme park.",
+           "Leo loses his cousin at the park.","Leo has a birthday party at home.","Leo stays at home because of the rain."]}},
+
+ {title:"A trip to a Greek island",
+  text:"Hi, I'm Sophie. Two summers ago my family and I visited a small island in Greece. We flew there and the flight took three hours. We stayed in a holiday home near the beach. The owner of the holiday home was Mr Costas. He gave us a map and he showed us the best places on the island. On the first day my brother and I swam in the sea before breakfast. The water was warm and there were a lot of fish. On Wednesday we took the boat to another island. The sea was very rough and I felt ill. The trip was horrible! I was tired, wet and nervous, but I wasn't afraid. On Friday we visited an old church and after that we ate fish in a restaurant near the harbour. My dad took a hundred photos. We came home on Sunday morning. I didn't want to leave the island.",
+  a:[{q:"The family travelled",a:"by plane.",opts:["by plane.","by car.","by train.","by bus."]},
+     {q:"Mr Costas",a:"owns the holiday home.",
+      opts:["is Sophie's uncle.","owns the holiday home.","drives the boat.","is a teacher."]},
+     {q:"On the first day Sophie",a:"swam before breakfast.",
+      opts:["swam before breakfast.","stayed in bed.","visited a church.","took the boat."]},
+     {q:"Sophie felt ill because",a:"the sea was rough.",
+      opts:["she ate bad fish.","the sea was rough.","it was too hot.","she didn't sleep."]}],
+  b:{q:"How did Sophie feel on the boat?",
+     opts:["tired","excited","wet","hungry","nervous","happy"],a:["tired","wet","nervous"]},
+  c:[{q:"The flight took _______________ hours.",a:["three","3"]},
+     {q:"They stayed in a holiday home near the _______________.",a:["beach","the beach"]},
+     {q:"On Wednesday they took the _______________ to another island.",a:["boat","the boat"]},
+     {q:"On Friday they visited an old _______________.",a:["church","a church"]},
+     {q:"Her dad took a _______________ photos.",a:["hundred","100"]}],
+  d:{q:"What is the story mainly about?",a:"Sophie talks about an island holiday with one bad boat trip.",
+     opts:["Sophie talks about an island holiday with one bad boat trip.","Sophie moves to Greece.",
+           "Sophie loses her brother on the beach.","Sophie learns to sail.","Sophie stays in a hotel in the mountains."]}}
+];
+
+function makeTest(n,seed){
+  const r=rng(seed||(7000+n*97));
+  const core=IRR.filter(v=>CORE.includes(v[0]));
+  const allVoc=VOCAB_UNIT1.concat(VOCAB_WELCOME)
+    .filter(x=>!/[.…]/.test(x[0])&&!/[.…]/.test(x[1])&&x[0]!=="was"&&x[0]!=="were");
+  const typable=allVoc.filter(x=>!/[,(/]/.test(x[0]));
+  const qs=[];
+  // errores de ortografía realistas, según la regla del verbo
+  function fakesFor(b,pa,rule){
+    if(rule===2)return [b+"ed",b.slice(0,-1)+"d",b.slice(0,-1)+"t"];           // dance → danceed / dancd / dancet
+    if(rule===3)return [b+"ed",b.slice(0,-1)+"yd",b.slice(0,-1)+"iet"];        // hurry → hurryed / hurryd / hurriet
+    if(rule===4)return [b+"ed",b+"d",b+"t"];                                   // stop → stoped / stopd / stopt
+    return [b+"d",b+"t",b+b.slice(-1)+"ed"];                                   // look → lookd / lookt / lookked
+  }
+  // 1-2 verbos regulares
+  sPick(REG,2,r).forEach(([b,pa])=>qs.push({tag:"Escribe el simple past",t:"type",q:b+"   →",a:[pa]}));
+  // 3-4 verbos irregulares
+  sPick(core,2,r).forEach(([b,pa,de])=>qs.push({tag:"Escribe el simple past (verbo irregular)",t:"type",
+    q:b+"   ("+de+")   →",a:[pa]}));
+  // 4b pasado → infinitivo
+  {const [pa,inf,de]=sPick(PAST2INF,1,r)[0];
+   qs.push({tag:"Escribe el infinitivo (la Grundform), como lo buscarías en el diccionario",t:"type",
+     q:pa+"   ("+de+")   →",a:[inf,"to "+inf]})}
+  // 4c can → could
+  {const [q0,a]=sPick(COULD,1,r)[0];
+   qs.push({tag:"Completa con could o couldn't",t:"mc",q:q0,a,opts:["could","couldn't"]})}
+  // 5 ortografía del -ed
+  {const [b,pa,rule]=sPick(REG,1,r)[0];
+   const fk=fakesFor(b,pa,rule).filter(x=>x!==pa);
+   qs.push({tag:"Elige la forma bien escrita",t:"mc",q:b+"   →",a:pa,opts:sShuf([pa,...fk.slice(0,3)],r)})}
+  // 6 regular o irregular
+  {const [b,pa]=sPick(core,1,r)[0];const fake=b.endsWith("e")?b+"d":b+"ed";
+   const others=sPick(core.filter(v=>v[1]!==pa),2,r).map(v=>v[1]);
+   qs.push({tag:"Cuidado: ¿-ed o irregular?",t:"mc",q:b+"   →",a:pa,opts:sShuf([pa,fake,...others],r)})}
+  // 7 negativa
+  {const [o,a]=sPick(NEG_PAST,1,r)[0];
+   qs.push({tag:"Escribe la frase en NEGATIVA, con didn't",t:"type",q:o,a:[a]})}
+  // 8 pregunta
+  {const it=sPick(QS_PAST,1,r)[0];
+   qs.push({tag:"Escribe la PREGUNTA en simple past, con did",t:"type",q:it[0],a:[it[2]]})}
+  // 9 respuesta corta
+  {const it=sPick(QS_PAST,1,r)[0];const corr=it[3];const wrongs=[];
+   [["did","was"],["did","does"],["didn't","wasn't"],["didn't","doesn't"],["did","is"],["didn't","isn't"]]
+     .forEach(([x,y])=>{if(corr.includes(x)){const w=corr.replace(x,y);if(w!==corr&&!wrongs.includes(w))wrongs.push(w)}});
+   qs.push({tag:"Elige la respuesta corta correcta",t:"mc",q:it[2],a:corr,opts:sShuf([corr,...wrongs.slice(0,3)],r)})}
+  // 10 was / were  o  there was / there were
+  {if(r()<0.5){
+     const [q0,a]=sPick(TH,1,r)[0];
+     const kind=q0.includes("(+)")?"afirmativa":q0.includes("(–)")?"negativa":"pregunta";
+     qs.push({tag:`Completa con there was / there were — frase ${kind}`,t:"mc",
+       q:q0.replace(/\s*\((\+|–|\?)\)\s*$/,""),a,opts:sShuf(THERE_OPTS,r)});
+   }else{
+     const [q0,a]=sPick(WW,1,r)[0];
+     qs.push({tag:"Completa con was o were",t:"mc",q:q0,a,opts:["was","were"]});
+   }}
+  // 11 presente o pasado
+  {const [q0,a,cue]=sPick(DODID,1,r)[0];const caps=/^[A-Z]/.test(a);
+   qs.push({tag:`¿Presente o pasado? Completa con do / does / did / don't / doesn't / didn't — ${cue}`,
+     t:"mc",q:q0,a,opts:sShuf(DO_OPTS.map(o=>caps?o[0].toUpperCase()+o.slice(1):o),r)})}
+  // 12 frase afirmativa
+  {const [q0,a,base]=sPick(POS,1,r)[0];const fake=base.endsWith("e")?base+"d":base+"ed";
+   const others=sPick(POS.filter(x=>x[1]!==a&&x[1]!==fake),3,r).map(x=>x[1]);
+   const opts=[...new Set([a,...(fake!==a?[fake]:[]),...others])].slice(0,4);
+   qs.push({tag:"Completa la frase con el simple past",t:"mc",q:q0,a,opts:sShuf(opts,r)})}
+  // 13 vocabulario inglés → alemán
+  {const w=sPick(allVoc,1,r)[0];const wrong=sPick(allVoc.filter(x=>x[1]!==w[1]),3,r).map(x=>x[1]);
+   qs.push({tag:"Traduce al alemán",t:"mc",q:w[0],a:w[1],opts:sShuf([w[1],...wrong],r)})}
+  // 14 vocabulario alemán → inglés (con la inicial, para que no haya dudas)
+  {const w=sPick(typable,1,r)[0];const ini=w[0][0];
+   qs.push({tag:"Traduce al inglés",t:"type",q:w[1]+"   →   "+ini+"…",
+     a:[w[0],"to "+w[0],"the "+w[0],"a "+w[0]]})}
+  // 15 nota → frase completa
+  {const [note,answers]=sPick(NOTES2SENT,1,r)[0];
+   const alts=answers.slice();
+   answers.forEach(a=>{if(/^I /.test(a))alts.push(a.replace(/^I /,"We "))});
+   const first=answers[0].split(" ")[0];
+   qs.push({tag:`Convierte la nota en una frase completa en simple past (empieza por "${first}…")`,
+     t:"type",q:note,a:alts})}
+  return {id:"m"+n,title:"Test "+n,qs,listen:null,
+    intro:"17 preguntas de todo: verbos, frases, vocabulario y una de redacción. Cada pregunta dice en gris lo que hay que hacer."};
+}
+let TESTS=Array.from({length:10},(_,i)=>makeTest(i+1));
+
+// ---------- Have a go: what didn't you do yesterday? ----------
+const DIDNT=[
+ ["go to St Andrews","I didn't go to St Andrews yesterday."],
+ ["see a ghost","I didn't see a ghost yesterday."],
+ ["visit a castle","I didn't visit a castle yesterday."],
+ ["go swimming","I didn't go swimming yesterday."],
+ ["get up early","I didn't get up early yesterday."],
+ ["laugh","I didn't laugh yesterday."],
+ ["play tennis","I didn't play tennis yesterday."],
+ ["watch a scary film","I didn't watch a scary film yesterday."],
+ ["ride my bike","I didn't ride my bike yesterday."],
+ ["eat fish and chips","I didn't eat fish and chips yesterday."],
+ ["take the train","I didn't take the train yesterday."],
+ ["make notes","I didn't make notes yesterday."]
+];
+
+
+// ---------- generic builders ----------
+const done={};
+let group="vocab", current="";
+
+function scoreLine(card,got,total,id){
+  const s=card.querySelector(".score");s.textContent=`${got} / ${total}`+(got===total?"  – perfect!":"");
+  if(got===total){done[id]=true;renderNav()}
+}
+function footer(card,onCheck,id){
+  const a=el("div",{class:"actions"});
+  const c=el("button",{class:"btn",type:"button"},"Corregir");c.onclick=onCheck;
+  const n=el("button",{class:"btn ghost",type:"button"},"Otras frases");n.onclick=()=>render();
+  a.append(c,n,el("span",{class:"score"}));card.appendChild(a);
+}
+function buildChoice(title,hint,items,id){
+  const card=el("section",{class:"card"});card.append(el("h2",{},title),el("p",{class:"hint"},hint));
+  let got=0,answered=0;
+  items.forEach(it=>{
+    const row=el("div",{class:"item"});row.appendChild(el("p",{class:"q"},esc(it.q).replace("___","<b>______</b>")));
+    const opts=el("div",{class:"opts"});const fb=el("div",{class:"fb"});
+    it.opts.forEach(o=>{
+      const b=el("button",{class:"opt",type:"button"},esc(o));
+      b.onclick=()=>{
+        answered++;
+        opts.querySelectorAll("button").forEach(x=>{x.disabled=true;if(x.textContent===it.a)x.classList.add("right")});
+        if(o===it.a){got++;fb.className="fb ok";fb.textContent="Correct!"}
+        else{b.classList.add("wrong");fb.className="fb no";fb.textContent=`Answer: ${it.q.replace("___",it.a).replace(/ \((\+|–|\?)\)$/,"")}`}
+        card.querySelector(".score").textContent=`${got} / ${items.length}`;
+        if(answered===items.length&&got===items.length){done[id]=true;renderNav();card.querySelector(".score").textContent+="  – perfect!"}
+      };
+      opts.appendChild(b);
+    });
+    row.append(opts,fb);card.appendChild(row);
+  });
+  const a=el("div",{class:"actions"});const n=el("button",{class:"btn ghost",type:"button"},"Otras frases");n.onclick=()=>render();
+  a.append(n,el("span",{class:"score"},`0 / ${items.length}`));card.appendChild(a);
+  return card;
+}
+function buildType(title,hint,items,id,bank){
+  const card=el("section",{class:"card"});card.append(el("h2",{},title),el("p",{class:"hint"},hint));
+  if(bank){const b=el("div",{class:"bank"});bank.forEach(w=>b.appendChild(el("span",{},esc(w))));card.appendChild(b)}
+  const rows=items.map(it=>{
+    const row=el("div",{class:"item"});row.appendChild(el("p",{class:"q"},esc(it.q)));
+    const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"sentences",spellcheck:"false"});
+    const fb=el("div",{class:"fb"});row.append(inp,fb);card.appendChild(row);return {it,inp,fb};
+  });
+  footer(card,()=>{
+    let got=0;rows.forEach(({it,inp,fb})=>{
+      const ok=it.a.some(x=>same(inp.value,x));inp.className=ok?"right":"wrong";
+      fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correct!":"Answer: "+it.a[0];if(ok)got++;
+    });scoreLine(card,got,rows.length,id);
+  },id);
+  return card;
+}
+// gap text: parts like "text {answer} text" or "{answer|prompt}"
+function buildGapText(title,hint,paragraphs,id,opts={}){
+  const card=el("section",{class:"card"});card.append(el("h2",{},title),el("p",{class:"hint"},hint));
+  if(opts.bank){const b=el("div",{class:"bank"});opts.bank.forEach(w=>b.appendChild(el("span",{},esc(w))));card.appendChild(b)}
+  const box=el("div",{class:opts.plain?"":"postcard"});const gaps=[];let n=0;
+  paragraphs.forEach(par=>{
+    const lines=Array.isArray(par)?par:[par];
+    const p=el("p",{style:"margin:0 0 10px"});
+    p.innerHTML=lines.map(line=>line.replace(/\{([^}]+)\}/g,(m,inner)=>{
+      const [ans,prompt]=inner.split("|");n++;gaps.push(ans);
+      const hintTxt=prompt?` <span class="ex">(${esc(prompt.replace("be-sg","be").replace("be-pl","be"))})</span>`:"";
+      return `<input type="text" class="gap" data-i="${n-1}" autocomplete="off" autocapitalize="off" spellcheck="false">${hintTxt}`;
+    })).join("<br>");
+    box.appendChild(p);
+  });
+  card.appendChild(box);
+  const a=el("div",{class:"actions"});const c=el("button",{class:"btn",type:"button"},"Corregir");
+  const cl=el("button",{class:"btn ghost",type:"button"},"Borrar");cl.onclick=()=>render();
+  const fb=el("div",{class:"fb"});
+  c.onclick=()=>{let got=0;const wrong=[];box.querySelectorAll("input").forEach(i=>{
+      const k=+i.dataset.i;const ok=raw(i.value).replace(/\s+/g," ")===gaps[k].toLowerCase();
+      i.className="gap "+(ok?"right":"wrong");if(ok)got++;else wrong.push(`(${k+1}) ${gaps[k]}`)});
+    fb.className="fb "+(wrong.length?"no":"ok");fb.textContent=wrong.length?"Answers: "+wrong.join("  ·  "):"All correct!";
+    scoreLine(card,got,gaps.length,id)};
+  a.append(c,cl,el("span",{class:"score"}));card.append(a,fb);
+  return card;
+}
+function buildQuestionPairs(title,hint,rowsData,id){
+  const card=el("section",{class:"card"});card.append(el("h2",{},title),el("p",{class:"hint"},hint));
+  const rows=rowsData.map(([p,yes,q,a])=>{
+    const row=el("div",{class:"item"});row.appendChild(el("p",{class:"q"},`<b>${esc(p)}</b> &nbsp;${yes?"✓":"✗"}`));
+    const box=el("div",{class:"row2"});
+    const i1=el("input",{type:"text",placeholder:"Question",autocomplete:"off",spellcheck:"false"});
+    const i2=el("input",{type:"text",placeholder:"Short answer",autocomplete:"off",spellcheck:"false"});
+    const fb=el("div",{class:"fb"});box.append(i1,i2);row.append(box,fb);card.appendChild(row);return {q,a,i1,i2,fb};
+  });
+  footer(card,()=>{
+    let got=0;rows.forEach(r=>{
+      const alt=r.a.replace("I did","we did").replace("I didn't","we didn't").replace("I was","we were").replace("I wasn't","we weren't");
+      const ok1=same(r.i1.value,r.q),ok2=same(r.i2.value,r.a)||same(r.i2.value,alt);
+      r.i1.className=ok1?"right":"wrong";r.i2.className=ok2?"right":"wrong";got+=(ok1?1:0)+(ok2?1:0);
+      r.fb.className="fb "+(ok1&&ok2?"ok":"no");r.fb.textContent=ok1&&ok2?"Correct!":`Answer: ${r.q}  ${r.a}`;
+    });scoreLine(card,got,rows.length*2,id);
+  },id);
+  return card;
+}
+
+// ---------- vocabulary ----------
+function buildVocab(){
+  const id="vocab";const card=el("section",{class:"card"});
+  const head=el("p",{class:"hint"});
+  card.append(el("h2",{},"Vocabulary"),head);
+  const setBar=el("div",{class:"opts",style:"margin-bottom:10px"});
+  VOCAB_SETS.forEach(([k,label,list])=>{
+    const b=el("button",{class:"opt",type:"button",style:"font-size:15px"},`${esc(label)} · ${list.length}`);
+    if(list===VOCAB)b.classList.add("right");
+    b.onclick=()=>{VOCAB=list;[...setBar.children].forEach(x=>x.classList.remove("right"));b.classList.add("right");
+      head.textContent=`${VOCAB.length} palabras. Elige cómo quieres practicar.`;show()};
+    setBar.appendChild(b);
+  });
+  head.textContent=`${VOCAB.length} palabras. Elige cómo quieres practicar.`;
+  card.appendChild(setBar);
+  const modes=el("div",{class:"opts",style:"margin-bottom:10px"});
+  const dirBar=el("div",{class:"opts",style:"margin-bottom:14px"});
+  const body=el("div");card.append(modes,dirBar,body);
+  let mode="flash",en2de=true;
+  const dirB=el("button",{class:"opt",type:"button",style:"min-width:auto"},"English → Deutsch");
+  dirB.onclick=()=>{en2de=!en2de;dirB.innerHTML=en2de?"English → Deutsch":"Deutsch → English";show()};
+  dirBar.append(dirB,el("span",{class:"hint",style:"margin:6px 0 0"},"tap to change direction"));
+  [["flash","Flashcards"],["quiz","Quiz"],["write","Write it"],["list","Word list"]].forEach(([k,label])=>{
+    const b=el("button",{class:"opt",type:"button"},label);
+    b.onclick=()=>{mode=k;[...modes.children].forEach(x=>x.classList.remove("right"));b.classList.add("right");show()};
+    if(k===mode)b.classList.add("right");
+    modes.appendChild(b);
+  });
+  function show(){body.innerHTML="";({flash,quiz,write,list})[mode]()}
+  function flash(){
+    let deck=shuffle(VOCAB),i=0,known=0,flipped=false;
+    const top=el("p",{class:"hint"});
+    const face=el("div",{class:"postcard",style:"text-align:center;line-height:1.4;cursor:pointer;min-height:150px;display:grid;place-items:center"});
+    const back=el("div",{class:"fb",style:"text-align:center;font-size:22px;min-height:30px"});
+    const acts=el("div",{class:"actions"});
+    const again=el("button",{class:"btn ghost",type:"button"},"Barajar otra vez");
+    const kn=el("button",{class:"btn",type:"button"},"Me la sé");
+    const rv=el("button",{class:"btn ghost",type:"button"},"Repasar luego");
+    acts.append(kn,rv,again);body.append(top,face,back,acts);
+    function draw(){
+      if(i>=deck.length){face.innerHTML=`<b style="font-family:Fredoka,Arial;font-size:34px">Deck finished</b>`;
+        back.textContent=`You knew ${known} of ${deck.length} words.`;back.className="fb ok";
+        if(known===deck.length){done[id]=true;renderNav()}top.textContent="";return;}
+      flipped=false;const w=deck[i];
+      top.innerHTML=`Card ${i+1} of ${deck.length} &nbsp; Known: ${known}`;
+      face.innerHTML=`<span style="font-family:Fredoka,Arial;font-size:34px">${esc(en2de?w[0]:w[1])}</span><br><span class="ex" style="font-size:15px">tap the card to see the answer</span>`;
+      back.textContent="";back.className="fb";
+    }
+    face.onclick=()=>{if(i>=deck.length)return;flipped=true;const w=deck[i];back.className="fb ok";back.textContent=en2de?w[1]:w[0]};
+    kn.onclick=()=>{if(i<deck.length){if(flipped)known++;i++;draw()}};
+    rv.onclick=()=>{if(i<deck.length){deck.push(deck[i]);i++;draw()}};
+    again.onclick=()=>{deck=shuffle(VOCAB);i=0;known=0;draw()};
+    draw();
+  }
+  function quiz(){
+    const items=pick(VOCAB,12);let i=0,got=0;
+    const box=el("div");body.appendChild(box);
+    function step(){
+      box.innerHTML="";
+      if(i>=items.length){
+        box.appendChild(el("div",{class:"result"},`<div class="n">${got}/${items.length}</div><p><b>${got===items.length?"Perfect!":got>=items.length-2?"Almost there.":"Practise the flashcards again."}</b></p>`));
+        const b=el("button",{class:"btn",type:"button"},"Otro quiz");b.onclick=()=>{i=0;got=0;step()};box.querySelector(".result").appendChild(b);
+        if(got===items.length){done[id]=true;renderNav()}return;
+      }
+      const A=en2de?0:1,B=en2de?1:0;
+      const w=items[i];const wrong=shuffle(VOCAB.filter(x=>x[B]!==w[B])).slice(0,3);
+      const opts=shuffle([w,...wrong]);
+      box.appendChild(el("p",{class:"hint",style:"margin:0 0 4px"},`Word ${i+1} of ${items.length} &nbsp; Score: ${got}`));
+      box.appendChild(el("p",{class:"q",style:"font-size:24px;font-family:Fredoka,Arial"},esc(w[A])));
+      const o=el("div",{class:"opts"});const fb=el("div",{class:"fb"});
+      opts.forEach(x=>{const b=el("button",{class:"opt",type:"button"},esc(x[B]));
+        b.onclick=()=>{o.querySelectorAll("button").forEach(y=>{y.disabled=true;if(y.textContent===w[B])y.classList.add("right")});
+          if(x[B]===w[B]){got++;fb.className="fb ok";fb.textContent="Correct!"}else{b.classList.add("wrong");fb.className="fb no";fb.textContent=`${w[0]} = ${w[1]}`}
+          const nx=el("button",{class:"btn",type:"button",style:"margin-top:14px"},i===items.length-1?"See my score":"Next word");
+          nx.onclick=()=>{i++;step()};box.appendChild(nx);nx.focus();};
+        o.appendChild(b)});
+      box.append(o,fb);
+    }
+    step();
+  }
+  function write(){
+    const items=pick(VOCAB,10);const A=en2de?0:1,B=en2de?1:0;
+    body.appendChild(el("p",{class:"hint"},en2de?"Write the German word. The article (der/die/das) and capital letters don't matter.":"Write the English word. Capital letters don't matter."));
+    const rows=items.map(w=>{
+      const row=el("div",{class:"item"});row.appendChild(el("p",{class:"q"},esc(w[A])));
+      const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});const fb=el("div",{class:"fb"});
+      row.append(inp,fb);body.appendChild(row);return {w,inp,fb};
+    });
+    const a=el("div",{class:"actions"});const c=el("button",{class:"btn",type:"button"},"Corregir");
+    const n=el("button",{class:"btn ghost",type:"button"},"Otras palabras");n.onclick=show;
+    const sc=el("span",{class:"score"});
+    const noArt=t=>normalize(t).replace(/^(der|die|das) /,"");
+    c.onclick=()=>{let got=0;rows.forEach(r=>{const ok=noArt(r.inp.value)===noArt(r.w[B]);r.inp.className=ok?"right":"wrong";
+      r.fb.className="fb "+(ok?"ok":"no");r.fb.textContent=ok?"Correct!":"Answer: "+r.w[B];if(ok)got++});
+      sc.textContent=`${got} / ${rows.length}`;if(got===rows.length){sc.textContent+="  – perfect!";done[id]=true;renderNav()}};
+    a.append(c,n,sc);body.appendChild(a);
+  }
+  function list(){
+    const wrap=el("div",{class:"tscroll"});const t=el("table",{class:"forms"});
+    const A=en2de?0:1,B=en2de?1:0;
+    t.innerHTML=en2de?"<tr><th>English</th><th>Deutsch</th></tr>":"<tr><th>Deutsch</th><th>English</th></tr>";
+    VOCAB.forEach(w=>{const tr=el("tr");tr.append(el("td",{},esc(w[A])),el("td",{},esc(w[B])));t.appendChild(tr)});
+    wrap.appendChild(t);body.appendChild(wrap);
+  }
+  show();return card;
+}
+
+// ---------- was / were sections ----------
+function buildForms(){
+  const id="forms";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Las formas de be"),el("p",{class:"hint"},"Escribe la forma afirmativa, la negativa larga y la negativa corta."));
+  const wrap=el("div",{class:"tscroll"});const t=el("table",{class:"forms"});
+  t.innerHTML="<tr><th></th><th>positive</th><th>negative (long)</th><th>negative (short)</th></tr>";
+  const ins=[];
+  FORMS.forEach(f=>{
+    const tr=el("tr");tr.appendChild(el("td",{},esc(f[0])));
+    for(let k=1;k<4;k++){const td=el("td");const i=el("input",{type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});td.appendChild(i);tr.appendChild(td);ins.push([i,f[k],k])}
+    t.appendChild(tr);
+  });
+  wrap.appendChild(t);card.appendChild(wrap);
+  const a=el("div",{class:"actions"});const c=el("button",{class:"btn",type:"button"},"Corregir");
+  const sh=el("button",{class:"btn ghost",type:"button"},"Borrar");sh.onclick=()=>render();
+  c.onclick=()=>{let got=0;ins.forEach(([i,ans,k])=>{const ok=k===3?raw(i.value)===ans:same(i.value,ans)&&!/'/.test(i.value);i.className=ok?"right":"wrong";if(ok)got++;else if(!i.value)i.placeholder=ans});scoreLine(card,got,ins.length,id)};
+  a.append(c,sh,el("span",{class:"score"}));card.appendChild(a);
+  card.appendChild(el("p",{class:"hint",style:"margin-top:12px"},"Las casillas mal se ponen en rojo. Las vacías enseñan la respuesta."));
+  return card;
+}
+
+// ---------- regular verbs ----------
+function buildRegRules(){
+  const id="regrules";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Las cuatro reglas del -ed"),el("p",{class:"hint"},"Escribe el simple past. ¡Ojo con la ortografía!"));
+  const groupsOf=[1,2,3,4].map(r=>({r,items:pick(REG.filter(v=>v[2]===r),3)}));
+  const rows=[];
+  groupsOf.forEach(({r,items})=>{
+    card.appendChild(el("p",{class:"q",style:"margin-top:14px"},`<b>Rule ${r}:</b> <span class="ex">${RULE_NAME[r]}</span>`));
+    items.forEach(([base,past])=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"q"},`${esc(base)} &nbsp;→`));
+      const inp=el("input",{type:"text",class:"short",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});
+      const fb=el("div",{class:"fb"});row.append(inp,fb);card.appendChild(row);rows.push({past,inp,fb});
+    });
+  });
+  footer(card,()=>{let got=0;rows.forEach(r=>{const ok=raw(r.inp.value)===r.past;r.inp.className="short "+(ok?"right":"wrong");
+    r.fb.className="fb "+(ok?"ok":"no");r.fb.textContent=ok?"Correct!":"Answer: "+r.past;if(ok)got++});
+    scoreLine(card,got,rows.length,id)},id);
+  return card;
+}
+function buildRegSort(){
+  const id="regsort";
+  const items=pick(REG,10).map(([base,past,r])=>({q:`${base}  →  ?`,a:past,opts:shuffle([past,base+"ed",base.replace(/y$/,"ied"),base+base.slice(-1)+"ed"]).filter((v,i,arr)=>arr.indexOf(v)===i).slice(0,4)}));
+  items.forEach(it=>{if(!it.opts.includes(it.a))it.opts[0]=it.a;it.opts=shuffle(it.opts)});
+  return buildChoice("Elige la forma bien escrita","Toca el simple past correcto.",items,id);
+}
+
+// ---------- irregular verbs ----------
+function buildIrrTrainer(){
+  const id="irrtrain";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Verbos irregulares – escribe el pasado"),el("p",{class:"hint"},"Estos verbos NO llevan -ed. Escribe la forma de simple past."));
+  const modes=el("div",{class:"opts",style:"margin-bottom:14px"});
+  const body=el("div");card.append(modes,body);
+  let pool="core";
+  [["core","Los 22 del examen"],["all","Todos ("+IRR.length+")"]].forEach(([k,label])=>{
+    const b=el("button",{class:"opt",type:"button"},label);if(k===pool)b.classList.add("right");
+    b.onclick=()=>{pool=k;[...modes.children].forEach(x=>x.classList.remove("right"));b.classList.add("right");show()};
+    modes.appendChild(b);
+  });
+  function show(){
+    body.innerHTML="";
+    const src=pool==="core"?IRR.filter(v=>CORE.includes(v[0])):IRR;
+    const items=pick(src,10);
+    const rows=items.map(([base,past,de])=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"q"},`<b>${esc(base)}</b> <span class="ex">(${esc(de)})</span> &nbsp;→`));
+      const inp=el("input",{type:"text",class:"short",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});
+      const fb=el("div",{class:"fb"});row.append(inp,fb);body.appendChild(row);return {past,inp,fb};
+    });
+    const a=el("div",{class:"actions"});const c=el("button",{class:"btn",type:"button"},"Corregir");
+    const n=el("button",{class:"btn ghost",type:"button"},"Otros verbos");n.onclick=show;
+    const sc=el("span",{class:"score"});
+    c.onclick=()=>{let got=0;rows.forEach(r=>{const ok=raw(r.inp.value)===r.past;r.inp.className="short "+(ok?"right":"wrong");
+      r.fb.className="fb "+(ok?"ok":"no");r.fb.textContent=ok?"Correct!":"Answer: "+r.past;if(ok)got++});
+      sc.textContent=`${got} / ${rows.length}`;if(got===rows.length){sc.textContent+="  – perfect!";done[id]=true;renderNav()}};
+    a.append(c,n,sc);body.appendChild(a);
+  }
+  show();return card;
+}
+function buildIrrTrap(){
+  const id="irrtrap";
+  const items=pick(IRR,10).map(([base,past])=>{
+    const fake=base.endsWith("e")?base+"d":base+"ed";
+    const other=pick(IRR.filter(v=>v[1]!==past),2).map(v=>v[1]);
+    return {q:`${base}  →  ?`,a:past,opts:shuffle([past,fake,...other])};
+  });
+  return buildChoice("Cuidado: ¿-ed o irregular?","Una opción es la equivocada fácil. Toca la forma correcta.",items,id);
+}
+function buildIrrList(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Lista de verbos irregulares"),el("p",{class:"hint"},"En negrita, los 22 que entran en el examen (recuadros de las páginas 286 y 288, más drive)."));
+  const wrap=el("div",{class:"tscroll"});const t=el("table",{class:"forms"});
+  t.innerHTML="<tr><th>infinitive</th><th>simple past</th><th>Deutsch</th></tr>";
+  IRR.forEach(([b,p,d])=>{const tr=el("tr");const bold=CORE.includes(b);
+    tr.append(el("td",{},bold?`<b>${esc(b)}</b>`:esc(b)),el("td",{},bold?`<b>${esc(p)}</b>`:esc(p)),el("td",{},esc(d)));t.appendChild(tr)});
+  wrap.appendChild(t);card.appendChild(wrap);return card;
+}
+
+// ---------- writing ----------
+const WRITE_PHRASES=[
+ ["Where and when","Last summer / Last August / In the holidays, I went to …","I was there for two weeks with my family."],
+ ["Getting there","We travelled by car / train / plane.","The journey took about five hours."],
+ ["Where you stayed","We stayed in a small hotel / an apartment / a campsite.","There was a swimming pool and the rooms were very nice."],
+ ["What you did","Every morning we … / One day we … / In the evening we …","We swam in the sea, played volleyball and ate ice cream."],
+ ["The best moment","The best day was when we …","It was really exciting / lovely / great fun."],
+ ["Something that went wrong","Unfortunately, it rained for two days.","I lost my sunglasses and my brother wasn't very happy."],
+ ["The end","We came home on Sunday.","It was the best holiday ever! I want to go there again."]
+];
+const CHECKLIST=[
+ "I wrote in the simple past.",
+ "I used complete sentences (every sentence has a subject and a verb).",
+ "I used linking words: first, then, after that, at lunchtime, in the afternoon, finally.",
+ "I wrote about all the important activities in the notes.",
+ "After didn't I used the base form: didn't need, NOT didn't needed.",
+ "I checked my irregular verbs (had, got, found, chose, did, was, were).",
+ "My regular verbs end in -ed: stayed, cooked, stopped, watched, enjoyed.",
+ "I wrote 80–100 words.",
+ "I checked my spelling."
+];
+const MODEL=["Last August my family and I went to Cornwall for two weeks. We travelled by train and the journey took six hours.",
+ "Our hotel was small, but the rooms were very nice and there was a lovely view of the sea. On the first day we walked to the beach and swam in the cold water. Dad bought ice creams for everybody and my brother dropped his in the sand!",
+ "One evening we ate fish and chips on the harbour wall and watched the boats. We didn't see any dolphins, but we saw hundreds of seagulls. On the last day it rained all afternoon, so we stayed in the hotel and played cards.",
+ "I didn't want to go home. It was the best holiday ever!"];
+const BADFORMS={goed:"went",geted:"got",getted:"got",eated:"ate",drinked:"drank",maked:"made",buyed:"bought",seed:"saw",
+ taked:"took",meeted:"met",haved:"had",writed:"wrote",singed:"sang",swimmed:"swam",runned:"ran",comed:"came",
+ catched:"caught",bringed:"brought",thinked:"thought",teached:"taught",finded:"found",feeled:"felt",sleeped:"slept",
+ speaked:"spoke",winned:"won",weared:"wore",knowed:"knew",sayed:"said",builded:"built",breaked:"broke",drived:"drove",
+ payed:"paid",loosed:"lost",telled:"told",sended:"sent",spended:"spent",flied:"flew",rided:"rode",selled:"sold",
+ visitit:"visited",wantet:"wanted",hauped:"hoped",stoped:"stopped",plaied:"played",studyed:"studied",cryed:"cried",
+ staied:"stayed",staied:"stayed",enjo:"enjoyed",enjoied:"enjoyed",enjoy:"enjoyed",beacurse:"because",becurse:"because",
+ choosed:"chose",cookt:"cooked",watchd:"watched",finded:"found",openned:"opened",droped:"dropped",hurryed:"hurried"};
+
+function checkText(t){
+  const low=" "+t.toLowerCase().replace(/[^a-z' ]/g," ").replace(/\s+/g," ")+" ";
+  const found=[];
+  for(const bad in BADFORMS){if(low.includes(" "+bad+" "))found.push(`“${bad}” → ${BADFORMS[bad]}`)}
+  (low.match(/ did ?n'?t \w+ed /g)||[]).forEach(m=>found.push(`“${m.trim()}” → after didn't use the base form`));
+  (low.match(/ did \w+ \w+ed /g)||[]).forEach(m=>found.push(`“${m.trim()}” → after did use the base form`));
+  IRR.forEach(([base,past])=>{
+    if(base===past)return;
+    if(new RegExp(" did ?n'?t "+past+" ").test(low))found.push(`“didn't ${past}” → didn't ${base}`);
+    if(new RegExp(" did \\w+ "+past+" ").test(low))found.push(`“did … ${past}” → did … ${base}`);
+  });
+  [[" we was ","we were"],[" they was ","they were"],[" you was ","you were"],[" i were ","I was"],
+   [" he were ","he was"],[" she were ","she was"],[" it were ","it was"]].forEach(([bad,good])=>{
+    if(low.includes(bad))found.push(`“${bad.trim()}” → ${good}`);
+  });
+  // "I no needed" instead of "I didn't need"
+  (low.match(/ (i|we|they|he|she|you) no \w+/g)||[]).forEach(m=>found.push(`“${m.trim()}” → use didn't + base form (I didn't need…)`));
+  if(/ no need(ed)? to /.test(low))found.push("“no need(ed) to” → I didn't need to…");
+  // present tense left in the text
+  const BASES=["have","go","get","eat","watch","play","stay","cook","find","choose","do","stop","enjoy","open","need","buy","see","take","meet","wake","build","drink","make","wait","walk","arrive","travel"];
+  BASES.forEach(v=>{
+    const re=new RegExp(" (i|we|they|he|she|my \\w+) "+v+" ","g");
+    (low.match(re)||[]).forEach(m=>{if(!/ (i|we|they|he|she) (have|need) to /.test(m))found.push(`“${m.trim()}” → is this the simple past?`)});
+  });
+  [" i am "," we are "," they are "," he is "," she is "," it is "," are my "," is my "].forEach(m=>{
+    if(low.includes(m))found.push(`“${m.trim()}” → in a past text use was / were`);
+  });
+  const sentences=t.split(/[.!?]+/).filter(x=>x.trim().length>3).length;
+  const words=t.trim().split(/\s+/).filter(Boolean).length;
+  const pastVerbs=(low.match(/\w+ed /g)||[]).length+IRR.filter(v=>low.includes(" "+v[1]+" ")).length+((low.match(/ (was|were) /g)||[]).length);
+  const linkers=LINKERS.filter(l=>low.includes(" "+l+" "));
+  const notes=[
+    `Words: ${words} ${words>=80?"✓":"– the task asks for 80–100."}`,
+    `Sentences: ${sentences} ${sentences>=8?"✓":"– try to write at least 8."}`,
+    `Past verbs found: ${pastVerbs} ${pastVerbs>=6?"✓":"– use more simple past."}`,
+    `Linking words: ${linkers.length?linkers.join(", "):"none"} ${linkers.length>=4?"✓":"– use first, then, after that, at lunchtime, in the afternoon, finally."}`
+  ];
+  return {found:[...new Set(found)],notes};
+}
+function renderCheck(fb,t){
+  const {found,notes}=checkText(t);
+  if(!t.trim()){fb.className="fb no";fb.textContent="Write your text first.";return}
+  if(found.length){fb.className="fb no";fb.innerHTML="<b>Check these:</b><br>"+found.map(esc).join("<br>")+"<br><br>"+notes.map(esc).join("<br>")}
+  else{fb.className="fb ok";fb.innerHTML="<b>No typical verb mistakes found. Well done!</b><br>"+notes.map(esc).join("<br>")+"<br><br>Now read your text out loud and check the spelling."}
+}
+
+// ---------- notes -> full sentences ----------
+function buildNotes2Sent(){
+  const id="n2s";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"De notas a frases completas"),
+    el("p",{class:"hint"},"Esta es la parte más difícil del writing: convertir una nota en una frase completa en simple past."));
+  const rows=pick(NOTES2SENT,8).map(([note,answers])=>{
+    const row=el("div",{class:"item"});
+    row.appendChild(el("p",{class:"q"},`<b>${esc(note)}</b>`));
+    const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"sentences",spellcheck:"false"});
+    const fb=el("div",{class:"fb"});row.append(inp,fb);card.appendChild(row);return {answers,inp,fb};
+  });
+  footer(card,()=>{
+    let got=0;rows.forEach(r=>{
+      const ok=r.answers.some(a=>same(r.inp.value,a));
+      r.inp.className=ok?"right":"wrong";r.fb.className="fb "+(ok?"ok":"no");
+      r.fb.textContent=ok?"Correct!":"Model: "+r.answers[0]+"   (your sentence can also be right – compare them carefully)";
+      if(ok)got++;
+    });scoreLine(card,got,rows.length,id);
+  },id);
+  return card;
+}
+
+// ---------- a full writing task with notes ----------
+function buildTask(){
+  const id="task";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Tarea de writing"),el("p",{class:"hint"},"Elige una tarea, lee las notas y escribe el texto."));
+  const bar=el("div",{class:"opts",style:"margin-bottom:14px"});
+  const body=el("div");card.append(bar,body);
+  let t=TASKS[0];
+  TASKS.forEach(x=>{const b=el("button",{class:"opt",type:"button",style:"font-size:15px"},esc(x.title));
+    if(x.id===t.id)b.classList.add("right");
+    b.onclick=()=>{t=x;[...bar.children].forEach(y=>y.classList.remove("right"));b.classList.add("right");show()};
+    bar.appendChild(b)});
+  function show(){
+    body.innerHTML="";
+    body.appendChild(el("p",{class:"q"},`<b>${esc(t.title)}</b><br><span class="ex">${esc(t.intro)}</span>`));
+    t.boxes.forEach(([h,notes])=>{
+      const b=el("div",{class:"item"});
+      b.appendChild(el("p",{class:"q",style:"margin-bottom:4px"},`<b>${esc(h)}</b>`));
+      const ul=el("ul",{style:"margin:0;padding-left:20px"});
+      notes.forEach(n=>ul.appendChild(el("li",{class:"ex"},esc(n))));
+      b.appendChild(ul);body.appendChild(b);
+    });
+    body.appendChild(el("p",{class:"q",style:"margin-top:18px"},"<b>Start your text like this</b>"));
+    body.appendChild(el("div",{class:"postcard",style:"line-height:1.6"},esc(t.start)));
+    body.appendChild(el("p",{class:"q",style:"margin-top:18px"},"<b>Linking words</b>"));
+    const ch=el("div");["First,","Then,","After that,","At lunchtime,","In the afternoon,","Later,","Finally,"].forEach(w=>ch.appendChild(el("span",{class:"chip"},esc(w))));
+    body.appendChild(ch);
+    body.appendChild(el("p",{class:"q",style:"margin-top:14px"},"<b>Verbs</b>"));
+    const cv=el("div");t.verbs.forEach(w=>cv.appendChild(el("span",{class:"chip"},esc(w))));
+    body.appendChild(cv);
+    const ta=el("textarea",{placeholder:"Continue the story here…",spellcheck:"false",style:"margin-top:16px"});
+    body.appendChild(ta);
+    const fb=el("div",{class:"fb",style:"font-size:16px;margin-top:10px"});
+    const a=el("div",{class:"actions"});
+    const c=el("button",{class:"btn",type:"button"},"Corregir mi texto");
+    const mdl=el("button",{class:"btn ghost",type:"button"},"Ver un texto modelo");
+    const cl=el("button",{class:"btn ghost",type:"button"},"Borrar");
+    a.append(c,mdl,cl);body.append(a,fb);
+    const mbox=el("div");body.appendChild(mbox);
+    c.onclick=()=>renderCheck(fb,ta.value);
+    cl.onclick=()=>{ta.value="";fb.textContent="";mbox.innerHTML=""};
+    mdl.onclick=()=>{
+      if(mbox.innerHTML){mbox.innerHTML="";mdl.textContent="Ver un texto modelo";return}
+      mdl.textContent="Ocultar el texto modelo";
+      const m=el("div",{class:"model"});
+      m.appendChild(el("p",{},"<i>"+esc(t.start)+"</i>"));
+      t.model.forEach(x=>m.appendChild(el("p",{},esc(x))));
+      mbox.appendChild(m);
+    };
+  }
+  show();return card;
+}
+
+function buildWritingHelp(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Cómo construir el texto"),el("p",{class:"hint"},"Cada nota se convierte en una frase completa. Ponle delante un conector."));
+  [["1. Read the note","stay in pyjamas – no need to get dressed"],
+   ["2. Find the subject","Who did it?  →  I"],
+   ["3. Put the verb in the simple past","stay → stayed · need → didn't need"],
+   ["4. Add a linking word","Then I stayed in my pyjamas, because I didn't need to get dressed."]].forEach(([h,x])=>{
+    const row=el("div",{class:"item"});
+    row.appendChild(el("p",{class:"q",style:"margin-bottom:2px"},`<b>${esc(h)}</b>`));
+    row.appendChild(el("p",{class:"ex",style:"margin:0"},esc(x)));card.appendChild(row);
+  });
+  card.appendChild(el("p",{class:"q",style:"margin-top:20px"},"<b>Traps in this kind of task</b>"));
+  [["A note has no subject. You must add one.","choose favourite tasks → <b>I</b> chose my favourite tasks."],
+   ["A negative note needs didn't + base form.","no need to get dressed → I <b>didn't need</b> to get dressed."],
+   ["English word order never changes: subject – verb – rest.","<b>My brothers and sisters were</b> at home, too. (not “At lunchtime were my brothers…”)"],
+   ["stay ends in a vowel + y, so it is just + -ed.","stay → <b>stayed</b> (not “staied”)"],
+   ["stop is a short word, so the consonant doubles.","stop → <b>stopped</b> (not “stoped”)"],
+   ["Don't forget the -ed at the end of the last verb.","enjoy → <b>enjoyed</b>"]].forEach(([h,x])=>{
+    const row=el("div",{class:"item"});
+    row.appendChild(el("p",{class:"q",style:"margin-bottom:2px"},esc(h)));
+    row.appendChild(el("p",{class:"ex",style:"margin:0"},x));card.appendChild(row);
+  });
+  return card;
+}
+function buildWritingPad(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Escribe libremente"),el("p",{class:"hint"},"Escribe sobre cualquier día o unas vacaciones. Después toca \"Check my text\"."));
+  const ta=el("textarea",{placeholder:"Last Friday I…",spellcheck:"false"});
+  card.appendChild(ta);
+  const fb=el("div",{class:"fb",style:"font-size:16px;margin-top:10px"});
+  const a=el("div",{class:"actions"});
+  const c=el("button",{class:"btn",type:"button"},"Corregir mi texto");
+  const cl=el("button",{class:"btn ghost",type:"button"},"Borrar");cl.onclick=()=>{ta.value="";fb.textContent=""};
+  a.append(c,cl);card.append(a,fb);
+  c.onclick=()=>renderCheck(fb,ta.value);
+  return card;
+}
+function buildChecklist(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Repasa tu texto"),el("p",{class:"hint"},"Marca todas las líneas antes de entregarlo."));
+  CHECKLIST.forEach(t=>{
+    const lab=el("label",{class:"check"});
+    lab.append(el("input",{type:"checkbox"}),el("span",{},esc(t)));card.appendChild(lab);
+  });
+  return card;
+}
+
+// ---------- final quiz ----------
+function buildQuiz(){
+  const id="quiz";
+  const pool=shuffle([
+    ...pick(WW,3).map(([q,a])=>({q,a,opts:["was","were"]})),
+    ...pick(TH,2).map(([q,a])=>({q,a,opts:THERE_OPTS})),
+    ...pick(POS,5).map(([q,a,base])=>{
+      const fake=base.endsWith("e")?base+"d":base+"ed";
+      const others=pick(POS.filter(p=>p[1]!==a&&p[1]!==fake),3).map(p=>p[1]);
+      const opts=[...new Set([a,...(fake!==a?[fake]:[]),...others])].slice(0,4);
+      return {q,a,opts:shuffle(opts)};
+    }),
+    ...pick(IRR,3).map(([b,p])=>({q:`${b}  →  ?`,a:p,opts:shuffle([p,b.endsWith("e")?b+"d":b+"ed",...pick(IRR.filter(v=>v[1]!==p),2).map(v=>v[1])])})),
+    ...pick(NEG_PAST,2).map(([s,a])=>{const v=a.match(/didn't (\w+)/)[1];
+      return {q:a.replace("didn't "+v,"didn't ___"),a:v,opts:shuffle([v,v.endsWith("e")?v+"d":v+"ed",v+"s",v+"ing"])}}),
+    ...pick(QS_PAST,2).map(([p,y,q,ans])=>{const v=q.match(/^Did [\w\s]+? (\w+)/);const base=v?v[1]:"go";
+      return {q:q.replace(" "+base+" "," ___ "),a:base,opts:shuffle([base,base.endsWith("e")?base+"d":base+"ed",base+"s",base+"ing"])}})
+  ]);
+  pool.forEach(it=>{if(!it.opts.includes(it.a))it.opts[0]=it.a;it.opts=[...new Set(it.opts)]});
+  const card=el("section",{class:"card"});card.append(el("h2",{},"Repaso mezclado"),el("p",{class:"hint"},`${pool.length} mixed questions. One at a time – no going back!`));
+  const box=el("div");card.appendChild(box);let i=0,got=0;const missed=[];
+  function show(){
+    box.innerHTML="";
+    if(i>=pool.length){
+      const pct=Math.round(got/pool.length*100);
+      const msg=pct===100?"Perfect! You're ready for the test.":pct>=80?"Great job! Look at the mistakes and try once more.":pct>=60?"Good work. Read the rules again and try once more.":"Read the rules at the top and practise the sections again.";
+      const r=el("div",{class:"result"},`<div class="n">${got}/${pool.length}</div><p><b>${msg}</b></p>`);
+      if(missed.length){r.appendChild(el("p",{class:"hint",style:"text-align:left"},"Check these:<br>"+missed.map(esc).join("<br>")))}
+      const again=el("button",{class:"btn",type:"button"},"Empezar otro repaso");again.onclick=()=>render();r.appendChild(again);
+      box.appendChild(r);if(got===pool.length){done[id]=true;renderNav()}return;
+    }
+    const it=pool[i];
+    box.appendChild(el("p",{class:"hint",style:"margin:0 0 4px"},`Question ${i+1} of ${pool.length} &nbsp; Score: ${got}`));
+    box.appendChild(el("p",{class:"q",style:"font-size:20px"},esc(it.q).replace("___","<b>______</b>")));
+    const opts=el("div",{class:"opts"});const fb=el("div",{class:"fb"});
+    it.opts.forEach(o=>{const b=el("button",{class:"opt",type:"button"},esc(o));
+      b.onclick=()=>{opts.querySelectorAll("button").forEach(x=>{x.disabled=true;if(x.textContent===it.a)x.classList.add("right")});
+        if(o===it.a){got++;fb.className="fb ok";fb.textContent="Correct!"}else{b.classList.add("wrong");fb.className="fb no";fb.textContent="Answer: "+it.a;missed.push(it.q.replace("___",it.a).replace(/ \((\+|–|\?)\)$/,""))}
+        const nx=el("button",{class:"btn",type:"button",style:"margin-top:14px"},i===pool.length-1?"See my score":"Next question");nx.onclick=()=>{i++;show()};box.appendChild(nx);nx.focus();
+      };opts.appendChild(b)});
+    box.append(opts,fb);
+  }
+  show();return card;
+}
+
+
+// ---------- sorting by spelling rule ----------
+function buildSort(){
+  const id="sort";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"¿A qué grupo pertenece el verbo?"),
+    el("p",{class:"hint"},"Elige la regla y después escribe el simple past."));
+  const items=[...pick(SORT.filter(v=>v[2]===1),2),...pick(SORT.filter(v=>v[2]===2),2),
+               ...pick(SORT.filter(v=>v[2]===3),2),...pick(SORT.filter(v=>v[2]===4),2)];
+  const rows=shuffle(items).map(([base,past,g])=>{
+    const row=el("div",{class:"item"});
+    row.appendChild(el("p",{class:"q"},`<b style="font-size:20px">${esc(base)}</b>`));
+    const opts=el("div",{class:"opts",style:"margin-bottom:8px"});
+    let chosen=0;
+    [1,2,3,4].forEach(k=>{
+      const b=el("button",{class:"opt",type:"button",style:"font-size:15px"},esc(SORT_GROUPS[k]));
+      b.onclick=()=>{chosen=k;[...opts.children].forEach(x=>x.classList.remove("right","wrong"));b.classList.add("right")};
+      opts.appendChild(b);
+    });
+    const inp=el("input",{type:"text",class:"short",placeholder:"simple past",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});
+    const fb=el("div",{class:"fb"});
+    row.append(opts,inp,fb);card.appendChild(row);
+    return {past,g,opts,inp,fb,get chosen(){return chosen}};
+  });
+  footer(card,()=>{
+    let got=0;rows.forEach(r=>{
+      const okG=r.chosen===r.g, okP=raw(r.inp.value)===r.past;
+      [...r.opts.children].forEach((b,i)=>{b.classList.remove("right","wrong");if(i+1===r.g)b.classList.add("right");
+        else if(i+1===r.chosen)b.classList.add("wrong")});
+      r.inp.className="short "+(okP?"right":"wrong");
+      got+=(okG?1:0)+(okP?1:0);
+      r.fb.className="fb "+(okG&&okP?"ok":"no");
+      r.fb.textContent=okG&&okP?"Correct!":`${SORT_GROUPS[r.g]} → ${r.past}`;
+    });scoreLine(card,got,rows.length*2,id);
+  },id);
+  return card;
+}
+// ---------- pronunciation of -ed ----------
+function buildSound(){
+  const id="sound";
+  const items=[...pick(SOUND.filter(v=>v[1]),5),...pick(SOUND.filter(v=>!v[1]),5)];
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"¿Cómo se pronuncia el -ed?"),
+    el("p",{class:"hint"},"Después de t o d se oye una sílaba más: want·ed, need·ed. Después de lo demás, no: played, walked."));
+  let got=0,answered=0;
+  shuffle(items).forEach(([w,extra])=>{
+    const row=el("div",{class:"item"});
+    row.appendChild(el("p",{class:"q"},`<b style="font-size:20px">${esc(w)}</b>`));
+    const opts=el("div",{class:"opts"});const fb=el("div",{class:"fb"});
+    [["[ɪd] – extra syllable",true],["no extra syllable",false]].forEach(([label,val])=>{
+      const b=el("button",{class:"opt",type:"button"},label);
+      b.onclick=()=>{
+        answered++;
+        opts.querySelectorAll("button").forEach(x=>x.disabled=true);
+        const right=[...opts.children][extra?0:1];right.classList.add("right");
+        if(val===extra){got++;fb.className="fb ok";fb.textContent="Correct!"}
+        else{b.classList.add("wrong");fb.className="fb no";
+          fb.textContent=extra?`${w} ends in t or d → you hear [ɪd].`:`${w} does not end in t or d → no extra syllable.`}
+        card.querySelector(".score").textContent=`${got} / ${items.length}`;
+        if(answered===items.length&&got===items.length){done[id]=true;renderNav()}
+      };opts.appendChild(b);
+    });
+    row.append(opts,fb);card.appendChild(row);
+  });
+  const a=el("div",{class:"actions"});const n=el("button",{class:"btn ghost",type:"button"},"Otras palabras");n.onclick=()=>render();
+  a.append(n,el("span",{class:"score"},`0 / ${items.length}`));card.appendChild(a);
+  return card;
+}
+// ---------- rules quiz ----------
+function buildRuleQuiz(){
+  const id="rulequiz";
+  return buildChoice("The rules","Elige la regla correcta. Son las preguntas que plantea la hoja del colegio.",
+    shuffle(RULEQ).map(r=>({q:r.q,a:r.a,opts:shuffle(r.opts)})),id);
+}
+
+
+// ---------- capabilities: saving results ----------
+let DB=null, CANWRITE=null, capsReady=false;
+async function initCaps(){
+  try{
+    if(window.claude&&window.claude.use){
+      DB=await window.claude.use("db");
+      const u=await window.claude.use("user");
+      if(u){try{CANWRITE=await u.can("data.write")}catch(e){CANWRITE=null}}
+    }
+  }catch(e){DB=null}
+  capsReady=true;
+  if(current==="results"||current==="tests")render();
+}
+async function saveResult(rec){
+  if(!DB)return false;
+  try{await DB.collection("results").add(rec);return true}catch(e){return false}
+}
+
+
+// ---------- listening (standalone) ----------
+function splitSentences(t){
+  const m=String(t).match(/[^.!?]+[.!?]*/g)||[t];
+  return m.map(x=>x.trim()).filter(Boolean);
+}
+function audioControls(text){
+  const box=el("div");
+  const info=el("div",{class:"locked",style:"text-align:left;padding:14px"});
+  info.innerHTML='<b>Para quien lee en voz alta</b><br>'+
+    '<span class="ex">Lee el texto dos veces, despacio y con pausas. Entre la primera y la segunda vez, '+
+    'deja medio minuto para que le dé tiempo a contestar. Alba no debe ver el texto hasta el final.</span>';
+  box.appendChild(info);
+  const bar=el("div",{class:"opts",style:"margin:12px 0 0"});
+  const show=el("button",{class:"btn",type:"button"},"Mostrar el texto");
+  bar.appendChild(show);box.appendChild(bar);
+  const tr=el("div");box.appendChild(tr);
+  show.onclick=()=>{
+    if(tr.innerHTML){tr.innerHTML="";show.textContent="Mostrar el texto";return}
+    show.textContent="Ocultar el texto";
+    const d=el("div",{class:"postcard",style:"line-height:1.8;margin-top:10px"});
+    splitSentences(text).forEach(x=>d.appendChild(el("p",{style:"margin:0 0 6px"},esc(x))));
+    tr.appendChild(d);
+  };
+  return box;
+}
+function buildListening(){
+  const id="listen";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Listening"),
+    el("p",{class:"hint"},"Mismo formato que el examen: 13 puntos repartidos en cuatro tareas."));
+  const bar=el("div",{class:"opts",style:"margin-bottom:14px"});
+  const body=el("div");card.append(bar,body);
+  let cur=LISTENINGS[0];
+  LISTENINGS.forEach(L=>{
+    const b2=el("button",{class:"opt",type:"button",style:"font-size:15px"},esc(L.title));
+    if(L===cur)b2.classList.add("right");
+    b2.onclick=()=>{cur=L;[...bar.children].forEach(x=>x.classList.remove("right"));b2.classList.add("right");show()};
+    bar.appendChild(b2);
+  });
+
+  function part(n,txt,pts){
+    return el("p",{class:"tagline",style:"font-size:16px;margin-top:22px"},
+      `<b>${n})</b> ${esc(txt)} &nbsp;<span class="ex">… / ${pts}</span>`);
+  }
+
+  function show(){
+    body.innerHTML="";
+    body.appendChild(audioControls(cur.text));
+    const graders=[];
+
+    // a) una sola casilla, 4 preguntas
+    body.appendChild(part("a","Marca la casilla correcta. Solo una por pregunta.",4));
+    cur.a.forEach((it,i)=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"q"},`<span class="qnum">${i+1}.</span><b>${esc(it.q)}</b>`));
+      const opts=el("div",{class:"opts"});const fb=el("div",{class:"fb"});let sel=null;
+      it.opts.forEach(o=>{
+        const b3=el("button",{class:"opt",type:"button",style:"font-size:16px"},esc(o));
+        b3.onclick=()=>{sel=o;[...opts.children].forEach(x=>x.classList.remove("sel"));b3.classList.add("sel")};
+        opts.appendChild(b3);
+      });
+      row.append(opts,fb);body.appendChild(row);
+      graders.push(()=>{
+        const ok=sel===it.a;
+        [...opts.children].forEach(x=>{x.disabled=true;x.classList.remove("sel");
+          if(x.textContent===it.a)x.classList.add("right");else if(x.textContent===sel)x.classList.add("wrong")});
+        fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correcto":"Respuesta: "+it.a;
+        return ok?1:0;
+      });
+    });
+
+    // b) marcar TRES
+    body.appendChild(part("b",cur.b.q+"  Marca las TRES correctas.",3));
+    {
+      const row=el("div",{class:"item"});
+      const opts=el("div",{class:"opts"});const fb=el("div",{class:"fb"});
+      const sel=new Set();
+      cur.b.opts.forEach(o=>{
+        const b4=el("button",{class:"opt",type:"button",style:"font-size:16px"},esc(o));
+        b4.onclick=()=>{
+          if(sel.has(o)){sel.delete(o);b4.classList.remove("sel")}
+          else{sel.add(o);b4.classList.add("sel")}
+          fb.className="fb";fb.textContent=sel.size===3?"":`Marcadas: ${sel.size} de 3`;
+        };
+        opts.appendChild(b4);
+      });
+      row.append(opts,fb);body.appendChild(row);
+      graders.push(()=>{
+        let good=0,bad=0;
+        [...opts.children].forEach(x=>{x.disabled=true;x.classList.remove("sel");
+          const o=x.textContent;
+          if(cur.b.a.includes(o)){x.classList.add("right");if(sel.has(o))good++}
+          else if(sel.has(o)){x.classList.add("wrong");bad++}});
+        const pts=Math.max(0,good-bad);
+        fb.className="fb "+(pts===3?"ok":"no");
+        fb.textContent=pts===3?"Correcto · 3 de 3":`${pts} de 3 · las correctas son: ${cur.b.a.join(", ")}`;
+        return pts;
+      });
+    }
+
+    // c) completar escribiendo
+    body.appendChild(part("c","Completa las frases. Escribe la palabra o el número que falta.",5));
+    cur.c.forEach((it,i)=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"q"},`<span class="qnum">${i+1}.</span>${esc(it.q)}`));
+      const inp=el("input",{type:"text",autocomplete:"off",spellcheck:"false"});
+      const fb=el("div",{class:"fb"});row.append(inp,fb);body.appendChild(row);
+      graders.push(()=>{
+        const ok=it.a.some(x=>same(inp.value,x));
+        inp.className=ok?"right":"wrong";inp.disabled=true;
+        fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correcto":"Respuesta: "+it.a[0];
+        return ok?1:0;
+      });
+    });
+
+    // d) idea principal
+    body.appendChild(part("d",cur.d.q+"  Marca UNA respuesta.",1));
+    {
+      const row=el("div",{class:"item"});
+      const opts=el("div",{style:"display:grid;gap:8px"});const fb=el("div",{class:"fb"});let sel=null;
+      cur.d.opts.forEach((o,i)=>{
+        const b5=el("button",{class:"opt",type:"button",style:"font-size:16px;text-align:left"},`${i+1}. ${esc(o)}`);
+        b5.onclick=()=>{sel=o;[...opts.children].forEach(x=>x.classList.remove("sel"));b5.classList.add("sel")};
+        opts.appendChild(b5);
+      });
+      row.append(opts,fb);body.appendChild(row);
+      graders.push(()=>{
+        const ok=sel===cur.d.a;
+        [...opts.children].forEach(x=>{x.disabled=true;x.classList.remove("sel");
+          const o=x.textContent.replace(/^\d+\.\s/,"");
+          if(o===cur.d.a)x.classList.add("right");else if(o===sel)x.classList.add("wrong")});
+        fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correcto":"Respuesta: "+cur.d.a;
+        return ok?1:0;
+      });
+    }
+
+    const acts=el("div",{class:"actions"});
+    const fin=el("button",{class:"btn",type:"button"},"Corregir");
+    const again=el("button",{class:"btn ghost",type:"button"},"Volver a empezar");
+    again.onclick=show;
+    const sc=el("span",{class:"score"});
+    acts.append(fin,again,sc);body.appendChild(acts);
+    const out=el("div");body.appendChild(out);
+
+    fin.onclick=async ()=>{
+      fin.disabled=true;
+      const pa=graders.slice(0,4).reduce((t,g)=>t+g(),0);
+      const pb=graders[4]();
+      const pc=graders.slice(5,10).reduce((t,g)=>t+g(),0);
+      const pd=graders[10]();
+      const tot=pa+pb+pc+pd;
+      sc.textContent=`${tot} / 13`;
+      const msg=tot>=11?"Muy bien.":tot>=8?"Bien, pero repasa los fallos.":"Vuelve a escucharlo y hazlo otra vez.";
+      out.appendChild(el("div",{class:"result"},
+        `<div class="n">${tot}/13</div><p><b>${esc(msg)}</b></p>`+
+        `<p class="hint">a) ${pa}/4 &nbsp;·&nbsp; b) ${pb}/3 &nbsp;·&nbsp; c) ${pc}/5 &nbsp;·&nbsp; d) ${pd}/1</p>`));
+      if(tot===13){done[id]=true;renderNav()}
+      await saveResult({test:"listen-"+cur.title,title:"Listening – "+cur.title,
+        score:tot,total:13,pct:Math.round(tot/13*100),
+        missed:[`a ${pa}/4`,`b ${pb}/3`,`c ${pc}/5`,`d ${pd}/1`],
+        date:todayISO(),ts:Date.now()});
+    };
+  }
+  show();return card;
+}
+
+// ---------- the test runner ----------
+function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+
+function buildTests(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Mini exámenes"),
+    el("p",{class:"hint"},"Diez tests iguales en contenido: cada uno pregunta de todo. Haz uno al día, o más si quieres."));
+  const bar=el("div",{class:"opts",style:"margin-bottom:14px"});
+  const body=el("div");card.append(bar,body);
+  let chosen=TESTS[0];
+  TESTS.forEach(t=>{
+    const b=el("button",{class:"opt",type:"button",style:"min-width:60px"},esc(t.title.replace("Test ","")));
+    if(t.id===chosen.id)b.classList.add("right");
+    b.onclick=()=>{chosen=t;[...bar.children].forEach(x=>x.classList.remove("right"));b.classList.add("right");show()};
+    bar.appendChild(b);
+  });
+  function show(){body.innerHTML="";runTest(body,chosen,()=>{
+    const n=+chosen.id.slice(1);
+    TESTS[n-1]=makeTest(n,Math.floor(Math.random()*1e9));
+    chosen=TESTS[n-1];show();
+  })}
+  show();return card;
+}
+
+function runTest(host,t,reshuffle){
+  host.appendChild(el("p",{class:"q",style:"font-size:20px;margin-bottom:2px"},`<b>${esc(t.title)}</b>`));
+  host.appendChild(el("p",{class:"hint"},esc(t.intro)));
+  paint();
+
+  function paint(){
+    const rows=[];
+    // listening block
+    if(t.listen){
+      const lb=el("div",{class:"item"});
+      lb.appendChild(el("p",{class:"q"},`<b>Listening – ${esc(t.listen.title||"")}</b> &nbsp;<span class='ex'>Escucha el texto las veces que quieras. No mires la transcripción hasta el final.</span>`));
+      lb.appendChild(audioControls(t.listen.text));
+      host.appendChild(lb);
+      t.listen.qs.forEach((q,i)=>rows.push(addRow(host,q,rows.length+1)));
+    }
+    t.qs.forEach(q=>rows.push(addRow(host,q,rows.length+1)));
+
+    // writing
+    let ta=null;
+    if(t.writing){
+      const wb=el("div",{class:"item"});
+      wb.appendChild(el("p",{class:"q"},"<b>Writing</b> &nbsp;<span class='ex'>Escribe 8–10 frases sobre un día del pasado. Usa conectores y el simple past.</span>"));
+      ta=el("textarea",{placeholder:"Last Saturday I…",spellcheck:"false"});
+      wb.appendChild(ta);host.appendChild(wb);
+    }
+
+    const a=el("div",{class:"actions"});
+    const fin=el("button",{class:"btn",type:"button"},"Terminar el test");
+    const again=el("button",{class:"btn ghost",type:"button"},"Preguntas nuevas");
+    again.onclick=()=>{if(reshuffle)reshuffle();else render()};
+    a.append(fin,again);host.appendChild(a);
+    const out=el("div");host.appendChild(out);
+
+    fin.onclick=async ()=>{
+      let got=0;const missed=[];
+      rows.forEach(r=>{
+        const ok=r.grade();
+        if(ok)got++;else missed.push(r.label());
+      });
+      fin.disabled=true;
+      const pct=Math.round(got/rows.length*100);
+      const msg=pct>=90?"Muy bien. Está preparada.":pct>=70?"Bien. Repasa los fallos y vuelve a intentarlo.":
+                pct>=50?"Hay que repasar. Mira las reglas de arriba y haz los ejercicios de esa parte.":
+                "Toca repasar en serio esta parte antes del examen.";
+      const res=el("div",{class:"result"},`<div class="n">${got}/${rows.length}</div><p><b>${esc(msg)}</b></p>`);
+      out.appendChild(res);
+      if(missed.length){
+        out.appendChild(el("p",{class:"hint",style:"text-align:left"},
+          "<b>Para repasar:</b><br>"+missed.map(esc).join("<br>")));
+      }
+      if(ta){
+        const fb=el("div",{class:"fb",style:"font-size:16px;margin-top:10px"});
+        out.appendChild(el("p",{class:"q",style:"margin-top:14px"},"<b>Tu redacción</b>"));
+        out.appendChild(fb);renderCheck(fb,ta.value);
+      }
+      const saved=await saveResult({test:t.id,title:t.title,
+        score:got,total:rows.length,pct,missed:missed.slice(0,12),
+        date:todayISO(),ts:Date.now(),words:ta?ta.value.trim().split(/\s+/).filter(Boolean).length:0});
+      out.appendChild(el("p",{class:"hint",style:"margin-top:12px"},
+        saved?"Resultado guardado. Lo puedes ver en la pestaña Resultados.":
+              "El resultado no se ha podido guardar en esta sesión, pero la nota es la de arriba."));
+      out.scrollIntoView({behavior:"smooth",block:"nearest"});
+    };
+  }
+
+  function addRow(host,q,n){
+    const row=el("div",{class:"item"});
+    if(q.tag)row.appendChild(el("p",{class:"tagline"},`<span class="qnum">${n}.</span>${esc(q.tag)}`));
+    row.appendChild(el("p",{class:"q"},(q.tag?"":`<span class="qnum">${n}.</span>`)+esc(q.q)));
+    const fb=el("div",{class:"fb"});
+    if(q.t==="mc"){
+      const opts=el("div",{class:"opts"});let sel=null;
+      q.opts.forEach(o=>{
+        const b=el("button",{class:"opt",type:"button",style:"font-size:16px"},esc(o));
+        b.onclick=()=>{sel=o;[...opts.children].forEach(x=>x.classList.remove("sel"));b.classList.add("sel")};
+        opts.appendChild(b);
+      });
+      row.append(opts,fb);host.appendChild(row);
+      return {grade(){
+          const ok=sel===q.a;
+          [...opts.children].forEach(b=>{b.disabled=true;b.classList.remove("sel");
+            if(b.textContent===q.a)b.classList.add("right");
+            else if(b.textContent===sel)b.classList.add("wrong")});
+          fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correcto":"Respuesta: "+q.a;
+          return ok;},
+        label(){return `${n}. ${strip(q.q)}  =  ${q.a}`}};
+    }
+    const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"sentences",spellcheck:"false"});
+    row.append(inp,fb);host.appendChild(row);
+    return {grade(){
+        const ok=q.a.some(x=>same(inp.value,x));
+        inp.className=ok?"right":"wrong";inp.disabled=true;
+        fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correcto":"Respuesta: "+q.a[0];
+        return ok;},
+      label(){return `${n}. ${strip(q.q)}  =  ${q.a[0]}`}};
+  }
+}
+
+// ---------- results ----------
+function buildResults(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Resultados"),el("p",{class:"hint"},"Las notas de cada test, de la más reciente a la más antigua."));
+  const body=el("div");card.appendChild(body);
+  if(!capsReady){body.appendChild(el("p",{class:"hint"},"Cargando…"));initCaps();return card}
+  if(!DB){
+    body.appendChild(el("p",{class:"hint"},
+      "Las notas no se pueden guardar en esta vista. Puede ser que no hayas iniciado sesión, o que esta copia de la página no tenga permiso. Los tests funcionan igual y muestran la nota al terminar."));
+    return card;
+  }
+  body.appendChild(el("p",{class:"hint"},"Cargando…"));
+  DB.collection("results").orderBy("ts","desc").limit(50).get().then(snap=>{
+    body.innerHTML="";
+    if(snap.empty){body.appendChild(el("p",{class:"hint"},"Todavía no hay ningún test hecho."));return}
+    const head=el("div",{class:"res",style:"border-top:0;font-weight:800;color:var(--muted);font-size:13px"});
+    head.append(el("div",{},"Test"),el("div",{},"Nota"),el("div",{},"Fecha"));
+    body.appendChild(head);
+    snap.docs.forEach(d=>{
+      const r=d.data();
+      const cls=r.pct>=90?"a":r.pct>=70?"b":"c";
+      const row=el("div",{class:"res"});
+      row.append(el("div",{},esc(r.title||r.test||"")),
+                 el("div",{},`<span class="pill ${cls}">${r.score}/${r.total}</span>`),
+                 el("div",{class:"ex"},esc(r.date||"")));
+      body.appendChild(row);
+      if(r.missed&&r.missed.length){
+        body.appendChild(el("p",{class:"hint",style:"margin:4px 0 10px;font-size:14px"},
+          "Falló: "+r.missed.map(esc).join(" · ")));
+      }
+    });
+  }).catch(()=>{
+    body.innerHTML="";
+    body.appendChild(el("p",{class:"hint"},"No se han podido leer los resultados ahora mismo."));
+  });
+  return card;
+}
+
+// ---------- groups & sections ----------
+const RULES_BE=`
+  <div class="split">
+    <div class="box w1"><b>was</b>I, he, she, it<br><span class="ex">one person or one thing</span></div>
+    <div class="box w2"><b>were</b>you, we, they<br><span class="ex">"you" and more than one</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="rule"><span class="rn">1</span><div><p><b>Positive</b></p><p class="ex">I <span class="was">was</span> at home. She <span class="was">was</span> happy. We <span class="were">were</span> at school.</p></div></div>
+    <div class="rule"><span class="rn">2</span><div><p><b>Negative:</b> add <b>not</b></p><p class="ex">was not = <span class="was">wasn't</span> &nbsp; were not = <span class="were">weren't</span></p></div></div>
+    <div class="rule"><span class="rn">3</span><div><p><b>Questions:</b> was / were goes first</p><p class="ex"><span class="was">Was</span> Lily at the beach? Where <span class="were">were</span> you?</p></div></div>
+    <div class="rule"><span class="rn">4</span><div><p><b>Short answers:</b> repeat was / were</p><p class="ex">Yes, she <span class="was">was</span>. / No, they <span class="were">weren't</span>.</p></div></div>
+    <div class="rule"><span class="rn">5</span><div><p><b>there was / there were</b></p><p class="ex">There <span class="was">was</span> a cake. There <span class="were">were</span> three dogs.</p></div></div>
+  </div>`;
+const RULES_PAST=`
+  <div class="split">
+    <div class="box w1"><b>+ ed</b>regular verbs<br><span class="ex">play → played · visit → visited</span></div>
+    <div class="box w2"><b>new word</b>irregular verbs<br><span class="ex">go → went · eat → ate · buy → bought</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="rule"><span class="rn">1</span><div><p><b>Spelling of -ed</b></p><p class="ex">normal: walk → walk<b>ed</b> &nbsp;·&nbsp; ends in -e: arrive → arrive<b>d</b><br>consonant + y: study → stud<b>ied</b> &nbsp;·&nbsp; short word: stop → sto<b>pped</b></p></div></div>
+    <div class="rule"><span class="rn">2</span><div><p><b>Same form for everybody</b></p><p class="ex">I played · he played · they played. Never "he playeds".</p></div></div>
+    <div class="rule"><span class="rn">3</span><div><p><b>Negative: didn't + base form</b></p><p class="ex">I <b>didn't play</b> football. She <b>didn't go</b> home.<br><span class="was">Careful:</span> NOT "didn't played", NOT "didn't went".</p></div></div>
+    <div class="rule"><span class="rn">4</span><div><p><b>Questions: Did + base form</b></p><p class="ex"><b>Did</b> you <b>play</b> football? Where <b>did</b> you <b>go</b>?<br>Short answers: Yes, I did. / No, I didn't.</p></div></div>
+    <div class="rule"><span class="rn">5</span><div><p><b>The past form only appears once</b></p><p class="ex">I <b>went</b> home.  →  I didn't <b>go</b> home.  →  Did you <b>go</b> home?</p></div></div>
+    <div class="rule"><span class="rn">6</span><div><p><b>From present to past</b></p><p class="ex">do / does  →  <b>did</b> &nbsp;·&nbsp; don't / doesn't  →  <b>didn't</b><br>Where <b>does</b> she live?  →  Where <b>did</b> she live?</p></div></div>
+    <div class="rule"><span class="rn">7</span><div><p><b>How you say -ed</b></p><p class="ex">After <b>t</b> or <b>d</b> you hear an extra syllable [ɪd]: want·ed, need·ed, start·ed, visit·ed.<br>After everything else you don't: played, walked, helped.</p></div></div>
+    <div class="rule"><span class="rn">8</span><div><p><b>Time words</b></p><p class="ex">yesterday, last night, last summer, two days ago, in July, on Sunday</p></div></div>
+  </div>`;
+const RULES_WRITE=`
+  <div class="rule"><span class="rn">1</span><div><p><b>Tell the story in order</b></p><p class="ex">Where and when → how you travelled → where you stayed → what you did → the best moment → the end.</p></div></div>
+  <div class="rule"><span class="rn">2</span><div><p><b>Everything in the simple past</b></p><p class="ex">We went… We stayed… It was… There were…</p></div></div>
+  <div class="rule"><span class="rn">3</span><div><p><b>Join your sentences</b></p><p class="ex">and · but · because · so · then · after that</p></div></div>`;
+
+
+
+// ---------- bloque del test de noviembre (página 289) ----------
+function novVerbs(){return IRR.filter(v=>CORE_NOV.includes(v[0]))}
+
+function buildNovList(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Los 26 verbos del test"),
+    el("p",{class:"hint"},"Los dos recuadros de la página 289. Tápalos con la mano y comprueba."));
+  const wrap=el("div",{class:"tscroll"});const t=el("table",{class:"forms"});
+  t.innerHTML="<tr><th>infinitive</th><th>simple past</th><th>Deutsch</th></tr>";
+  novVerbs().forEach(([b,pa,de])=>{const tr=el("tr");
+    tr.append(el("td",{},`<b>${esc(b)}</b>`),el("td",{},`<b>${esc(pa)}</b>`),el("td",{},esc(de)));
+    t.appendChild(tr)});
+  wrap.appendChild(t);card.appendChild(wrap);return card;
+}
+
+function buildNovTrainer(){
+  const id="novtrain";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Escribe el simple past"),
+    el("p",{class:"hint"},"Diez verbos de los 26 del test. Con la traducción al alemán como pista."));
+  const body=el("div");card.appendChild(body);
+  function show(){
+    body.innerHTML="";
+    const rows=pick(novVerbs(),10).map(([b,pa,de])=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"q"},`<b>${esc(b)}</b>   (${esc(de)})   →`));
+      const inp=el("input",{type:"text",class:"short",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});
+      const fb=el("div",{class:"fb"});row.append(inp,fb);body.appendChild(row);return {pa,inp,fb};
+    });
+    const a=el("div",{class:"actions"});const c=el("button",{class:"btn",type:"button"},"Corregir");
+    const n=el("button",{class:"btn ghost",type:"button"},"Otros verbos");n.onclick=show;
+    const sc=el("span",{class:"score"});
+    c.onclick=()=>{let got=0;rows.forEach(r=>{const ok=raw(r.inp.value)===r.pa;
+      r.inp.className="short "+(ok?"right":"wrong");r.fb.className="fb "+(ok?"ok":"no");
+      r.fb.textContent=ok?"Correcto":"Respuesta: "+r.pa;if(ok)got++});
+      sc.textContent=`${got} / ${rows.length}`;
+      if(got===rows.length){sc.textContent+="  – perfecto!";done[id]=true;renderNav()}};
+    a.append(c,n,sc);body.appendChild(a);
+  }
+  show();return card;
+}
+
+function buildNovTrap(){
+  const items=pick(novVerbs(),10).map(([b,pa])=>{
+    const fake=b.endsWith("e")?b+"d":b+"ed";
+    const others=pick(novVerbs().filter(v=>v[1]!==pa),2).map(v=>v[1]);
+    return {q:b+"   →",a:pa,opts:shuffle([pa,fake,...others])};
+  });
+  return buildChoice("¿-ed o irregular?","Ninguno de estos lleva -ed. Toca la forma correcta.",items,"novtrap");
+}
+
+function buildNovP2I(){
+  const items=pick(novVerbs().filter(v=>v[0]!==v[1]),10)
+    .map(([b,pa,de])=>({q:pa+"   ("+de+")   →",a:[b,"to "+b]}));
+  return buildType("Del pasado al infinitivo",
+    "Como en el diccionario: te doy el simple past y escribes la Grundform.",items,"novp2i");
+}
+
+function buildNovVocabMC(){
+  const items=pick(VOCAB_NOV,10).map(w=>{
+    const wrong=pick(VOCAB_NOV.filter(x=>x[1]!==w[1]),3).map(x=>x[1]);
+    return {q:w[0],a:w[1],opts:shuffle([w[1],...wrong])};
+  });
+  return buildChoice("Vocabulario – inglés a alemán","Toca la traducción correcta.",items,"novvocmc");
+}
+
+function buildNovVocabType(){
+  return vocSetType("Vocabulario – alemán a inglés",
+    "Escríbela (te doy la inicial) o cambia a elegir entre cuatro.",
+    VOCAB_NOV.filter(x=>!/[?()]/.test(x[0])),"novvoctype");
+}
+
+function buildNovTest(){
+  const id="novtest";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Mini examen"),
+    el("p",{class:"hint"},"20 preguntas solo con los verbos y el vocabulario de este test."));
+  const body=el("div");card.appendChild(body);
+  function show(){
+    body.innerHTML="";
+    const vs=novVerbs(), rows=[];
+    const add=(tag,q,ans)=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"tagline"},`<span class="qnum">${rows.length+1}.</span>${esc(tag)}`));
+      row.appendChild(el("p",{class:"q"},esc(q)));
+      const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});
+      const fb=el("div",{class:"fb"});row.append(inp,fb);body.appendChild(row);
+      rows.push({ans,inp,fb,label:`${rows.length+1}. ${q.replace(/\s*→\s*$/,"")} = ${ans[0]}`});
+    };
+    pick(vs,8).forEach(([b,pa,de])=>add("Escribe el simple past",b+"   ("+de+")   →",[pa]));
+    pick(vs.filter(v=>v[0]!==v[1]),4).forEach(([b,pa,de])=>
+      add("Escribe el infinitivo (la Grundform)",pa+"   ("+de+")   →",[b,"to "+b]));
+    pick(VOCAB_NOV,4).forEach(w=>add("Traduce al alemán",w[0]+"   →",[w[1]]));
+    pick(VOCAB_NOV.filter(x=>!/[?()]/.test(x[0])),4).forEach(w=>
+      add("Traduce al inglés",w[1]+"   →   "+w[0][0]+"…",[w[0],"to "+w[0],"the "+w[0]]));
+    const a=el("div",{class:"actions"});
+    const c=el("button",{class:"btn",type:"button"},"Terminar el test");
+    const n=el("button",{class:"btn ghost",type:"button"},"Preguntas nuevas");n.onclick=show;
+    a.append(c,n);body.appendChild(a);
+    const out=el("div");body.appendChild(out);
+    c.onclick=async ()=>{
+      c.disabled=true;let got=0;const missed=[];
+      rows.forEach(r=>{
+        const ok=r.ans.some(x=>same(r.inp.value,x));
+        r.inp.className=ok?"right":"wrong";r.inp.disabled=true;
+        r.fb.className="fb "+(ok?"ok":"no");r.fb.textContent=ok?"Correcto":"Respuesta: "+r.ans[0];
+        if(ok)got++;else missed.push(r.label);
+      });
+      const pct=Math.round(got/rows.length*100);
+      const msg=pct>=90?"Muy bien. Está preparada.":pct>=70?"Bien. Repasa los fallos.":
+                pct>=50?"Hay que repasar la lista de verbos.":"Toca empollar la lista antes del test.";
+      out.appendChild(el("div",{class:"result"},`<div class="n">${got}/${rows.length}</div><p><b>${esc(msg)}</b></p>`));
+      if(missed.length)out.appendChild(el("p",{class:"hint",style:"text-align:left"},
+        "<b>Para repasar:</b><br>"+missed.map(esc).join("<br>")));
+      if(got===rows.length){done[id]=true;renderNav()}
+      const saved=await saveResult({test:"nov",title:"Mini examen – test de noviembre",
+        score:got,total:rows.length,pct,missed:missed.slice(0,12),date:todayISO(),ts:Date.now()});
+      out.appendChild(el("p",{class:"hint",style:"margin-top:12px"},
+        saved?"Resultado guardado en Resultados.":"El resultado no se ha podido guardar, pero la nota es la de arriba."));
+    };
+  }
+  show();return card;
+}
+
+const RULES_NOV=`
+  <div class="rule"><span class="rn">1</span><div><p><b>Qué entra en este test</b></p><p class="ex">Los <b>26 verbos irregulares</b> de los dos recuadros de la página 289 y las <b>19 palabras</b> de vocabulario de esa misma página.</p></div></div>
+  <div class="rule"><span class="rn">2</span><div><p><b>Ninguno de estos verbos lleva -ed</b></p><p class="ex">Son todos irregulares: find → <b>found</b>, buy → <b>bought</b>, win → <b>won</b>. Hay que aprenderlos de memoria.</p></div></div>
+  <div class="rule"><span class="rn">3</span><div><p><b>Tres se parecen mucho entre sí</b></p><p class="ex">lead → <b>led</b> &nbsp;·&nbsp; lose → <b>lost</b> &nbsp;·&nbsp; leave → <b>left</b><br>Y ojo con read → <b>read</b>, que se escribe igual pero suena distinto.</p></div></div>
+  <div class="rule"><span class="rn">4</span><div><p><b>Dos llevan partícula</b></p><p class="ex">hang out → <b>hung out</b> &nbsp;·&nbsp; bend down → <b>bent down</b></p></div></div>
+  <div class="rule"><span class="rn">5</span><div><p><b>Palabras que se parecen y no son lo mismo</b></p><p class="ex"><b>nobody</b> / <b>no one</b> = niemand &nbsp;·&nbsp; <b>anybody</b> = (irgend)jemand<br><b>work</b> aquí es <i>funktionieren</i>, no <i>arbeiten</i>: <i>My computer doesn't work.</i></p></div></div>`;
+
+
+// ---------- bloque de la semana 47: giving directions ----------
+const DIR_PHRASES=[
+ ["go straight on","geh geradeaus"],
+ ["turn left","biege links ab"],
+ ["turn right","biege rechts ab"],
+ ["cross the road","überquere die Straße"],
+ ["keep going","geh weiter"],
+ ["at the corner of","an der Ecke von"],
+ ["until you reach","bis du … erreichst"],
+ ["go past the","geh am … vorbei"],
+ ["go down the street","geh die Straße entlang"],
+ ["it's on your left","es ist auf deiner linken Seite"],
+ ["it's on your right","es ist auf deiner rechten Seite"],
+ ["opposite","gegenüber"],
+ ["next to","neben"],
+ ["between","zwischen"],
+ ["Can you tell me the way to …?","Kannst du mir den Weg zu … sagen?"],
+ ["Excuse me, I'm a bit lost.","Entschuldigung, ich habe mich etwas verlaufen."],
+ ["I'm looking for …","Ich suche …"],
+ ["Is it far from here?","Ist es weit von hier?"]
+];
+
+const WHOSAYS=[
+ ["Can I help you?","a local person"],
+ ["Excuse me, I'm a bit lost. Can you help me?","a tourist"],
+ ["I'm sorry, I'm looking for the cathedral.","a tourist"],
+ ["You go down the street and then turn left.","a local person"],
+ ["I'm looking for somewhere to buy a drink.","a tourist"],
+ ["Go straight on, past the big church.","a local person"],
+ ["Where do you want to go?","a local person"],
+ ["There's a good shop near here.","a local person"],
+ ["Hi. I'm sorry. Are you from here?","a tourist"],
+ ["Can you tell me the way, please?","a tourist"],
+ ["It's opposite the station.","a local person"],
+ ["Is the museum far from here?","a tourist"]
+];
+
+const MAP_PLACES=["the museum","the café","the supermarket","the bookshop",
+ "the cinema","the swimming pool","the park","the hospital"];
+
+const MAP_ROUTES=[
+ ["Go straight on up Green Street. Turn right into High Street. It's the first building on your left.","the café"],
+ ["Go up Green Street. Turn left into High Street. It's on your right.","the museum"],
+ ["Go up Green Street. Turn left into High Street. It's on your left.","the cinema"],
+ ["Go straight on along River Road. Turn left at the corner of Mill Street. It's on your right.","the park"],
+ ["Go along River Road to Mill Street. Turn left. It's on your left.","the swimming pool"],
+ ["Go along River Road to Mill Street. Turn left, keep going and cross High Street. At the corner of Park Road it's on your right.","the supermarket"],
+ ["Go straight on along River Road, past Mill Street and past Station Road. It's on your left.","the hospital"],
+ ["Go up Green Street and turn right into High Street. Go past the café and the supermarket. Cross Station Road. It's on your left.","the bookshop"]
+];
+
+function townMap(){
+  const w=el("div",{class:"mapwrap"});
+  w.innerHTML=`<svg viewBox="0 0 620 400" role="img" aria-label="Plano de la ciudad">
+    <rect class="road" x="0" y="64" width="620" height="32"/>
+    <rect class="road" x="0" y="184" width="620" height="32"/>
+    <rect class="road" x="0" y="304" width="620" height="32"/>
+    <rect class="road" x="104" y="0" width="32" height="400"/>
+    <rect class="road" x="284" y="0" width="32" height="400"/>
+    <rect class="road" x="464" y="0" width="32" height="400"/>
+    <text class="rname" x="6" y="86">Park Road</text>
+    <text class="rname" x="6" y="206">High Street</text>
+    <text class="rname" x="6" y="326">River Road</text>
+    <text class="rname" x="614" y="86"  text-anchor="end">Park Road</text>
+    <text class="rname" x="614" y="206" text-anchor="end">High Street</text>
+    <text class="rname" x="614" y="326" text-anchor="end">River Road</text>
+    <text class="rname" x="120" y="34" text-anchor="middle">Green Street</text>
+    <text class="rname" x="300" y="34" text-anchor="middle">Mill Street</text>
+    <text class="rname" x="480" y="34" text-anchor="middle">Station Road</text>
+    <rect class="plot" x="10"  y="106" width="86"  height="70" rx="6"/><text class="pname" x="53"  y="147">museum</text>
+    <rect class="plot" x="144" y="106" width="132" height="70" rx="6"/><text class="pname" x="210" y="147">café</text>
+    <rect class="plot" x="324" y="106" width="132" height="70" rx="6"/><text class="pname" x="390" y="147">supermarket</text>
+    <rect class="plot" x="504" y="106" width="106" height="70" rx="6"/><text class="pname" x="557" y="147">bookshop</text>
+    <rect class="plot" x="10"  y="226" width="86"  height="70" rx="6"/><text class="pname" x="53"  y="267">cinema</text>
+    <rect class="plot" x="144" y="226" width="132" height="70" rx="6"/><text class="pname" x="210" y="260">swimming</text><text class="pname" x="210" y="280">pool</text>
+    <rect class="plot" x="324" y="226" width="132" height="70" rx="6"/><text class="pname" x="390" y="267">park</text>
+    <rect class="plot" x="504" y="226" width="106" height="70" rx="6"/><text class="pname" x="557" y="267">hospital</text>
+    <rect class="start" x="10" y="346" width="86" height="44" rx="6"/><text class="sname" x="53" y="374">START</text>
+  </svg>`;
+  return w;
+}
+
+function buildDirList(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Las frases para indicar el camino"),
+    el("p",{class:"hint"},"Ojo con la número 8 del cuaderno: go past the NO es “biege links ab”."));
+  const wrap=el("div",{class:"tscroll"});const t=el("table",{class:"forms"});
+  t.innerHTML="<tr><th>English</th><th>Deutsch</th></tr>";
+  DIR_PHRASES.forEach(([en,de])=>{const tr=el("tr");
+    tr.append(el("td",{},`<b>${esc(en)}</b>`),el("td",{},esc(de)));t.appendChild(tr)});
+  wrap.appendChild(t);card.appendChild(wrap);return card;
+}
+
+function buildDirMC(){
+  const items=pick(DIR_PHRASES,10).map(w=>{
+    const wrong=pick(DIR_PHRASES.filter(x=>x[1]!==w[1]),3).map(x=>x[1]);
+    return {q:w[0],a:w[1],opts:shuffle([w[1],...wrong])};
+  });
+  return buildChoice("Direcciones – inglés a alemán","Toca la traducción correcta.",items,"dirmc");
+}
+
+function buildDirType(){
+  return vocSetType("Direcciones – alemán a inglés",
+    "Escríbela (te doy la inicial) o cambia a elegir entre cuatro.",DIR_PHRASES,"dirtype");
+}
+
+function buildWhoSays(){
+  const items=pick(WHOSAYS,10).map(([q,a])=>({q,a,opts:["a tourist","a local person"]}));
+  return buildChoice("¿Lo dice un turista o alguien de allí?",
+    "Como el ejercicio 2a) del libro: decide quién dice cada frase.",items,"whosays");
+}
+
+function buildFollowMap(){
+  const id="followmap";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Sigue las indicaciones"),
+    el("p",{class:"hint"},"Sales del START, en la esquina de Green Street con River Road, y miras hacia el norte (hacia arriba del plano). Lee cada camino y di adónde llegas."));
+  card.appendChild(townMap());
+  const body=el("div");card.appendChild(body);
+  function show(){
+    body.innerHTML="";
+    const rows=pick(MAP_ROUTES,6).map(([txt,ans])=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"tagline"},`<span class="qnum">${rows0.length+1}.</span>¿Adónde llegas?`));
+      row.appendChild(el("p",{class:"q"},esc(txt)));
+      const opts=el("div",{class:"opts"});const fb=el("div",{class:"fb"});
+      const wrong=pick(MAP_PLACES.filter(x=>x!==ans),3);
+      shuffle([ans,...wrong]).forEach(o=>{
+        const b=el("button",{class:"opt",type:"button"},esc(o));
+        b.onclick=()=>{
+          [...opts.children].forEach(x=>x.disabled=true);
+          const ok=o===ans;b.className="opt "+(ok?"right":"wrong");
+          fb.className="fb "+(ok?"ok":"no");
+          fb.textContent=ok?"Correcto":"Es "+ans;
+          if(!ok)[...opts.children].find(x=>x.textContent===ans).className="opt right";
+          st.n++;if(ok)st.got++;
+          sc.textContent=`${st.got} / ${st.n}`;
+          if(st.n===rows.length&&st.got===st.n){done[id]=true;renderNav()}
+        };
+        opts.appendChild(b);
+      });
+      row.append(opts,fb);body.appendChild(row);
+      rows0.push(1);return 1;
+    });
+    const a=el("div",{class:"actions"});
+    const n=el("button",{class:"btn ghost",type:"button"},"Otros caminos");
+    n.onclick=()=>{rows0.length=0;st.n=0;st.got=0;show()};
+    var sc=el("span",{class:"score"});a.append(n,sc);body.appendChild(a);
+  }
+  var rows0=[],st={n:0,got:0},sc;
+  show();return card;
+}
+
+function buildGiveDirs(){
+  const items=[
+   {q:"Un turista te pregunta: “Excuse me, can you tell me the way to the park?” Empieza tú la respuesta con la frase que significa “geh geradeaus”.",a:["go straight on","go straight on."]},
+   {q:"Dile que gire a la izquierda en la esquina de Mill Street. (Usa turn + at the corner of)",a:["turn left at the corner of mill street","turn left at the corner of mill street."]},
+   {q:"Dile que cruce la calle. (2 palabras + the road)",a:["cross the road","cross the road."]},
+   {q:"Dile que siga hasta llegar a High Street. (keep going + until you reach)",a:["keep going until you reach high street","keep going until you reach high street."]},
+   {q:"Dile que pase por delante del museo. (go past …)",a:["go past the museum","go past the museum."]},
+   {q:"Dile que está a la derecha. (it's …)",a:["it's on your right","its on your right","it is on your right","it's on your right."]},
+   {q:"Pregunta educadamente por el camino a la estación. Empieza por “Can you…”",a:["can you tell me the way to the station","can you tell me the way to the station?"]},
+   {q:"Di que te has perdido un poco. Empieza por “Excuse me, I'm…”",a:["excuse me, i'm a bit lost","excuse me i'm a bit lost","excuse me, i am a bit lost"]}
+  ];
+  return buildType("Da tú las indicaciones",
+    "Escribe la frase entera en inglés.",items,"givedirs");
+}
+
+const RULES_W47=`
+  <div class="rule"><span class="rn">!</span><div><p><b>Un fallo del cuaderno</b></p><p class="ex">En la lista de clase, <b>go past the</b> está traducido como “Biege links ab”, que es <i>turn left</i>. Lo correcto es <b>geh am … vorbei</b> (pasar por delante de algo).</p></div></div>
+  <div class="rule"><span class="rn">1</span><div><p><b>Las indicaciones van en imperativo</b></p><p class="ex">Sin <i>you</i> delante: <b>Go</b> straight on. <b>Turn</b> left. <b>Cross</b> the road. Y para encadenar: <i>First …, then …, after that …</i></p></div></div>
+  <div class="rule"><span class="rn">2</span><div><p><b>in / into / past</b></p><p class="ex">turn left <b>into</b> High Street (al girar y meterse) · go <b>past</b> the church (pasar por delante) · it's <b>in</b> Green Street (está en esa calle)</p></div></div>
+  <div class="rule"><span class="rn">3</span><div><p><b>Ser educado</b></p><p class="ex">Empieza siempre con <i>Excuse me</i> o <i>Sorry</i>, y termina con <i>Thank you</i>. El turista pregunta (<i>I'm looking for…</i>), el de allí responde (<i>Go straight on…</i>).</p></div></div>
+  <div class="rule"><span class="rn">4</span><div><p><b>Todavía falta el temario</b></p><p class="ex">Esto está montado con lo del cuaderno y las páginas 36–39. Cuando la profesora pase el temario completo se amplía.</p></div></div>`;
+
+
+// ---------- semana 47: some/any, did, comparison, shopping ----------
+const SOMEANY=[
+ ["We bought ___ new trainers at the market.","some"],
+ ["I didn't buy ___ shoes because they were too expensive.","any"],
+ ["Did you see ___ nice jackets in the sale?","any"],
+ ["There are ___ great shops in Brighton.","some"],
+ ["Sorry, we haven't got ___ jumpers in your size.","any"],
+ ["Would you like ___ help with that?","some"],
+ ["Can I have ___ water, please?","some"],
+ ["She didn't spend ___ money on clothes last month.","any"],
+ ["Have you got ___ change for the bus?","any"],
+ ["There weren't ___ changing rooms on that floor.","any"],
+ ["I need ___ new socks.","some"],
+ ["Were there ___ customers in the shop?","any"],
+ ["We found ___ really good bargains yesterday.","some"],
+ ["He didn't take ___ photos in the shopping centre.","any"],
+ ["Could I try on ___ of these hoodies?","some"]
+];
+const COMPOUNDS=[
+ ["___ left their bag in the changing room.","somebody"],
+ ["I didn't buy ___ in that shop.","anything"],
+ ["Is there ___ here who speaks German?","anybody"],
+ ["We went ___ nice for lunch after shopping.","somewhere"],
+ ["She couldn't find her purse ___.","anywhere"],
+ ["There's ___ wrong with this receipt.","something"],
+ ["Did ___ tell you about the sale?","anybody"],
+ ["I'd like ___ to drink, please.","something"],
+ ["He didn't say ___ to the shop assistant.","anything"],
+ ["Let's go ___ cheaper next time.","somewhere"]
+];
+
+const DIDQ=[
+ ["We went to the shopping centre.","Where did you go?"],
+ ["She bought a red hoodie.","What did she buy?"],
+ ["They paid twenty pounds.","How much did they pay?"],
+ ["I got home at six o'clock.","What time did you get home?"],
+ ["He went shopping with his sister.","Who did he go shopping with?"],
+ ["We stayed there for two hours.","How long did you stay there?"],
+ ["She tried on three jumpers.","How many jumpers did she try on?"],
+ ["They came home by bus.","How did they come home?"],
+ ["I bought it because it was cheap.","Why did you buy it?"],
+ ["The sale started on Monday.","When did the sale start?"]
+];
+const DIDYN=[
+ ["you / buy / a new jacket","Did you buy a new jacket?"],
+ ["she / find / the shop","Did she find the shop?"],
+ ["they / spend / a lot of money","Did they spend a lot of money?"],
+ ["he / try on / the trainers","Did he try on the trainers?"],
+ ["your mum / pay / by card","Did your mum pay by card?"],
+ ["the shop / close / at six","Did the shop close at six?"],
+ ["you / see / the sale","Did you see the sale?"],
+ ["Alice / lose / her receipt","Did Alice lose her receipt?"]
+];
+const DIDFIX=[
+ ["Did you went to the market?","Did you go to the market?"],
+ ["Where did she bought that scarf?","Where did she buy that scarf?"],
+ ["Did he saw the new shop?","Did he see the new shop?"],
+ ["What you did buy?","What did you buy?"],
+ ["Did they payed for it?","Did they pay for it?"],
+ ["How much did it cost?","How much did it cost?"],
+ ["Did your brother came with you?","Did your brother come with you?"],
+ ["When did the shop opened?","When did the shop open?"]
+];
+
+const ADJ=[
+ ["fast","faster","the fastest","1",""],
+ ["cheap","cheaper","the cheapest","1",""],
+ ["old","older","the oldest","1",""],
+ ["small","smaller","the smallest","1",""],
+ ["long","longer","the longest","1",""],
+ ["nice","nicer","the nicest","1","acaba en -e: solo +r"],
+ ["large","larger","the largest","1","acaba en -e: solo +r"],
+ ["big","bigger","the biggest","1","dobla la consonante"],
+ ["hot","hotter","the hottest","1","dobla la consonante"],
+ ["early","earlier","the earliest","y",""],
+ ["easy","easier","the easiest","y",""],
+ ["funny","funnier","the funniest","y",""],
+ ["busy","busier","the busiest","y",""],
+ ["happy","happier","the happiest","y",""],
+ ["difficult","more difficult","the most difficult","m",""],
+ ["expensive","more expensive","the most expensive","m",""],
+ ["beautiful","more beautiful","the most beautiful","m",""],
+ ["comfortable","more comfortable","the most comfortable","m",""],
+ ["interesting","more interesting","the most interesting","m",""],
+ ["good","better","the best","irr","gut"],
+ ["bad","worse","the worst","irr","schlecht"],
+ ["much","more","the most","irr","viel – unzählbar"],
+ ["many","more","the most","irr","viele – zählbar"],
+ ["little","less","the least","irr","wenig"],
+ ["little","smaller","the smallest","irr","klein"]
+];
+const MUCHMANY=[
+ ["I didn't have ___ time to go shopping.","much"],
+ ["How ___ apples did you buy?","many"],
+ ["She spent too ___ money on clothes.","much"],
+ ["There weren't ___ people in the shop.","many"],
+ ["I didn't buy ___ clothes in the sale.","many"],
+ ["I didn't eat ___ bread this morning.","much"],
+ ["How ___ does this jacket cost?","much"],
+ ["We took ___ photos on Saturday.","many"],
+ ["There isn't ___ milk left.","much"],
+ ["How ___ trainers has he got?","many"]
+];
+const LITTLEQ=[
+ ["Mein Bruder ist kleiner als ich.   →   My brother is ___ than me.","smaller"],
+ ["Ich habe weniger Geld als du.   →   I have ___ money than you.","less"],
+ ["Das ist das kleinste Geschäft.   →   That's ___ shop.","the smallest"],
+ ["Sie hat am wenigsten Zeit.   →   She has ___ time.","the least"]
+];
+const COMPSENT=[
+ ["These jeans are ___ (cheap) than the black ones.","cheaper"],
+ ["This is ___ (good) shop in town.","the best"],
+ ["My trainers are ___ (comfortable) than my boots.","more comfortable"],
+ ["That was ___ (bad) day of the holiday.","the worst"],
+ ["The red jumper is ___ (expensive) than the blue one.","more expensive"],
+ ["Which is ___ (big) shopping centre in Valencia?","the biggest"],
+ ["Today the shop is ___ (busy) than yesterday.","busier"],
+ ["This hoodie is ___ (nice) one in the sale.","the nicest"],
+ ["Clothes are ___ (cheap) in the sale.","cheaper"],
+ ["She is ___ (good) at English than her brother.","better"],
+ ["It was ___ (hot) day of the year.","the hottest"]
+];
+const COMPFIX=[
+ ["These shoes are more cheaper than those.","These shoes are cheaper than those."],
+ ["It's the most big shop in the street.","It's the biggest shop in the street."],
+ ["My bag is more old than yours.","My bag is older than yours."],
+ ["This is the goodest jacket in the shop.","This is the best jacket in the shop."],
+ ["Her coat is more nice than mine.","Her coat is nicer than mine."],
+ ["Today was the baddest day ever.","Today was the worst day ever."],
+ ["This skirt is cheaper that the other one.","This skirt is cheaper than the other one."],
+ ["He is more funnier than his sister.","He is funnier than his sister."]
+];
+const ASAS=[
+ ["My jacket was ___ expensive ___ yours. (= el mismo precio)","as … as"],
+ ["This shop isn't ___ big ___ the one in town. (= más pequeña)","as … as"],
+ ["Trainers are cheaper ___ boots.","than"],
+ ["It's ___ most expensive shop in the street.","the"],
+ ["She runs faster ___ me.","than"],
+ ["This jumper is just ___ warm ___ that coat.","as … as"]
+];
+
+const CLOTHES=[
+ ["a blouse","die Bluse"],["a belt","der Gürtel"],["a cap","die Mütze, die Kappe"],
+ ["a hat","der Hut"],["a jacket","die Jacke"],["jeans (pl)","die Jeans"],
+ ["tights (pl)","die Strumpfhose"],["a pullover","der Pullover"],["a shoe","der Schuh"],
+ ["a skirt","der Rock"],["a sock","die Socke"],["a suit","der Anzug"],
+ ["a top","das Top, das Oberteil"],["a boot","der Schuh, der Stiefel"],
+ ["shorts (pl)","eine kurze Hose"],["trousers (pl)","eine Hose"],
+ ["a trainer","der Turnschuh"],["a glove","der Handschuh"],["a coat","der Mantel"],
+ ["a dress","das Kleid"],["a pair (of)","ein Paar"]
+];
+const SHOPVOC=[
+ ["to spend time/money (on)","Zeit verbringen (mit), Geld ausgeben (für)"],
+ ["spent","Vergangenheit von spend"],
+ ["to go shopping","einkaufen gehen"],["went","Vergangenheit von go"],
+ ["to mean","bedeuten"],["to throw something away","etwas wegwerfen"],
+ ["threw away","Vergangenheit von throw away"],
+ ["to paint","(an)streichen, (an)malen"],
+ ["a lion","der Löwe"],["a leg","das Bein"],["a sheep","das Schaf"],
+ ["a vampire","der Vampir"],["a cavewoman","die Höhlenbewohnerin"],
+ ["a caveman","der Höhlenbewohner"],["a bank","die Bank"],
+ ["a robber","der Räuber"],["a pirate","der Pirat"],
+ ["a queen","die Königin"],["a king","der König"]
+];
+const PLURALQ=[
+ ["My jeans ___ blue. They're new.","are"],
+ ["Her tights ___ red.","are"],
+ ["Are your trousers new? — Yes, they ___ cool.","are"],
+ ["My new skirt ___ really nice.","is"],
+ ["These shorts ___ too small for me.","are"],
+ ["This jacket ___ too expensive.","is"],
+ ["Your trainers ___ dirty!","are"],
+ ["The suit ___ in the changing room.","is"]
+];
+const PAIRQ=[
+ ["Ich brauche eine neue kurze Hose.   →   I need a new ___ shorts.","pair of"],
+ ["ein Paar Handschuhe   →   a ___ gloves","pair of"],
+ ["ein Paar Stiefel   →   a ___ boots","pair of"],
+ ["Meine Jeans ist blau.   →   My jeans ___ blue.","are"]
+];
+
+const DIRVOC=[
+ ["somewhere","irgendwo, irgendwohin"],["not … anywhere","nirgendwo, nirgendwohin"],
+ ["a station","der Bahnhof"],["along the street","die Straße entlang"],
+ ["to turn right / left","(nach) rechts / links abbiegen"],
+ ["straight on","geradeaus weiter"],["past","vorbei (an), vorüber (an)"],
+ ["to point something out","auf etwas hinweisen"],
+ ["to recommend something","etwas empfehlen"],
+ ["anything?","(irgend)etwas?"],["an owner","der Besitzer, der Eigentümer"],
+ ["not anybody / not anyone","niemand"],["glad","froh, dankbar"],
+ ["a stay","der Aufenthalt"],["directions (pl)","die Wegbeschreibung(en)"],
+ ["to report on something","über etwas berichten"],
+ ["popular","populär, beliebt"],["a region","die Region"],
+ ["everyone else","alle anderen"],["paradise","das Paradies"],
+ ["to dream","träumen"],["gold","das Gold"],["a coast","die Küste"],
+ ["right by the sea","direkt am Meer"],["perfect","perfekt, ideal"],
+ ["wonderful","wunderbar"],["a lover","der Liebhaber"],
+ ["colourful","bunt, farbenfroh"],
+ ["to tell somebody the way (to …)","jemandem den Weg beschreiben"],
+ ["to ask somebody the way (to …)","jemanden nach dem Weg fragen"],
+ ["to be lost","sich verlaufen haben"],
+ ["to buzz","summen"],["a bus stop","die Bushaltestelle"],["a timetable","der Fahrplan"]
+];
+const ELSE=[
+ ["everyone else","alle anderen"],["someone else","jemand anders"],
+ ["anything else","sonst noch etwas"],["what else","was (sonst) noch"],
+ ["who else","wer (sonst) noch"]
+];
+const ELSEQ=[
+ ["Oh Dad, why can't I go to Henry's party? ___ is going.","Everyone else"],
+ ["I'm so tired. ___ will have to wash the dishes.","Someone else"],
+ ["Do you need ___ from the shops?","anything else"],
+ ["___ can you tell us about Brighton?","What else"],
+ ["___ wants to go to Alice's party?","Who else"]
+];
+
+const READTEXT=[
+ "Hi Mia,",
+ "You asked me the way to the new shopping centre, so here it is.",
+ "Come out of the station and turn left into River Road. Keep going until you reach Mill Street — you go past the cinema on your left. Turn left into Mill Street and cross High Street. The shopping centre is on your right, opposite the supermarket.",
+ "Don't go on Monday morning: everything is closed. Saturday is the best day, but it's also the busiest one. There's a sale in the shoe shop this week and the trainers were much cheaper than in town, so I bought some. I didn't buy any clothes because I didn't have enough money with me!",
+ "See you on Saturday,",
+ "Ellie"
+];
+const READQ=[
+ {q:"Where does Mia start?",a:"At the station.",opts:["At the station.","At the cinema.","At the supermarket.","At the shoe shop."]},
+ {q:"Which street does she turn into first?",a:"River Road",opts:["River Road","Mill Street","High Street","Park Road"]},
+ {q:"What does she go past on her left?",a:"the cinema",opts:["the cinema","the museum","the park","the market"]},
+ {q:"The shopping centre is …",a:"opposite the supermarket",opts:["opposite the supermarket","next to the station","behind the cinema","between two schools"]},
+ {q:"Why is Monday morning a bad day?",a:"Everything is closed.",opts:["Everything is closed.","It is too busy.","There is no sale.","The buses don't go there."]},
+ {q:"What did Ellie buy?",a:"some trainers",opts:["some trainers","a jacket","nothing","some books"]},
+ {q:"Why didn't she buy any clothes?",a:"She didn't have enough money.",opts:["She didn't have enough money.","The shop was closed.","They were too small.","She didn't like them."]}
+];
+
+const SHOPDIALOGUE=[
+ ["Dependiente/a: saluda y ofrece ayuda.","Hello. Can I help you?"],
+ ["Tú: di que buscas algo (una prenda) y de qué color.","Yes, please. I'm looking for a blue pullover."],
+ ["Dependiente/a: pregunta la talla.","What size are you?"],
+ ["Tú: di tu talla.","I'm a medium, I think."],
+ ["Dependiente/a: ofrece una y dice el precio.","Here you are. This one is 25 pounds."],
+ ["Tú: pregunta si puedes probártelo.","Can I try it on, please?"],
+ ["Dependiente/a: dice dónde está el probador.","Of course. The changing rooms are over there."],
+ ["Tú: di que te queda bien pero que es un poco caro y pregunta si hay algo más barato.","It fits me, but it's a bit too expensive. Have you got anything else?"],
+ ["Dependiente/a: ofrece otra en rebajas.","This grey one is in the sale. It's only 15 pounds."],
+ ["Tú: dile que te la llevas y pregunta si puedes pagar en efectivo.","Great, I'll take it. Can I pay cash?"],
+ ["Dependiente/a: cierra la venta.","Yes, of course. Here's your receipt. Thank you!"],
+ ["Tú: despídete dando las gracias.","Thank you very much. Goodbye!"]
+];
+
+// ---------------- builders
+function buildReadDir(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Reading: the way to the shopping centre"),
+    el("p",{class:"hint"},"Lee el correo y contesta. Puedes seguir el camino en el plano de la pestaña “Sigue el plano”."));
+  const box=el("div",{class:"postcard"});
+  READTEXT.forEach(t=>box.appendChild(el("p",{style:"margin:0 0 10px"},esc(t))));
+  card.appendChild(box);
+  const q=buildChoice("","",READQ.map(x=>({q:x.q,a:x.a,opts:shuffle(x.opts.slice())})),"readdir");
+  q.querySelector("h2").remove();q.querySelector(".hint").remove();
+  q.className="";card.appendChild(q);
+  return card;
+}
+
+function buildSomeAny(){
+  const items=pick(SOMEANY,10).map(([q,a])=>({q,a,opts:["some","any"]}));
+  return buildChoice("some / any","Positiva → some. Negativa y pregunta → any. Pero en ofrecimientos y peticiones (Would you like…? Can I have…?) va some.",items,"someany");
+}
+function buildCompounds(){
+  const items=pick(COMPOUNDS,8).map(([q,a])=>{
+    const all=["somebody","anybody","something","anything","somewhere","anywhere"];
+    return {q,a,opts:shuffle([a,...pick(all.filter(x=>x!==a),3)])};
+  });
+  return buildChoice("somebody / anything / anywhere…","La misma regla: some… en positiva, any… en negativa y pregunta.",items,"compounds");
+}
+
+function buildDidQ(){
+  const items=pick(DIDQ,8).map(([ans,q])=>({q:"Respuesta: "+ans+"   →   escribe la pregunta:",a:[q]}));
+  return buildType("Preguntas con did (Wh-)",
+    "Lee la respuesta y escribe la pregunta entera. Recuerda: did + sujeto + infinitivo (sin -ed).",items,"didq");
+}
+function buildDidYN(){
+  const items=pick(DIDYN,8).map(([w,q])=>({q:w,a:[q]}));
+  return buildType("Preguntas con did (sí/no)",
+    "Ordena las palabras y escribe la pregunta con did. No olvides el signo de interrogación.",items,"didyn");
+}
+function buildDidFix(){
+  const items=pick(DIDFIX,8).map(([bad,good])=>({q:bad,a:[good]}));
+  return buildType("Busca el error (did)",
+    "Casi todas tienen un fallo. Escríbelas bien. Si ya está bien, cópiala igual.",items,"didfix");
+}
+
+function buildCompTable(){
+  const id="comptable";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Completa la tabla"),
+    el("p",{class:"hint"},"Escribe el comparativo y el superlativo. El superlativo lleva the delante."));
+  const body=el("div");card.appendChild(body);
+  function show(){
+    body.innerHTML="";
+    const rows=pick(ADJ,8).map(([a,c,sup,ty,gloss])=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"q"},`<b>${esc(a)}</b>`+(gloss?`   <span class="ex">(${esc(gloss)})</span>`:"")));
+      const i1=el("input",{type:"text",class:"short",autocomplete:"off",autocapitalize:"off",spellcheck:"false",placeholder:"comparative"});
+      const i2=el("input",{type:"text",class:"short",autocomplete:"off",autocapitalize:"off",spellcheck:"false",placeholder:"superlative"});
+      const fb=el("div",{class:"fb"});row.append(i1," ",i2,fb);body.appendChild(row);
+      return {c,sup,i1,i2,fb,a};
+    });
+    const act=el("div",{class:"actions"});
+    const chk=el("button",{class:"btn",type:"button"},"Corregir");
+    const nw=el("button",{class:"btn ghost",type:"button"},"Otros adjetivos");nw.onclick=show;
+    const sc=el("span",{class:"score"});
+    chk.onclick=()=>{let got=0;rows.forEach(r=>{
+      const ok1=same(r.i1.value,r.c);
+      const ok2=same(r.i2.value,r.sup)||same(r.i2.value,r.sup.replace(/^the /,""));
+      r.i1.className="short "+(ok1?"right":"wrong");r.i2.className="short "+(ok2?"right":"wrong");
+      r.fb.className="fb "+(ok1&&ok2?"ok":"no");
+      r.fb.textContent=(ok1&&ok2)?"Correcto":`${r.a} – ${r.c} – ${r.sup}`;
+      if(ok1&&ok2)got++;});
+      sc.textContent=`${got} / ${rows.length}`;
+      if(got===rows.length){done[id]=true;renderNav()}};
+    act.append(chk,nw,sc);body.appendChild(act);
+  }
+  show();return card;
+}
+function buildMuchMany(){
+  const items=pick(MUCHMANY,10).map(([q,a])=>({q,a,opts:["much","many"]}));
+  return buildChoice("much o many",
+    "much con lo que no se puede contar (time, money, bread, milk). many con lo que sí (apples, people, photos, clothes).",
+    items,"muchmany");
+}
+function buildLittle(){
+  const items=LITTLEQ.map(([q,a])=>({q,a:[a,a.replace(/^the /,"")]}));
+  return buildType("little: ¿less o smaller?",
+    "Ojo, little tiene dos series: <b>little – less – the least</b> (wenig) y <b>little – smaller – the smallest</b> (klein).",items,"littleq");
+}
+function buildCompSent(){
+  const items=pick(COMPSENT,10).map(([q,a])=>({q,a:[a]}));
+  return buildType("Comparativo o superlativo",
+    "Escribe solo la forma que falta, con the si es superlativo.",items,"compsent");
+}
+function buildCompFix(){
+  const items=pick(COMPFIX,8).map(([bad,good])=>({q:bad,a:[good]}));
+  return buildType("Busca el error (comparación)",
+    "Nunca se juntan more y -er, ni the most y -est. Escribe la frase bien.",items,"compfix");
+}
+function buildAsAs(){
+  const items=pick(ASAS,6).map(([q,a])=>({q,a,opts:shuffle(["as … as","than","the","more"])}));
+  return buildChoice("than / as … as / the","Elige lo que falta en cada frase.",items,"asas");
+}
+
+function vocSetMC(title,hint,set,id){
+  const items=pick(set,10).map(w=>{
+    const wrong=distractors(set,w,3).map(x=>x[1]);
+    return {q:w[0],a:w[1],opts:shuffle([w[1],...wrong])};
+  });
+  return buildChoice(title,hint,items,id);
+}
+const vocMode={};
+function bare(w){return w.replace(/^(a|an|the|to) /,"")}
+// evita distractores que comparten significado alemán con la respuesta
+function deParts(t){return t.toLowerCase().split(/[,;]\s*/).map(x=>x.trim()).filter(Boolean)}
+function notSynonym(w,other){
+  const a=deParts(w[1]),b=deParts(other[1]);
+  return !a.some(x=>b.includes(x))&&bare(w[0])!==bare(other[0]);
+}
+// tres distractores que no se solapan ni con la respuesta ni entre ellos
+function distractors(set,w,n){
+  const out=[];
+  shuffle(set.filter(x=>notSynonym(w,x))).forEach(c=>{
+    if(out.length<n&&out.every(o=>notSynonym(c,o)))out.push(c);
+  });
+  return out;
+}
+function vocSetType(title,hint,set,id){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},title),el("p",{class:"hint"},hint));
+  const bar=el("div",{class:"modebar"});
+  const bW=el("button",{type:"button"},"Escribirla");
+  const bC=el("button",{type:"button"},"Elegirla");
+  bar.append(bW,bC);card.appendChild(bar);
+  const host=el("div");card.appendChild(host);
+  function show(mode){
+    vocMode[id]=mode;
+    bW.className=mode==="w"?"on":"";bC.className=mode==="c"?"on":"";
+    host.innerHTML="";
+    let inner;
+    if(mode==="w"){
+      const items=pick(set,10).map(w=>({q:w[1]+"   →   "+bare(w[0])[0]+"…",a:[w[0],bare(w[0])]}));
+      inner=buildType("","",items,id);
+    }else{
+      const items=pick(set,10).map(w=>{
+        const wrong=distractors(set,w,3).map(x=>x[0]);
+        return {q:w[1],a:w[0],opts:shuffle([w[0],...wrong])};
+      });
+      inner=buildChoice("","",items,id);
+    }
+    inner.querySelector("h2").remove();
+    const h=inner.querySelector(".hint");if(h)h.remove();
+    inner.className="";host.appendChild(inner);
+  }
+  bW.onclick=()=>show("w");bC.onclick=()=>show("c");
+  show(vocMode[id]||"w");
+  return card;
+}
+function buildClothesMC(){return vocSetMC("Clothes – inglés a alemán","La ropa de las páginas 294–295.",CLOTHES,"clothesmc")}
+function buildClothesType(){return vocSetType("Clothes – alemán a inglés","Escríbela (te doy la inicial) o cambia a elegir entre cuatro.",CLOTHES,"clothestype")}
+function buildShopVocMC(){return vocSetMC("Shopping & disfraces – inglés a alemán","El resto de las páginas 294–295.",SHOPVOC,"shopvocmc")}
+function buildShopVocType(){return vocSetType("Shopping & disfraces – alemán a inglés","Escríbela (te doy la inicial) o cambia a elegir entre cuatro.",SHOPVOC,"shopvoctype")}
+
+function buildPlural(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Las palabras que van en plural"),
+    el("p",{class:"hint"},"<b>trousers · shorts · jeans · tights</b> son plurales en inglés aunque en alemán sean singular: <i>My jeans <b>are</b> blue. <b>They're</b> new.</i> Para contarlas se usa <b>a pair of</b>: <i>a pair of shorts</i>."));
+  const items=shuffle(PLURALQ.concat(PAIRQ)).slice(0,8)
+    .map(([q,a])=>({q,a,opts:shuffle(["is","are","pair of"])}));
+  const c=buildChoice("","",items,"plural");
+  c.querySelector("h2").remove();c.querySelector(".hint").remove();c.className="";
+  card.appendChild(c);return card;
+}
+
+function buildDirVocMC(){return vocSetMC("Directions – inglés a alemán","El vocabulario de las páginas 290 (parte C) a 292.",DIRVOC,"dirvocmc")}
+function buildDirVocType(){return vocSetType("Directions – alemán a inglés","Escríbela (te doy la inicial) o cambia a elegir entre cuatro.",DIRVOC,"dirvoctype")}
+
+function buildElse(){
+  const card=el("section",{class:"card"});
+  card.append(el("h2",{},"… else"),
+    el("p",{class:"hint"},"everyone else = alle anderen · someone else = jemand anders · anything else = sonst noch etwas · what else = was (sonst) noch · who else = wer (sonst) noch"));
+  const items=ELSEQ.map(([q,a])=>({q,a,opts:shuffle(["Everyone else","Someone else","anything else","What else","Who else"])}));
+  const c=buildChoice("","",items,"elseq");
+  c.querySelector("h2").remove();c.querySelector(".hint").remove();c.className="";
+  card.appendChild(c);return card;
+}
+
+function buildShopWriting(){
+  const id="shopwrite";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Writing: un diálogo en una tienda"),
+    el("p",{class:"hint"},"Escribe cada línea en inglés. Cuando termines, dale a “Ver el modelo” y compara: no tiene que ser igual, solo que diga lo mismo y esté bien escrito."));
+  const inputs=[];
+  SHOPDIALOGUE.forEach((pair,i)=>{
+    const [es,model]=pair;
+    const row=el("div",{class:"item"});
+    row.appendChild(el("p",{class:"tagline"},`<span class="qnum">${i+1}.</span>${esc(es)}`));
+    const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"sentences",spellcheck:"false"});
+    const fb=el("div",{class:"fb"});
+    row.append(inp,fb);card.appendChild(row);inputs.push({model,fb});
+  });
+  const act=el("div",{class:"actions"});
+  const b=el("button",{class:"btn",type:"button"},"Ver el modelo");
+  b.onclick=()=>{inputs.forEach(x=>{x.fb.className="fb ok";x.fb.textContent="Modelo: "+x.model});
+    done[id]=true;renderNav();b.disabled=true};
+  const n=el("button",{class:"btn ghost",type:"button"},"Empezar de nuevo");n.onclick=()=>render();
+  act.append(b,n);card.appendChild(act);
+  card.appendChild(el("p",{class:"hint",style:"margin-top:14px"},
+    "Frases que siempre quedan bien: <b>Can I help you?</b> · <b>I'm looking for…</b> · <b>What size are you?</b> · <b>Can I try it on?</b> · <b>How much is it?</b> · <b>It's too expensive / too small.</b> · <b>Have you got anything cheaper?</b> · <b>I'll take it.</b> · <b>Here's your receipt.</b>"));
+  return card;
+}
+
+function buildTest47(){
+  const id="test47";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"Mini examen semana 47"),
+    el("p",{class:"hint"},"24 preguntas con todo lo que entra: some/any, SVOPT, did, comparación, vocabulario y direcciones."));
+  const body=el("div");card.appendChild(body);
+  function show(){
+    body.innerHTML="";const rows=[];
+    const add=(tag,q,ans)=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"tagline"},`<span class="qnum">${rows.length+1}.</span>${esc(tag)}`));
+      row.appendChild(el("p",{class:"q"},esc(q)));
+      const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false"});
+      const fb=el("div",{class:"fb"});row.append(inp,fb);body.appendChild(row);
+      rows.push({ans,inp,fb,label:`${rows.length+1}. ${q} → ${ans[0]}`});
+    };
+    pick(SOMEANY,3).forEach(([q,a])=>add("Escribe some o any",q,[a]));
+    pick(COMPOUNDS,1).forEach(([q,a])=>add("Escribe la palabra que falta (some…/any…)",q,[a]));
+    pick(SVOPT_FIX,1).forEach(([bad,good])=>add("Reescríbela con el orden inglés (SVOPT)",bad,[good]));
+    pick(DIDYN,2).forEach(([w,q])=>add("Ordena y escribe la pregunta con did",w,[q]));
+    pick(DIDQ,2).forEach(([ans,q])=>add("Escribe la pregunta para esta respuesta","Respuesta: "+ans,[q]));
+    pick(ADJ.filter(x=>x[0]!=="little"),3).forEach(([a,c,sup,ty,g])=>
+      add("Escribe el comparativo",a+(g?"   ("+g+")":"")+"   →",[c]));
+    pick(ADJ.filter(x=>x[0]!=="little"),2).forEach(([a,c,sup,ty,g])=>
+      add("Escribe el superlativo (con the)",a+(g?"   ("+g+")":"")+"   →",[sup]));
+    pick(MUCHMANY,1).forEach(([q,a])=>add("Escribe much o many",q,[a]));
+    pick(COMPSENT,2).forEach(([q,a])=>add("Completa con la forma correcta",q,[a]));
+    pick(SHOPVOC,2).forEach(w=>add("Traduce al alemán",w[0]+"   →",[w[1]]));
+    pick(CLOTHES,2).forEach(w=>add("Traduce al inglés",w[1]+"   →",[w[0],w[0].replace(/^(a|the|to) /,"")]));
+    pick(DIRVOC,2).forEach(w=>add("Traduce al alemán",w[0]+"   →",[w[1]]));
+    pick(PLURALQ,1).forEach(([q,a])=>add("Escribe is o are",q,[a]));
+    const a=el("div",{class:"actions"});
+    const c=el("button",{class:"btn",type:"button"},"Terminar el test");
+    const n=el("button",{class:"btn ghost",type:"button"},"Preguntas nuevas");n.onclick=show;
+    a.append(c,n);body.appendChild(a);
+    const out=el("div");body.appendChild(out);
+    c.onclick=async ()=>{
+      c.disabled=true;let got=0;const missed=[];
+      rows.forEach(r=>{const ok=r.ans.some(x=>same(r.inp.value,x));
+        r.inp.className=ok?"right":"wrong";r.inp.disabled=true;
+        r.fb.className="fb "+(ok?"ok":"no");r.fb.textContent=ok?"Correcto":"Respuesta: "+r.ans[0];
+        if(ok)got++;else missed.push(r.label)});
+      const pct=Math.round(got/rows.length*100);
+      const msg=pct>=90?"Muy bien. Está preparada.":pct>=70?"Bien. Repasa los fallos.":
+                pct>=50?"Hay que repasar las reglas.":"Toca estudiar antes de volver a intentarlo.";
+      out.appendChild(el("div",{class:"result"},`<div class="n">${got}/${rows.length}</div><p><b>${esc(msg)}</b></p>`));
+      if(missed.length)out.appendChild(el("p",{class:"hint",style:"text-align:left"},
+        "<b>Para repasar:</b><br>"+missed.map(esc).join("<br>")));
+      if(got===rows.length){done[id]=true;renderNav()}
+      const saved=await saveResult({test:"w47",title:"Mini examen – semana 47",
+        score:got,total:rows.length,pct,missed:missed.slice(0,12),date:todayISO(),ts:Date.now()});
+      out.appendChild(el("p",{class:"hint",style:"margin-top:12px"},
+        saved?"Resultado guardado en Resultados.":"El resultado no se ha podido guardar, pero la nota es la de arriba."));
+    };
+  }
+  show();return card;
+}
+
+const RULES_W47B=`
+  <div class="rule"><span class="rn">1</span><div><p><b>some / any</b> <span class="ex">(lo de la pizarra)</span></p><p class="ex"><b>some</b> → positive sentences: <i>I have some nuggets. My phone is here somewhere. Something is on Nora's table.</i><br><b>any</b> → negatives y questions: <i>I don't like any Barcelona shirts. Do you have any bread? I didn't see anybody steal the phone.</i><br>Excepción: al ofrecer o pedir va <b>some</b>: <i>Would you like some help? Can I have some water?</i></p></div></div>
+  <div class="rule"><span class="rn">2</span><div><p><b>Las seis palabras</b></p><p class="ex">somebody = jemand &nbsp;·&nbsp; anybody = irgendjemand<br>something = etwas &nbsp;·&nbsp; anything = irgendwas<br>somewhere = irgendwo &nbsp;·&nbsp; anywhere = nirgendwo, nirgends</p></div></div>
+  <div class="rule"><span class="rn">3</span><div><p><b>SVOPT: el orden de la frase</b></p><p class="ex"><b>S</b>ubject – <b>V</b>erb – <b>O</b>bject – <b>P</b>lace – <b>T</b>ime<br><i>I bought a new jacket in the shopping centre yesterday.</i><br>En inglés el sujeto va siempre delante del verbo, aunque la frase empiece por un tiempo. No se dice <s>Yesterday bought I…</s> ni <s>At lunchtime are my brothers at home</s>, sino <i>My brothers are at home at lunchtime.</i></p></div></div>
+  <div class="rule"><span class="rn">4</span><div><p><b>Preguntas con did</b></p><p class="ex"><b>(Wh-) + did + sujeto + infinitivo</b>. El verbo va SIN -ed y sin forma irregular:<br><i>Where <b>did</b> you <b>go</b>?</i> (no <s>did you went</s>) · <i>What <b>did</b> she <b>buy</b>?</i><br>Respuesta corta: <i>Yes, I did. / No, I didn't.</i><br>Si quien pregunta es el sujeto, no hay did: <i>Who bought this?</i></p></div></div>
+  <div class="rule"><span class="rn">5</span><div><p><b>Comparación 1: adjetivos de una sílaba → -er / -est</b></p><p class="ex">fast → fast<b>er</b> → <b>the</b> fast<b>est</b> · cheap → cheaper → the cheapest<br>Si acaba en <b>-e</b>, solo se añade -r / -st: nice → nicer → the nicest<br>Si acaba en 1 vocal + 1 consonante, se dobla: big → bi<b>gg</b>er · hot → ho<b>tt</b>er</p></div></div>
+  <div class="rule"><span class="rn">6</span><div><p><b>Comparación 2: los que acaban en -y → -ier / -iest</b></p><p class="ex">early → earl<b>ier</b> → the earl<b>iest</b> · easy → easier · funny → funnier · busy → busier<br>La -y se convierte en -i.</p></div></div>
+  <div class="rule"><span class="rn">7</span><div><p><b>Comparación 3: los largos → more / the most</b></p><p class="ex">Todos los de varias sílabas (salvo los de dos que acaban en -y):<br>difficult → <b>more</b> difficult → <b>the most</b> difficult<br>Nunca los dos a la vez: <s>more cheaper</s>, <s>the most biggest</s>.</p></div></div>
+  <div class="rule"><span class="rn">8</span><div><p><b>Comparación 4: los irregulares (de memoria)</b></p><p class="ex">good – better – the best <span class="ex">(gut)</span><br>bad – worse – the worst <span class="ex">(schlecht)</span><br>much – more – the most <span class="ex">(viel, unzählbar: time, money)</span><br>many – more – the most <span class="ex">(viele, zählbar: apples, people)</span><br>little – less – the least <span class="ex">(wenig)</span><br>little – smaller – the smallest <span class="ex">(klein)</span></p></div></div>
+  <div class="rule"><span class="rn">9</span><div><p><b>Comparar dos cosas</b></p><p class="ex">Distinto: cheaper <b>than</b> &nbsp;(ojo, no <i>that</i>)<br>Igual: <b>as</b> cheap <b>as</b> &nbsp;·&nbsp; No igual: not <b>as</b> big <b>as</b><br>El superlativo lleva siempre <b>the</b> delante.</p></div></div>
+  <div class="rule"><span class="rn">10</span><div><p><b>Palabras que van siempre en plural</b></p><p class="ex"><b>trousers · shorts · jeans · tights</b> (y <i>trainers</i>, <i>gloves</i>, <i>boots</i> cuando son dos)<br><i>My jeans <b>are</b> blue. <b>They're</b> new.</i> → <i>Meine Jeans <b>ist</b> blau.</i><br>Para contarlas: <b>a pair of</b> shorts / gloves / boots.</p></div></div>
+  <div class="rule"><span class="rn">11</span><div><p><b>En la tienda</b></p><p class="ex">Can I help you? · I'm looking for… · What size are you? · Can I try it on? · How much is it? · It's too expensive. · Have you got anything cheaper? · I'll take it. · Here's your receipt.</p></div></div>
+  <div class="rule"><span class="rn">!</span><div><p><b>Del cuaderno</b></p><p class="ex"><b>go past the</b> es <i>geh am … vorbei</i>, no <i>biege links ab</i>.</p></div></div>`;
+
+
+// ---------- SVOPT: el orden de la frase ----------
+const SVOPT=[
+ [["I","bought","a new jacket","in the shopping centre","yesterday"]],
+ [["We","ate","some nuggets","at the restaurant","last Friday"]],
+ [["She","didn't see","anybody","in the shop","this morning"]],
+ [["My brother","left","his phone","on the table","last night"]],
+ [["They","played","football","in the park","after school"]],
+ [["Nora","put","something","under her bed","yesterday evening"]],
+ [["We","took","some photos","at the castle","on Saturday"]],
+ [["I","didn't buy","anything","at the market","last weekend"]],
+ [["Alice","found","her receipt","in her pocket","after lunch"]],
+ [["He","wore","a red scarf","at the party","last winter"]]
+];
+const SVOPT_FIX=[
+ ["Yesterday bought I a new jacket.","I bought a new jacket yesterday."],
+ ["We ate at the restaurant some nuggets.","We ate some nuggets at the restaurant."],
+ ["At lunchtime are my brothers at home.","My brothers are at home at lunchtime."],
+ ["She didn't see in the shop anybody.","She didn't see anybody in the shop."],
+ ["Last night left my brother his phone on the table.","My brother left his phone on the table last night."],
+ ["In the park played they football after school.","They played football in the park after school."],
+ ["Took we some photos on Saturday at the castle.","We took some photos at the castle on Saturday."],
+ ["I bought yesterday something at the market.","I bought something at the market yesterday."]
+];
+
+const COMPOUND_DE=[
+ ["somebody","jemand"],["anybody","irgendjemand"],
+ ["something","etwas"],["anything","irgendwas"],
+ ["somewhere","irgendwo"],["anywhere","nirgendwo, nirgends"]
+];
+
+function svoptKey(){
+  const k=el("div",{class:"svopt"});
+  [["S","subject"],["V","verb"],["O","object"],["P","place"],["T","time"]]
+    .forEach(([a,b])=>k.appendChild(el("span",{},a+"<i>"+b+"</i>")));
+  return k;
+}
+
+function buildSVOPT(){
+  const id="svopt";const card=el("section",{class:"card"});
+  card.append(el("h2",{},"SVOPT: ordena la frase"),
+    el("p",{class:"hint"},"Toca las piezas en el orden correcto. En inglés el sujeto va SIEMPRE antes del verbo, y el tiempo va al final (en alemán no)."));
+  card.appendChild(svoptKey());
+  const body=el("div");card.appendChild(body);
+  function show(){
+    body.innerHTML="";
+    const rows=pick(SVOPT,6).map(([parts],i)=>{
+      const row=el("div",{class:"item"});
+      row.appendChild(el("p",{class:"tagline"},`<span class="qnum">${i+1}.</span>Ordena: S &rsaquo; V &rsaquo; O &rsaquo; P &rsaquo; T`));
+      const built=el("div",{class:"built"},'<span class="ph">toca las piezas…</span>');
+      const chips=el("div",{class:"chips"});
+      const fb=el("div",{class:"fb"});
+      const chosen=[];
+      shuffle(parts.slice()).forEach(w=>{
+        const b=el("button",{type:"button"},esc(w));
+        b.onclick=()=>{if(b.disabled)return;b.disabled=true;chosen.push(w);
+          built.textContent=chosen.join(" ")};
+        chips.appendChild(b);
+      });
+      const undo=el("button",{class:"btn ghost",type:"button"},"Borrar");
+      undo.onclick=()=>{chosen.length=0;built.innerHTML='<span class="ph">toca las piezas…</span>';
+        built.className="built";fb.textContent="";fb.className="fb";
+        chips.querySelectorAll("button").forEach(x=>x.disabled=false)};
+      row.append(built,chips,undo,fb);body.appendChild(row);
+      return {parts,chosen,built,fb};
+    });
+    const act=el("div",{class:"actions"});
+    const chk=el("button",{class:"btn",type:"button"},"Corregir");
+    const nw=el("button",{class:"btn ghost",type:"button"},"Otras frases");nw.onclick=show;
+    const sc=el("span",{class:"score"});
+    chk.onclick=()=>{let got=0;rows.forEach(r=>{
+      const ok=r.chosen.join(" ")===r.parts.join(" ");
+      r.built.className="built "+(ok?"right":"wrong");
+      r.fb.className="fb "+(ok?"ok":"no");
+      r.fb.textContent=ok?"Correcto":r.parts.join(" ")+".";
+      if(ok)got++});
+      sc.textContent=`${got} / ${rows.length}`;
+      if(got===rows.length){done[id]=true;renderNav()}};
+    act.append(chk,nw,sc);body.appendChild(act);
+  }
+  show();return card;
+}
+
+function buildSVOPTFix(){
+  const items=pick(SVOPT_FIX,8).map(([bad,good])=>({q:bad,a:[good]}));
+  const c=buildType("SVOPT: busca el error",
+    "Están escritas con orden alemán. Reescríbelas con el orden inglés.",items,"svoptfix");
+  c.insertBefore(svoptKey(),c.children[2]);
+  return c;
+}
+
+function buildCompoundDE(){
+  const items=COMPOUND_DE.map(([en,de])=>({q:de+"   →   "+en[0]+"…",a:[en]}));
+  return buildType("somebody / anything / anywhere – del alemán",
+    "Los seis de la pizarra. Escribe la palabra inglesa.",items,"compoundde");
+}
+
+const RULES_VERBS=`
+  <div class="split">
+    <div class="box w1"><b>+ ed</b>verbos regulares<br><span class="ex">play → played · visit → visited</span></div>
+    <div class="box w2"><b>forma nueva</b>verbos irregulares<br><span class="ex">go → went · eat → ate · buy → bought</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="rule"><span class="rn">1</span><div><p><b>Las cuatro reglas del -ed</b></p><p class="ex">normal: walk → walk<b>ed</b> &nbsp;·&nbsp; acaba en -e: arrive → arrive<b>d</b><br>consonante + y: study → stud<b>ied</b> &nbsp;·&nbsp; palabra corta: stop → sto<b>pped</b></p></div></div>
+    <div class="rule"><span class="rn">2</span><div><p><b>Vocal + y no cambia</b></p><p class="ex">stay → <b>stayed</b> · play → <b>played</b> · enjoy → <b>enjoyed</b> &nbsp;(no "staied")</p></div></div>
+    <div class="rule"><span class="rn">3</span><div><p><b>Los irregulares hay que aprenderlos</b></p><p class="ex">No llevan -ed nunca. Los del libro: choose, come, do, go, make, meet, say, see, sit, take, think, begin, break, draw, drink, eat, feel, get, give, know, read, drive.</p></div></div>
+    <div class="rule"><span class="rn">4</span><div><p><b>Cómo se pronuncia el -ed</b></p><p class="ex">Después de <b>t</b> o <b>d</b> se oye una sílaba más [ɪd]: want·ed, need·ed, start·ed, visit·ed.</p></div></div>
+  </div>`;
+const RULES_POS=`
+  <div class="rule"><span class="rn">1</span><div><p><b>Una sola forma para todos</b></p><p class="ex">I played · he played · they played. Nunca "he playeds".</p></div></div>
+  <div class="rule"><span class="rn">2</span><div><p><b>be en pasado: was y were</b></p><p class="ex"><span class="was">was</span> → I, he, she, it &nbsp;·&nbsp; <span class="were">were</span> → you, we, they</p></div></div>
+  <div class="rule"><span class="rn">3</span><div><p><b>there was / there were</b></p><p class="ex">There <b>was</b> a cake. There <b>were</b> three dogs. There <b>was</b> lots of rain.</p></div></div>
+  <div class="rule"><span class="rn">4</span><div><p><b>Palabras de tiempo pasado</b></p><p class="ex">yesterday, last night, last summer, two days ago, in July, on Sunday</p></div></div>
+  <div class="rule"><span class="rn">5</span><div><p><b>El sujeto va delante del verbo</b></p><p class="ex">At lunchtime <b>my brothers were</b> at home. (no "At lunchtime were my brothers…")</p></div></div>`;
+const RULES_NEG=`
+  <div class="split">
+    <div class="box w1"><b>didn't</b>+ infinitivo<br><span class="ex">I didn't go · she didn't play</span></div>
+    <div class="box w2"><b>wasn't<br>weren't</b><span class="ex">solo con el verbo be</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="rule"><span class="rn">1</span><div><p><b>didn't + forma base</b></p><p class="ex">I <b>didn't need</b> to get dressed. · She <b>didn't go</b> home.<br><span class="was">Nunca</span> "didn't went" ni "didn't needed".</p></div></div>
+    <div class="rule"><span class="rn">2</span><div><p><b>El pasado aparece una sola vez</b></p><p class="ex">I <b>went</b> home.  →  I didn't <b>go</b> home.</p></div></div>
+    <div class="rule"><span class="rn">3</span><div><p><b>Con be no se usa didn't</b></p><p class="ex">He <b>wasn't</b> at school. We <b>weren't</b> hungry.</p></div></div>
+    <div class="rule"><span class="rn">4</span><div><p><b>don't / doesn't es presente</b></p><p class="ex">don't / doesn't → <b>didn't</b> en pasado.</p></div></div>
+  </div>`;
+const RULES_Q=`
+  <div class="split">
+    <div class="box w1"><b>Did …?</b>+ infinitivo<br><span class="ex">Did you play football?</span></div>
+    <div class="box w2"><b>Was / Were …?</b><span class="ex">Was Lily at the beach?</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="rule"><span class="rn">1</span><div><p><b>Did + sujeto + infinitivo</b></p><p class="ex"><b>Did</b> you <b>play</b> football? &nbsp;(no "Did you played")</p></div></div>
+    <div class="rule"><span class="rn">2</span><div><p><b>Respuestas cortas</b></p><p class="ex">Yes, I <b>did</b>. / No, I <b>didn't</b>. &nbsp;·&nbsp; con be: Yes, she <b>was</b>. / No, they <b>weren't</b>.</p></div></div>
+    <div class="rule"><span class="rn">3</span><div><p><b>Con palabra interrogativa, delante</b></p><p class="ex">Where <b>did</b> you <b>go</b>? · How <b>was</b> the film? · What <b>did</b> she <b>eat</b>?</p></div></div>
+    <div class="rule"><span class="rn">4</span><div><p><b>Si preguntas por el sujeto, sin did</b></p><p class="ex">Lily visited Alice. → <b>Who visited Alice?</b> &nbsp;(no "Who did visit")</p></div></div>
+    <div class="rule"><span class="rn">5</span><div><p><b>do / does en presente → did en pasado</b></p><p class="ex">Where <b>does</b> she live?  →  Where <b>did</b> she live?</p></div></div>
+  </div>`;
+
+
+// ---------- secciones con subsecciones plegables ----------
+function subStack(subs){
+  return ()=>{
+    const wrap=el("div");
+    subs.forEach((sub,i)=>{
+      const d=el("details",{class:"subsec"});
+      if(i===0)d.open=true;
+      d.appendChild(el("summary",{},esc(sub.name)+(done[sub.id]?' <span class="tick">✓</span>':"")));
+      const c=sub.build();c.classList.add("inner");
+      d.appendChild(c);wrap.appendChild(d);
+    });
+    return wrap;
+  };
+}
+function sect(id,name,subs){return {id,name,subs:subs.map(x=>x.id),build:subStack(subs)}}
+
+const GROUPS=[
+ {id:"tests",name:"Tests",rules:null,sections:[
+   {id:"tests",name:"Mini exámenes",build:buildTests},
+   {id:"results",name:"Resultados",build:buildResults}
+ ]},
+ {id:"nov",name:"Test semana 46",rules:RULES_NOV,sections:[
+   sect("s46verbs","Los verbos",[
+     {id:"novlist",name:"La lista de los 26",build:buildNovList},
+     {id:"novtrain",name:"Escribe el pasado",build:buildNovTrainer},
+     {id:"novtrap",name:"¿-ed o irregular?",build:buildNovTrap},
+     {id:"novp2i",name:"Del pasado al infinitivo",build:buildNovP2I}]),
+   sect("s46voc","El vocabulario",[
+     {id:"novvocmc",name:"Inglés → alemán",build:buildNovVocabMC},
+     {id:"novvoctype",name:"Alemán → inglés",build:buildNovVocabType}]),
+   {id:"novtest",name:"Mini examen",build:buildNovTest}
+ ]},
+ {id:"w47",name:"Examen semana 47",rules:RULES_W47B,sections:[
+   {id:"readdir",name:"1 Reading",build:buildReadDir},
+   sect("s2a","2a some / any",[
+     {id:"someany",name:"some o any",build:buildSomeAny},
+     {id:"compounds",name:"somebody / anything / anywhere",build:buildCompounds},
+     {id:"compoundde",name:"Las seis palabras desde el alemán",build:buildCompoundDE}]),
+   sect("s2svopt","2a SVOPT",[
+     {id:"svopt",name:"Ordena la frase",build:buildSVOPT},
+     {id:"svoptfix",name:"Busca el error",build:buildSVOPTFix}]),
+   sect("s2b","2b Questions with did",[
+     {id:"didyn",name:"Preguntas de sí/no",build:buildDidYN},
+     {id:"didq",name:"Preguntas con Wh-",build:buildDidQ},
+     {id:"didfix",name:"Busca el error",build:buildDidFix}]),
+   sect("s2c","2c Comparison",[
+     {id:"comptable",name:"Completa la tabla",build:buildCompTable},
+     {id:"compsent",name:"Completa las frases",build:buildCompSent},
+     {id:"muchmany",name:"much o many",build:buildMuchMany},
+     {id:"littleq",name:"little: less o smaller",build:buildLittle},
+     {id:"asas",name:"than / as … as / the",build:buildAsAs},
+     {id:"compfix",name:"Busca el error",build:buildCompFix}]),
+   {id:"shopwrite",name:"3 Writing: la tienda",build:buildShopWriting},
+   sect("s4a","4a Clothes & shopping",[
+     {id:"clothesmc",name:"Ropa: inglés → alemán",build:buildClothesMC},
+     {id:"clothestype",name:"Ropa: alemán → inglés",build:buildClothesType},
+     {id:"plural",name:"trousers, jeans… y a pair of",build:buildPlural},
+     {id:"shopvocmc",name:"Lo demás: inglés → alemán",build:buildShopVocMC},
+     {id:"shopvoctype",name:"Lo demás: alemán → inglés",build:buildShopVocType}]),
+   sect("s4b","4b Directions",[
+     {id:"dirvocmc",name:"Libro: inglés → alemán",build:buildDirVocMC},
+     {id:"dirvoctype",name:"Libro: alemán → inglés",build:buildDirVocType},
+     {id:"elseq",name:"… else",build:buildElse},
+     {id:"dirlist",name:"Las frases del camino",build:buildDirList},
+     {id:"dirmc",name:"Inglés → alemán",build:buildDirMC},
+     {id:"dirtype",name:"Alemán → inglés",build:buildDirType},
+     {id:"whosays",name:"¿Turista o local?",build:buildWhoSays},
+     {id:"followmap",name:"Sigue el plano",build:buildFollowMap},
+     {id:"givedirs",name:"Da tú las indicaciones",build:buildGiveDirs}]),
+   {id:"test47",name:"Mini examen",build:buildTest47}
+ ]},
+ {id:"sp",name:"Simple Past",rules:RULES_PAST,sections:[
+   {id:"rulequiz",name:"Las reglas",build:buildRuleQuiz},
+   {id:"forms",name:"was / were",build:buildForms},
+   {id:"p2p",name:"Presente → pasado",build:()=>buildType("Del presente al pasado","Escribe la misma frase en simple past.",
+     pick(PRES2PAST,6).map(([q,a])=>({q,a:[a]})),"p2p")},
+   {id:"mis",name:"Busca el error",build:()=>buildType("Busca el error","Cada frase tiene un fallo. Escribe la frase correcta.",
+     pick(MIS.concat(MIS_PAST),8).map(([q,a])=>({q,a:[a]})),"mis")},
+   {id:"could",name:"can → could",build:()=>buildChoice("can → could · can't → couldn't",
+     "Completa con could o couldn't, según el verbo entre paréntesis.",
+     pick(COULD,8).map(([q,a])=>({q,a,opts:["could","couldn't"]})),"could")},
+   {id:"quiz",name:"Repaso mezclado",build:buildQuiz}
+ ]},
+ {id:"verbs",name:"Regular & Irregular",rules:RULES_VERBS,sections:[
+   sect("sreg","Regulares (-ed)",[
+     {id:"regrules",name:"Las 4 reglas del -ed",build:buildRegRules},
+     {id:"regsort",name:"Ortografía",build:buildRegSort},
+     {id:"sound",name:"Pronunciación del -ed",build:buildSound}]),
+   sect("sirr","Irregulares",[
+     {id:"irrlist",name:"La lista",build:buildIrrList},
+     {id:"irrtrain",name:"Entrenador",build:buildIrrTrainer},
+     {id:"p2i",name:"Del pasado al infinitivo",build:()=>buildType("Del pasado al infinitivo",
+       "Como en el diccionario: te doy el simple past y escribes la Grundform (el infinitivo).",
+       pick(PAST2INF,10).map(([pa,inf,de])=>({q:pa+"   ("+de+")   →",a:[inf,"to "+inf]})),"p2i")}]),
+   sect("smix","¿Cuál de los dos?",[
+     {id:"sort",name:"Clasifica el verbo",build:buildSort},
+     {id:"irrtrap",name:"¿-ed o irregular?",build:buildIrrTrap}])
+ ]},
+ {id:"positive",name:"Positive",rules:RULES_POS,sections:[
+   {id:"pos",name:"Completa la frase",build:()=>buildType("Frases afirmativas","Completa la frase con el simple past del verbo entre paréntesis.",
+     pick(POS,10).map(([q,a,base])=>({q:q.replace("___","__________")+"   ("+base+")",a:[a,q.replace("___",a)]})),"pos")},
+   {id:"ww",name:"was o were",build:()=>buildChoice("was o were","Toca la palabra correcta.",pick(WW,10).map(([q,a])=>({q,a,opts:["was","were"]})),"ww")},
+   {id:"th",name:"there was / were",build:()=>buildChoice("there was / there were","Elige la forma correcta. (+) afirmativa, (–) negativa, (?) pregunta.",
+     pick(TH,10).map(([q,a])=>({q,a,opts:THERE_OPTS})),"th")},
+   {id:"card",name:"La postal de Zane",build:()=>buildGapText("La postal de Zane desde Londres","Completa con was, were, wasn't o weren't.",CARD,"card")},
+   {id:"chant",name:"Holiday chant",build:()=>buildGapText("The holiday chant","Completa con el simple past de los verbos regulares del recuadro.",CHANT,"chant",{bank:CHANT_BANK})},
+   {id:"story2",name:"La historia de Grey Wolf",build:()=>buildGapText("Grey Wolf y Little Bird",
+     "Completa con el simple past del verbo entre paréntesis, como en las historias de dibujos.",
+     STORY2.map(x=>[x]),"story2",{plain:true})},
+   {id:"story",name:"Holiday story",build:()=>buildGapText("A holiday in Cornwall","Completa con el simple past del verbo entre paréntesis. ¡Ojo con los irregulares!",STORY.map(x=>[x]),"story",{plain:true})}
+ ]},
+ {id:"negative",name:"Negative",rules:RULES_NEG,sections:[
+   {id:"negp",name:"Con didn't",build:()=>buildType("Frases negativas con didn't","Escribe la frase en negativa. Recuerda: didn't + forma base.",
+     pick(NEG_PAST,8).map(([q,a])=>({q,a:[a]})),"negp")},
+   {id:"neg",name:"wasn't / weren't",build:()=>buildType("Negativas con el verbo be","Escribe la frase en negativa, con la forma corta wasn't o weren't.",
+     pick(NEG,8).map(([q,a])=>({q,a:[a]})),"neg")},
+   {id:"didnt",name:"What didn't you do?",build:()=>buildType("Have a go – what didn't you do yesterday?",
+     "Escribe la frase completa en negativa, como en el ejercicio 4 del libro.",
+     pick(DIDNT,8).map(([q,a])=>({q,a:[a,a.replace(" yesterday","")]})),"didnt")},
+   {id:"misp",name:"Busca el error",build:()=>buildType("Busca el error","Cada frase tiene un fallo. Escribe la frase correcta.",
+     pick(MIS_PAST,8).map(([q,a])=>({q,a:[a]})),"misp")}
+ ]},
+ {id:"questions",name:"Questions",rules:RULES_Q,sections:[
+   {id:"qsp",name:"Preguntas con did",build:()=>buildQuestionPairs("Preguntas con did","Escribe la pregunta con did. Después la respuesta corta: ✓ = sí, ✗ = no.",pick(QS_PAST,6),"qsp")},
+   {id:"qs",name:"Preguntas con was / were",build:()=>buildQuestionPairs("Preguntas con el verbo be","Escribe la pregunta. Después la respuesta corta: ✓ = sí, ✗ = no.",pick(QS,6),"qs")},
+   {id:"wh",name:"Wh- questions",build:()=>buildGapText("Preguntas con palabra interrogativa","Completa con did y la forma base del verbo entre paréntesis.",
+     WH.map(([q,a1,a2])=>q.replace("___ you ___","{did} you {"+a2+"}").replace(/___ ([\w ]+?) ___/,(m,x)=>"{did} "+x+" {"+a2+"}")),"wh",{plain:true})},
+   {id:"dodid",name:"do / does / did",build:()=>buildChoice("do, does, did – don't, doesn't, didn't","¿Presente o pasado? Mira la pista entre paréntesis.",
+     pick(DODID,10).map(([q,a,cue])=>({q:q+"   ("+cue+")",a,opts:shuffle(DO_OPTS.map(o=>/^[A-Z]/.test(a)?o[0].toUpperCase()+o.slice(1):o))})),"dodid")},
+   {id:"health",name:"A Health Quiz",build:()=>buildQuestionPairs("A Health Quiz",
+     "Escribe la pregunta con did y después la respuesta corta: ✓ = Yes, I did. · ✗ = No, I didn't.",pick(HEALTH,6),"health")},
+   {id:"thief",name:"Stop, thief!",build:()=>buildQuestionPairs("Stop, thief!",
+     "El inspector Watson pregunta a Paul. Escribe la pregunta con was o were y la respuesta corta: ✓ = sí, ✗ = no.",
+     pick(THIEF,6),"thief")},
+   {id:"dial",name:"Alice & Lily",build:()=>buildGapText("Alice y Lily – un diálogo","Completa las preguntas de B y las respuestas cortas.",DIALOGUE,"dial",{plain:true})}
+ ]},
+ {id:"listen",name:"Listening",rules:null,sections:[
+   {id:"listen",name:"Textos",build:buildListening}
+ ]},
+ {id:"vocab",name:"Vocabulary",rules:null,sections:[
+   {id:"vocab",name:"Palabras",build:buildVocab}
+ ]},
+ {id:"write",name:"Writing",rules:RULES_WRITE,sections:[
+   {id:"wphrases",name:"Cómo se construye",build:buildWritingHelp},
+   {id:"n2s",name:"Notas → frases",build:buildNotes2Sent},
+   {id:"task",name:"Tarea completa",build:buildTask},
+   {id:"wpad",name:"Escribe libre",build:buildWritingPad},
+   {id:"wcheck",name:"Checklist",build:buildChecklist}
+ ]}
+];
+
+
+function curGroup(){return GROUPS.find(g=>g.id===group)}
+function renderGroups(){
+  const bar=document.getElementById("groups");bar.innerHTML="";
+  GROUPS.forEach(g=>{
+    const b=el("button",{class:g.id===group?"on":"",type:"button"},esc(g.name));
+    b.onclick=()=>{group=g.id;current=g.sections[0].id;render();window.scrollTo({top:0,behavior:"smooth"})};
+    bar.appendChild(b);
+  });
+}
+function renderRules(){
+  const box=document.getElementById("rulesbox");box.innerHTML="";
+  const g=curGroup();if(!g.rules)return;
+  const d=el("details",{class:"card rules",open:""});
+  d.appendChild(el("summary",{},"How it works – the rules"));
+  d.appendChild(el("div",{},g.rules));
+  box.appendChild(d);
+}
+function renderNav(){
+  const nav=document.getElementById("nav");nav.innerHTML="";
+  const g=curGroup();
+  if(g.sections.length<2){nav.style.display="none";return}
+  nav.style.display="flex";
+  g.sections.forEach(s=>{
+    const ok=s.subs?s.subs.every(i=>done[i]):done[s.id];
+    const b=el("button",{class:s.id===current?"on":"",type:"button"},esc(s.name)+(ok?' <span class="done">✓</span>':""));
+    b.onclick=()=>{current=s.id;render();document.getElementById("nav").scrollIntoView({behavior:"smooth",block:"start"})};
+    nav.appendChild(b);
+  });
+}
+function render(){
+  const g=curGroup();
+  if(!g.sections.some(s=>s.id===current))current=g.sections[0].id;
+  renderGroups();renderRules();renderNav();
+  const m=document.getElementById("main");m.innerHTML="";
+  m.appendChild(g.sections.find(s=>s.id===current).build());
+}
+current=GROUPS[0].sections[0].id;
+group="tests";
+render();
+initCaps();
+</script>
+</body>
+</html>
+
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+</body></html>
