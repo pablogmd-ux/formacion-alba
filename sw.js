@@ -1,8 +1,8 @@
 // Cambia el número de versión cada vez que subas cambios, para forzar la actualización
-const VERSION = 'alba-v2';
+const VERSION = 'alba-v3';
 const ARCHIVOS = [
   './', './index.html', './manifest.json',
-  './apps/english.html', './apps/deutsch.html', './apps/kasus.html',
+  './apps/english.html', './apps/deutsch.html', './apps/kasus.html', './apps/deutsch-ka2.html',
   './apps/bruch-trainer.html', './apps/dezimal.html', './apps/bio.html'
 ];
 self.addEventListener('install', e => {
