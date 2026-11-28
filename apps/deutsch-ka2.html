@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deutsch KA 2 Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* VOICE: lúdico y claro, para una alumna de Klasse 6; papá lee las notas en español.
+   IDEA: un libro de aventuras del barón mentiroso; cada pestaña es un capítulo.
+   PICTURE: un jinete sobre una bala de cañón cruzando el cielo, en la cabecera.
+   COLOUR and TYPE: cobalto dominante, rosa de apoyo, amarillo girasol como acento; Fredoka + Atkinson.
+   LAYOUT: cabecera con dibujo, pestañas que se envuelven, una columna de ejercicios de 760px. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0f1533);--ink:light-dark(#141a3a,#eef1ff);--muted:light-dark(#57607f,#a9b1d6);
+--blue:light-dark(#2347c5,#7f9bff);--blue-soft:light-dark(#e7edff,#1b2552);--pink:light-dark(#e2457f,#ff8db5);
+--sun:#ffcb2e;--line:light-dark(#d9def0,#2c3668);--card:light-dark(#f6f8ff,#151d42);
+--ok:light-dark(#137a43,#5fd894);--ok-soft:light-dark(#e3f7ea,#123824);--bad:light-dark(#c22d2d,#ff8a8a);--bad-soft:light-dark(#fde8e8,#3e1717)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Fredoka,system-ui,sans-serif;line-height:1.1;margin:0 0 .4em;text-wrap:balance}
+h1{font-size:clamp(32px,6vw,48px)}h2{font-size:28px;color:var(--blue)}h3{font-size:20px}
+.hero{background:var(--blue);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:16px;padding:28px max(5vw,16px) 0}
+.hero p{color:#dfe6ff;margin:0 0 16px;max-width:36ch}
+.hero .date{display:inline-block;background:var(--sun);color:#141a3a;font-weight:700;border-radius:999px;padding:4px 14px;margin-bottom:12px}
+.hero svg{width:100%;height:auto;display:block}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;padding:14px max(5vw,16px);border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+.tabs button{font:600 16px Fredoka,sans-serif;min-height:44px;padding:8px 16px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tabs .sc{font-size:13px;opacity:.85;margin-left:6px}
+main{max-width:800px;margin:0 auto;padding:24px 16px 64px}
+.theory{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:22px}
+.theory ul{margin:.3em 0 .6em;padding-left:1.2em}
+.papa{border-left:4px solid var(--pink);background:light-dark(#fff1f6,#2a1630);border-radius:10px;padding:10px 14px;margin:14px 0;font-size:15px}
+.papa b{color:var(--pink)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
+.steps div{background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px}
+.steps strong{display:block;font-family:Fredoka,sans-serif;color:var(--blue);font-size:18px}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:16px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}th{background:var(--blue-soft)}
+.end{color:var(--pink);font-weight:700}
+.q{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px;background:var(--bg)}
+.q .n{color:var(--muted);font-size:14px}
+.q p{margin:.2em 0 .6em;font-size:18px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button,.go{font:inherit;min-height:44px;padding:8px 14px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;text-align:left}
+.opts button:focus-visible,.go:focus-visible,input:focus-visible,.tabs button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.opts button.ok{background:var(--ok-soft);border-color:var(--ok)}.opts button.bad{background:var(--bad-soft);border-color:var(--bad)}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+input[type=text]{font:inherit;font-size:17px;min-height:44px;padding:8px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);flex:1 1 220px}
+.go{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.fb{margin-top:8px;font-size:15px;border-radius:8px;padding:8px 10px;display:none}
+.fb.ok{display:block;background:var(--ok-soft);color:var(--ok)}.fb.bad{display:block;background:var(--bad-soft);color:var(--bad)}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 18px}
+.meter{flex:1 1 200px;height:12px;background:var(--blue-soft);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--sun);width:0;transition:width .3s}
+.tag{display:inline-block;margin-left:8px;font-size:13px;font-weight:700;color:var(--pink);border:1px solid var(--pink);border-radius:99px;padding:0 8px}
+.pending{border:2px dashed var(--pink);border-radius:16px;padding:22px;text-align:center;color:var(--muted)}
+@media(max-width:600px){.hero{grid-template-columns:1fr;padding-top:22px}.steps{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.meter i{transition:none}.ball{animation:none!important}}
+.ball{animation:fly 6s ease-in-out infinite}
+@keyframes fly{50%{transform:translate(-14px,-8px)}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div>
+    <span class="date">Klassenarbeit · Mittwoch, 2.12.</span>
+    <h1>Deutsch KA 2 – Training für Alba</h1>
+    <p>Lügengeschichte schreiben (S. 96), Wörter für „lügen“ (S. 86), Redewendungen mit Puzzle und n-Deklination mit den Arbeitsblättern.</p>
+  </div>
+  <svg viewBox="0 0 520 260" role="img" aria-label="Ein Reiter fliegt auf einer Kanonenkugel über die Wolken">
+    <defs>
+      <radialGradient id="g" cx=".35" cy=".35"><stop offset="0" stop-color="#5a6688"/><stop offset="1" stop-color="#1a1f33"/></radialGradient>
+      <g id="cloud"><ellipse cx="0" cy="0" rx="46" ry="18" fill="#fff"/><ellipse cx="-22" cy="-10" rx="24" ry="18" fill="#fff"/><ellipse cx="18" cy="-14" rx="28" ry="22" fill="#fff"/></g>
+    </defs>
+    <circle cx="440" cy="60" r="34" fill="#ffcb2e"/>
+    <use href="#cloud" x="90" y="210" opacity=".9"/><use href="#cloud" x="300" y="236"/><use href="#cloud" x="470" y="200" opacity=".85"/>
+    <g fill="none" stroke="#ffcb2e" stroke-width="5" stroke-linecap="round" opacity=".8"><path d="M40 170 q60-10 130-40"/><path d="M60 196 q60-12 120-46" opacity=".6"/></g>
+    <g class="ball">
+      <ellipse cx="250" cy="170" rx="58" ry="10" fill="#0d1440" opacity=".25"/>
+      <circle cx="250" cy="120" r="46" fill="url(#g)"/>
+      <path d="M222 96 a34 34 0 0 1 30-14" stroke="#9aa6c8" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M236 78 l10 -44 22 2 -6 44z" fill="#e2457f"/>
+      <circle cx="258" cy="24" r="15" fill="#f2c9a0"/>
+      <path d="M240 18 q18-24 38-2 l-6 4 q-12-10-26 0z" fill="#141a3a"/>
+      <path d="M238 14 h44 l-6 -10 h-30z" fill="#141a3a"/>
+      <path d="M268 54 l40 -14" stroke="#e2457f" stroke-width="7" stroke-linecap="round"/>
+      <path d="M236 80 l-26 30" stroke="#141a3a" stroke-width="8" stroke-linecap="round"/>
+    </g>
+  </svg>
+</header>
+<nav class="tabs" id="tabs" aria-label="Kapitel"></nav>
+<main id="main"></main>
+
+<script>
+{
+const N=s=>String(s).toLowerCase().normalize('NFC').replace(/[’‘`´]/g,"'").replace(/ß/g,'ss').replace(/[.!?,;:"„“]/g,'').replace(/\s+/g,' ').trim();
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const theoryLG=`
+<h2>Eine eigene Lügengeschichte schreiben (S. 96)</h2>
+<div class="theory">
+<h3>1. Planen – die Karteikarten</h3>
+<div class="steps">
+<div><strong>Wer? Wo? Was?</strong>der Erzähler / die Erzählerin · der Handlungsort · die Lüge</div>
+<div><strong>Anfang</strong>die <b>Wahrheit am Anfang</b>: alles klingt normal und glaubhaft.</div>
+<div><strong>Hauptteil → Ende</strong>die <b>Lügenkette im Hauptteil</b> · das <b>Betonen der Wahrheit am Ende</b></div>
+</div>
+<p>Situationen im Buch: <b>A</b> In einem Walbauch · <b>B</b> Ein Tag als Verwandlungskünstler · <b>C</b> Auf dem Weg zur Schule</p>
+<h3>2. Schreiben – in der Ich-Form</h3>
+<p>So kannst du beginnen: <b>„Wie ihr alle wisst, habe/bin/wollte/konnte ich schon immer …“</b></p>
+<table class="stack"><thead><tr><th>Kasten</th><th>Formulierungen</th></tr></thead><tbody>
+<tr><td>Übertreibungen formulieren</td><td>unglaublich · unbeschreiblich · schlagartig · ungeheuerlich · riesengroß · blitzschnell · klitzeklein · winzig · gigantisch · unzählbar</td></tr>
+<tr><td>anschauliche Vergleiche formulieren</td><td>so groß wie … · so klein wie … · so schnell wie … · so langsam wie … · so schön wie … · so laut wie …</td></tr>
+<tr><td>Ausrufe und wörtliche Rede verwenden</td><td>Ich konnte das nicht glauben! · Das war unglaublich! · Und wirklich! · Er erklärte mir: „…“ · „…“, fragte sie mich.</td></tr>
+<tr><td>die Wahrheit betonen</td><td>Ich schwöre, dass … · Es klingt vielleicht unglaublich, aber … · Ihr werdet mir sicher zustimmen, dass … · Ich habe es mit eigenen Augen gesehen! · Das ist die Wahrheit. So wahr ich … heiße.</td></tr>
+</tbody></table>
+<h3>3. Überschrift und Rückmeldung</h3>
+<p>Die <b>Überschrift</b> soll die Leser <b>neugierig</b> machen. Eine gute Geschichte hat <b>glaubhafte Stellen</b> und eine <b>Lügenkette</b> und ist unterhaltsam, lustig, spannend.</p>
+</div>
+<div class="papa"><b>Para papá:</b> lo más probable es que en el examen tenga que escribir una Lügengeschichte con las cajas de la S. 96. Que escriba una a mano (por ejemplo la situación A o C), me mandas la foto y la corrijo con rúbrica: estructura de las 6 tarjetas, fórmulas de cada caja, Ich-Form y Präteritum.</div>`;
+
+const theoryLW=`
+<h2>Wörter für „lügen“ (S. 86)</h2>
+<div class="theory">
+<p>Für das Wort <b>lügen</b> gibt es viele andere Ausdrücke:</p>
+<table class="stack"><thead><tr><th>Ausdruck</th><th>Was es genau meint</th></tr></thead><tbody>
+<tr><td>flunkern</td><td>harmlos ein bisschen lügen oder übertreiben, oft aus Spaß</td></tr>
+<tr><td>schwindeln</td><td>eine kleine Lüge erzählen</td></tr>
+<tr><td>austricksen</td><td>jemanden mit einem Trick überlisten</td></tr>
+<tr><td>betrügen</td><td>jemanden täuschen, um selbst einen Vorteil zu haben</td></tr>
+<tr><td>jemanden hinters Licht führen</td><td>jemanden täuschen</td></tr>
+</tbody></table>
+<p>Lügen: <b>er log</b> (Präteritum) · <b>er hat gelogen</b> (Perfekt)</p>
+<h3>Arten von Lügen</h3>
+<ul>
+<li><b>unterhaltsame Lügen</b>: zum Spaß, zum Beispiel Lügengeschichten</li>
+<li><b>kleine Lügen</b>: harmlos, zum Beispiel ein bisschen schwindeln</li>
+<li><b>Notlügen</b>: man lügt, um jemanden nicht zu verletzen oder sich aus einer schwierigen Lage zu retten</li>
+<li><b>bösartige Lügen</b>: man lügt, um anderen zu schaden oder sie zu betrügen</li>
+</ul>
+<p><b>Der Angler (Bilder 1 und 2):</b> Er behauptet, der Fisch war zwei Meter lang. In Wirklichkeit hat er einen winzigen Fisch gefangen.</p>
+</div>
+<div class="papa"><b>Para papá:</b> la S. 86 que pone el temario es la página de entrada del tema de la mentira, así que el vocabulario de la Lektion 8 son estas palabras. El libro solo las enumera; la columna con el matiz de cada una la he añadido yo. Si la profe dio otra definición en clase, vale la de la profe.</div>`;
+
+const theoryRW=`
+<h2>Redewendungen und Sprichwörter</h2>
+<div class="theory">
+<h3>Aus dem Buch (S. 87): Redensarten zum Lügen</h3>
+<table class="stack"><thead><tr><th>Redensart</th><th>Bedeutung</th></tr></thead><tbody>
+<tr><td>etwas an den Haaren herbeiziehen</td><td>eine unpassende, unlogische Erklärung geben</td></tr>
+<tr><td>jemandem ein X für ein U vormachen</td><td>jemanden betrügen; jemandem eine falsche Information geben, um einen Vorteil zu haben</td></tr>
+<tr><td>jemanden an der Nase herumführen</td><td>jemanden täuschen</td></tr>
+</tbody></table>
+<h3>Sprichwörter (S. 87, Aufgabe 6)</h3>
+<table class="stack"><thead><tr><th>Sprichwort</th><th>Erklärung</th></tr></thead><tbody>
+<tr><td>A · Lügen haben kurze Beine.</td><td>3 · Lügen lohnt sich nicht, denn die Wahrheit kommt schnell heraus.</td></tr>
+<tr><td>B · Eine Lüge schleppt zehn andere nach sich.</td><td>2 · Wer einmal gelogen hat, muss immer weiter lügen, damit die Lüge nicht auffliegt.</td></tr>
+<tr><td>C · Ein Gähnen lügt nicht.</td><td>1 · Dein Körper zeigt, wie du dich wirklich fühlst.</td></tr>
+</tbody></table>
+<h3>Puzzle</h3>
+<table class="stack"><thead><tr><th>Redewendung</th><th>Bedeutung</th></tr></thead><tbody>
+<tr><td>ein Auge auf jemanden werfen</td><td>sich stark für eine Person interessieren</td></tr>
+<tr><td>jemanden an der Nase herumführen</td><td>jemanden täuschen</td></tr>
+<tr><td>jemandem den Spiegel vorhalten</td><td>einer Person ihre Fehler bewusst machen</td></tr>
+<tr><td>etwas auf die leichte Schulter nehmen</td><td>eine wichtige oder gefährliche Angelegenheit unterschätzen</td></tr>
+<tr><td>jemandem den Buckel herunterrutschen</td><td>eine Person, ihre Meinung oder ihr Verhalten ist dir völlig egal; du möchtest in Ruhe gelassen werden</td></tr>
+<tr><td>jemandem die Suppe versalzen</td><td>jemandem den Spaß verderben</td></tr>
+<tr><td>seine sieben Sachen packen</td><td>alle seine Sachen packen und an einen anderen Ort gehen</td></tr>
+<tr><td>sich ins Fäustchen lachen</td><td>heimlich Schadenfreude empfinden</td></tr>
+<tr><td>jemandem die Zähne zeigen</td><td>klar machen, dass man sich etwas nicht gefallen lässt</td></tr>
+<tr><td>jemanden um den kleinen Finger wickeln</td><td>eine andere Person beeinflussen, damit sie macht, was man will</td></tr>
+</tbody></table>
+</div>
+<div class="papa"><b>Para papá:</b> en su cuaderno hay faltas que conviene corregir antes del examen: <i>Dass man</i> (no „Das man“), <i>jemanden täuschen</i> (no „Jemand zu täuschen“), <i>Spaß</i>, <i>Suppe</i>, <i>wickeln</i>, <i>Meinung</i>, <i>Verhalten</i>, <i>in Ruhe</i>, <i>Sachen</i>. En la S. 87 el libro da cuatro definiciones para tres expresiones; he puesto el reparto más lógico, pero si en clase lo corrigieron distinto, vale lo de clase.</div>`;
+
+const theoryND=`
+<h2>n-Deklination</h2>
+<div class="theory">
+<p>Einige <b>maskuline</b> Nomen bekommen in <b>allen Fällen außer Nominativ Singular</b> die Endung <span class="end">-(e)n</span>.</p>
+<table><thead><tr><th></th><th>Singular</th><th>Plural</th></tr></thead><tbody>
+<tr><td>Nominativ</td><td>der Polizist</td><td>die Polizist<span class="end">en</span></td></tr>
+<tr><td>Akkusativ</td><td>den Polizist<span class="end">en</span></td><td>die Polizist<span class="end">en</span></td></tr>
+<tr><td>Dativ</td><td>dem Polizist<span class="end">en</span></td><td>den Polizist<span class="end">en</span></td></tr>
+<tr><td>Genitiv</td><td>des Polizist<span class="end">en</span></td><td>der Polizist<span class="end">en</span></td></tr>
+</tbody></table>
+<h3>Diese Nomen aus den Arbeitsblättern gehören dazu</h3>
+<ul>
+<li><b>-ist, -ent, -ant, -at, -af, -et, -ot, -ekt</b>: der Journalist, Polizist, Assistent, Patient, Präsident, Praktikant, Musikant, Diplomat, Fotograf, Athlet, Pilot, Architekt → <b>-en</b></li>
+<li><b>Maskulin auf -e</b>: der Kunde, Kollege, Experte, Pädagoge → nur <b>-n</b></li>
+<li><b>Andere</b>: der Nachbar → den Nachbar<span class="end">n</span></li>
+</ul>
+<h3>Achtung: KEINE n-Deklination</h3>
+<p>der Direktor (des Direktor<b>s</b>), der Mechaniker, der Tierarzt, der Lehrer, der Bäcker, der Mitarbeiter, der Schauspieler, der Tänzer, der Passagier</p>
+<h3>Wann ist es Dativ?</h3>
+<ul>
+<li>nach <b>mit, von, bei, zu, aus, nach, seit</b></li>
+<li>nach <b>helfen, gehören, danken, vertrauen, zuhören, gefallen</b></li>
+</ul>
+<p><b>Trick:</b> Erst den Fall bestimmen, dann den Artikel (dem/den/des), dann die Endung.</p>
+<p><b>Übung 8 und 9</b> (eigene Sätze, Kreativaufgabe) schreibst du auf Papier. Unterstreiche die n-Nomen!</p>
+</div>
+<div class="papa"><b>Para papá:</b> en las fichas ya hechas casi todo está bien. Los fallos son de dos tipos:
+<br>1) <b>Pone <i>den</i> donde va <i>dem</i></b> (Dativ): <i>mit <b>dem</b> Experten</i>, <i>hilft <b>dem</b> Assistenten</i>, <i>vertraut <b>dem</b> Tierarzt</i>. Es el fallo que más se repite.
+<br>2) <b>Se le escapa la -en en <i>Athlet</i> y <i>Pilot</i></b>: <i>den Athlet<b>en</b></i>, <i>des Pilot<b>en</b></i>.
+<br>En Übung 5.1 parece que marcó <i>der</i> (va <i>den</i> Polizisten). Las Übungen 6 a 9 están en blanco: la 6 y la 7 las tiene aquí; la 8 y la 9 que las escriba a mano y te las corrijo. Los primeros ejercicios de esta pestaña, marcados en rosa, son sus fallos.</div>`;
+
+const LG=[
+{q:"Was gehört an den Anfang der Geschichte?",o:["die Wahrheit am Anfang","die Lügenkette","das Betonen der Wahrheit"],a:0,w:"Der Anfang klingt glaubhaft."},
+{q:"Was steht im Hauptteil?",o:["die Wahrheit am Anfang","die Lügenkette","die Überschrift"],a:1,w:"Im Hauptteil kommt die Lügenkette: eine Lüge führt zur nächsten."},
+{q:"Was steht am Ende?",o:["das Betonen der Wahrheit","der Handlungsort","die Lügenkette"],a:0,w:"Am Ende betont der Erzähler, dass alles wahr ist."},
+{q:"In welcher Form schreibt man die Geschichte?",o:["in der Ich-Form","in der Er-Form","in der Du-Form"],a:0},
+{q:"Welche drei Karteikarten fehlen noch? Erzähler, Handlungsort und …",o:["die Lüge","der Reim","die Moral"],a:0,w:"Erzähler/Erzählerin · Handlungsort · Lüge"},
+{q:"„riesengroß“ – in welchen Kasten gehört das?",o:["Übertreibungen","Vergleiche","Wahrheit betonen","Ausrufe und wörtliche Rede"],a:0},
+{q:"„so schnell wie ein Rennauto“ – in welchen Kasten?",o:["Übertreibungen","Vergleiche","Wahrheit betonen","Ausrufe und wörtliche Rede"],a:1},
+{q:"„Ich habe es mit eigenen Augen gesehen!“ – in welchen Kasten?",o:["Übertreibungen","Vergleiche","Wahrheit betonen","Ausrufe und wörtliche Rede"],a:2},
+{q:"„Ich konnte das nicht glauben!“ – in welchen Kasten?",o:["Übertreibungen","Vergleiche","Wahrheit betonen","Ausrufe und wörtliche Rede"],a:3},
+{q:"„Es klingt vielleicht unglaublich, aber …“ – in welchen Kasten?",o:["Übertreibungen","Vergleiche","Wahrheit betonen","Ausrufe und wörtliche Rede"],a:2},
+{q:"„unzählbar“ – in welchen Kasten?",o:["Übertreibungen","Vergleiche","Wahrheit betonen","Ausrufe und wörtliche Rede"],a:0},
+{q:"Welche Überschrift macht neugierig?",o:["Mein Schulweg","Der Tag, an dem mich ein Wal verschluckte","Ein Text über einen Tag"],a:1},
+{q:"Was braucht eine gute Lügengeschichte?",o:["glaubhafte Stellen und eine Lügenkette","nur Lügen","nur die Wahrheit"],a:0,w:"So steht es in Aufgabe 3 auf S. 96."},
+{q:"Ergänze: Ich habe es mit eigenen ___ gesehen!",t:["augen"]},
+{q:"Ergänze: Das ist die Wahrheit. So wahr ich Alba ___!",t:["heiße"],w:"So wahr ich … heiße."},
+{q:"Ergänze: Ich ___, dass alles genau so passiert ist.",t:["schwöre","schwoere"],w:"Ich schwöre, dass …"},
+{q:"Ergänze: Ihr werdet mir sicher ___, dass …",t:["zustimmen"]},
+{q:"Ergänze den Anfang: Wie ihr alle ___, wollte ich schon immer fliegen.",t:["wisst"]},
+{q:"Übertreibung für „sehr, sehr klein“: klitze___",t:["klein","klitzeklein"]},
+{q:"Übertreibung für „sehr schnell“: blitz___",t:["schnell","blitzschnell"]},
+{q:"Übertreibung für „sehr groß“: riesen___",t:["groß","riesengroß"]},
+{q:"Übertreibung für „plötzlich“: schlag___",t:["artig","schlagartig"]}
+];
+
+const LW=[
+{q:"Welches Wort bedeutet NICHT „lügen“?",o:["flunkern","schwindeln","zustimmen"],a:2},
+{q:"Welches Wort bedeutet NICHT „lügen“?",o:["austricksen","beweisen","betrügen"],a:1},
+{q:"Ergänze: jemanden hinters ___ führen",t:["licht"]},
+{q:"Harmlos ein bisschen lügen, oft aus Spaß:",o:["flunkern","betrügen","jemanden hinters Licht führen"],a:0},
+{q:"Jemanden täuschen, um selbst einen Vorteil zu haben:",o:["schwindeln","betrügen","flunkern"],a:1},
+{q:"Jemanden mit einem Trick überlisten:",o:["austricksen","schwindeln","zustimmen"],a:0},
+{q:"„Dein Kuchen schmeckt super!“ – aber er schmeckt nicht. Welche Lüge ist das?",o:["eine Notlüge","eine bösartige Lüge","eine unterhaltsame Lüge"],a:0,w:"Man will den anderen nicht verletzen."},
+{q:"Ein Baron erzählt, er ist auf einer Kanonenkugel geritten. Welche Lüge?",o:["eine Notlüge","eine unterhaltsame Lüge","eine bösartige Lüge"],a:1},
+{q:"Jemand lügt, damit ein anderer Ärger bekommt. Welche Lüge?",o:["eine kleine Lüge","eine Notlüge","eine bösartige Lüge"],a:2},
+{q:"Was behauptet der Angler auf S. 86?",o:["Der Fisch war zwei Meter lang.","Er hat nichts gefangen.","Der Fisch ist weggeschwommen."],a:0},
+{q:"Was ist wirklich passiert?",o:["Er hat einen winzigen Fisch gefangen.","Er hat einen Wal gefangen.","Er ist ins Wasser gefallen."],a:0},
+{q:"Ergänze: Wer beim Lügenspiel am besten lügt, wird Lügen___ oder Lügenkönig.",t:["königin","koenigin"]},
+{q:"lügen im Präteritum: Der Angler ___.",t:["log"]},
+{q:"lügen im Perfekt: Der Angler hat ___.",t:["gelogen"]},
+{q:"flunkern im Perfekt: Ich habe nur ein bisschen ___.",t:["geflunkert"]},
+{q:"schwindeln im Perfekt: Du hast ___!",t:["geschwindelt"]}
+];
+
+const RWP=[
+["etwas an den Haaren herbeiziehen","eine unpassende, unlogische Erklärung geben"],
+["jemandem ein X für ein U vormachen","jemanden betrügen, um einen Vorteil zu haben"],
+["jemanden an der Nase herumführen","jemanden täuschen"],
+["ein Auge auf jemanden werfen","sich stark für eine Person interessieren"],
+["jemandem den Spiegel vorhalten","einer Person ihre Fehler bewusst machen"],
+["etwas auf die leichte Schulter nehmen","eine wichtige oder gefährliche Angelegenheit unterschätzen"],
+["jemandem den Buckel herunterrutschen","eine Person ist dir völlig egal, du willst in Ruhe gelassen werden"],
+["jemandem die Suppe versalzen","jemandem den Spaß verderben"],
+["seine sieben Sachen packen","alle seine Sachen packen und an einen anderen Ort gehen"],
+["sich ins Fäustchen lachen","heimlich Schadenfreude empfinden"],
+["jemandem die Zähne zeigen","klar machen, dass man sich etwas nicht gefallen lässt"],
+["jemanden um den kleinen Finger wickeln","eine andere Person beeinflussen, damit sie macht, was man will"]
+];
+const RWFIX=[
+{q:"„Lügen haben kurze Beine.“ – Was bedeutet das?",o:["Lügen lohnt sich nicht, denn die Wahrheit kommt schnell heraus.","Wer einmal gelogen hat, muss immer weiter lügen.","Dein Körper zeigt, wie du dich wirklich fühlst."],a:0},
+{q:"„Eine Lüge schleppt zehn andere nach sich.“ – Was bedeutet das?",o:["Lügen lohnt sich nicht, denn die Wahrheit kommt schnell heraus.","Wer einmal gelogen hat, muss immer weiter lügen, damit die Lüge nicht auffliegt.","Dein Körper zeigt, wie du dich wirklich fühlst."],a:1},
+{q:"„Ein Gähnen lügt nicht.“ – Was bedeutet das?",o:["Lügen lohnt sich nicht.","Wer einmal lügt, muss weiter lügen.","Dein Körper zeigt, wie du dich wirklich fühlst."],a:2},
+{q:"Mein Bruder lacht heimlich, als ich hinfalle. Er …",o:["lacht sich ins Fäustchen","zeigt mir die Zähne","wirft ein Auge auf mich"],a:0},
+{q:"Lena macht mit ihrem Vater immer, was sie will. Sie …",o:["wickelt ihn um den kleinen Finger","versalzt ihm die Suppe","packt seine sieben Sachen"],a:0},
+{q:"Tim lernt nicht für die Arbeit. Er …",o:["nimmt sie auf die leichte Schulter","hält ihr den Spiegel vor","zieht sie an den Haaren herbei"],a:0},
+{q:"Ergänze: ein ___ auf jemanden werfen",t:["auge"]},
+{q:"Ergänze: jemandem die ___ versalzen",t:["suppe"]},
+{q:"Ergänze: seine ___ Sachen packen",t:["sieben","7"]},
+{q:"Ergänze: sich ins ___ lachen",t:["fäustchen","faeustchen"]},
+{q:"Ergänze: jemanden um den kleinen ___ wickeln",t:["finger"]},
+{q:"Ergänze: etwas auf die leichte ___ nehmen",t:["schulter"]},
+{q:"Ergänze: jemandem den ___ vorhalten",t:["spiegel"]},
+{q:"Ergänze: jemandem die ___ zeigen",t:["zähne","zaehne"]},
+{q:"Ergänze: Du kannst mir den ___ herunterrutschen!",t:["buckel"]},
+{q:"Ergänze: jemandem ein X für ein ___ vormachen",t:["u"]},
+{q:"Ergänze: etwas an den ___ herbeiziehen",t:["haaren"]},
+{q:"Ergänze: Lügen haben kurze ___.",t:["beine"]}
+];
+
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const RW=()=>{
+  const mc=RWP.map(([r,b])=>{const others=shuffle(RWP.filter(p=>p[1]!==b).map(p=>p[1])).slice(0,2);const o=shuffle([b,...others]);return{q:"Was bedeutet „"+r+"“?",o,a:o.indexOf(b)}});
+  return [...mc,...RWFIX];
+};
+
+const ND=[
+{f:1,q:"Der Trainer lobt den ___. (der Athlet)",t:["athleten"],w:"Akkusativ + n-Deklination → den Athleten"},
+{f:1,q:"Die Mutter des ___ wartet am Flughafen. (der Pilot)",t:["piloten"],w:"Genitiv + n-Deklination → des Piloten"},
+{f:1,q:"Die Familie vertraut ___ Tierarzt.",o:["den","dem","des"],a:1,w:"vertrauen + Dativ → dem Tierarzt. Tierarzt ist keine n-Deklination."},
+{f:1,q:"Ich sehe ___ Polizisten vor dem Rathaus.",o:["der","den","dem"],a:1,w:"sehen + Akkusativ → den Polizisten"},
+{f:1,q:"Die Kundin spricht mit ___ Experten.",o:["der","den","dem"],a:2,w:"mit + Dativ → dem Experten"},
+{f:1,q:"Die Lehrerin hilft ___ Assistenten.",o:["der","den","dem"],a:2,w:"helfen + Dativ → dem Assistenten"},
+{q:"Der Polizist kontrolliert den Autofahrer. → Die Bürgerin sieht ___. (Akkusativ)",t:["den polizisten"],w:"den Polizisten"},
+{q:"Der Architekt zeichnet einen Bauplan. → Die Zeichnung ___ ist sehr genau. (Genitiv)",t:["des architekten"],w:"des Architekten"},
+{q:"Der Praktikant arbeitet im Büro. → Die Chefin erklärt ___ seine Aufgaben. (Dativ)",t:["dem praktikanten"],w:"dem Praktikanten"},
+{q:"Der Experte beantwortet die Frage. → Wir hören ___ aufmerksam zu. (Dativ)",t:["dem experten"],w:"zuhören + Dativ → dem Experten"},
+{q:"Zuerst begrüßt uns ein freundlicher ___. (der Mitarbeiter)",t:["mitarbeiter"],w:"Nominativ, und Mitarbeiter ist keine n-Deklination."},
+{q:"Danach stellt uns ein ___ Fragen. (der Journalist)",t:["journalist"],w:"Wer stellt Fragen? Nominativ Singular → kein -en!"},
+{q:"Anschließend sprechen wir mit ___. (der Fotograf)",t:["dem fotografen"],w:"mit + Dativ → dem Fotografen"},
+{q:"Neben ihm steht ein ___. (der Assistent)",t:["assistent"],w:"Wer steht da? Nominativ → ein Assistent"},
+{q:"Später erklärt uns ein ___, welche Fähigkeiten man braucht. (der Experte)",t:["experte"],w:"Nominativ → ein Experte"},
+{q:"Besonders interessant finden wir die Erzählungen ___. (der Pilot)",t:["des piloten"],w:"Genitiv → des Piloten"},
+{q:"Zum Schluss bedankt sich die Lehrerin bei ___. (der Direktor)",t:["dem direktor"],w:"bei + Dativ → dem Direktor. Direktor ist keine n-Deklination."},
+{q:"… und verabschiedet sich von ___. (der Mitarbeiter)",t:["dem mitarbeiter"],w:"von + Dativ → dem Mitarbeiter"},
+{q:"Welches Nomen gehört zur n-Deklination?",o:["der Patient","der Direktor","der Mechaniker"],a:0},
+{q:"Welches Nomen gehört zur n-Deklination?",o:["der Tänzer","der Diplomat","der Bäcker"],a:1},
+{q:"Welches Nomen gehört zur n-Deklination?",o:["der Schauspieler","der Lehrer","der Musikant"],a:2},
+{q:"Welches Nomen gehört zur n-Deklination?",o:["der Passagier","der Pädagoge","der Tierarzt"],a:1},
+{q:"„Das Auto gehört dem Diplomaten.“ Welcher Fall ist „dem Diplomaten“?",o:["Nominativ","Akkusativ","Dativ","Genitiv"],a:2},
+{q:"„Die Arbeit des Fotografen gefällt mir.“ Welcher Fall ist „des Fotografen“?",o:["Nominativ","Akkusativ","Dativ","Genitiv"],a:3},
+{q:"Das Fahrrad des ___ steht vor dem Geschäft. (der Kunde)",t:["kunden"],w:"Genitiv → des Kunden"},
+{q:"Der Mechaniker repariert das Fahrrad des ___. (der Nachbar)",t:["nachbarn"],w:"Genitiv → des Nachbarn"},
+{q:"Ich frage meinen ___ nach den Hausaufgaben. (der Kollege)",t:["kollegen"],w:"Akkusativ → meinen Kollegen"},
+{q:"Die Ärztin hilft dem ___. (der Patient)",t:["patienten"],w:"helfen + Dativ → dem Patienten"}
+];
+
+const store={get(){try{return JSON.parse(localStorage.getItem('ka2de')||'{}')}catch(e){return{}}},set(v){try{localStorage.setItem('ka2de',JSON.stringify(v))}catch(e){}}};
+let best=store.get();
+
+const TEST=()=>shuffle([...shuffle(LG).slice(0,5),...shuffle(LW).slice(0,4),...shuffle(RW()).slice(0,5),...shuffle(ND).slice(0,6)]);
+
+const TABS=[
+{id:'lg',name:'Lügengeschichte (S. 96)',th:theoryLG,ex:()=>LG},
+{id:'lw',name:'Lügen-Wörter (S. 86)',th:theoryLW,ex:()=>LW},
+{id:'rw',name:'Redewendungen',th:theoryRW,ex:RW},
+{id:'nd',name:'n-Deklination',th:theoryND,ex:()=>ND},
+{id:'test',name:'Probetest',th:`<h2>Probetest</h2><div class="theory"><p>20 gemischte Fragen aus allen vier Themen. Jedes Mal neu gemischt.</p></div>`,ex:TEST}
+];
+
+const tabsEl=document.getElementById('tabs'),main=document.getElementById('main');
+const drawTabs=cur=>{tabsEl.innerHTML=TABS.map(t=>`<button role="tab" id="tab-${t.id}" aria-selected="${t.id===cur}" data-t="${t.id}">${esc(t.name)}${best[t.id]!=null?`<span class="sc">${best[t.id]}%</span>`:''}</button>`).join('')};
+
+let state=null;
+const render=id=>{
+  const t=TABS.find(x=>x.id===id)||TABS[0];
+  drawTabs(t.id);
+  const items=t.ex();
+  state={id:t.id,items,done:new Set(),right:0};
+  main.innerHTML=t.th+(items.length?`<div class="bar"><div class="meter"><i id="m"></i></div><span id="cnt">0 / ${items.length} richtig</span><button class="go" id="again">Neu starten</button></div>`+items.map((x,i)=>`
+  <div class="q" data-i="${i}"><span class="n">${i+1}</span>${x.f?'<span class="tag">Fehler aus dem Arbeitsblatt</span>':''}<p>${esc(x.q)}</p>${x.o?`<div class="opts">${x.o.map((o,j)=>`<button data-j="${j}">${esc(o)}</button>`).join('')}</div>`:`<form class="row"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Antwort ${i+1}"><button class="go" type="submit">Prüfen</button></form>`}<div class="fb"></div></div>`).join(''):'');
+  try{history.replaceState(null,'','#'+t.id)}catch(e){}
+};
+
+const mark=(qEl,i,ok)=>{
+  const x=state.items[i],fb=qEl.querySelector('.fb');
+  const sol=x.o?x.o[x.a]:x.t[0];
+  fb.className='fb '+(ok?'ok':'bad');
+  fb.textContent=ok?('Richtig! '+(x.w||'')):('Leider nicht. Richtig: '+sol+(x.w?' – '+x.w:''));
+  if(!state.done.has(i)){state.done.add(i);if(ok)state.right++}
+  const n=state.items.length;
+  document.getElementById('m').style.width=(state.right/n*100)+'%';
+  document.getElementById('cnt').textContent=state.right+' / '+n+' richtig';
+  if(state.done.size===n){const p=Math.round(state.right/n*100);if(best[state.id]==null||p>best[state.id]){best[state.id]=p;store.set(best);drawTabs(state.id)}}
+};
+
+tabsEl.addEventListener('click',e=>{const b=e.target.closest('button[data-t]');if(b){render(b.dataset.t);window.scrollTo({top:document.querySelector('.tabs').offsetTop})}});
+main.addEventListener('click',e=>{
+  if(e.target.id==='again'){render(state.id);return}
+  const b=e.target.closest('.opts button');if(!b)return;
+  const qEl=b.closest('.q'),i=+qEl.dataset.i,x=state.items[i],j=+b.dataset.j,ok=j===x.a;
+  qEl.querySelectorAll('.opts button').forEach((btn,k)=>{btn.classList.remove('ok','bad');if(k===x.a)btn.classList.add('ok');else if(k===j)btn.classList.add('bad')});
+  mark(qEl,i,ok);
+});
+main.addEventListener('submit',e=>{
+  e.preventDefault();const f=e.target,qEl=f.closest('.q'),i=+qEl.dataset.i,x=state.items[i];
+  const v=N(f.querySelector('input').value);if(!v)return;
+  mark(qEl,i,x.t.some(a=>N(a)===v));
+});
+render((location.hash||'').slice(1)||'lg');
+}
+</script>
+<a href="../index.html" id="alba-menu-btn" aria-label="Menú" style="position:fixed;left:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.88);color:#e5e9f2;font:600 13px -apple-system,Segoe UI,sans-serif;text-decoration:none;border:1px solid #334155;box-shadow:0 4px 14px rgba(0,0,0,.3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Menú</a>
+
+</body>
+</html>
